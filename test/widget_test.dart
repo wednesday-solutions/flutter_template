@@ -48,5 +48,7 @@ void main() {
 
     // the List should display the City name provided
     expect(find.text('Pune'), findsOneWidget);
+    // the List item should display the minimum and maximum temperatures.
+    expect(find.text('Min Temp: 20° Max Temp: 30°'), findsOneWidget);
   });
 }
