@@ -11,11 +11,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: actions/setup-java@v1
-        with:
-          java-version: '12.x'
-      - uses: subosito/flutter-action@v1
-        with:
-          flutter-version: '1.9.1+hotfix.6'
+      - uses: takuyaohashi/setup-flutter@v1
+      with:
+        flutter-version: 'latest'
+        channel: 'stable'
       - run: flutter pub get
       - run: flutter test
