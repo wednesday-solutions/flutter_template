@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: takuyaohashi/setup-flutter@v1
-      with:
-        flutter-version: 'latest'
-        channel: 'stable'
+        with:
+          flutter-version: 'latest'
+          channel: 'stable'
       - run: flutter pub get
       - run: flutter test
