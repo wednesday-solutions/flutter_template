@@ -1,0 +1,12 @@
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  errors:
+    missing_return: error
+    missing_required_param: error
+    parameter_assignments: error
+    type_annotate_public_apis: ignore
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/*.config.dart"
