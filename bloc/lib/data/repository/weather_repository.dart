@@ -55,10 +55,6 @@ class WeatherRepository implements IWeatherRepository {
       final List<Weather> weatherList = await Future.wait(citiesList.map(
         (city) async => weatherApiService.weatherForCity(city.woeid),
       ));
-      if (weatherList.isEmpty) {
-        return left<WeatherFailure, KtList<Weather>>(
-            const WeatherFailure.unknown(message: "Nothing added to weather list."));
-      }
       return right<WeatherFailure, KtList<Weather>>(
           weatherList.toImmutableList());
     }).onErrorReturnWith((e) {
