@@ -578,13 +578,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.0"
-  replay_bloc:
-    dependency: "direct main"
-    description:
-      name: replay_bloc
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.1-dev.3"
   retrofit:
     dependency: "direct main"
     description:
