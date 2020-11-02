@@ -14,9 +14,11 @@
 *.ipr
 *.iws
 .idea/
+!.idea/runConfigurations/*
 
 # VS Code 
 .vscode/
+!.vscode/launch.json
 
 # Flutter/Dart/Pub related
 **/doc/api/
