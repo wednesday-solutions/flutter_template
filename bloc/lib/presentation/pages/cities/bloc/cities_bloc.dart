@@ -27,7 +27,7 @@ class CitiesBloc extends Bloc<CitiesEvent, CitiesState> {
   Stream<Transition<CitiesEvent, CitiesState>> transformEvents(
       events, transitionFn) {
     return events
-        .debounceTime(const Duration(milliseconds: 500))
+        .debounce((event) => TimerStream(event, Duration(milliseconds: event is _SearchCities ? 500 : 0)))
         .switchMap(transitionFn);
   }
 
