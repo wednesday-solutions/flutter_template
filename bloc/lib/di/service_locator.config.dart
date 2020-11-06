@@ -11,6 +11,7 @@ import 'package:injectable/injectable.dart';
 import 'modules/api_injection_module.dart';
 import '../presentation/pages/cities/bloc/cities_bloc.dart';
 import '../data/datasource/local/dao/city_dao.dart';
+import 'modules/database_injection_module.dart';
 import '../data/datasource/local/dao/city_dao_interface.dart';
 import '../data/datasource/network/weather_api_service_interface.dart';
 import '../data/repository/weather_repository_interface.dart';
@@ -29,10 +30,12 @@ GetIt $initGetIt(
 }) {
   final gh = GetItHelper(get, environment, environmentFilter);
   final apiInjectionModule = _$ApiInjectionModule();
+  final databaseInjectionModule = _$DatabaseInjectionModule();
   gh.lazySingleton<Dio>(() => apiInjectionModule.dioClient());
   gh.lazySingleton<IWeatherApiService>(
       () => apiInjectionModule.weatherApiService());
-  gh.lazySingleton<WeatherDatabase>(() => WeatherDatabase());
+  gh.lazySingleton<WeatherDatabase>(
+      () => databaseInjectionModule.weatherDatabase());
   gh.lazySingleton<ICityDao>(() => CityDao(get<WeatherDatabase>()));
   gh.lazySingleton<IWeatherRepository>(
       () => WeatherRepository(get<ICityDao>(), get<IWeatherApiService>()));
@@ -42,3 +45,5 @@ GetIt $initGetIt(
 }
 
 class _$ApiInjectionModule extends ApiInjectionModule {}
+
+class _$DatabaseInjectionModule extends DatabaseInjectionModule {}

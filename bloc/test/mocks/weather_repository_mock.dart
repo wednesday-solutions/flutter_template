@@ -7,8 +7,6 @@ import 'package:flutter_template_bloc/data/repository/weather_repository.dart';
 import 'package:kt_dart/collection.dart';
 import 'package:mockito/mockito.dart';
 
-import 'city_mock.dart';
-
 class MockWeatherRepository extends Mock implements WeatherRepository {
   void mockEmptyWatchWeatherResponse() {
     mockWatchWeatherResponse(const KtList.empty());

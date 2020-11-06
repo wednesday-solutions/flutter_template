@@ -13,7 +13,7 @@ class WeatherData extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<WeatherBloc, WeatherState>(builder: (context, state) {
       return state.map(
-        inital: (_) => const Text('Initial'),
+        initial: (_) => const Text('Initial'),
         loading: (_) => const WidgetLoading(loadingMessage: 'Loading Weather'),
         loaded: (state) => WeatherList(weatherList: state.weatherList),
         noCitiesSelected: (_) => const SimpleInfoMessage(

@@ -299,7 +299,7 @@ class _$WeatherStateTearOff {
   const _$WeatherStateTearOff();
 
 // ignore: unused_element
-  Initial inital() {
+  Initial initial() {
     return const Initial();
   }
 
@@ -336,7 +336,7 @@ const $WeatherState = _$WeatherStateTearOff();
 mixin _$WeatherState {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result inital(),
+    @required Result initial(),
     @required Result loading(),
     @required Result loaded(KtList<Weather> weatherList),
     @required Result noCitiesSelected(),
@@ -344,7 +344,7 @@ mixin _$WeatherState {
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result inital(),
+    Result initial(),
     Result loading(),
     Result loaded(KtList<Weather> weatherList),
     Result noCitiesSelected(),
@@ -353,7 +353,7 @@ mixin _$WeatherState {
   });
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result inital(Initial value),
+    @required Result initial(Initial value),
     @required Result loading(Loading value),
     @required Result loaded(Loaded value),
     @required Result noCitiesSelected(NoCitiesSelected value),
@@ -361,7 +361,7 @@ mixin _$WeatherState {
   });
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result inital(Initial value),
+    Result initial(Initial value),
     Result loading(Loading value),
     Result loaded(Loaded value),
     Result noCitiesSelected(NoCitiesSelected value),
@@ -408,7 +408,7 @@ class _$Initial implements Initial {
 
   @override
   String toString() {
-    return 'WeatherState.inital()';
+    return 'WeatherState.initial()';
   }
 
   @override
@@ -422,24 +422,24 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result inital(),
+    @required Result initial(),
     @required Result loading(),
     @required Result loaded(KtList<Weather> weatherList),
     @required Result noCitiesSelected(),
     @required Result failure(WeatherFailure failure),
   }) {
-    assert(inital != null);
+    assert(initial != null);
     assert(loading != null);
     assert(loaded != null);
     assert(noCitiesSelected != null);
     assert(failure != null);
-    return inital();
+    return initial();
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result inital(),
+    Result initial(),
     Result loading(),
     Result loaded(KtList<Weather> weatherList),
     Result noCitiesSelected(),
@@ -447,8 +447,8 @@ class _$Initial implements Initial {
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (inital != null) {
-      return inital();
+    if (initial != null) {
+      return initial();
     }
     return orElse();
   }
@@ -456,24 +456,24 @@ class _$Initial implements Initial {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result inital(Initial value),
+    @required Result initial(Initial value),
     @required Result loading(Loading value),
     @required Result loaded(Loaded value),
     @required Result noCitiesSelected(NoCitiesSelected value),
     @required Result failure(Failure value),
   }) {
-    assert(inital != null);
+    assert(initial != null);
     assert(loading != null);
     assert(loaded != null);
     assert(noCitiesSelected != null);
     assert(failure != null);
-    return inital(this);
+    return initial(this);
   }
 
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result inital(Initial value),
+    Result initial(Initial value),
     Result loading(Loading value),
     Result loaded(Loaded value),
     Result noCitiesSelected(NoCitiesSelected value),
@@ -481,8 +481,8 @@ class _$Initial implements Initial {
     @required Result orElse(),
   }) {
     assert(orElse != null);
-    if (inital != null) {
-      return inital(this);
+    if (initial != null) {
+      return initial(this);
     }
     return orElse();
   }
@@ -528,13 +528,13 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result inital(),
+    @required Result initial(),
     @required Result loading(),
     @required Result loaded(KtList<Weather> weatherList),
     @required Result noCitiesSelected(),
     @required Result failure(WeatherFailure failure),
   }) {
-    assert(inital != null);
+    assert(initial != null);
     assert(loading != null);
     assert(loaded != null);
     assert(noCitiesSelected != null);
@@ -545,7 +545,7 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result inital(),
+    Result initial(),
     Result loading(),
     Result loaded(KtList<Weather> weatherList),
     Result noCitiesSelected(),
@@ -562,13 +562,13 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result inital(Initial value),
+    @required Result initial(Initial value),
     @required Result loading(Loading value),
     @required Result loaded(Loaded value),
     @required Result noCitiesSelected(NoCitiesSelected value),
     @required Result failure(Failure value),
   }) {
-    assert(inital != null);
+    assert(initial != null);
     assert(loading != null);
     assert(loaded != null);
     assert(noCitiesSelected != null);
@@ -579,7 +579,7 @@ class _$Loading implements Loading {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result inital(Initial value),
+    Result initial(Initial value),
     Result loading(Loading value),
     Result loaded(Loaded value),
     Result noCitiesSelected(NoCitiesSelected value),
@@ -658,13 +658,13 @@ class _$Loaded implements Loaded {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result inital(),
+    @required Result initial(),
     @required Result loading(),
     @required Result loaded(KtList<Weather> weatherList),
     @required Result noCitiesSelected(),
     @required Result failure(WeatherFailure failure),
   }) {
-    assert(inital != null);
+    assert(initial != null);
     assert(loading != null);
     assert(loaded != null);
     assert(noCitiesSelected != null);
@@ -675,7 +675,7 @@ class _$Loaded implements Loaded {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result inital(),
+    Result initial(),
     Result loading(),
     Result loaded(KtList<Weather> weatherList),
     Result noCitiesSelected(),
@@ -692,13 +692,13 @@ class _$Loaded implements Loaded {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result inital(Initial value),
+    @required Result initial(Initial value),
     @required Result loading(Loading value),
     @required Result loaded(Loaded value),
     @required Result noCitiesSelected(NoCitiesSelected value),
     @required Result failure(Failure value),
   }) {
-    assert(inital != null);
+    assert(initial != null);
     assert(loading != null);
     assert(loaded != null);
     assert(noCitiesSelected != null);
@@ -709,7 +709,7 @@ class _$Loaded implements Loaded {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result inital(Initial value),
+    Result initial(Initial value),
     Result loading(Loading value),
     Result loaded(Loaded value),
     Result noCitiesSelected(NoCitiesSelected value),
@@ -770,13 +770,13 @@ class _$NoCitiesSelected implements NoCitiesSelected {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result inital(),
+    @required Result initial(),
     @required Result loading(),
     @required Result loaded(KtList<Weather> weatherList),
     @required Result noCitiesSelected(),
     @required Result failure(WeatherFailure failure),
   }) {
-    assert(inital != null);
+    assert(initial != null);
     assert(loading != null);
     assert(loaded != null);
     assert(noCitiesSelected != null);
@@ -787,7 +787,7 @@ class _$NoCitiesSelected implements NoCitiesSelected {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result inital(),
+    Result initial(),
     Result loading(),
     Result loaded(KtList<Weather> weatherList),
     Result noCitiesSelected(),
@@ -804,13 +804,13 @@ class _$NoCitiesSelected implements NoCitiesSelected {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result inital(Initial value),
+    @required Result initial(Initial value),
     @required Result loading(Loading value),
     @required Result loaded(Loaded value),
     @required Result noCitiesSelected(NoCitiesSelected value),
     @required Result failure(Failure value),
   }) {
-    assert(inital != null);
+    assert(initial != null);
     assert(loading != null);
     assert(loaded != null);
     assert(noCitiesSelected != null);
@@ -821,7 +821,7 @@ class _$NoCitiesSelected implements NoCitiesSelected {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result inital(Initial value),
+    Result initial(Initial value),
     Result loading(Loading value),
     Result loaded(Loaded value),
     Result noCitiesSelected(NoCitiesSelected value),
@@ -909,13 +909,13 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result inital(),
+    @required Result initial(),
     @required Result loading(),
     @required Result loaded(KtList<Weather> weatherList),
     @required Result noCitiesSelected(),
     @required Result failure(WeatherFailure failure),
   }) {
-    assert(inital != null);
+    assert(initial != null);
     assert(loading != null);
     assert(loaded != null);
     assert(noCitiesSelected != null);
@@ -926,7 +926,7 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result inital(),
+    Result initial(),
     Result loading(),
     Result loaded(KtList<Weather> weatherList),
     Result noCitiesSelected(),
@@ -943,13 +943,13 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   Result map<Result extends Object>({
-    @required Result inital(Initial value),
+    @required Result initial(Initial value),
     @required Result loading(Loading value),
     @required Result loaded(Loaded value),
     @required Result noCitiesSelected(NoCitiesSelected value),
     @required Result failure(Failure value),
   }) {
-    assert(inital != null);
+    assert(initial != null);
     assert(loading != null);
     assert(loaded != null);
     assert(noCitiesSelected != null);
@@ -960,7 +960,7 @@ class _$Failure implements Failure {
   @override
   @optionalTypeArgs
   Result maybeMap<Result extends Object>({
-    Result inital(Initial value),
+    Result initial(Initial value),
     Result loading(Loading value),
     Result loaded(Loaded value),
     Result noCitiesSelected(NoCitiesSelected value),
