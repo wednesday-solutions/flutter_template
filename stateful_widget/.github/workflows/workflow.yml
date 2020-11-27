@@ -1,0 +1,19 @@
+name: Flutter Template
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: takuyaohashi/setup-flutter@v1
+        with:
+          flutter-version: 'latest'
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter test
