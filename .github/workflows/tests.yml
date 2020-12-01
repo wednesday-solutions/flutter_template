@@ -1,0 +1,34 @@
+name: Flutter Tests
+on: [push, pull_request]
+jobs:
+  bloc_test:
+    name: Bloc Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: bloc
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v1
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1.4.0
+      - name: Get Dependencies
+        run: flutter pub get
+      - name: Tests
+        run: flutter test
+
+  stateful_widget_test:
+    name: Stateful Widget Tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stateful_widget
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v1
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v1.4.0
+      - name: Get Dependencies
+        run: flutter pub get
+      - name: Tests
+        run: flutter test
