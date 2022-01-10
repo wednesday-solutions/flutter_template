@@ -1,4 +1,4 @@
-import 'package:flutter_template/services/model/weather/remote_consolidated_weather.dart';
+import 'package:flutter_template/services/model/weather/remote/remote_consolidated_weather.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'remote_weather.g.dart';
