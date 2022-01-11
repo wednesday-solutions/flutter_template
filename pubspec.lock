@@ -334,19 +334,12 @@ packages:
     source: hosted
     version: "1.0.1"
   logger:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: logger
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.7.0+2"
-  logger_flutter:
-    dependency: "direct main"
-    description:
-      name: logger_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.7.1"
+    version: "1.1.0"
   logging:
     dependency: transitive
     description:
@@ -487,13 +480,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
-  sensors:
-    dependency: transitive
-    description:
-      name: sensors
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.4.2+6"
   shelf:
     dependency: transitive
     description:

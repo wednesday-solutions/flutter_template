@@ -1,3 +1,4 @@
+import 'package:flutter_template/foundation/global_type_alias.dart';
 import 'package:flutter_template/services/base/json/JsonDateTimeConverter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -14,7 +15,7 @@ class RemoteConsolidatedWeather {
     toJson: JsonDateTimeConverter.toJson,
     fromJson: JsonDateTimeConverter.fromJson,
   )
-  final DateTime date;
+  final DartDateTime date;
 
   RemoteConsolidatedWeather(
     this.id,
