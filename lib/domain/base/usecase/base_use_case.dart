@@ -8,7 +8,7 @@ abstract class BaseUseCase<IN, OUT> {
     try {
       final result = callInternal(param);
       return Result.success(result);
-    } catch(error) {
+    } catch (error) {
       final Exception exception;
 
       if (error is Exception) {

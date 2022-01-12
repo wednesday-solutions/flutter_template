@@ -4,10 +4,10 @@ class LogHelper {
   static late Logger _instance;
   static bool _initailised = false;
 
-  static void initialise() {
+  static void initialiseLogger() {
     if (!_initailised) {
       final logger = Logger(
-        printer: PrettyPrinter(),
+        printer: PrettyPrinter(printEmojis: false),
         level: Level.verbose,
       );
 

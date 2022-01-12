@@ -8,9 +8,9 @@ abstract class LocalCityMapper extends Mapper<City, LocalCityCompanion> {}
 class LocalCityMapperImpl extends LocalCityMapper {
   @override
   LocalCityCompanion map(City from) => LocalCityCompanion(
-    woeid: Value(from.id),
-    title: Value(from.title),
-    locationType: Value(from.locationType),
-    location: Value(from.location),
-  );
+        woeid: Value(from.id),
+        title: Value(from.title),
+        locationType: Value(from.locationType),
+        location: Value(from.location),
+      );
 }

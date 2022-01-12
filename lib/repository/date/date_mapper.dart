@@ -7,8 +7,8 @@ abstract class DateMapper extends Mapper<DartDateTime, Date> {}
 class DateMapperImpl extends DateMapper {
   @override
   Date map(DartDateTime from) => Date(
-    year: from.year,
-    month: from.month,
-    day: from.day,
-  );
+        year: from.year,
+        month: from.month,
+        day: from.day,
+      );
 }

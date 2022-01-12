@@ -5,8 +5,7 @@ part 'result.freezed.dart';
 
 @freezed
 class Result<T> with _$Result<T> {
-
   factory Result.success(T data) = Success<T>;
-  factory Result.error(Exception? exception) = Error;
 
+  factory Result.error(Exception? exception) = Error;
 }

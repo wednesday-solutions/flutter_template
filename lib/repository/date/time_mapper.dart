@@ -7,9 +7,9 @@ abstract class TimeMapper extends Mapper<DartDateTime, Time> {}
 class TimeMapperImpl extends TimeMapper {
   @override
   Time map(DartDateTime from) => Time(
-    hour: from.hour,
-    minute: from.minute,
-    second: from.second,
-    millisecond: from.millisecond,
-  );
+        hour: from.hour,
+        minute: from.minute,
+        second: from.second,
+        millisecond: from.millisecond,
+      );
 }

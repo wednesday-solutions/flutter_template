@@ -11,5 +11,4 @@ class SearchCitiesUseCaseImpl extends SearchCitiesUseCase {
   Future<List<City>> callInternal(String param) async {
     return await weatherRepository.searchCities(param);
   }
-
 }

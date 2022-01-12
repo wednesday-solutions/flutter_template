@@ -8,7 +8,7 @@ abstract class BaseAsyncUseCase<IN, OUT> {
     try {
       final result = await callInternal(param);
       return Result.success(result);
-    } catch(error) {
+    } catch (error) {
       final Exception exception;
 
       if (error is Exception) {
