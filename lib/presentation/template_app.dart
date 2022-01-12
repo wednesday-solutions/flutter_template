@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/presentation/main/TemplateAppThemeData.dart';
+import 'package:flutter_template/presentation/base/theme/TemplateAppThemeData.dart';
 
 class TemplateApp extends StatelessWidget {
   const TemplateApp({Key? key}) : super(key: key);
