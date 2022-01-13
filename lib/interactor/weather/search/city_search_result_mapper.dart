@@ -1,7 +1,7 @@
 import 'package:flutter_template/domain/model/weather/city.dart';
 import 'package:flutter_template/foundation/mapper/mapper2.dart';
 import 'package:flutter_template/interactor/weather/search/ui_city_mapper.dart';
-import 'package:flutter_template/presentation/entity/list/ui_list_item.dart';
+import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 
 abstract class CitySearchResultMapper
     extends Mapper2<List<City>, List<City>, List<UIListItem>> {}

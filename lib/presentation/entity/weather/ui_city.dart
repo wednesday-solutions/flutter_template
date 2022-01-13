@@ -1,17 +1,20 @@
-import 'package:flutter_template/presentation/entity/list/ui_list_item.dart';
+import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class UICity extends UIListItem {
-  final int cityId;
-  final String title;
-  final String locationType;
-  final String location;
-  final bool isFavourite;
+part 'ui_city.freezed.dart';
 
-  UICity({
-    required this.cityId,
-    required this.title,
-    required this.locationType,
-    required this.location,
-    required this.isFavourite,
-  }) : super(key: "UICity $cityId");
+@freezed
+class UICity with _$UICity implements UIListItem {
+  UICity._();
+
+  factory UICity({
+    required int cityId,
+    required String title,
+    required String locationType,
+    required String location,
+    required bool isFavourite,
+  }) = _UICity;
+
+  @override
+  String get key => "UICity ${this.cityId}";
 }

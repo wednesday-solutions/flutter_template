@@ -6,7 +6,7 @@ import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/foundation/unit.dart';
 import 'package:flutter_template/interactor/weather/search/city_search_result_mapper.dart';
 import 'package:flutter_template/interactor/weather/search/search_city_interactor.dart';
-import 'package:flutter_template/presentation/entity/list/ui_list_item.dart';
+import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SearchCityInteractorImpl extends SearchCityInteractor {
