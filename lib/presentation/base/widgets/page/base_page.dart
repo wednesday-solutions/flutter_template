@@ -8,7 +8,6 @@ import 'package:flutter_template/presentation/base/widgets/controller/controller
 import 'package:flutter_template/presentation/base/widgets/scaffold/scaffold_body_with_loading_indicator.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/screen/screen_state.dart';
-import 'package:flutter_template/presentation/weather/search/search_page.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 import 'package:uuid/uuid.dart';
@@ -21,20 +20,24 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
   final Function(CONTROLLER controller)? onAppBarBackPressed;
   final List<Widget>? appBarActions;
   final Widget? loading;
+  final bool hideDefaultLoading;
+  final bool tagController;
 
-  BasePage(
-      {Key? key,
-      this.appBar,
-      required this.body,
-      this.onAppBarBackPressed,
-      this.appBarActions,
-      this.loading})
-      : super(key: key);
+  BasePage({
+    Key? key,
+    this.appBar,
+    required this.body,
+    this.onAppBarBackPressed,
+    this.appBarActions,
+    this.loading,
+    this.hideDefaultLoading = false,
+    this.tagController = false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext _) {
     return ControllerKey(
-      controllerKey: Uuid().v4(),
+      controllerKey: tagController ? Uuid().v4() : null,
       child: Builder(
         builder: (context) {
           return GetBuilder<CONTROLLER>(
@@ -45,6 +48,7 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
                 onAppBarBackPressed: onAppBarBackPressed,
                 appBarActions: appBarActions,
                 body: body,
+                hideDefaultLoading: hideDefaultLoading,
                 loading: loading,
               );
             },
@@ -57,18 +61,20 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
 
 class _BasePageContent<CONTROLLER extends BaseController>
     extends StatelessWidget {
-  const _BasePageContent(
-      {Key? key,
-      required this.onAppBarBackPressed,
-      required this.appBarActions,
-      required this.body,
-      this.loading})
-      : super(key: key);
-
+  final bool hideDefaultLoading;
   final Function(CONTROLLER controller)? onAppBarBackPressed;
   final List<Widget>? appBarActions;
   final ControllerViewBuilder<CONTROLLER> body;
   final Widget? loading;
+
+  const _BasePageContent({
+    Key? key,
+    required this.onAppBarBackPressed,
+    required this.appBarActions,
+    required this.body,
+    required this.loading,
+    required this.hideDefaultLoading,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -84,9 +90,9 @@ class _BasePageContent<CONTROLLER extends BaseController>
           title: AppBarTitle<CONTROLLER>(),
           actions: appBarActions,
         ),
-        body: ScaffoldBodyWithLoadingIndicator(
-          controller: context.controller<CONTROLLER>(),
+        body: ScaffoldBodyWithLoadingIndicator<CONTROLLER>(
           body: ControllerView<CONTROLLER>(body),
+          hideDefaultLoading: hideDefaultLoading,
           loading: loading,
         ),
       ),

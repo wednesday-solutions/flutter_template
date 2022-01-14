@@ -1,9 +1,11 @@
-class UIToolbar {
-  final String title;
-  final bool hasBackButton;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  UIToolbar({
-    required this.title,
-    required this.hasBackButton,
-  });
+part 'ui_toolbar.freezed.dart';
+
+@freezed
+class UIToolbar with _$UIToolbar {
+  factory UIToolbar({
+    required String title,
+    required bool hasBackButton,
+  }) = _UIToolbar;
 }

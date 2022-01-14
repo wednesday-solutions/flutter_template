@@ -3,7 +3,7 @@ import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/navigation/pages/pages.dart';
 import 'package:flutter_template/presentation/base/theme/TemplateAppThemeData.dart';
 import 'package:flutter_template/presentation/entity/routes/routes.dart';
-import 'package:flutter_template/presentation/weather/search/search_controller.dart';
+import 'package:flutter_template/presentation/intl/translations.dart';
 import 'package:get/get.dart';
 
 class TemplateApp extends StatelessWidget {
@@ -18,6 +18,8 @@ class TemplateApp extends StatelessWidget {
       theme: ThemeData.light(),
       darkTheme: ThemeData.dark(),
       themeMode: ThemeMode.light,
+      translations: AppTranslations(),
+      locale: Locale("en_US"),
       logWriterCallback: LogHelper.logWriterCallback,
       // unknownRoute: , // todo
     );
