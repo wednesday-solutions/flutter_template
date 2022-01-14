@@ -1,3 +1,11 @@
 import 'package:flutter/material.dart';
 
-final templateAppThemeData = ThemeData(primarySwatch: Colors.deepPurple);
+final LightTheme = ThemeData(
+  brightness: Brightness.light,
+  scaffoldBackgroundColor: Colors.white70
+);
+
+final DarkTheme = ThemeData(
+  brightness: Brightness.dark,
+  scaffoldBackgroundColor: Colors.black54
+);
