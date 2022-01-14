@@ -6,15 +6,17 @@ class ScaffoldBodyWithLoadingIndicator extends StatelessWidget {
     Key? key,
     required this.controller,
     required this.body,
+    this.loading,
   }) : super(key: key);
 
   final BaseController controller;
   final Widget body;
+  final Widget? loading;
 
   @override
   Widget build(BuildContext context) {
     return Stack(children: [
-      if (controller.state.showLoading) CircularProgressIndicator(),
+      if (controller.state.showLoading) loading ?? CircularProgressIndicator(),
       body,
     ]);
   }

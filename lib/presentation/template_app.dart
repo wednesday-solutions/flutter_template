@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/navigation/pages/pages.dart';
 import 'package:flutter_template/presentation/base/theme/TemplateAppThemeData.dart';
 import 'package:flutter_template/presentation/entity/routes/routes.dart';
+import 'package:flutter_template/presentation/weather/search/search_controller.dart';
 import 'package:get/get.dart';
 
 class TemplateApp extends StatelessWidget {
@@ -11,9 +13,13 @@ class TemplateApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Flutter Demo', // todo: Get from flavor
-      theme: templateAppThemeData,
       getPages: pages,
       initialRoute: Routes.SEARCH,
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.dark(),
+      themeMode: ThemeMode.light,
+      logWriterCallback: LogHelper.logWriterCallback,
+      // unknownRoute: , // todo
     );
   }
 }

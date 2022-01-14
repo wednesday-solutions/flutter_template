@@ -7,7 +7,8 @@ abstract class Screen {
 }
 
 class SearchScreen extends Screen {
-  SearchScreen() : super._();
+  final String temp;
+  SearchScreen(this.temp) : super._();
 
   @override
   String get path => Routes.SEARCH;

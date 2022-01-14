@@ -1,4 +1,5 @@
 import 'package:collection/collection.dart';
+import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/screen/screen_state.dart';
 import 'package:get/get.dart';
@@ -11,12 +12,24 @@ abstract class BaseController<SCREEN extends Screen,
 
   SCREEN_STATE getDefaultState();
 
-  final SCREEN screen = Get.arguments as SCREEN;
+  final SCREEN? screen = Get.arguments as SCREEN?;
 
   @override
   void onInit() {
     super.onInit();
+    log.e("path on init ${screen?.path}");
     _state = getDefaultState().obs;
+  }
+
+  @override
+  void onReady() {
+    log.e("path on ready ${screen?.path}");
+  }
+
+  @override
+  void onClose() {
+    log.e("path on close ${screen?.path}");
+    super.onClose();
   }
 
   setState(SCREEN_STATE Function(SCREEN_STATE state) reducer) {
