@@ -18,7 +18,7 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
     extends StatelessWidget {
   final ControllerViewBuilder<CONTROLLER> body;
   final AppBar? appBar;
-  final Function()? onAppBarBackPressed;
+  final Function(CONTROLLER controller)? onAppBarBackPressed;
   final List<Widget>? appBarActions;
   final Widget? loading;
 
@@ -65,7 +65,7 @@ class _BasePageContent<CONTROLLER extends BaseController>
       this.loading})
       : super(key: key);
 
-  final Function()? onAppBarBackPressed;
+  final Function(CONTROLLER controller)? onAppBarBackPressed;
   final List<Widget>? appBarActions;
   final ControllerViewBuilder<CONTROLLER> body;
   final Widget? loading;
@@ -77,7 +77,9 @@ class _BasePageContent<CONTROLLER extends BaseController>
         backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
           leading: AppBarBackButton<CONTROLLER>(
-            onBackPressed: onAppBarBackPressed ?? () {},
+            onBackPressed: () {
+              onAppBarBackPressed?.call(context.controller<CONTROLLER>());
+            },
           ),
           title: AppBarTitle<CONTROLLER>(),
           actions: appBarActions,

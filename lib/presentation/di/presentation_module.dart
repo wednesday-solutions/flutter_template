@@ -4,6 +4,9 @@ import 'package:get_it/get_it.dart';
 extension PresentationModule on GetIt {
   void presentationModule() {
     // search
-    registerFactory(() => SearchController());
+    registerFactory(() => SearchController(
+          searchCityInteractor: get(),
+          searchNavigator: get(),
+        ));
   }
 }

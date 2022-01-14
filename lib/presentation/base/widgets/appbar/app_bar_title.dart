@@ -11,7 +11,7 @@ class AppBarTitle<CONTROLLER extends BaseController> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MemoisedObx<String>(
-      selector: (_) => context.controller().state.toolbar.title,
+      selector: (_) => context.controller<CONTROLLER>().state.toolbar.title,
       child: (data) {
         return Text(data);
       },
