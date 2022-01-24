@@ -3,6 +3,7 @@ import 'package:flutter_template/interactor/weather/search/search_city_interacto
 import 'package:flutter_template/navigation/search/search_navigator.dart';
 import 'package:flutter_template/presentation/base/controller/base_controller.dart';
 import 'package:flutter_template/presentation/base/intent/intent_handler.dart';
+import 'package:flutter_template/presentation/base/widgets/snackbar/custom_snackbar.dart';
 import 'package:flutter_template/presentation/entity/base/ui_toolbar.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/intl/strings.dart';
@@ -59,6 +60,9 @@ class SearchController extends BaseController<SearchScreen, SearchScreenState>
       back: () => searchNavigator.back(),
       search: (searchTerm) {
         _searchTerm.value = searchTerm;
+      },
+      favorite: (int cityId, bool isFavorite) {
+        showSnackbar(text: "City $cityId set as Favorite.");
       },
     );
   }

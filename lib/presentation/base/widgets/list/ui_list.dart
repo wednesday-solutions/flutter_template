@@ -1,46 +1,72 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/presentation/base/exceptions/renderer_not_registered_exception.dart';
+import 'package:flutter_template/presentation/base/intent/intent_handler.dart';
 import 'package:flutter_template/presentation/base/renderer/list_item_renderer.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
+import 'package:flutter_template/presentation/entity/intent/intent.dart';
 
-class UIList extends StatelessWidget {
+class UIList<INTENT extends BaseIntent> extends StatefulWidget {
   final Map<Type, ListItemRenderer> renderers;
+  final IntentHandler<INTENT>? intentHandler;
   final List<UIListItem> items;
   final Axis scrollDirection;
 
   const UIList({
     Key? key,
     required this.renderers,
+    required this.intentHandler,
     required this.items,
     this.scrollDirection = Axis.vertical,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    log.e("List length: ${items.length}");
+  State<UIList> createState() => _UIListState<INTENT>();
+}
 
-    if (items.length > 0) {
+class _UIListState<INTENT extends BaseIntent> extends State<UIList> {
+
+  late final StreamController<INTENT> intentStreamController;
+
+  @override
+  void initState() {
+    super.initState();
+    intentStreamController = StreamController();
+    intentStreamController.stream.listen((event) {
+      widget.intentHandler?.onIntent(event);
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+    if (widget.items.length > 0) {
       return Expanded(
         child: ListView.builder(
-          scrollDirection: scrollDirection,
+          scrollDirection: widget.scrollDirection,
           shrinkWrap: true,
           itemBuilder: (context, index) {
-            final item = items[index];
+            final item = widget.items[index];
             final type = item.type;
-            final renderer = renderers[type];
+            final renderer = widget.renderers[type];
             if (renderer == null) {
               throw RendererNotRegisteredForTypeException(type);
             }
 
-            return renderer.getWidget(context, item);
+            return renderer.getWidget(context, item, intentStreamController.sink);
           },
-          itemCount: items.length,
+          itemCount: widget.items.length,
         ),
       );
     }
 
     return SizedBox();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    intentStreamController.close();
   }
 }

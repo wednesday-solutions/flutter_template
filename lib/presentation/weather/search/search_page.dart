@@ -20,10 +20,9 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BasePage<SearchScreen, SearchScreenState, SearchController>(
       hideDefaultLoading: true,
-      onAppBarBackPressed: (controller) =>
-          controller.onIntent(
-            SearchScreenIntent.back(),
-          ),
+      onAppBarBackPressed: (controller) => controller.onIntent(
+        SearchScreenIntent.back(),
+      ),
       body: (context, controller) {
         final textController = TextEditingController();
         textController.addListener(() {
@@ -51,15 +50,20 @@ class SearchPage extends StatelessWidget {
                           child: ListView.separated(
                             shrinkWrap: true,
                             separatorBuilder: (context, index) {
-                              return SizedBox(height: 25, width: double.infinity,);
+                              return SizedBox(
+                                height: 25,
+                                width: double.infinity,
+                              );
                             },
                             itemBuilder: (context, index) {
-                            return Container(
-                              height: 25,
-                              width: double.infinity,
-                              color: Colors.white,
-                            );
-                          }, itemCount: 5,),
+                              return Container(
+                                height: 25,
+                                width: double.infinity,
+                                color: Colors.white,
+                              );
+                            },
+                            itemCount: 5,
+                          ),
                         ),
                         baseColor: Colors.grey.shade100,
                         highlightColor: Colors.grey.shade400);
@@ -68,11 +72,12 @@ class SearchPage extends StatelessWidget {
                         selector: (_) => controller.state.searchList,
                         child: (list) {
                           // return SizedBox();
-                          return UIList(
+                          return UIList<SearchScreenIntent>(
                             renderers: {
                               UICity: UICityRenderer(),
                             },
                             items: list,
+                            intentHandler: controller,
                           );
                         });
                 },

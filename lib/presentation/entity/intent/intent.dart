@@ -1,1 +1,1 @@
-abstract class Intent {}
+abstract class BaseIntent {}

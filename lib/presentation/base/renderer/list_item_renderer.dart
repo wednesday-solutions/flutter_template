@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
+import 'package:flutter_template/presentation/entity/intent/intent.dart';
 
-abstract class ListItemRenderer<T extends UIListItem> {
-  Widget getWidget(BuildContext context, T data);
+abstract class ListItemRenderer<T extends UIListItem, I extends BaseIntent> {
+  Widget getWidget(BuildContext context, T data, StreamSink<I> sink);
 }

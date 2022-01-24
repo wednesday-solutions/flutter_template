@@ -17,18 +17,15 @@ abstract class BaseController<SCREEN extends Screen,
   @override
   void onInit() {
     super.onInit();
-    log.e("path on init ${screen?.path}");
     _state = getDefaultState().obs;
   }
 
   @override
   void onReady() {
-    log.e("path on ready ${screen?.path}");
   }
 
   @override
   void onClose() {
-    log.e("path on close ${screen?.path}");
     super.onClose();
   }
 
