@@ -26,7 +26,6 @@ class UIList<INTENT extends BaseIntent> extends StatefulWidget {
 }
 
 class _UIListState<INTENT extends BaseIntent> extends State<UIList> {
-
   late final StreamController<INTENT> intentStreamController;
 
   @override
@@ -40,7 +39,6 @@ class _UIListState<INTENT extends BaseIntent> extends State<UIList> {
 
   @override
   Widget build(BuildContext context) {
-
     if (widget.items.length > 0) {
       return Expanded(
         child: ListView.builder(
@@ -54,7 +52,8 @@ class _UIListState<INTENT extends BaseIntent> extends State<UIList> {
               throw RendererNotRegisteredForTypeException(type);
             }
 
-            return renderer.getWidget(context, item, intentStreamController.sink);
+            return renderer.getWidget(
+                context, item, intentStreamController.sink);
           },
           itemCount: widget.items.length,
         ),

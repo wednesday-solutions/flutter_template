@@ -7,6 +7,7 @@ class AppTranslations extends Translations {
         "en_US": {
           Strings.homePageTitle: "Home",
           Strings.searchPageTitle: "Search",
+          Strings.forecast: "Forecast"
         }
       };
 }

@@ -1,4 +1,4 @@
-import 'package:flutter_template/domain/model/base/datetime/time.dart';
+import 'package:flutter_template/domain/entity/base/datetime/time.dart';
 import 'package:flutter_template/foundation/global_type_alias.dart';
 import 'package:flutter_template/foundation/mapper/mapper.dart';
 

@@ -1,4 +1,4 @@
-import 'package:flutter_template/domain/model/weather/day_weather.dart';
+import 'package:flutter_template/domain/entity/weather/day_weather.dart';
 import 'package:flutter_template/foundation/mapper/mapper.dart';
 import 'package:flutter_template/repository/date/date_repository.dart';
 import 'package:flutter_template/services/base/database/app_database.dart';

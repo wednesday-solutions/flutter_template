@@ -1,4 +1,4 @@
-import 'package:flutter_template/domain/model/weather/day_weather.dart';
+import 'package:flutter_template/domain/entity/weather/day_weather.dart';
 
 class Weather {
   final String title;

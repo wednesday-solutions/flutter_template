@@ -1,5 +1,5 @@
-import 'package:flutter_template/domain/model/weather/weather.dart';
-import 'package:flutter_template/domain/model/weather/city.dart';
+import 'package:flutter_template/domain/entity/weather/city.dart';
+import 'package:flutter_template/domain/entity/weather/weather.dart';
 import 'package:flutter_template/repository/date/date_repository.dart';
 import 'package:flutter_template/repository/weather/domain_city_mapper.dart';
 import 'package:flutter_template/repository/weather/domain_weather_mapper.dart';

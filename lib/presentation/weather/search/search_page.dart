@@ -3,7 +3,6 @@ import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
 import 'package:flutter_template/presentation/base/widgets/observable/memoised_obx.dart';
 import 'package:flutter_template/presentation/base/widgets/page/base_page.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
-import 'package:flutter_template/presentation/entity/routes/routes.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 import 'package:flutter_template/presentation/weather/search/list/ui_city_renderer.dart';
@@ -32,7 +31,8 @@ class SearchPage extends StatelessWidget {
         });
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
+          child: Flex(
+            direction: Axis.vertical,
             children: [
               TextField(
                 controller: textController,
@@ -45,28 +45,7 @@ class SearchPage extends StatelessWidget {
                 selector: (_) => controller.state.showLoading,
                 child: (showLoading) {
                   if (showLoading)
-                    return Shimmer.fromColors(
-                        child: Expanded(
-                          child: ListView.separated(
-                            shrinkWrap: true,
-                            separatorBuilder: (context, index) {
-                              return SizedBox(
-                                height: 25,
-                                width: double.infinity,
-                              );
-                            },
-                            itemBuilder: (context, index) {
-                              return Container(
-                                height: 25,
-                                width: double.infinity,
-                                color: Colors.white,
-                              );
-                            },
-                            itemCount: 5,
-                          ),
-                        ),
-                        baseColor: Colors.grey.shade100,
-                        highlightColor: Colors.grey.shade400);
+                    return const SearchPageLoadingShimmer();
                   else
                     return MemoisedObx<List<UIListItem>>(
                         selector: (_) => controller.state.searchList,
@@ -86,6 +65,33 @@ class SearchPage extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class SearchPageLoadingShimmer extends StatelessWidget {
+  const SearchPageLoadingShimmer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: Shimmer.fromColors(
+        baseColor: Get.theme.scaffoldBackgroundColor.withAlpha(50),
+        highlightColor: Get.theme.scaffoldBackgroundColor.withAlpha(10),
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: double.infinity,
+                color: Get.theme.scaffoldBackgroundColor,
+                height: 50,
+              ),
+            );
+          },
+          itemCount: 8,
+        ),
+      ),
     );
   }
 }

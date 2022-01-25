@@ -1,5 +1,4 @@
 import 'package:collection/collection.dart';
-import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/screen/screen_state.dart';
 import 'package:get/get.dart';
@@ -21,8 +20,7 @@ abstract class BaseController<SCREEN extends Screen,
   }
 
   @override
-  void onReady() {
-  }
+  void onReady() {}
 
   @override
   void onClose() {

@@ -1,5 +1,5 @@
 import 'package:flutter_template/domain/base/exception/unknown_object_thrown_exception.dart';
-import 'package:flutter_template/domain/model/base/result/result.dart';
+import 'package:flutter_template/domain/entity/base/result/result.dart';
 
 abstract class BaseUseCase<IN, OUT> {
   OUT callInternal(IN param);

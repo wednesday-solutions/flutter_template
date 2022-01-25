@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:flutter_template/domain/model/weather/city.dart';
+import 'package:flutter_template/domain/entity/weather/city.dart';
 import 'package:flutter_template/domain/weather/get_favorite_cities_stream_use_case.dart';
 import 'package:flutter_template/domain/weather/search_cities_use_case.dart';
 import 'package:flutter_template/foundation/logger/logger.dart';
@@ -27,10 +27,12 @@ class SearchCityInteractorImpl extends SearchCityInteractor {
       CombineLatestStream.combine2<List<City>, List<City>, List<UIListItem>>(
         favoriteCitiesStreamUseCase(unit),
         _searchResultsStreamController.stream,
-        (favoriteCities, searchResults) => citySearchResultMapper.map(
-          favoriteCities,
-          searchResults,
-        ),
+        (favoriteCities, searchResults) {
+          return citySearchResultMapper.map(
+            favoriteCities,
+            searchResults,
+          );
+        },
       );
 
   @override

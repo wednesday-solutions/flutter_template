@@ -7,6 +7,7 @@ extension PresentationModule on GetIt {
     registerFactory(() => SearchController(
           searchCityInteractor: get(),
           searchNavigator: get(),
+          favoriteWeatherInteractor: get(),
         ));
   }
 }

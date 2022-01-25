@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-void showSnackbar({
-  required String text,
-  Duration? duration,
-  bool closeCurrentSnackbar = true
-}) async {
+void showSnackbar(
+    {required String text,
+    Duration? duration,
+    bool closeCurrentSnackbar = true}) async {
   if (closeCurrentSnackbar) {
     await Get.closeCurrentSnackbar();
   }

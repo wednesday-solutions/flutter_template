@@ -1,4 +1,4 @@
-import 'package:flutter_template/domain/model/weather/city.dart';
+import 'package:flutter_template/domain/entity/weather/city.dart';
 import 'package:flutter_template/foundation/mapper/mapper2.dart';
 import 'package:flutter_template/interactor/weather/search/ui_city_mapper.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
@@ -14,7 +14,7 @@ class CitySearchResultMapperImpl extends CitySearchResultMapper {
   @override
   List<UIListItem> map(List<City> from1, List<City> from2) {
     return from2.map((searchResultCity) {
-      final isFavorite = from1.contains(searchResultCity);
+      final isFavorite = from1.any((city) => city.id == searchResultCity.id);
       return uiCityMapper.map(searchResultCity, isFavorite);
     }).toList();
   }

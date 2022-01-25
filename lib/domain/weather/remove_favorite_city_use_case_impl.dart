@@ -1,4 +1,4 @@
-import 'package:flutter_template/domain/model/weather/city.dart';
+import 'package:flutter_template/domain/entity/weather/city.dart';
 import 'package:flutter_template/domain/weather/remove_favorite_city_use_case.dart';
 import 'package:flutter_template/repository/weather/weather_repository.dart';
 

@@ -5,7 +5,7 @@ part 'ui_city.freezed.dart';
 
 @freezed
 class UICity with _$UICity implements UIListItem {
-  UICity._();
+  const UICity._();
 
   factory UICity({
     required int cityId,

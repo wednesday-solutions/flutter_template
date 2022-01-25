@@ -1,4 +1,4 @@
-import 'package:flutter_template/domain/model/base/datetime/date.dart';
+import 'package:flutter_template/domain/entity/base/datetime/date.dart';
 
 class DayWeather {
   final int minTemp;
