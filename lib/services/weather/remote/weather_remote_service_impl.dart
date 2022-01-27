@@ -6,7 +6,7 @@ import 'package:flutter_template/services/weather/remote/weather_remote_service.
 class WeatherRemoteServiceImpl implements WeatherRemoteService {
   final Dio dio;
 
-  WeatherRemoteServiceImpl({required this.dio}) {}
+  WeatherRemoteServiceImpl({required this.dio});
 
   @override
   Future<List<RemoteCity>> searchCities({required String searchTerm}) async {
@@ -23,7 +23,7 @@ class WeatherRemoteServiceImpl implements WeatherRemoteService {
 
   @override
   Future<RemoteWeather> weatherForCity({required int id}) async {
-    final response = await dio.get("/api/location/${id}");
+    final response = await dio.get("/api/location/$id");
 
     final json = (response.data as Map<String, dynamic>);
     return RemoteWeather.fromJson(json);

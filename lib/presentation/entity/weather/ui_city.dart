@@ -16,7 +16,7 @@ class UICity with _$UICity implements UIListItem {
   }) = _UICity;
 
   @override
-  String get key => "UICity ${this.cityId}";
+  String get key => "UICity $cityId";
 
   @override
   Type get type => UICity;

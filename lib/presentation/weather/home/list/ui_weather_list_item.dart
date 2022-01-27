@@ -30,11 +30,11 @@ class UIWeatherListItem extends StatelessWidget {
                 children: [
                   Text(
                     weather.title,
-                    style: TextStyle(fontSize: 30),
+                    style: const TextStyle(fontSize: 30),
                   ),
                   Text(
                     weather.currentTemp,
-                    style: TextStyle(fontSize: 30),
+                    style: const TextStyle(fontSize: 30),
                   ),
                 ],
               ),
@@ -44,7 +44,7 @@ class UIWeatherListItem extends StatelessWidget {
                   UIDayWeather: UIDayWeatherRenderer()
                 },
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 intentHandler: null,
                 items: weather.dayWeatherList,
               ),

@@ -38,7 +38,7 @@ class SearchPage extends StatelessWidget {
               TextField(
                 controller: textController,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
+                  border: const OutlineInputBorder(),
                   labelText: Strings.startTypingToSearch.tr,
                 ),
               ),
@@ -54,9 +54,9 @@ class SearchPage extends StatelessWidget {
                       ),
                     );
                   }
-                  if (showLoading)
+                  if (showLoading) {
                     return const SearchPageLoadingShimmer();
-                  else
+                  } else {
                     return MemoisedObx<List<UIListItem>>(
                         selector: (_) => controller.state.searchList,
                         child: (list) {
@@ -71,6 +71,7 @@ class SearchPage extends StatelessWidget {
                             ),
                           );
                         });
+                  }
                 },
               ),
             ],
@@ -94,8 +95,8 @@ class SearchPageLoadingShimmer extends StatelessWidget {
         direction: ShimmerDirection.ltr,
         child: ListView.builder(
           itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+            return const Padding(
+              padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
               child: Card(
                 child: SizedBox(
                   width: double.infinity,

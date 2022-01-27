@@ -13,7 +13,7 @@ class UIDayWeatherHeadingListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       heading.text,
-      style: TextStyle(fontSize: 20),
+      style: const TextStyle(fontSize: 20),
     );
   }
 }

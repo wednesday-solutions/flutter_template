@@ -11,10 +11,10 @@ class RemoteCity {
   final String location;
 
   const RemoteCity({
-    required int this.woeid,
-    required String this.title,
-    required String this.locationType,
-    required String this.location,
+    required this.woeid,
+    required this.title,
+    required this.locationType,
+    required this.location,
   });
 
   factory RemoteCity.fromJson(Map<String, dynamic> json) =>

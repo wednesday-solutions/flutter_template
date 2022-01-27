@@ -20,9 +20,9 @@ class AppBarBackButton<CONTROLLER extends BaseController>
       child: (hasBackButton) => hasBackButton
           ? IconButton(
               onPressed: onBackPressed,
-              icon: Icon(Icons.arrow_back),
+              icon: const Icon(Icons.arrow_back),
             )
-          : SizedBox(
+          : const SizedBox(
               width: 0,
               height: 0,
             ),

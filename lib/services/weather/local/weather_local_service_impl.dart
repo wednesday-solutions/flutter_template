@@ -64,14 +64,14 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
 
   @override
   Future<void> deleteLocalDayWeather({required int woeid}) async {
-    await delete(localDayWeather)
+    delete(localDayWeather)
       ..where((tbl) => tbl.cityWoeid.equals(woeid))
       ..go();
   }
 
   @override
   Future<void> deleteLocalWeather({required int woeid}) async {
-    await delete(localWeather)
+    delete(localWeather)
       ..where((tbl) => tbl.cityWoeid.equals(woeid))
       ..go();
   }

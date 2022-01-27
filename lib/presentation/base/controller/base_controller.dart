@@ -40,19 +40,20 @@ abstract class BaseController<SCREEN extends Screen,
   @override
   void onClose() {
     super.onClose();
-    _streamSubscriptions.forEach((subscription) {
+    for (var subscription in _streamSubscriptions) {
       subscription.cancel();
-    });
+    }
   }
 
   setState(SCREEN_STATE Function(SCREEN_STATE state) reducer) {
     final newState = reducer(state);
-    if (!DeepCollectionEquality().equals(_state.value, newState)) {
+    if (!const DeepCollectionEquality().equals(_state.value, newState)) {
       _state.value = newState;
     }
   }
 
-  listen<T>({required Stream<T> stream, required void onData(T data)}) {
+  listen<T>(
+      {required Stream<T> stream, required void Function(T data) onData}) {
     final subscription = stream.listen(onData);
     _streamSubscriptions.add(subscription);
   }

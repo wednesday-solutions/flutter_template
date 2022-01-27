@@ -24,10 +24,11 @@ class ScaffoldBodyWithLoadingIndicator<CONTROLLER extends BaseController>
         MemoisedObx<bool>(
           selector: (_) => controller.state.showLoading,
           child: (showLoading) {
-            if (showLoading && !hideDefaultLoading)
-              return loading ?? CircularProgressIndicator();
+            if (showLoading && !hideDefaultLoading) {
+              return loading ?? const CircularProgressIndicator();
+            }
 
-            return SizedBox();
+            return const SizedBox();
           },
         ),
         body,

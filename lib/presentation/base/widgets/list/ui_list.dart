@@ -22,7 +22,7 @@ class UIList<INTENT extends BaseIntent> extends StatefulWidget {
       required this.items,
       this.scrollDirection = Axis.vertical,
       this.shrinkWrap = false,
-      this.physics = null})
+      this.physics})
       : super(key: key);
 
   @override
@@ -43,7 +43,7 @@ class _UIListState<INTENT extends BaseIntent> extends State<UIList> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.items.length > 0) {
+    if (widget.items.isNotEmpty) {
       return ListView.builder(
         scrollDirection: widget.scrollDirection,
         shrinkWrap: widget.shrinkWrap,
@@ -62,7 +62,7 @@ class _UIListState<INTENT extends BaseIntent> extends State<UIList> {
       );
     }
 
-    return SizedBox();
+    return const SizedBox();
   }
 
   @override

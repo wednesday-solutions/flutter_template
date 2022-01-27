@@ -40,10 +40,8 @@ class SearchCityInteractorImpl extends SearchCityInteractor {
     final searchResults = await searchCitiesUseCase(param: term);
     searchResults.when(
       success: (data) => _searchResultsStreamController.sink.add(data),
-      error: (e) =>
-          log.e("$_TAG: search for $term returned error ${e?.toString()}"),
+      error: (e) => log.e(
+          "SearchCityInteractorImpl: search for $term returned error ${e?.toString()}"),
     );
   }
-
-  static const _TAG = "SearchCityInteractorImpl";
 }

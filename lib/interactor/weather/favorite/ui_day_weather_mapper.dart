@@ -14,7 +14,7 @@ class UIDayWeatherMapperImpl extends UIDayWeatherMapper {
 
   @override
   UIDayWeather map(DayWeather from1, int from2) {
-    final displayDateFormat = "dd MMM yy";
+    const displayDateFormat = "dd MMM yy";
     return UIDayWeather(
       cityId: from2,
       currentTemp: "${from1.temp} °C",

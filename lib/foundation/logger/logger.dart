@@ -19,10 +19,11 @@ class LogHelper {
   static logWriterCallback(String text, {bool isError = false}) {
     if (!_initailised) initialiseLogger();
     final message = "GETX: $text";
-    if (isError)
+    if (isError) {
       _instance.w(message);
-    else
+    } else {
       _instance.d(message);
+    }
   }
 
   static Logger get logger => _instance;

@@ -47,7 +47,7 @@ class SearchController extends BaseController<SearchScreen, SearchScreenState>
           setState((state) => state.copyWith(searchList: List.empty()));
         }
       },
-      time: Duration(milliseconds: 400),
+      time: const Duration(milliseconds: 400),
     );
   }
 

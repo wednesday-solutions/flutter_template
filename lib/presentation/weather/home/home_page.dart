@@ -22,7 +22,7 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               controller.onIntent(HomeScreenIntent.search());
             },
-            icon: Icon(Icons.search))
+            icon: const Icon(Icons.search))
       ],
       body: (context, controller) {
         return Obx(

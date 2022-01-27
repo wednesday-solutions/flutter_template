@@ -10,12 +10,12 @@ void showSnackbar(
   }
 
   Get.rawSnackbar(
-    margin: EdgeInsets.all(8.0),
-    padding: EdgeInsets.all(16.0),
+    margin: const EdgeInsets.all(8.0),
+    padding: const EdgeInsets.all(16.0),
     messageText: Text(text),
     borderRadius: 5,
-    duration: duration ?? Duration(seconds: 3),
-    animationDuration: Duration(milliseconds: 300),
+    duration: duration ?? const Duration(seconds: 3),
+    animationDuration: const Duration(milliseconds: 300),
     snackPosition: SnackPosition.BOTTOM,
     backgroundColor: Get.theme.snackBarTheme.backgroundColor ?? Colors.black45,
   );

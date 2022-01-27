@@ -1,7 +1,7 @@
 class Unit {
   const Unit._();
 
-  static const instance = const Unit._();
+  static const instance = Unit._();
 
   @override
   String toString() {

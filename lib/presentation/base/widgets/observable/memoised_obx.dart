@@ -26,7 +26,7 @@ class _MemoisedObxState<T> extends State<MemoisedObx<T>> {
       () {
         final newState = widget.selector(context);
         if ((_oldWidget != widget) ||
-            !DeepCollectionEquality().equals(_oldState, newState)) {
+            !const DeepCollectionEquality().equals(_oldState, newState)) {
           _oldState = newState;
           _oldWidget = widget;
           _child = widget.child(newState);

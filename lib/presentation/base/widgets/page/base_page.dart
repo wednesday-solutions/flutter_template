@@ -23,7 +23,7 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
   final bool hideDefaultLoading;
   final bool tagController;
 
-  BasePage({
+  const BasePage({
     Key? key,
     this.appBar,
     required this.body,
@@ -37,7 +37,7 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
   @override
   Widget build(BuildContext _) {
     return ControllerKey(
-      controllerKey: tagController ? Uuid().v4() : null,
+      controllerKey: tagController ? const Uuid().v4() : null,
       child: Builder(
         builder: (context) {
           return GetBuilder<CONTROLLER>(

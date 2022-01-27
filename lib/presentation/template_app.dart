@@ -15,11 +15,11 @@ class TemplateApp extends StatelessWidget {
       title: 'Flutter Demo', // todo: Get from flavor
       getPages: pages,
       initialRoute: Routes.HOME,
-      theme: LightTheme,
-      darkTheme: DarkTheme,
+      theme: lightTheme,
+      darkTheme: darkTheme,
       themeMode: ThemeMode.dark,
       translations: AppTranslations(),
-      locale: Locale("en_US"),
+      locale: const Locale("en_US"),
       logWriterCallback: LogHelper.logWriterCallback,
       // unknownRoute: , // todo
     );

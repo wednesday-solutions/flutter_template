@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-final LightTheme = ThemeData(
+final lightTheme = ThemeData(
   brightness: Brightness.light,
   snackBarTheme: const SnackBarThemeData(),
   appBarTheme: const AppBarTheme(),
   cardTheme: const _AppCardTheme(),
 );
 
-final DarkTheme = ThemeData(
+final darkTheme = ThemeData(
   brightness: Brightness.dark,
   snackBarTheme: const SnackBarThemeData(),
   appBarTheme: const AppBarTheme(),
@@ -15,12 +15,13 @@ final DarkTheme = ThemeData(
 );
 
 class _AppCardTheme extends CardTheme {
+  @override
   final ShapeBorder? shape;
 
   const _AppCardTheme({
     this.shape = const RoundedRectangleBorder(
-      borderRadius: const BorderRadius.all(
-        const Radius.circular(8),
+      borderRadius: BorderRadius.all(
+        Radius.circular(8),
       ),
     ),
   }) : super(shape: shape);
