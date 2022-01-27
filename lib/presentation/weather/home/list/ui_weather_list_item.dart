@@ -28,8 +28,14 @@ class UIWeatherListItem extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(weather.title, style: TextStyle(fontSize: 30),),
-                  Text(weather.currentTemp, style: TextStyle(fontSize: 30),),
+                  Text(
+                    weather.title,
+                    style: TextStyle(fontSize: 30),
+                  ),
+                  Text(
+                    weather.currentTemp,
+                    style: TextStyle(fontSize: 30),
+                  ),
                 ],
               ),
               UIList<HomeScreenIntent>(

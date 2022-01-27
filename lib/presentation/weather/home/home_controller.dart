@@ -1,4 +1,3 @@
-import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/navigation/weather/home/home_navigator.dart';
 import 'package:flutter_template/presentation/base/controller/base_controller.dart';

@@ -15,15 +15,15 @@ class UIList<INTENT extends BaseIntent> extends StatefulWidget {
   final bool shrinkWrap;
   final ScrollPhysics? physics;
 
-  const UIList({
-    Key? key,
-    required this.renderers,
-    required this.intentHandler,
-    required this.items,
-    this.scrollDirection = Axis.vertical,
-    this.shrinkWrap = false,
-    this.physics = null
-  }) : super(key: key);
+  const UIList(
+      {Key? key,
+      required this.renderers,
+      required this.intentHandler,
+      required this.items,
+      this.scrollDirection = Axis.vertical,
+      this.shrinkWrap = false,
+      this.physics = null})
+      : super(key: key);
 
   @override
   State<UIList> createState() => _UIListState<INTENT>();
@@ -56,8 +56,7 @@ class _UIListState<INTENT extends BaseIntent> extends State<UIList> {
             throw RendererNotRegisteredForTypeException(type);
           }
 
-          return renderer.getWidget(
-              context, item, intentStreamController.sink);
+          return renderer.getWidget(context, item, intentStreamController.sink);
         },
         itemCount: widget.items.length,
       );

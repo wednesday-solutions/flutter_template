@@ -7,9 +7,7 @@ void main() {
   FlavorConfig.initialize(
     flavor: Flavor.DEV,
     values: FlavorValues(
-      apiBaseUrl: "https://www.metaweather.com/",
-      logSqlStatements: true
-    ),
+        apiBaseUrl: "https://www.metaweather.com/", logSqlStatements: true),
   );
   startApp();
 }

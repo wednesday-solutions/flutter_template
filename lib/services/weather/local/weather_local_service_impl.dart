@@ -118,10 +118,10 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
   Stream<List<LocalCityWithWeather>> getFavoriteCitiesWeatherStream() {
     // todo might throw error due to duplicate column names.
     return _getLocalCityWithWeatherQuery().watch().map(
-          (typedResultList) {
-            return _getLocalCityWithWeatherList(typedResultList);
-          },
-        );
+      (typedResultList) {
+        return _getLocalCityWithWeatherList(typedResultList);
+      },
+    );
   }
 
   JoinedSelectStatement<HasResultSet, dynamic> _getLocalCityWithWeatherQuery() {
@@ -146,7 +146,8 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
       return localCityData.woeid;
     });
 
-    final localCityWithWeatherList = List<LocalCityWithWeather>.empty(growable: true);
+    final localCityWithWeatherList =
+        List<LocalCityWithWeather>.empty(growable: true);
 
     groupedByWoeid.forEach((key, results) {
       final localCityData = results.first.readTable(localCity);

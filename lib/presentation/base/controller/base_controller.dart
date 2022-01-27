@@ -25,7 +25,8 @@ abstract class BaseController<SCREEN extends Screen,
     }
   }
 
-  final List<StreamSubscription> _streamSubscriptions = List.empty(growable: true);
+  final List<StreamSubscription> _streamSubscriptions =
+      List.empty(growable: true);
 
   @override
   void onInit() {

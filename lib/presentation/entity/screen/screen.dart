@@ -14,9 +14,8 @@ class SearchScreen extends Screen {
 }
 
 class HomeScreen extends Screen {
-  const HomeScreen(): super._();
+  const HomeScreen() : super._();
 
   @override
   String get path => Routes.HOME;
-
 }

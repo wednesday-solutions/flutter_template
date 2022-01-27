@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/presentation/base/controller/controller_extendsions.dart';
 import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
-import 'package:flutter_template/presentation/base/widgets/observable/memoised_obx.dart';
 import 'package:flutter_template/presentation/base/widgets/page/base_page.dart';
-import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_weather.dart';
 import 'package:flutter_template/presentation/intl/strings.dart';

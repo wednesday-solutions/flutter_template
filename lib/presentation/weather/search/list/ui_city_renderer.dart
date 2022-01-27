@@ -18,7 +18,9 @@ class UICityRenderer extends ListItemRenderer<UICity, SearchScreenIntent> {
           Text(data.title),
           IconButton(
             icon: Icon(
-                data.isFavourite ? Icons.favorite : Icons.favorite_outline, color: Get.theme.colorScheme.secondaryVariant,),
+              data.isFavourite ? Icons.favorite : Icons.favorite_outline,
+              color: Get.theme.colorScheme.secondaryVariant,
+            ),
             onPressed: () {
               sink.add(SearchScreenIntent.toggleFavorite(city: data));
             },

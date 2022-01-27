@@ -1,4 +1,3 @@
-// These imports are only needed to open the database
 import 'package:drift/native.dart';
 import 'package:flutter_template/flavors/flavor_config.dart';
 import 'package:flutter_template/services/model/weather/local/local_city.dart';

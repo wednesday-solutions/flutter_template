@@ -11,6 +11,9 @@ class UIDayWeatherHeadingListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(heading.text, style: TextStyle(fontSize: 20),);
+    return Text(
+      heading.text,
+      style: TextStyle(fontSize: 20),
+    );
   }
 }
