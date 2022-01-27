@@ -79,9 +79,15 @@ class WeatherRepositoryImpl implements WeatherRepository {
   @override
   Stream<List<Weather>> getFavoriteCitiesWeatherStream() {
     return weatherLocalService.getFavoriteCitiesWeatherStream().map(
-          (cityWithWeatherList) =>
-              domainWeatherMapper.mapList(cityWithWeatherList),
-        );
+      (cityWithWeatherList) {
+        try {
+          return domainWeatherMapper.mapList(cityWithWeatherList);
+        } catch (e) {
+          print(e);
+          return List.empty();
+        }
+      },
+    );
   }
 
   @override

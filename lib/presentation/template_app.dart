@@ -14,7 +14,7 @@ class TemplateApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo', // todo: Get from flavor
       getPages: pages,
-      initialRoute: Routes.SEARCH,
+      initialRoute: Routes.HOME,
       theme: LightTheme,
       darkTheme: DarkTheme,
       themeMode: ThemeMode.dark,

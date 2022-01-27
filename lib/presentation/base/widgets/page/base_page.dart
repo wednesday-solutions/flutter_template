@@ -18,7 +18,7 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
   final ControllerViewBuilder<CONTROLLER> body;
   final AppBar? appBar;
   final Function(CONTROLLER controller)? onAppBarBackPressed;
-  final List<Widget>? appBarActions;
+  final List<Widget> Function(CONTROLLER controller)? appBarActions;
   final Widget? loading;
   final bool hideDefaultLoading;
   final bool tagController;
@@ -46,7 +46,7 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
             builder: (controller) {
               return _BasePageContent<CONTROLLER>(
                 onAppBarBackPressed: onAppBarBackPressed,
-                appBarActions: appBarActions,
+                appBarActions: appBarActions?.call(controller),
                 body: body,
                 hideDefaultLoading: hideDefaultLoading,
                 loading: loading,
@@ -82,11 +82,13 @@ class _BasePageContent<CONTROLLER extends BaseController>
       child: Scaffold(
         backgroundColor: context.theme.backgroundColor,
         appBar: AppBar(
-          leading: AppBarBackButton<CONTROLLER>(
-            onBackPressed: () {
-              onAppBarBackPressed?.call(context.controller<CONTROLLER>());
-            },
-          ),
+          leading: context.controller<CONTROLLER>().state.toolbar.hasBackButton
+              ? AppBarBackButton<CONTROLLER>(
+                  onBackPressed: () {
+                    onAppBarBackPressed?.call(context.controller<CONTROLLER>());
+                  },
+                )
+              : null,
           title: AppBarTitle<CONTROLLER>(),
           actions: appBarActions,
         ),

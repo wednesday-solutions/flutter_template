@@ -1,5 +1,6 @@
 // These imports are only needed to open the database
 import 'package:drift/native.dart';
+import 'package:flutter_template/flavors/flavor_config.dart';
 import 'package:flutter_template/services/model/weather/local/local_city.dart';
 import 'package:flutter_template/services/model/weather/local/local_day_weather.dart';
 import 'package:flutter_template/services/model/weather/local/local_weather.dart';
@@ -26,6 +27,9 @@ LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
     final file = File(p.join(dbFolder.path, 'db.sqlite'));
-    return NativeDatabase(file);
+    return NativeDatabase(
+      file,
+      logStatements: FlavorConfig.instance.values.logSqlStatements,
+    );
   });
 }

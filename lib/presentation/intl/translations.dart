@@ -7,7 +7,12 @@ class AppTranslations extends Translations {
         "en_US": {
           Strings.homePageTitle: "Home",
           Strings.searchPageTitle: "Search",
-          Strings.forecast: "Forecast"
+          Strings.forecast: "Forecast",
+          Strings.favCitiesAppearHere:
+              "Weather for your favorite cities will appear here. Search cities to add to favorites.",
+          Strings.startTypingToSearch: "Start typing to search",
+          Strings.searchResultsAppearHere: "Search results appear here...",
+          Strings.noResultsFound: "No results found...",
         }
       };
 }

@@ -8,11 +8,11 @@ part 'search_screen_intent.freezed.dart';
 abstract class SearchScreenIntent
     with _$SearchScreenIntent
     implements BaseIntent {
-  factory SearchScreenIntent.back() = SearchScreenIntent_Back;
+  factory SearchScreenIntent.back() = _SearchScreenIntent_Back;
 
   factory SearchScreenIntent.search({required String searchTerm}) =
-      SearchScreenIntent_Search;
+      _SearchScreenIntent_Search;
 
   factory SearchScreenIntent.toggleFavorite({required UICity city}) =
-      SearchScreenIntent_Favorite;
+      _SearchScreenIntent_Favorite;
 }

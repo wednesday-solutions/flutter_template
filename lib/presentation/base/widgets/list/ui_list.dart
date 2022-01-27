@@ -12,6 +12,8 @@ class UIList<INTENT extends BaseIntent> extends StatefulWidget {
   final IntentHandler<INTENT>? intentHandler;
   final List<UIListItem> items;
   final Axis scrollDirection;
+  final bool shrinkWrap;
+  final ScrollPhysics? physics;
 
   const UIList({
     Key? key,
@@ -19,6 +21,8 @@ class UIList<INTENT extends BaseIntent> extends StatefulWidget {
     required this.intentHandler,
     required this.items,
     this.scrollDirection = Axis.vertical,
+    this.shrinkWrap = false,
+    this.physics = null
   }) : super(key: key);
 
   @override
@@ -40,23 +44,22 @@ class _UIListState<INTENT extends BaseIntent> extends State<UIList> {
   @override
   Widget build(BuildContext context) {
     if (widget.items.length > 0) {
-      return Expanded(
-        child: ListView.builder(
-          scrollDirection: widget.scrollDirection,
-          shrinkWrap: true,
-          itemBuilder: (context, index) {
-            final item = widget.items[index];
-            final type = item.type;
-            final renderer = widget.renderers[type];
-            if (renderer == null) {
-              throw RendererNotRegisteredForTypeException(type);
-            }
+      return ListView.builder(
+        scrollDirection: widget.scrollDirection,
+        shrinkWrap: widget.shrinkWrap,
+        physics: widget.physics,
+        itemBuilder: (context, index) {
+          final item = widget.items[index];
+          final type = item.type;
+          final renderer = widget.renderers[type];
+          if (renderer == null) {
+            throw RendererNotRegisteredForTypeException(type);
+          }
 
-            return renderer.getWidget(
-                context, item, intentStreamController.sink);
-          },
-          itemCount: widget.items.length,
-        ),
+          return renderer.getWidget(
+              context, item, intentStreamController.sink);
+        },
+        itemCount: widget.items.length,
       );
     }
 

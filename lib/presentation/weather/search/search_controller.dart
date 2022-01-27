@@ -1,8 +1,9 @@
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/interactor/weather/search/search_city_interactor.dart';
-import 'package:flutter_template/navigation/search/search_navigator.dart';
+import 'package:flutter_template/navigation/weather/search/search_navigator.dart';
 import 'package:flutter_template/presentation/base/controller/base_controller.dart';
 import 'package:flutter_template/presentation/base/intent/intent_handler.dart';
+import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/base/ui_toolbar.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
@@ -17,6 +18,7 @@ class SearchController extends BaseController<SearchScreen, SearchScreenState>
   final SearchCityInteractor searchCityInteractor;
   final FavoriteWeatherInteractor favoriteWeatherInteractor;
   final _searchTerm = "".obs;
+  String get searchTerm => _searchTerm.value;
 
   SearchController({
     required this.searchNavigator,
@@ -28,9 +30,11 @@ class SearchController extends BaseController<SearchScreen, SearchScreenState>
   void onInit() {
     super.onInit();
 
-    searchCityInteractor.searchResultsStream.listen((event) {
-      setState((state) => state.copyWith(searchList: event));
-    });
+    listen<List<UIListItem>>(
+        stream: searchCityInteractor.searchResultsStream,
+        onData: (data) {
+          setState((state) => state.copyWith(searchList: data));
+        });
 
     debounce<String>(
       _searchTerm,

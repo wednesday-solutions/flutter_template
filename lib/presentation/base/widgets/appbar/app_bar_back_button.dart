@@ -22,7 +22,7 @@ class AppBarBackButton<CONTROLLER extends BaseController>
               onPressed: onBackPressed,
               icon: Icon(Icons.arrow_back),
             )
-          : SizedBox(),
+          : SizedBox(width: 0, height: 0,),
     );
   }
 }
