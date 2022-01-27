@@ -35,7 +35,7 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext _) {
+  Widget build(BuildContext context) {
     return ControllerKey(
       controllerKey: tagController ? const Uuid().v4() : null,
       child: Builder(
@@ -93,7 +93,7 @@ class _BasePageContent<CONTROLLER extends BaseController>
           actions: appBarActions,
         ),
         body: ScaffoldBodyWithLoadingIndicator<CONTROLLER>(
-          body: ControllerView<CONTROLLER>(body),
+          body: ControllerView<CONTROLLER>(builder: body),
           hideDefaultLoading: hideDefaultLoading,
           loading: loading,
         ),

@@ -83,7 +83,6 @@ class WeatherRepositoryImpl implements WeatherRepository {
         try {
           return domainWeatherMapper.mapList(cityWithWeatherList);
         } catch (e) {
-          print(e);
           return List.empty();
         }
       },

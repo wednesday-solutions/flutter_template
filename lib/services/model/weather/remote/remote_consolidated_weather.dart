@@ -1,5 +1,5 @@
 import 'package:flutter_template/foundation/global_type_alias.dart';
-import 'package:flutter_template/services/base/json/JsonDateTimeConverter.dart';
+import 'package:flutter_template/services/base/json/json_date_time_converter.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'remote_consolidated_weather.g.dart';

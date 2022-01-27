@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/base/renderer/list_item_renderer.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_day_weather.dart';
 import 'package:flutter_template/presentation/weather/home/home_screen_intent.dart';

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
 class ControllerKey extends InheritedWidget {
-  @override
-  final Widget child;
   final String? controllerKey;
 
   const ControllerKey({
-    required this.child,
+    Key? key,
+    required Widget child,
     required this.controllerKey,
-  }) : super(child: child);
+  }) : super(key: key, child: child);
 
   static ControllerKey of(BuildContext context) {
     final ControllerKey? result =

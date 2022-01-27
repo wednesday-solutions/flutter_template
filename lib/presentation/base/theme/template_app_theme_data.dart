@@ -15,14 +15,13 @@ final darkTheme = ThemeData(
 );
 
 class _AppCardTheme extends CardTheme {
-  @override
-  final ShapeBorder? shape;
+  final ShapeBorder? shapeBorder;
 
   const _AppCardTheme({
-    this.shape = const RoundedRectangleBorder(
+    this.shapeBorder = const RoundedRectangleBorder(
       borderRadius: BorderRadius.all(
         Radius.circular(8),
       ),
     ),
-  }) : super(shape: shape);
+  }) : super(shape: shapeBorder);
 }

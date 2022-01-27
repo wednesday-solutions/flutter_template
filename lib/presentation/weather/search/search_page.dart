@@ -14,7 +14,7 @@ import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage();
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

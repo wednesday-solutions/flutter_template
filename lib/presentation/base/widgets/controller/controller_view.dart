@@ -8,7 +8,7 @@ typedef ControllerViewBuilder<CONTROLLER extends BaseController> = Widget
 class ControllerView<CONTROLLER extends BaseController> extends Widget {
   final ControllerViewBuilder<CONTROLLER> builder;
 
-  const ControllerView(this.builder);
+  const ControllerView({Key? key, required this.builder}): super(key: key);
 
   @override
   ControllerBuilderElement createElement() =>

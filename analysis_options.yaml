@@ -9,11 +9,3 @@ analyzer:
   exclude:
     - "**.g.dart"
     - "**.freezed.dart"
-
-#linter:
-#  rules:
-#    errors:
-#    exclude:
-#      - "**.g.dart"
-#      - "**.freezed.dart"
-#      - "**.config.dart"
