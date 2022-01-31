@@ -51,3 +51,5 @@ app.*.map.json
 
 # Pub
 pubspec.lock
+
+/coverage
