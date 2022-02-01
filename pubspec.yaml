@@ -27,6 +27,8 @@ dependencies:
   drift: ^1.2.0
   flutter:
     sdk: flutter
+  flutter_riverpod: ^1.0.3
+  flutter_state_notifier: ^0.7.1
   freezed_annotation: ^1.1.0
   get: ^4.6.1
   get_it: ^7.2.0

@@ -1,7 +1,11 @@
+
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/foundation/extensions/string_ext.dart';
+import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/interactor/weather/search/search_city_interactor.dart';
 import 'package:flutter_template/navigation/weather/search/search_navigator.dart';
-import 'package:flutter_template/presentation/base/controller/base_controller.dart';
+import 'package:flutter_template/presentation/base/controller/base_view_model.dart';
 import 'package:flutter_template/presentation/base/intent/intent_handler.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/base/ui_toolbar.dart';
@@ -10,49 +14,53 @@ import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 import 'package:flutter_template/presentation/intl/strings.dart';
 import 'package:flutter_template/presentation/weather/search/search_screen_intent.dart';
 import 'package:flutter_template/presentation/weather/search/search_screen_state.dart';
-import 'package:get/get.dart';
+import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get_it/get_it.dart';
+import 'package:rxdart/rxdart.dart';
 
-class SearchController extends BaseController<SearchScreen, SearchScreenState>
+final searchViewModelProvider =
+    StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>(
+        (ref) => GetIt.I.get());
+
+class SearchViewModel extends BaseViewModel<SearchScreen, SearchScreenState>
     implements IntentHandler<SearchScreenIntent> {
   final SearchNavigator searchNavigator;
   final SearchCityInteractor searchCityInteractor;
   final FavoriteWeatherInteractor favoriteWeatherInteractor;
-  final _searchTerm = "".obs;
-  String get searchTerm => _searchTerm.value;
+  final _searchTermSubject = BehaviorSubject.seeded("");
 
-  SearchController({
+  String get searchTerm => _searchTermSubject.hasValue ? _searchTermSubject.value : "";
+
+  SearchViewModel({
     required this.searchNavigator,
     required this.searchCityInteractor,
     required this.favoriteWeatherInteractor,
-  });
+  }) : super(_initialState);
 
   @override
   void onInit() {
-    super.onInit();
-
     listen<List<UIListItem>>(
         stream: searchCityInteractor.searchResultsStream,
         onData: (data) {
           setState((state) => state.copyWith(searchList: data));
         });
 
-    debounce<String>(
-      _searchTerm,
-      (searchString) async {
-        if (searchString.isNotEmpty && searchString.isBlank != true) {
-          setState((state) => state.copyWith(showLoading: true));
-          await searchCityInteractor.search(searchString);
-          setState((state) => state.copyWith(showLoading: false));
-        } else {
-          setState((state) => state.copyWith(searchList: List.empty()));
-        }
-      },
-      time: const Duration(milliseconds: 400),
-    );
+    listenDebounce<String>(
+        stream: _searchTermSubject,
+        debounceDuration: const Duration(milliseconds: 400),
+        onData: (newSearchTerm) async {
+          log.e("Search Term = $newSearchTerm");
+          if (newSearchTerm.isNotEmpty && newSearchTerm.isBlank != true) {
+            setState((state) => state.copyWith(showLoading: true));
+            await searchCityInteractor.search(newSearchTerm);
+            setState((state) => state.copyWith(showLoading: false));
+          } else {
+            setState((state) => state.copyWith(searchList: List.empty()));
+          }
+        });
   }
 
-  @override
-  SearchScreenState getDefaultState() => SearchScreenState(
+  static SearchScreenState get _initialState => SearchScreenState(
         toolbar: UIToolbar(
           title: Strings.searchPageTitle.tr,
           hasBackButton: true,
@@ -65,8 +73,11 @@ class SearchController extends BaseController<SearchScreen, SearchScreenState>
   void onIntent(SearchScreenIntent intent) {
     intent.when(
       back: () => searchNavigator.back(),
-      search: (searchTerm) {
-        _searchTerm.value = searchTerm;
+      search: (newSearchTerm) {
+        if (newSearchTerm != searchTerm) {
+          log.e("Adding new value $newSearchTerm");
+          _searchTermSubject.add(newSearchTerm);
+        }
       },
       toggleFavorite: (UICity city) async {
         if (city.isFavourite) {

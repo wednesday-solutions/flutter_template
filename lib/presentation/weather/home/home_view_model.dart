@@ -1,6 +1,7 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/navigation/weather/home/home_navigator.dart';
-import 'package:flutter_template/presentation/base/controller/base_controller.dart';
+import 'package:flutter_template/presentation/base/controller/base_view_model.dart';
 import 'package:flutter_template/presentation/base/intent/intent_handler.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/base/ui_toolbar.dart';
@@ -9,19 +10,21 @@ import 'package:flutter_template/presentation/intl/strings.dart';
 import 'package:flutter_template/presentation/weather/home/home_screen_intent.dart';
 import 'package:flutter_template/presentation/weather/home/home_screen_state.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get_it/get_it.dart';
 
-class HomeController extends BaseController<HomeScreen, HomeScreenState>
+final homeViewModelProvider = StateNotifierProvider.autoDispose<HomeViewModel, HomeScreenState>((ref) => GetIt.I.get());
+
+class HomeViewModel extends BaseViewModel<HomeScreen, HomeScreenState>
     implements IntentHandler<HomeScreenIntent> {
   final FavoriteWeatherInteractor favoriteWeatherInteractor;
   final HomeNavigator homeNavigator;
 
-  HomeController({
+  HomeViewModel({
     required this.favoriteWeatherInteractor,
     required this.homeNavigator,
-  });
+  }) : super(_initialState);
 
-  @override
-  HomeScreenState getDefaultState() => HomeScreenState(
+  static get _initialState => HomeScreenState(
         toolbar: UIToolbar(
           title: Strings.homePageTitle.tr,
           hasBackButton: false,
@@ -32,8 +35,6 @@ class HomeController extends BaseController<HomeScreen, HomeScreenState>
 
   @override
   void onInit() {
-    super.onInit();
-
     listen(
         stream: favoriteWeatherInteractor.getFavoriteCitiesStream(),
         onData: (data) {

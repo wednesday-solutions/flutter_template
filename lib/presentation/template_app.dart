@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/navigation/pages/pages.dart';
 import 'package:flutter_template/presentation/base/theme/template_app_theme_data.dart';
@@ -11,17 +12,19 @@ class TemplateApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      title: 'Flutter Demo', // todo: Get from flavor
-      getPages: pages,
-      initialRoute: Routes.HOME,
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: ThemeMode.dark,
-      translations: AppTranslations(),
-      locale: const Locale("en_US"),
-      logWriterCallback: LogHelper.logWriterCallback,
-      // unknownRoute: , // todo
+    return ProviderScope(
+      child: GetMaterialApp(
+        title: 'Flutter Demo', // todo: Get from flavor
+        getPages: pages,
+        initialRoute: Routes.HOME,
+        theme: lightTheme,
+        darkTheme: darkTheme,
+        themeMode: ThemeMode.dark,
+        translations: AppTranslations(),
+        locale: const Locale("en_US"),
+        logWriterCallback: LogHelper.logWriterCallback,
+        // unknownRoute: , // todo
+      ),
     );
   }
 }

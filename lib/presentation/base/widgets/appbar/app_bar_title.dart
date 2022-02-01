@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/presentation/base/controller/base_controller.dart';
-import 'package:flutter_template/presentation/base/controller/controller_extendsions.dart';
-import 'package:flutter_template/presentation/base/widgets/observable/memoised_obx.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/presentation/base/controller/base_view_model.dart';
+import 'package:flutter_template/presentation/base/controller/view_model_provider_ext.dart';
+import 'package:flutter_template/presentation/entity/screen/screen.dart';
+import 'package:flutter_template/presentation/entity/screen/screen_state.dart';
 
-class AppBarTitle<CONTROLLER extends BaseController> extends StatelessWidget {
+class AppBarTitle<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
+    SCREEN_STATE extends ScreenState> extends ConsumerWidget {
   const AppBarTitle({
     Key? key,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return MemoisedObx<String>(
-      selector: (_) => context.controller<CONTROLLER>().state.toolbar.title,
-      child: (data) {
-        return Text(data);
-      },
+  Widget build(BuildContext context, WidgetRef ref) {
+    final title = ref.watch(
+      context
+          .viewModelProvider<VIEW_MODEL, SCREEN_STATE>()
+          .select((state) => state.toolbar.title),
     );
+    return Text(title);
   }
 }

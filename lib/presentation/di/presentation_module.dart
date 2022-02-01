@@ -1,12 +1,12 @@
-import 'package:flutter_template/presentation/weather/home/home_controller.dart';
-import 'package:flutter_template/presentation/weather/search/search_controller.dart';
+import 'package:flutter_template/presentation/weather/home/home_view_model.dart';
+import 'package:flutter_template/presentation/weather/search/search_view_model.dart';
 import 'package:get_it/get_it.dart';
 
 extension PresentationModule on GetIt {
   void presentationModule() {
     // home
     registerFactory(
-      () => HomeController(
+      () => HomeViewModel(
         favoriteWeatherInteractor: get(),
         homeNavigator: get(),
       ),
@@ -14,7 +14,7 @@ extension PresentationModule on GetIt {
 
     // search
     registerFactory(
-      () => SearchController(
+      () => SearchViewModel(
         searchCityInteractor: get(),
         searchNavigator: get(),
         favoriteWeatherInteractor: get(),

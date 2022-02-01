@@ -2,14 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/base/exceptions/renderer_not_registered_exception.dart';
-import 'package:flutter_template/presentation/base/intent/intent_handler.dart';
 import 'package:flutter_template/presentation/base/renderer/list_item_renderer.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/intent/intent.dart';
 
 class UIList<INTENT extends BaseIntent> extends StatefulWidget {
   final Map<Type, ListItemRenderer> renderers;
-  final IntentHandler<INTENT>? intentHandler;
+  final Function(INTENT intent)? intentHandler;
   final List<UIListItem> items;
   final Axis scrollDirection;
   final bool shrinkWrap;
@@ -37,7 +36,7 @@ class _UIListState<INTENT extends BaseIntent> extends State<UIList> {
     super.initState();
     intentStreamController = StreamController();
     intentStreamController.stream.listen((event) {
-      widget.intentHandler?.onIntent(event);
+      widget.intentHandler?.call(event);
     });
   }
 
