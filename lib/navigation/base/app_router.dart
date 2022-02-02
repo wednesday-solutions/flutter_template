@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_import
+
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_template/navigation/base/routes.dart';
 import 'package:flutter/foundation.dart';

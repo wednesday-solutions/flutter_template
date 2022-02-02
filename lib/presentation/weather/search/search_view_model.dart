@@ -1,8 +1,6 @@
-
-import 'package:easy_localization/src/public_ext.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/foundation/extensions/string_ext.dart';
-import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/interactor/weather/search/search_city_interactor.dart';
 import 'package:flutter_template/navigation/weather/search/search_navigator.dart';
@@ -29,7 +27,8 @@ class SearchViewModel extends BaseViewModel<SearchScreen, SearchScreenState>
   final FavoriteWeatherInteractor favoriteWeatherInteractor;
   final _searchTermSubject = BehaviorSubject.seeded("");
 
-  String get searchTerm => _searchTermSubject.hasValue ? _searchTermSubject.value : "";
+  String get searchTerm =>
+      _searchTermSubject.hasValue ? _searchTermSubject.value : "";
 
   SearchViewModel({
     required this.searchNavigator,
