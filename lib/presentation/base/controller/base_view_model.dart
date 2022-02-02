@@ -21,7 +21,7 @@ abstract class BaseViewModel<SCREEN extends Screen,
   onBind(SCREEN? screen) {}
 
   BaseViewModel(SCREEN_STATE state) : super(state) {
-    log.d("$runtimeType Created.");
+    log.d("$runtimeType onInit.");
     onInit();
   }
 
@@ -29,6 +29,7 @@ abstract class BaseViewModel<SCREEN extends Screen,
 
   bind(SCREEN? screenData) {
     _screen = screenData;
+    log.d("$runtimeType onBind.");
     onBind(screen);
   }
 
@@ -59,7 +60,7 @@ abstract class BaseViewModel<SCREEN extends Screen,
   @override
   void dispose() {
     super.dispose();
-    log.d("$runtimeType Disposed.");
+    log.d("$runtimeType onDispose.");
     for (var subscription in _streamSubscriptions) {
       subscription.cancel();
     }

@@ -1,13 +1,10 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/navigation/base/app_router.dart';
-import 'package:flutter_template/navigation/base/routes.dart';
 import 'package:flutter_template/presentation/base/theme/template_app_theme_data.dart';
-import 'package:flutter_template/presentation/entity/routes/routes.dart';
+import 'package:flutter_template/presentation/base/widgets/snackbar/custom_snackbar.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
-import 'package:flutter_template/presentation/intl/translations.dart';
-import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 
 class TemplateApp extends StatelessWidget {
@@ -21,7 +18,6 @@ class TemplateApp extends StatelessWidget {
       child: MaterialApp.router(
         title: 'Flutter Demo',
         // todo: Get from flavor
-        // getPages: pages,
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: ThemeMode.dark,
@@ -31,10 +27,10 @@ class TemplateApp extends StatelessWidget {
           )
         ]),
         routeInformationParser: _appRouter.defaultRouteParser(),
-        // translations: AppTranslations(),
-        // locale: const Locale("en_US"),
-        // logWriterCallback: LogHelper.logWriterCallback,
-        // unknownRoute: , // todo
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        scaffoldMessengerKey: scaffoldMessengerKey,
       ),
     );
   }

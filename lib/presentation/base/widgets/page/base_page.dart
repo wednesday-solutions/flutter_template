@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/foundation/extensions/theme_ext.dart';
 import 'package:flutter_template/presentation/base/controller/base_view_model.dart';
 import 'package:flutter_template/presentation/base/controller/view_model_provider_ext.dart';
 import 'package:flutter_template/presentation/base/widgets/appbar/app_bar_back_button.dart';
@@ -8,7 +9,6 @@ import 'package:flutter_template/presentation/base/widgets/controller/controller
 import 'package:flutter_template/presentation/base/widgets/scaffold/scaffold_body_with_loading_indicator.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/screen/screen_state.dart';
-import 'package:get/get.dart';
 
 class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
         VIEW_MODEL extends BaseViewModel<SCREEN, SCREEN_STATE>>

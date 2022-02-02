@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_template/presentation/weather/search/list/ui_city_render
 import 'package:flutter_template/presentation/weather/search/search_screen_intent.dart';
 import 'package:flutter_template/presentation/weather/search/search_screen_state.dart';
 import 'package:flutter_template/presentation/weather/search/search_view_model.dart';
-import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:tuple/tuple.dart';
 
@@ -57,7 +57,7 @@ class _SearchPageBody extends ConsumerWidget {
             controller: textController,
             decoration: InputDecoration(
               border: const OutlineInputBorder(),
-              labelText: Strings.startTypingToSearch.tr,
+              labelText: Strings.startTypingToSearch.tr(),
             ),
           ),
           const _SearchPageResults(),
@@ -85,8 +85,8 @@ class _SearchPageResults extends ConsumerWidget {
       return Expanded(
         child: Center(
           child: viewModel.searchTerm.isEmpty
-              ? Text(Strings.searchResultsAppearHere.tr)
-              : Text(Strings.noResultsFound.tr),
+              ? Text(Strings.searchResultsAppearHere.tr())
+              : Text(Strings.noResultsFound.tr()),
         ),
       );
     }
@@ -114,8 +114,8 @@ class SearchPageLoadingShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Shimmer.fromColors(
-        baseColor: Get.theme.scaffoldBackgroundColor.withOpacity(0.1),
-        highlightColor: Get.theme.primaryColor.withOpacity(0.2),
+        baseColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.1),
+        highlightColor: Theme.of(context).primaryColor.withOpacity(0.2),
         period: const Duration(seconds: 1),
         direction: ShimmerDirection.ltr,
         child: ListView.builder(

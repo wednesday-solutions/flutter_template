@@ -1,3 +1,4 @@
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/navigation/weather/home/home_navigator.dart';
@@ -9,7 +10,6 @@ import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/intl/strings.dart';
 import 'package:flutter_template/presentation/weather/home/home_screen_intent.dart';
 import 'package:flutter_template/presentation/weather/home/home_screen_state.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:get_it/get_it.dart';
 
 final homeViewModelProvider = StateNotifierProvider.autoDispose<HomeViewModel, HomeScreenState>((ref) => GetIt.I.get());
@@ -26,7 +26,7 @@ class HomeViewModel extends BaseViewModel<HomeScreen, HomeScreenState>
 
   static get _initialState => HomeScreenState(
         toolbar: UIToolbar(
-          title: Strings.homePageTitle.tr,
+          title: Strings.homePageTitle.tr(),
           hasBackButton: false,
         ),
         showLoading: false,

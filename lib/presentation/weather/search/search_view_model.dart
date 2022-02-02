@@ -1,4 +1,5 @@
 
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/foundation/logger/logger.dart';
@@ -14,7 +15,6 @@ import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 import 'package:flutter_template/presentation/intl/strings.dart';
 import 'package:flutter_template/presentation/weather/search/search_screen_intent.dart';
 import 'package:flutter_template/presentation/weather/search/search_screen_state.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:get_it/get_it.dart';
 import 'package:rxdart/rxdart.dart';
 
@@ -49,7 +49,6 @@ class SearchViewModel extends BaseViewModel<SearchScreen, SearchScreenState>
         stream: _searchTermSubject,
         debounceDuration: const Duration(milliseconds: 400),
         onData: (newSearchTerm) async {
-          log.e("Search Term = $newSearchTerm");
           if (newSearchTerm.isNotEmpty && newSearchTerm.isBlank != true) {
             setState((state) => state.copyWith(showLoading: true));
             await searchCityInteractor.search(newSearchTerm);
@@ -62,7 +61,7 @@ class SearchViewModel extends BaseViewModel<SearchScreen, SearchScreenState>
 
   static SearchScreenState get _initialState => SearchScreenState(
         toolbar: UIToolbar(
-          title: Strings.searchPageTitle.tr,
+          title: Strings.searchPageTitle.tr(),
           hasBackButton: true,
         ),
         showLoading: false,
@@ -75,7 +74,6 @@ class SearchViewModel extends BaseViewModel<SearchScreen, SearchScreenState>
       back: () => searchNavigator.back(),
       search: (newSearchTerm) {
         if (newSearchTerm != searchTerm) {
-          log.e("Adding new value $newSearchTerm");
           _searchTermSubject.add(newSearchTerm);
         }
       },
