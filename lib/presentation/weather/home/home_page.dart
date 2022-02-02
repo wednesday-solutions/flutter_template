@@ -12,12 +12,18 @@ import 'package:flutter_template/presentation/weather/home/list/ui_weather_rende
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 
 class HomePage extends ConsumerWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final HomeScreen homeScreen;
+
+  const HomePage({
+    Key? key,
+    required this.homeScreen,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return BasePage<HomeScreen, HomeScreenState, HomeViewModel>(
       viewModelProvider: homeViewModelProvider,
+      screen: homeScreen,
       appBarActions: () => [
         IconButton(
             onPressed: () {

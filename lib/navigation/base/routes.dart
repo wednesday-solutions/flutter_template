@@ -1,16 +1,18 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter_template/presentation/entity/routes/routes.dart';
 import 'package:flutter_template/presentation/weather/home/home_page.dart';
 import 'package:flutter_template/presentation/weather/search/search_page.dart';
 import 'package:get/route_manager.dart';
 
-final pages = [
-  GetPage(
-    name: Routes.HOME,
-    page: () => const HomePage(),
+const autoRoutes = [
+  AutoRoute(
+    path: Routes.HOME,
+    page: HomePage,
+    initial: true,
   ),
-  GetPage(
-    name: Routes.SEARCH,
-    page: () => const SearchPage(),
+  AutoRoute(
+    path: Routes.SEARCH,
+    page: SearchPage,
   ),
 ];
 

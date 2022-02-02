@@ -12,9 +12,10 @@ import 'package:get/get.dart';
 
 class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
         VIEW_MODEL extends BaseViewModel<SCREEN, SCREEN_STATE>>
-    extends StatelessWidget {
+    extends ConsumerWidget {
   final Widget body;
   final AutoDisposeStateNotifierProvider<VIEW_MODEL, SCREEN_STATE> viewModelProvider;
+  final SCREEN? screen;
   final AppBar? appBar;
   final Function(VIEW_MODEL viewModel)? onAppBarBackPressed;
   final List<Widget> Function()? appBarActions;
@@ -25,6 +26,7 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
     Key? key,
     this.appBar,
     required this.viewModelProvider,
+    this.screen,
     required this.body,
     this.onAppBarBackPressed,
     this.appBarActions,
@@ -33,7 +35,8 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(viewModelProvider.notifier).bind(screen);
     return ViewModelProvider(
       provider: viewModelProvider,
       child: _BasePageContent<VIEW_MODEL, SCREEN_STATE>(

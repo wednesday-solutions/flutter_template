@@ -48,6 +48,7 @@ app.*.map.json
 # Generated files
 *.g.dart
 *.freezed.dart
+*.gr.dart
 
 # Pub
 pubspec.lock

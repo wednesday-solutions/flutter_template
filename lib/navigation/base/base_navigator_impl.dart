@@ -1,18 +1,19 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_template/navigation/base/app_router.dart';
 import 'package:flutter_template/navigation/base/base_navigator.dart';
-import 'package:flutter_template/presentation/entity/screen/screen.dart';
-import 'package:get/get.dart';
 
 class BaseNavigatorImpl implements BaseNavigator {
+  final AppRouter appRouter;
+
+  BaseNavigatorImpl({required this.appRouter});
+
   @override
   void back() {
-    Get.back(closeOverlays: true);
+    appRouter.navigateBack();
   }
 
   @override
-  void to(Screen screen) {
-    Get.toNamed(
-      screen.path,
-      arguments: screen,
-    );
+  void to(PageRouteInfo route) {
+    appRouter.push(route);
   }
 }

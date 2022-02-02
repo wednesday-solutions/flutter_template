@@ -6,30 +6,31 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/screen/screen_state.dart';
-import 'package:get/get.dart';
 import 'package:rxdart/rxdart.dart';
 
 abstract class BaseViewModel<SCREEN extends Screen,
     SCREEN_STATE extends ScreenState> extends StateNotifier<SCREEN_STATE> {
+  final List<StreamSubscription> _streamSubscriptions =
+      List.empty(growable: true);
+  SCREEN? _screen;
+
+  @protected
+  onInit();
+
+  @protected
+  onBind(SCREEN? screen) {}
+
   BaseViewModel(SCREEN_STATE state) : super(state) {
     log.d("$runtimeType Created.");
     onInit();
   }
 
-  @protected
-  onInit();
+  SCREEN? get screen => _screen;
 
-  SCREEN? get screen {
-    try {
-      return Get.arguments as SCREEN?;
-    } catch (e) {
-      log.e("Incorrect arguments. Required type $SCREEN.", e);
-      return null;
-    }
+  bind(SCREEN? screenData) {
+    _screen = screenData;
+    onBind(screen);
   }
-
-  final List<StreamSubscription> _streamSubscriptions =
-      List.empty(growable: true);
 
   setState(SCREEN_STATE Function(SCREEN_STATE state) reducer) {
     final newState = reducer(state);

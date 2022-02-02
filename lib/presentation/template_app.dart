@@ -1,28 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/foundation/logger/logger.dart';
-import 'package:flutter_template/navigation/pages/pages.dart';
+import 'package:flutter_template/navigation/base/app_router.dart';
+import 'package:flutter_template/navigation/base/routes.dart';
 import 'package:flutter_template/presentation/base/theme/template_app_theme_data.dart';
 import 'package:flutter_template/presentation/entity/routes/routes.dart';
+import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/intl/translations.dart';
 import 'package:get/get.dart';
+import 'package:get_it/get_it.dart';
 
 class TemplateApp extends StatelessWidget {
-  const TemplateApp({Key? key}) : super(key: key);
+  TemplateApp({Key? key}) : super(key: key);
+
+  final AppRouter _appRouter = GetIt.I.get();
 
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
-      child: GetMaterialApp(
-        title: 'Flutter Demo', // todo: Get from flavor
-        getPages: pages,
-        initialRoute: Routes.HOME,
+      child: MaterialApp.router(
+        title: 'Flutter Demo',
+        // todo: Get from flavor
+        // getPages: pages,
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: ThemeMode.dark,
-        translations: AppTranslations(),
-        locale: const Locale("en_US"),
-        logWriterCallback: LogHelper.logWriterCallback,
+        routerDelegate: _appRouter.delegate(initialRoutes: [
+          HomeRoute(
+            homeScreen: const HomeScreen(),
+          )
+        ]),
+        routeInformationParser: _appRouter.defaultRouteParser(),
+        // translations: AppTranslations(),
+        // locale: const Locale("en_US"),
+        // logWriterCallback: LogHelper.logWriterCallback,
         // unknownRoute: , // todo
       ),
     );

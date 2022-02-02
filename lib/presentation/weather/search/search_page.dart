@@ -14,13 +14,16 @@ import 'package:shimmer/shimmer.dart';
 import 'package:tuple/tuple.dart';
 
 class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
+  final SearchScreen searchScreen;
+
+  const SearchPage({Key? key, required this.searchScreen}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BasePage<SearchScreen, SearchScreenState, SearchViewModel>(
       hideDefaultLoading: true,
       viewModelProvider: searchViewModelProvider,
+      screen: searchScreen,
       onAppBarBackPressed: (viewModel) => viewModel.onIntent(
         SearchScreenIntent.back(),
       ),

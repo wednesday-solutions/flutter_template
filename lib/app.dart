@@ -14,7 +14,7 @@ void startApp() {
 
   _initialiseGetIt();
 
-  runApp(const TemplateApp());
+  runApp(TemplateApp());
 }
 
 void _initialiseGetIt() {

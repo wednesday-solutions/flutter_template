@@ -1,6 +1,7 @@
-import 'package:flutter_template/presentation/entity/screen/screen.dart';
+import 'package:auto_route/auto_route.dart';
 
 abstract class BaseNavigator {
-  void to(Screen screen);
+  void to(PageRouteInfo route);
+
   void back();
 }
