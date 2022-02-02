@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
@@ -10,7 +9,8 @@ import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/base/ui_toolbar.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
-import 'package:flutter_template/presentation/intl/strings.dart';
+import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
+
 import 'package:flutter_template/presentation/weather/search/search_screen_intent.dart';
 import 'package:flutter_template/presentation/weather/search/search_screen_state.dart';
 import 'package:get_it/get_it.dart';
@@ -60,7 +60,7 @@ class SearchViewModel extends BaseViewModel<SearchScreen, SearchScreenState>
 
   static SearchScreenState get _initialState => SearchScreenState(
         toolbar: UIToolbar(
-          title: Strings.searchPageTitle.tr(),
+          title: LocaleKeys.searchPageTitle.tr,
           hasBackButton: true,
         ),
         showLoading: false,

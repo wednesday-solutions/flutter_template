@@ -1,12 +1,14 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter_template/domain/datetime/date_in_millis_use_case.dart';
 import 'package:flutter_template/domain/entity/weather/weather.dart';
+import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/foundation/mapper/mapper.dart';
 import 'package:flutter_template/interactor/weather/favorite/ui_day_weather_mapper.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_day_weather_heading.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_weather.dart';
-import 'package:flutter_template/presentation/intl/strings.dart';
+
+import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
 
 abstract class UIWeatherListMapper
     extends Mapper<List<Weather>, List<UIListItem>> {}
@@ -32,7 +34,7 @@ class UIWeatherListMapperImpl extends UIWeatherListMapper {
 
       dayWeatherList.add(
         UIDayWeatherHeading(
-          text: Strings.forecast.tr(),
+          text: LocaleKeys.forecast.tr,
         ),
       );
 

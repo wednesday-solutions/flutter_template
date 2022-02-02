@@ -1,11 +1,11 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
 import 'package:flutter_template/presentation/base/widgets/page/base_page.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
-import 'package:flutter_template/presentation/intl/strings.dart';
+import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
 import 'package:flutter_template/presentation/weather/search/list/ui_city_renderer.dart';
 import 'package:flutter_template/presentation/weather/search/search_screen_intent.dart';
 import 'package:flutter_template/presentation/weather/search/search_screen_state.dart';
@@ -57,7 +57,7 @@ class _SearchPageBody extends ConsumerWidget {
             controller: textController,
             decoration: InputDecoration(
               border: const OutlineInputBorder(),
-              labelText: Strings.startTypingToSearch.tr(),
+              labelText: LocaleKeys.startTypingToSearch.tr,
             ),
           ),
           const _SearchPageResults(),
@@ -85,8 +85,8 @@ class _SearchPageResults extends ConsumerWidget {
       return Expanded(
         child: Center(
           child: viewModel.searchTerm.isEmpty
-              ? Text(Strings.searchResultsAppearHere.tr())
-              : Text(Strings.noResultsFound.tr()),
+              ? Text(LocaleKeys.searchResultsAppearHere.tr)
+              : Text(LocaleKeys.noResultsFound.tr),
         ),
       );
     }

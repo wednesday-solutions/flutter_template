@@ -10,3 +10,5 @@ analyzer:
     - "**.g.dart"
     - "**.freezed.dart"
     - "**.gr.dart"
+    - "**/translation_keys.dart"
+    - "**/translation_loader.dart"

@@ -5,6 +5,7 @@ import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/interactor/di/interactor_module.dart';
 import 'package:flutter_template/navigation/di/navigation_module.dart';
 import 'package:flutter_template/presentation/di/presentation_module.dart';
+import 'package:flutter_template/presentation/intl/translations/translation_loader.dart';
 import 'package:flutter_template/presentation/template_app.dart';
 import 'package:flutter_template/repository/di/repository_module.dart';
 import 'package:flutter_template/services/di/service_module.dart';
@@ -22,6 +23,7 @@ void startApp() async {
     supportedLocales: const [Locale("en", "US")],
     path: "assets/translations",
     fallbackLocale: const Locale("en", "US"),
+    assetLoader: const CodegenLoader(),
     child: TemplateApp(),
   ));
 }

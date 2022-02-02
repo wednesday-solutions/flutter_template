@@ -1,11 +1,12 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
 import 'package:flutter_template/presentation/base/widgets/page/base_page.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_weather.dart';
-import 'package:flutter_template/presentation/intl/strings.dart';
+import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
 import 'package:flutter_template/presentation/weather/home/home_screen_intent.dart';
 import 'package:flutter_template/presentation/weather/home/home_screen_state.dart';
 import 'package:flutter_template/presentation/weather/home/home_view_model.dart';
@@ -52,7 +53,7 @@ class _HomePageBody extends ConsumerWidget {
       direction: Axis.vertical,
       children: [
         if (weatherList.isEmpty)
-          Text(Strings.favCitiesAppearHere.tr())
+          Text(LocaleKeys.favCitiesAppearHere.tr)
         else
           Expanded(
             child: UIList<HomeScreenIntent>(
