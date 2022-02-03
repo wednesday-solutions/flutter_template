@@ -1,3 +1,6 @@
+import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
+import 'package:flutter_template/interactor/weather/search/search_city_interactor.dart';
+import 'package:flutter_template/navigation/weather/search/search_navigator.dart';
 import 'package:flutter_template/repository/date/date_repository.dart';
 import 'package:flutter_template/repository/weather/domain_city_mapper.dart';
 import 'package:flutter_template/repository/weather/domain_weather_mapper.dart';
@@ -26,5 +29,13 @@ class MockLocalDayWeatherMapper extends Mock implements LocalDayWeatherMapper {}
 
 // Repositories
 class MockDateRepository extends Mock implements DateRepository {}
+
+// Interactors
+class MockFavoriteWeatherInteractor extends Mock implements FavoriteWeatherInteractor {}
+
+class MockSearchCityInteractor extends Mock implements SearchCityInteractor {}
+
+// Navigator
+class MockSearchNavigator extends Mock implements SearchNavigator {}
 
 

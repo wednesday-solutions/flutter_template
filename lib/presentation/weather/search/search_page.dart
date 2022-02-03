@@ -14,6 +14,7 @@ import 'package:flutter_template/presentation/weather/search/list/ui_city_render
 import 'package:flutter_template/presentation/weather/search/search_screen_intent.dart';
 import 'package:flutter_template/presentation/weather/search/search_screen_state.dart';
 import 'package:flutter_template/presentation/weather/search/search_view_model.dart';
+import 'package:flutter_template/presentation/weather/search/search_view_model_impl.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:tuple/tuple.dart';
@@ -123,6 +124,7 @@ class _SearchPageResults extends ConsumerWidget {
   }
 }
 
+@visibleForTesting
 class SearchPageLoadingShimmer extends StatelessWidget {
   const SearchPageLoadingShimmer({Key? key}) : super(key: key);
 

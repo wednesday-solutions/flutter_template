@@ -19,6 +19,8 @@ void startApp() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
 
+  EasyLocalization.logger.printer = customEasyLogger;
+
   runApp(EasyLocalization(
     supportedLocales: const [Locale("en", "US")],
     path: "assets/translations",

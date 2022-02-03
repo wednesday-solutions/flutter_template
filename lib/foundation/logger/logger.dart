@@ -1,32 +1,32 @@
 import 'package:logger/logger.dart';
+import 'package:easy_logger/easy_logger.dart';
 
 class LogHelper {
   static late Logger _instance;
-  static bool _initailised = false;
+  static bool _initialised = false;
 
   static void initialiseLogger() {
-    if (!_initailised) {
+    if (!_initialised) {
       final logger = Logger(
         printer: PrettyPrinter(printEmojis: false),
         level: Level.verbose,
       );
 
       _instance = logger;
-      _initailised = true;
-    }
-  }
-
-  static logWriterCallback(String text, {bool isError = false}) {
-    if (!_initailised) initialiseLogger();
-    final message = "GETX: $text";
-    if (isError) {
-      _instance.w(message);
-    } else {
-      _instance.d(message);
+      _initialised = true;
     }
   }
 
   static Logger get logger => _instance;
+}
+
+customEasyLogger(Object object,
+    {String? name, LevelMessages? level, StackTrace? stackTrace}) {
+  if (level == LevelMessages.error) {
+    log.e(object.toString());
+  } else {
+    log.d(object.toString());
+  }
 }
 
 Logger get log => LogHelper.logger;
