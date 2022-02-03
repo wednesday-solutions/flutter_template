@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/navigation/base/app_router.dart';
 import 'package:flutter_template/presentation/base/theme/template_app_theme_data.dart';
-import 'package:flutter_template/presentation/base/widgets/snackbar/custom_snackbar.dart';
+import 'package:flutter_template/presentation/base/widgets/snackbar/snackbar.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:get_it/get_it.dart';
 

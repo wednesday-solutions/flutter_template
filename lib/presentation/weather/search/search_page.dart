@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/foundation/extensions/string_ext.dart';
+import 'package:flutter_template/presentation/base/exceptions/unhandled_effect_exception.dart';
 import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
 import 'package:flutter_template/presentation/base/widgets/page/base_page.dart';
+import 'package:flutter_template/presentation/base/widgets/snackbar/snackbar.dart';
+import 'package:flutter_template/presentation/entity/effect/effect.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
@@ -10,6 +14,7 @@ import 'package:flutter_template/presentation/weather/search/list/ui_city_render
 import 'package:flutter_template/presentation/weather/search/search_screen_intent.dart';
 import 'package:flutter_template/presentation/weather/search/search_screen_state.dart';
 import 'package:flutter_template/presentation/weather/search/search_view_model.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:tuple/tuple.dart';
 
@@ -28,18 +33,29 @@ class SearchPage extends StatelessWidget {
         SearchScreenIntent.back(),
       ),
       body: const _SearchPageBody(),
+      onEffect: _handleEffect,
+    );
+  }
+
+  _handleEffect(Effect effect) {
+    effect.maybeMap(
+      snackBar: (snackbarEffect) {
+        showSnackbar(snackbarEffect);
+      },
+      orElse: () => throw UnhandledEffectException(effect),
     );
   }
 }
 
-class _SearchPageBody extends ConsumerWidget {
+class _SearchPageBody extends HookConsumerWidget {
   const _SearchPageBody({
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final textController = TextEditingController();
+    final textController =
+        useTextEditingController.fromValue(TextEditingValue.empty);
 
     textController.addListener(() {
       final viewModel = ref.read(searchViewModelProvider.notifier);

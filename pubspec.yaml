@@ -29,10 +29,12 @@ dependencies:
   easy_localization: ^3.0.0
   flutter:
     sdk: flutter
+  flutter_hooks: ^0.18.2
   flutter_riverpod: ^1.0.3
   flutter_state_notifier: ^0.7.1
   freezed_annotation: ^1.1.0
   get_it: ^7.2.0
+  hooks_riverpod: ^1.0.3
   intl: ^0.17.0
   json_annotation: ^4.4.0
   json_serializable: ^6.1.3

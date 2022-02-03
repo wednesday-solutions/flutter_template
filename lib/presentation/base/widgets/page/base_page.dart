@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/domain/entity/base/result/result.dart';
 import 'package:flutter_template/foundation/extensions/theme_ext.dart';
 import 'package:flutter_template/presentation/base/controller/base_view_model.dart';
 import 'package:flutter_template/presentation/base/controller/view_model_provider_ext.dart';
@@ -7,20 +9,24 @@ import 'package:flutter_template/presentation/base/widgets/appbar/app_bar_back_b
 import 'package:flutter_template/presentation/base/widgets/appbar/app_bar_title.dart';
 import 'package:flutter_template/presentation/base/widgets/controller/controller_key.dart';
 import 'package:flutter_template/presentation/base/widgets/scaffold/scaffold_body_with_loading_indicator.dart';
+import 'package:flutter_template/presentation/entity/effect/effect.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/screen/screen_state.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
         VIEW_MODEL extends BaseViewModel<SCREEN, SCREEN_STATE>>
-    extends ConsumerWidget {
+    extends HookConsumerWidget {
   final Widget body;
-  final AutoDisposeStateNotifierProvider<VIEW_MODEL, SCREEN_STATE> viewModelProvider;
+  final AutoDisposeStateNotifierProvider<VIEW_MODEL, SCREEN_STATE>
+      viewModelProvider;
   final SCREEN? screen;
   final AppBar? appBar;
   final Function(VIEW_MODEL viewModel)? onAppBarBackPressed;
   final List<Widget> Function()? appBarActions;
   final Widget? loading;
   final bool hideDefaultLoading;
+  final Function(Effect effect) onEffect;
 
   const BasePage({
     Key? key,
@@ -32,11 +38,25 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
     this.appBarActions,
     this.loading,
     this.hideDefaultLoading = false,
+    this.onEffect = noopEffectHandler,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(viewModelProvider.notifier).bind(screen);
+    final viewModel = ref.watch(viewModelProvider.notifier);
+
+    viewModel.bind(screen);
+
+    useEffect(() {
+      final subscription = viewModel.effectStream.listen((effect) {
+        if (effect != null) {
+          onEffect(effect);
+        }
+      });
+
+      return subscription.cancel;
+    }, [viewModel.effectStream]);
+
     return ViewModelProvider(
       provider: viewModelProvider,
       child: _BasePageContent<VIEW_MODEL, SCREEN_STATE>(
@@ -98,3 +118,5 @@ class _BasePageContent<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
     );
   }
 }
+
+noopEffectHandler(Effect effect) {}

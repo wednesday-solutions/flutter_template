@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/foundation/logger/logger.dart';
+import 'package:flutter_template/presentation/entity/effect/effect.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/screen/screen_state.dart';
 import 'package:rxdart/rxdart.dart';
@@ -12,7 +13,12 @@ abstract class BaseViewModel<SCREEN extends Screen,
     SCREEN_STATE extends ScreenState> extends StateNotifier<SCREEN_STATE> {
   final List<StreamSubscription> _streamSubscriptions =
       List.empty(growable: true);
+
   SCREEN? _screen;
+
+  final _effectController = StreamController<Effect?>();
+
+  Stream<Effect?> get effectStream => _effectController.stream;
 
   @protected
   onInit();
@@ -38,6 +44,11 @@ abstract class BaseViewModel<SCREEN extends Screen,
     if (!const DeepCollectionEquality().equals(state, newState)) {
       state = newState;
     }
+  }
+
+  setEffect(Effect effect) {
+    _effectController.add(effect);
+    _effectController.add(null);
   }
 
   listen<T>({
