@@ -14,8 +14,6 @@ final localCityWithWeatherList = [
       title: "title 1",
       cityWoeid: 1,
     ),
-    dayWeather: [
-      ...localDayWeatherList
-    ],
+    dayWeather: [...localDayWeatherList],
   ),
 ];

@@ -267,91 +267,91 @@ void main() {
 
   test(
       "Given weather list is stale, When fetchWeatherForFavoriteCities is called, weather should be fetch from remote and updated in local",
-          () async {
-        // Given
-        const date = Date(year: 1970, month: 1, day: 1);
-        const nowDate = Date(year: 2021, month: 1, day: 31);
-        final localCityData = localCityDataList;
-        final localCity = localCityData.first;
-        final remoteWeatherData = remoteWeather;
-        const localWeatherCompanionData = localWeatherCompanion;
-        final localDayWeatherCompanionData = localDayWeatherCompanionList;
-        final localDayWeatherData = nowLocalDayWeatherList;
-        when(() => dateRepository.todayDate()).thenReturn(date);
-        when(() => weatherLocalService.getFavouriteCities())
-            .thenAnswer((_) => Future.value(localCityData));
-        when(() =>
+      () async {
+    // Given
+    const date = Date(year: 1970, month: 1, day: 1);
+    const nowDate = Date(year: 2021, month: 1, day: 31);
+    final localCityData = localCityDataList;
+    final localCity = localCityData.first;
+    final remoteWeatherData = remoteWeather;
+    const localWeatherCompanionData = localWeatherCompanion;
+    final localDayWeatherCompanionData = localDayWeatherCompanionList;
+    final localDayWeatherData = nowLocalDayWeatherList;
+    when(() => dateRepository.todayDate()).thenReturn(date);
+    when(() => weatherLocalService.getFavouriteCities())
+        .thenAnswer((_) => Future.value(localCityData));
+    when(() =>
             weatherLocalService.getLocalDayWeather(woeid: any(named: "woeid")))
-            .thenAnswer((_) => Future.value(localDayWeatherData));
-        when(() => dateRepository.mapDartDateTimeToDate(any())).thenReturn(nowDate);
-        when(() => weatherRemoteService.weatherForCity(id: any(named: "id")))
-            .thenAnswer((_) => Future.value(remoteWeatherData));
-        when(() => localWeatherMapper.map(remoteWeatherData, localCity.woeid))
-            .thenReturn(localWeatherCompanionData);
-        when(() => localDayWeatherMapper.map(remoteWeatherData, localCity.woeid))
-            .thenReturn((localDayWeatherCompanionData));
-        when(
-              () => weatherLocalService.deleteCurrentAndAddNewWeatherData(
-            woeid: localCity.woeid,
-            weather: localWeatherCompanionData,
-            weatherList: localDayWeatherCompanionData,
-          ),
-        ).thenAnswer((_) => Future.value());
+        .thenAnswer((_) => Future.value(localDayWeatherData));
+    when(() => dateRepository.mapDartDateTimeToDate(any())).thenReturn(nowDate);
+    when(() => weatherRemoteService.weatherForCity(id: any(named: "id")))
+        .thenAnswer((_) => Future.value(remoteWeatherData));
+    when(() => localWeatherMapper.map(remoteWeatherData, localCity.woeid))
+        .thenReturn(localWeatherCompanionData);
+    when(() => localDayWeatherMapper.map(remoteWeatherData, localCity.woeid))
+        .thenReturn((localDayWeatherCompanionData));
+    when(
+      () => weatherLocalService.deleteCurrentAndAddNewWeatherData(
+        woeid: localCity.woeid,
+        weather: localWeatherCompanionData,
+        weatherList: localDayWeatherCompanionData,
+      ),
+    ).thenAnswer((_) => Future.value());
 
-        // When
-        await weatherRepository.fetchWeatherForFavoriteCities();
+    // When
+    await weatherRepository.fetchWeatherForFavoriteCities();
 
-        // Then
-        verify(() => dateRepository.todayDate()).called(1);
-        verify(() => weatherLocalService.getFavouriteCities()).called(1);
-        verify(() => weatherLocalService.getLocalDayWeather(woeid: 1)).called(1);
-        verify(() => dateRepository.mapDartDateTimeToDate(any())).called(1);
-        verify(() => weatherRemoteService.weatherForCity(id: localCity.woeid))
-            .called(1);
-        verify(() => localWeatherMapper.map(remoteWeatherData, localCity.woeid))
-            .called(1);
-        verify(() => localDayWeatherMapper.map(remoteWeatherData, localCity.woeid))
-            .called(1);
-        verify(() => weatherLocalService.deleteCurrentAndAddNewWeatherData(
+    // Then
+    verify(() => dateRepository.todayDate()).called(1);
+    verify(() => weatherLocalService.getFavouriteCities()).called(1);
+    verify(() => weatherLocalService.getLocalDayWeather(woeid: 1)).called(1);
+    verify(() => dateRepository.mapDartDateTimeToDate(any())).called(1);
+    verify(() => weatherRemoteService.weatherForCity(id: localCity.woeid))
+        .called(1);
+    verify(() => localWeatherMapper.map(remoteWeatherData, localCity.woeid))
+        .called(1);
+    verify(() => localDayWeatherMapper.map(remoteWeatherData, localCity.woeid))
+        .called(1);
+    verify(() => weatherLocalService.deleteCurrentAndAddNewWeatherData(
           woeid: localCity.woeid,
           weather: localWeatherCompanionData,
           weatherList: localDayWeatherCompanionData,
         )).called(1);
-      });
+  });
 
   test(
       "Given weather list is not stale, When fetchWeatherForFavoriteCities is called, weather should not be fetch from remote",
-          () async {
-        // Given
-        const date = Date(year: 1970, month: 1, day: 1);
-        final localCityData = localCityDataList;
-        final localCity = localCityData.first;
-        const localWeatherCompanionData = localWeatherCompanion;
-        final localDayWeatherCompanionData = localDayWeatherCompanionList;
-        final localDayWeatherData = localDayWeatherList;
-        when(() => dateRepository.todayDate()).thenReturn(date);
-        when(() => weatherLocalService.getFavouriteCities())
-            .thenAnswer((_) => Future.value(localCityData));
-        when(() =>
+      () async {
+    // Given
+    const date = Date(year: 1970, month: 1, day: 1);
+    final localCityData = localCityDataList;
+    final localCity = localCityData.first;
+    const localWeatherCompanionData = localWeatherCompanion;
+    final localDayWeatherCompanionData = localDayWeatherCompanionList;
+    final localDayWeatherData = localDayWeatherList;
+    when(() => dateRepository.todayDate()).thenReturn(date);
+    when(() => weatherLocalService.getFavouriteCities())
+        .thenAnswer((_) => Future.value(localCityData));
+    when(() =>
             weatherLocalService.getLocalDayWeather(woeid: any(named: "woeid")))
-            .thenAnswer((_) => Future.value(localDayWeatherData));
-        when(() => dateRepository.mapDartDateTimeToDate(any())).thenReturn(date);
+        .thenAnswer((_) => Future.value(localDayWeatherData));
+    when(() => dateRepository.mapDartDateTimeToDate(any())).thenReturn(date);
 
-        // When
-        await weatherRepository.fetchWeatherForFavoriteCities();
+    // When
+    await weatherRepository.fetchWeatherForFavoriteCities();
 
-        // Then
-        verify(() => dateRepository.todayDate()).called(1);
-        verify(() => weatherLocalService.getFavouriteCities()).called(1);
-        verify(() => weatherLocalService.getLocalDayWeather(woeid: 1)).called(1);
-        verify(() => dateRepository.mapDartDateTimeToDate(any())).called(1);
-        verifyZeroInteractions(weatherRemoteService);
-        verifyZeroInteractions(localWeatherMapper);
-        verifyZeroInteractions(localDayWeatherMapper);
-        verifyNever(() => weatherLocalService.deleteCurrentAndAddNewWeatherData(
+    // Then
+    verify(() => dateRepository.todayDate()).called(1);
+    verify(() => weatherLocalService.getFavouriteCities()).called(1);
+    verify(() => weatherLocalService.getLocalDayWeather(woeid: 1)).called(1);
+    verify(() => dateRepository.mapDartDateTimeToDate(any())).called(1);
+    verifyZeroInteractions(weatherRemoteService);
+    verifyZeroInteractions(localWeatherMapper);
+    verifyZeroInteractions(localDayWeatherMapper);
+    verifyNever(() => weatherLocalService.deleteCurrentAndAddNewWeatherData(
           woeid: localCity.woeid,
           weather: localWeatherCompanionData,
           weatherList: localDayWeatherCompanionData,
         ));
-      });
+  });
 }

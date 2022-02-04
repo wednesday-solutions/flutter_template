@@ -31,11 +31,10 @@ class MockLocalDayWeatherMapper extends Mock implements LocalDayWeatherMapper {}
 class MockDateRepository extends Mock implements DateRepository {}
 
 // Interactors
-class MockFavoriteWeatherInteractor extends Mock implements FavoriteWeatherInteractor {}
+class MockFavoriteWeatherInteractor extends Mock
+    implements FavoriteWeatherInteractor {}
 
 class MockSearchCityInteractor extends Mock implements SearchCityInteractor {}
 
 // Navigator
 class MockSearchNavigator extends Mock implements SearchNavigator {}
-
-
