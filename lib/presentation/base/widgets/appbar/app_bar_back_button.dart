@@ -23,6 +23,7 @@ class AppBarBackButton<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
     );
     return hasBackButton
         ? IconButton(
+            tooltip: "Back",
             onPressed: onBackPressed,
             icon: const Icon(Icons.arrow_back),
           )

@@ -1,19 +1,10 @@
 import 'package:flutter_template/presentation/weather/search/search_screen_intent.dart';
 import 'package:flutter_template/presentation/weather/search/search_screen_state.dart';
 import 'package:flutter_template/presentation/weather/search/search_view_model.dart';
+import 'package:mocktail/mocktail.dart';
 
-class FakeSearchViewModel extends SearchViewModel {
+class FakeSearchViewModel extends SearchViewModel with Mock {
   FakeSearchViewModel(SearchScreenState state) : super(state);
-
-  @override
-  onInit() {
-
-  }
-
-  @override
-  void onIntent(SearchScreenIntent intent) {
-
-  }
 
   String _searchTerm = "";
 

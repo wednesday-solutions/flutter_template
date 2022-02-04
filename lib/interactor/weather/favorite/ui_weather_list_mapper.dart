@@ -1,4 +1,3 @@
-
 import 'package:flutter_template/domain/datetime/date_in_millis_use_case.dart';
 import 'package:flutter_template/domain/entity/weather/weather.dart';
 import 'package:flutter_template/foundation/extensions/string_ext.dart';

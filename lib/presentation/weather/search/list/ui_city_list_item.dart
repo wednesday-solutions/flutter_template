@@ -25,7 +25,7 @@ class UICityListItem extends StatelessWidget {
           IconButton(
             icon: Icon(
               city.isFavourite ? Icons.favorite : Icons.favorite_outline,
-              color: Theme.of(context).colorScheme.secondaryVariant,
+              color: Theme.of(context).colorScheme.secondary,
             ),
             onPressed: () {
               sink.add(SearchScreenIntent.toggleFavorite(city: city));
@@ -36,4 +36,3 @@ class UICityListItem extends StatelessWidget {
     );
   }
 }
-

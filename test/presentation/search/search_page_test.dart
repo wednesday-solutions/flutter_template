@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/foundation/logger/logger.dart';
+import 'package:flutter_template/presentation/base/widgets/appbar/app_bar_back_button.dart';
 import 'package:flutter_template/presentation/entity/base/ui_toolbar.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 import 'package:flutter_template/presentation/weather/search/list/ui_city_list_item.dart';
 import 'package:flutter_template/presentation/weather/search/search_page.dart';
+import 'package:flutter_template/presentation/weather/search/search_screen_intent.dart';
 import 'package:flutter_template/presentation/weather/search/search_screen_state.dart';
 import 'package:flutter_template/presentation/weather/search/search_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -22,7 +24,8 @@ void main() {
       StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>(
           (ref) {
     fakeSearchViewModel = FakeSearchViewModel(SearchScreenState(
-      toolbar: UIToolbar(title: "title", hasBackButton: false),
+      toolbar:
+          UIToolbar(title: LocaleKeys.searchPageTitle, hasBackButton: true),
       showLoading: false,
       searchList: List.empty(),
     ));
@@ -55,6 +58,7 @@ void main() {
     // Then
     expect(find.byType(TextField), findsOneWidget);
     expect(find.text(LocaleKeys.searchResultsAppearHere), findsOneWidget);
+    expect(find.text(LocaleKeys.searchPageTitle), findsOneWidget);
     expect(find.byType(SearchPageLoadingShimmer), findsNothing);
   });
 
@@ -138,6 +142,80 @@ void main() {
     expect(find.byType(SearchPageLoadingShimmer), findsNothing);
     expect(find.text(LocaleKeys.noResultsFound), findsNothing);
     expect(find.byType(UICityListItem), findsNWidgets(2));
-    expect(find.byType(IconButton), findsNWidgets(2));
+  });
+
+  testWidgets(
+      "Given search page opened, When text is entered in text field, Then search intent is fired",
+      (tester) async {
+    // Given
+    await _loadPage(tester);
+
+    // When
+    await tester.enterText(find.byType(TextField), "search");
+    await tester.pump();
+
+    // Then
+    verify(() => fakeSearchViewModel
+        .onIntent(SearchScreenIntent.search(searchTerm: "search"))).called(1);
+  });
+
+  testWidgets(
+      "Given search page is opened, When back button is pressed, Then back intent is fired",
+      (tester) async {
+    // Given
+    await _loadPage(tester);
+
+    // When
+
+    await tester.tap(find.byTooltip("Back"));
+    await tester.pump();
+
+    // Then
+    verify(() => fakeSearchViewModel.onIntent(SearchScreenIntent.back()))
+        .called(1);
+  });
+
+  testWidgets(
+      "Given search list is displayed, When favorite is pressed, Then favorite intent is fired",
+      (tester) async {
+    // Given
+    await _loadPage(tester);
+    final uiCityList = [
+      UICity(
+        cityId: 1,
+        title: "title",
+        locationType: "locationType",
+        location: "location",
+        isFavourite: false,
+      ),
+      UICity(
+        cityId: 2,
+        title: "title 2",
+        locationType: "locationType 2",
+        location: "location 2",
+        isFavourite: false,
+      ),
+    ];
+
+    // When
+    fakeSearchViewModel.setState(
+        (state) => state.copyWith(showLoading: false, searchList: uiCityList));
+    await tester.pump();
+    await tester.tap(find
+        .descendant(
+            of: find.byType(UICityListItem), matching: find.byType(IconButton))
+        .first);
+    await tester.pump();
+    await tester.tap(find
+        .descendant(
+            of: find.byType(UICityListItem), matching: find.byType(IconButton))
+        .last);
+    await tester.pump();
+
+    // Then
+    verify(() => fakeSearchViewModel.onIntent(
+        SearchScreenIntent.toggleFavorite(city: uiCityList.first))).called(1);
+    verify(() => fakeSearchViewModel.onIntent(
+        SearchScreenIntent.toggleFavorite(city: uiCityList.last))).called(1);
   });
 }
