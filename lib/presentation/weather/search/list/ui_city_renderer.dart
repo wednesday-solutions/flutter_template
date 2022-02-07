@@ -7,6 +7,7 @@ import 'package:flutter_template/presentation/weather/search/list/ui_city_list_i
 import 'package:flutter_template/presentation/weather/search/search_screen_intent.dart';
 
 class UICityRenderer extends ListItemRenderer<UICity, SearchScreenIntent> {
+  const UICityRenderer();
   @override
   Widget getWidget(
       BuildContext context, UICity data, StreamSink<SearchScreenIntent> sink) {

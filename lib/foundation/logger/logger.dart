@@ -5,7 +5,7 @@ class LogHelper {
   static late Logger _instance;
   static bool _initialised = false;
 
-  static void initialiseLogger() {
+  static void _initialiseLogger() {
     if (!_initialised) {
       final logger = Logger(
         printer: PrettyPrinter(printEmojis: false),
@@ -17,7 +17,10 @@ class LogHelper {
     }
   }
 
-  static Logger get logger => _instance;
+  static Logger get logger {
+    _initialiseLogger();
+    return _instance;
+  }
 }
 
 customEasyLogger(Object object,

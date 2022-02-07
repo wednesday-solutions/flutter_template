@@ -111,7 +111,7 @@ class _SearchPageResults extends ConsumerWidget {
     } else {
       return Expanded(
         child: UIList<SearchScreenIntent>(
-          renderers: {
+          renderers: const {
             UICity: UICityRenderer(),
           },
           items: searchList,

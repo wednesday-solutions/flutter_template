@@ -12,8 +12,6 @@ import 'package:flutter_template/services/di/service_module.dart';
 import 'package:get_it/get_it.dart';
 
 void startApp() async {
-  LogHelper.initialiseLogger();
-
   _initialiseGetIt();
 
   WidgetsFlutterBinding.ensureInitialized();

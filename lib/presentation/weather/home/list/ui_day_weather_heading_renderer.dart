@@ -8,6 +8,7 @@ import 'package:flutter_template/presentation/weather/home/list/ui_day_weather_h
 
 class UIDayWeatherHeaderRenderer
     extends ListItemRenderer<UIDayWeatherHeading, HomeScreenIntent> {
+  const UIDayWeatherHeaderRenderer();
   @override
   Widget getWidget(BuildContext context, UIDayWeatherHeading data,
       StreamSink<HomeScreenIntent> sink) {

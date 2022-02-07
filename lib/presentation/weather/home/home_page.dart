@@ -56,7 +56,7 @@ class _HomePageBody extends ConsumerWidget {
         else
           Expanded(
             child: UIList<HomeScreenIntent>(
-              renderers: {
+              renderers: const {
                 UIWeather: UIWeatherRenderer(),
               },
               intentHandler: homeViewModel.onIntent,

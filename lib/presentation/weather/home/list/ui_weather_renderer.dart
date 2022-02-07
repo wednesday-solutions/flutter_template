@@ -6,6 +6,8 @@ import 'package:flutter_template/presentation/weather/home/home_screen_intent.da
 import 'package:flutter_template/presentation/weather/home/list/ui_weather_list_item.dart';
 
 class UIWeatherRenderer extends ListItemRenderer<UIWeather, HomeScreenIntent> {
+  const UIWeatherRenderer();
+
   @override
   Widget getWidget(
       BuildContext context, UIWeather data, StreamSink<HomeScreenIntent> sink) {

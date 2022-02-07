@@ -39,7 +39,7 @@ class UIWeatherListItem extends StatelessWidget {
                 ],
               ),
               UIList<HomeScreenIntent>(
-                renderers: {
+                renderers: const {
                   UIDayWeatherHeading: UIDayWeatherHeaderRenderer(),
                   UIDayWeather: UIDayWeatherRenderer()
                 },
