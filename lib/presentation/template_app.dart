@@ -21,11 +21,9 @@ class TemplateApp extends StatelessWidget {
         theme: lightTheme,
         darkTheme: darkTheme,
         themeMode: ThemeMode.dark,
-        routerDelegate: _appRouter.delegate(initialRoutes: [
-          HomeRoute(
-            homeScreen: const HomeScreen(),
-          )
-        ]),
+        routerDelegate: _appRouter.delegate(
+          initialRoutes: [HomeRoute(homeScreen: const HomeScreen())],
+        ),
         routeInformationParser: _appRouter.defaultRouteParser(),
         localizationsDelegates: context.localizationDelegates,
         supportedLocales: context.supportedLocales,

@@ -1,5 +1,6 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"
 #include "Generated.xcconfig"
 // bundle_suffix used in the bundle id of the app
 bundle_suffix=.dev
 // the name displayed below the app icon on the home screen
-app_display_name=Flavor DEV
+app_display_name=Flutter Template DEV
