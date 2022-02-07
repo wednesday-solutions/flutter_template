@@ -92,25 +92,28 @@ class _BasePageContent<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
           .viewModelProvider<VIEW_MODEL, SCREEN_STATE>()
           .select((state) => state.toolbar.hasBackButton),
     );
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: context.theme.backgroundColor,
-        appBar: AppBar(
-          leading: hasBackButton
-              ? AppBarBackButton<VIEW_MODEL, SCREEN_STATE>(
-                  onBackPressed: () {
-                    onAppBarBackPressed?.call(
-                        context.viewModel<VIEW_MODEL, SCREEN_STATE>(ref));
-                  },
-                )
-              : null,
-          title: AppBarTitle<VIEW_MODEL, SCREEN_STATE>(),
-          actions: appBarActions,
-        ),
-        body: ScaffoldBodyWithLoadingIndicator<VIEW_MODEL, SCREEN_STATE>(
-          body: body,
-          hideDefaultLoading: hideDefaultLoading,
-          loading: loading,
+    return Container(
+      color: context.theme.primaryColorDark,
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: context.theme.backgroundColor,
+          appBar: AppBar(
+            leading: hasBackButton
+                ? AppBarBackButton<VIEW_MODEL, SCREEN_STATE>(
+                    onBackPressed: () {
+                      onAppBarBackPressed?.call(
+                          context.viewModel<VIEW_MODEL, SCREEN_STATE>(ref));
+                    },
+                  )
+                : null,
+            title: AppBarTitle<VIEW_MODEL, SCREEN_STATE>(),
+            actions: appBarActions,
+          ),
+          body: ScaffoldBodyWithLoadingIndicator<VIEW_MODEL, SCREEN_STATE>(
+            body: body,
+            hideDefaultLoading: hideDefaultLoading,
+            loading: loading,
+          ),
         ),
       ),
     );

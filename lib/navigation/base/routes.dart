@@ -5,12 +5,12 @@ import 'package:flutter_template/presentation/weather/search/search_page.dart';
 
 const autoRoutes = [
   AutoRoute(
-    path: Routes.HOME,
+    path: Routes.home,
     page: HomePage,
     initial: true,
   ),
   AutoRoute(
-    path: Routes.SEARCH,
+    path: Routes.search,
     page: SearchPage,
   ),
 ];

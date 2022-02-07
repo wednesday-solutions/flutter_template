@@ -4,6 +4,7 @@ import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/presentation/base/exceptions/unhandled_effect_exception.dart';
 import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
 import 'package:flutter_template/presentation/base/widgets/page/base_page.dart';
+import 'package:flutter_template/presentation/base/widgets/responsive/responsive_builder.dart';
 import 'package:flutter_template/presentation/base/widgets/snackbar/snackbar.dart';
 import 'package:flutter_template/presentation/entity/effect/effect.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
@@ -110,12 +111,17 @@ class _SearchPageResults extends ConsumerWidget {
       return const SearchPageLoadingShimmer();
     } else {
       return Expanded(
-        child: UIList<SearchScreenIntent>(
-          renderers: const {
-            UICity: UICityRenderer(),
-          },
-          items: searchList,
-          intentHandler: viewModel.onIntent,
+        child: ResponsiveBuilder(
+          builder: (context, mediaQueryData, boxConstraints) =>
+              UIList<SearchScreenIntent>(
+            renderers: const {
+              UICity: UICityRenderer(),
+            },
+            items: searchList,
+            numberOfColumns:
+                mediaQueryData.orientation == Orientation.landscape ? 5 : 1,
+            intentHandler: viewModel.onIntent,
+          ),
         ),
       );
     }

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
 import 'package:flutter_template/presentation/base/widgets/page/base_page.dart';
+import 'package:flutter_template/presentation/base/widgets/responsive/responsive_builder.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_weather.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
@@ -48,22 +49,23 @@ class _HomePageBody extends ConsumerWidget {
     final weatherList =
         ref.watch(homeViewModelProvider.select((value) => value.weatherList));
 
-    return Flex(
-      direction: Axis.vertical,
-      children: [
-        if (weatherList.isEmpty)
-          Text(LocaleKeys.favCitiesAppearHere.tr)
-        else
-          Expanded(
-            child: UIList<HomeScreenIntent>(
-              renderers: const {
-                UIWeather: UIWeatherRenderer(),
-              },
-              intentHandler: homeViewModel.onIntent,
-              items: weatherList,
-            ),
-          ),
-      ],
-    );
+    if (weatherList.isEmpty) {
+      return Text(LocaleKeys.favCitiesAppearHere.tr);
+    } else {
+      return ResponsiveBuilder(
+        builder: (context, mediaQueryData, boxConstraints) {
+          final columns =
+              mediaQueryData.orientation == Orientation.landscape ? 2 : 1;
+          return UIList<HomeScreenIntent>(
+            renderers: const {
+              UIWeather: UIWeatherRenderer(),
+            },
+            numberOfColumns: columns,
+            intentHandler: homeViewModel.onIntent,
+            items: weatherList,
+          );
+        },
+      );
+    }
   }
 }
