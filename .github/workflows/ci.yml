@@ -25,16 +25,16 @@ jobs:
         run: flutter build apk --flavor dev -t lib/entrypoints/main_dev.dart --debug
   build-ios:
     name: Lint, Test And Build Android
-      runs-on: macos-latest
-      needs: [ lint-test-build-android ]
-      steps:
-        - uses: actions/checkout@v2
-        - uses: subosito/flutter-action@v2
-          with:
-            channel: 'stable'
-        - name: Get Dependencies
-          run: flutter pub get
-        - name: Run build_runner
-          run: flutter pub run build_runner build
-        - name: Build iOS
-          run: flutter build ios --flavor dev -t lib/entrypoints/main_dev.dart --debug --no-codesign
+    runs-on: macos-latest
+    needs: [ lint-test-build-android ]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - name: Get Dependencies
+        run: flutter pub get
+      - name: Run build_runner
+        run: flutter pub run build_runner build
+      - name: Build iOS
+        run: flutter build ios --flavor dev -t lib/entrypoints/main_dev.dart --debug --no-codesign
