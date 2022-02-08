@@ -1,5 +1,6 @@
 import 'package:drift/native.dart';
 import 'package:flutter_template/flavors/flavor_config.dart';
+import 'package:flutter_template/services/base/database/migrations.dart';
 import 'package:flutter_template/services/model/weather/local/local_city.dart';
 import 'package:flutter_template/services/model/weather/local/local_day_weather.dart';
 import 'package:flutter_template/services/model/weather/local/local_weather.dart';
@@ -20,6 +21,9 @@ class AppDatabase extends _$AppDatabase {
 
   @override
   int get schemaVersion => 1;
+
+  @override
+  MigrationStrategy get migration => migrations();
 }
 
 LazyDatabase _openConnection() {
