@@ -34,7 +34,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion gradleProperties.getProperty('flutter.compileSdkVersion').toInteger()
+    compileSdkVersion project.properties['flutter.compileSdkVersion'].toInteger()
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -52,8 +52,8 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.wednesday.flutter_template"
-        minSdkVersion gradleProperties.getProperty('flutter.minSdkVersion').toInteger()
-        targetSdkVersion gradleProperties.getProperty('flutter.targetSdkVersion').toInteger()
+        minSdkVersion project.properties['flutter.minSdkVersion'].toInteger()
+        targetSdkVersion project.properties['flutter.targetSdkVersion'].toInteger()
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
