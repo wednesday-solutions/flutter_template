@@ -24,7 +24,7 @@ jobs:
       - name: Build Android
         run: flutter build apk --flavor dev -t lib/entrypoints/main_dev.dart --debug
   build-ios:
-    name: Lint, Test And Build Android
+    name: Build iOS
     runs-on: macos-latest
     needs: [ lint-test-build-android ]
     steps:
