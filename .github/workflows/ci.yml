@@ -5,8 +5,8 @@ on:
       - main
   pull_request:
 jobs:
-  lint-test-build:
-    name: Lint, Test And Build
+  lint-test-build-android:
+    name: Lint, Test And Build Android
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -21,5 +21,20 @@ jobs:
         run: flutter analyze --fatal-infos --fatal-warnings
       - name: Unit tests
         run: flutter test
-      - name: Build
+      - name: Build Android
         run: flutter build apk --flavor dev -t lib/entrypoints/main_dev.dart --debug
+  build-ios:
+    name: Lint, Test And Build Android
+      runs-on: macos-latest
+      needs: [ lint-test-build-android ]
+      steps:
+        - uses: actions/checkout@v2
+        - uses: subosito/flutter-action@v2
+          with:
+            channel: 'stable'
+        - name: Get Dependencies
+          run: flutter pub get
+        - name: Run build_runner
+          run: flutter pub run build_runner build
+        - name: Build iOS
+          run: flutter build ios --flavor dev -t lib/entrypoints/main_dev.dart --debug --no-codesign
