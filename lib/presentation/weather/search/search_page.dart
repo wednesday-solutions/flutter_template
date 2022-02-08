@@ -112,8 +112,8 @@ class _SearchPageResults extends ConsumerWidget {
     } else {
       return Expanded(
         child: ResponsiveBuilder(
-          builder: (context, mediaQueryData, boxConstraints) =>
-              UIList<SearchScreenIntent>(
+          builder: (context, mediaQueryData, boxConstraints) {
+            return UIList<SearchScreenIntent>(
             renderers: const {
               UICity: UICityRenderer(),
             },
@@ -121,7 +121,8 @@ class _SearchPageResults extends ConsumerWidget {
             numberOfColumns:
                 mediaQueryData.orientation == Orientation.landscape ? 5 : 1,
             intentHandler: viewModel.onIntent,
-          ),
+          );
+          },
         ),
       );
     }

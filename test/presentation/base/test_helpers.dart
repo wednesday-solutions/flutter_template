@@ -7,13 +7,21 @@ extension WidgetTesterExt on WidgetTester {
     required Widget widget,
     required AutoDisposeStateNotifierProvider viewModelProvider,
     required AutoDisposeStateNotifierProvider fakeViewModelProvider,
+    MediaQueryData mediaQueryData = const MediaQueryData(
+      size: Size(320, 640),
+      devicePixelRatio: 3,
+    ),
   }) async {
-    await pumpWidget(MaterialApp(
-        home: ProviderScope(
-      overrides: [
-        viewModelProvider.overrideWithProvider(fakeViewModelProvider),
-      ],
-      child: widget,
-    )));
+    await pumpWidget(MediaQuery(
+      data: mediaQueryData,
+      child: MaterialApp(
+          useInheritedMediaQuery: true,
+          home: ProviderScope(
+            overrides: [
+              viewModelProvider.overrideWithProvider(fakeViewModelProvider),
+            ],
+            child: widget,
+          )),
+    ));
   }
 }
