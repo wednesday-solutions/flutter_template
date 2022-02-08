@@ -1,8 +1,16 @@
 def localProperties = new Properties()
+def gradleProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
+def gradlePropertiesFile = rootProject.file('gradle.properties')
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
         localProperties.load(reader)
+    }
+}
+
+if (gradlePropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        gradleProperties.load(reader)
     }
 }
 
@@ -26,7 +34,7 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
-    compileSdkVersion localProperties.getProperty('flutter.compileSdkVersion').toInteger()
+    compileSdkVersion gradleProperties.getProperty('flutter.compileSdkVersion').toInteger()
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -44,8 +52,8 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.wednesday.flutter_template"
-        minSdkVersion localProperties.getProperty('flutter.minSdkVersion').toInteger()
-        targetSdkVersion localProperties.getProperty('flutter.targetSdkVersion').toInteger()
+        minSdkVersion gradleProperties.getProperty('flutter.minSdkVersion').toInteger()
+        targetSdkVersion gradleProperties.getProperty('flutter.targetSdkVersion').toInteger()
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
