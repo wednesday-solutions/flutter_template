@@ -3,4 +3,4 @@
 // bundle_suffix used in the bundle id of the app
 bundle_suffix=.prod
 // the name displayed below the app icon on the home screen
-app_display_name=Flutter Template PROD RELEASE
+app_display_name=Flutter Template PROD

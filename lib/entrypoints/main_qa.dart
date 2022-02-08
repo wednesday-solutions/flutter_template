@@ -6,7 +6,7 @@ import 'package:flutter_template/app.dart';
 void main() {
   FlavorConfig.initialize(
     flavor: Flavor.qa,
-    values: FlavorValues(
+    values: const FlavorValues(
       apiBaseUrl: "https://www.metaweather.com/",
     ),
   );

@@ -7,4 +7,4 @@ case $2 in
   prod) ENTRYPOINT="lib/entrypoints/main_prod.dart";;
 esac
 
-flutter build $1 --flavor $2 -t "$ENTRYPOINT" $3
+flutter build $1 --flavor $2 -t "$ENTRYPOINT" $3 $4
