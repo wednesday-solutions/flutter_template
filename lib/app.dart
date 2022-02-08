@@ -12,12 +12,7 @@ import 'package:flutter_template/services/di/service_module.dart';
 import 'package:get_it/get_it.dart';
 
 void startApp() async {
-  _initialiseGetIt();
-
-  WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
-
-  EasyLocalization.logger.printer = customEasyLogger;
+  await _initialiseApp();
 
   runApp(EasyLocalization(
     supportedLocales: const [Locale("en", "US")],
@@ -28,7 +23,20 @@ void startApp() async {
   ));
 }
 
-void _initialiseGetIt() {
+Future _initialiseApp() async {
+  final bindings = WidgetsFlutterBinding.ensureInitialized();
+
+  bindings.deferFirstFrame();
+
+  await _initialiseGetIt();
+
+  await EasyLocalization.ensureInitialized();
+  EasyLocalization.logger.printer = customEasyLogger;
+
+  bindings.allowFirstFrame();
+}
+
+Future _initialiseGetIt() async {
   log.d("Initializing dependencies...");
   GetIt.instance
     ..serviceModule()
