@@ -69,10 +69,10 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("../keystore/release.keystore")
-            storePassword System.getenv("RELEASE_STORE_PASSWORD")
-            keyAlias System.getenv("RELEASE_KEY_ALIAS")
-            keyPassword System.getenv("RELEASE_KEY_PASSWORD")
+            storeFile file("../../keystore/flutter_template_keystore.jks")
+            storePassword "flutter_template_keystore_password"
+            keyAlias "key0"
+            keyPassword "flutter_template_keystore_password"
         }
     }
 
@@ -81,6 +81,22 @@ android {
             // Replace with signingConfigs.debug so `flutter run --release` works.
             signingConfig signingConfigs.release
         }
+    }
+
+    /*
+    Flutter suggested fix:
+    ┌─ Flutter Fix ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+    │ This issue appears to be https://github.com/flutter/flutter/issues/58247.                                                                │
+    │ Fix this issue by adding the following to the file /Users/shounakmulay/Documents/Work/Flutter/flutter_template/android/app/build.gradle: │
+    │ android {                                                                                                                                │
+    │   lintOptions {                                                                                                                          │
+    │     checkReleaseBuilds false                                                                                                             │
+    │   }                                                                                                                                      │
+    │ }                                                                                                                                        │
+    └──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+     */
+    lintOptions {
+        checkReleaseBuilds false
     }
 }
 
