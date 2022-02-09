@@ -4,19 +4,27 @@ on:
     branches:
       - main
   workflow_dispatch:
+
 jobs:
   build-android:
     name: Deploy Android
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+
       - name: Get Dependencies
         run: flutter pub get
+
       - name: Run build_runner
         run: flutter pub run build_runner build
+
+      - name: Bump Build Number
+        run: scripts/bump-build-number.sh
+
       - name: Decode Keystore
         id: decode_keystore
         uses: timheuer/base64-to-file@v1
@@ -24,6 +32,7 @@ jobs:
           fileName: 'flutter_template_keystore.jks'
           fileDir: '/keystore'
           encodedString: ${{ secrets.KEYSTORE }}
+
       - name: Build APK
         run: scripts/build.sh apk qa --release
         env:
@@ -31,6 +40,7 @@ jobs:
           RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
           RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+
       - name: Upload Artifact to App Center
         uses: wzieba/AppCenter-Github-Action@v1
         with:
@@ -39,6 +49,11 @@ jobs:
           group: testers
           file: build/app/outputs/flutter-apk/app-qa-release.apk
           notifyTesters: true
+
+      - name: Commit and tag release
+        run: scripts/commit-and-tag-version.sh
+
+
 #  build-ios:
 #    name: Deploy iOS
 #    runs-on: macos-latest
@@ -52,4 +67,4 @@ jobs:
 #      - name: Run build_runner
 #        run: flutter pub run build_runner build
 #      - name: Build iOS
-#        run: scripts/build.sh ios dev --debug --no-codesign
+#        run: scripts/build.sh ios qa --release --no-codesign
