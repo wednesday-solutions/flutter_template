@@ -22,7 +22,7 @@ jobs:
       - name: Unit tests
         run: flutter test
       - name: Build Android
-        run: flutter build apk --flavor dev -t lib/entrypoints/main_dev.dart --debug
+        run: scripts/build.sh apk dev --debug
   build-ios:
     name: Build iOS
     runs-on: macos-latest
@@ -37,4 +37,4 @@ jobs:
       - name: Run build_runner
         run: flutter pub run build_runner build
       - name: Build iOS
-        run: flutter build ios --flavor dev -t lib/entrypoints/main_dev.dart --debug --no-codesign
+        run: scripts/build.sh ios dev --debug --no-codesign
