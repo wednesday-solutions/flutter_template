@@ -31,6 +31,8 @@ void main() {
     return fakeSearchViewModel;
   });
 
+  setUpAll(baseSetupAll);
+
   setUp(() {
 
   });
