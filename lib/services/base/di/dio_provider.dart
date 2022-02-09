@@ -12,7 +12,9 @@ Dio provideDio() {
     responseBody: true,
   );
 
-  dio.interceptors.add(logInterceptor);
+  if (FlavorConfig.instance.values.showLogs) {
+    dio.interceptors.add(logInterceptor);
+  }
 
   return dio;
 }

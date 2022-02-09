@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_template/domain/datetime/date_in_millis_use_case.dart';
 import 'package:flutter_template/domain/entity/weather/weather.dart';
 import 'package:flutter_template/foundation/extensions/string_ext.dart';
@@ -38,11 +39,11 @@ class UIWeatherListMapperImpl extends UIWeatherListMapper {
       );
 
       final sortedWeatherList = weather.dayWeatherList
-        ..where((dayWeather) => !dayWeather.isToday)
-        ..sort(
-          (a, b) => dateInMillisUseCase(a.date)
-              .compareTo(dateInMillisUseCase(b.date)),
-        );
+          .where((dayWeather) => !dayWeather.isToday)
+          .sorted(
+            (a, b) => dateInMillisUseCase(a.date)
+                .compareTo(dateInMillisUseCase(b.date)),
+          );
 
       dayWeatherList.addAll(
         sortedWeatherList.map(

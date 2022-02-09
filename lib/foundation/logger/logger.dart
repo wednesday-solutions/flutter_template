@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter_template/flavors/flavor_config.dart';
 import 'package:logger/logger.dart';
 import 'package:easy_logger/easy_logger.dart';
 
@@ -8,6 +10,7 @@ class LogHelper {
   static void _initialiseLogger() {
     if (!_initialised) {
       final logger = Logger(
+        filter: _FlutterTemplateLogFilter(),
         printer: PrettyPrinter(printEmojis: false),
         level: Level.verbose,
       );
@@ -33,3 +36,10 @@ customEasyLogger(Object object,
 }
 
 Logger get log => LogHelper.logger;
+
+class _FlutterTemplateLogFilter extends LogFilter {
+  @override
+  bool shouldLog(LogEvent event) {
+    return kDebugMode && FlavorConfig.instance.values.showLogs;
+  }
+}

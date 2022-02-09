@@ -17,7 +17,10 @@ class FlavorConfig {
     return _instance;
   }
 
-  FlavorConfig._internal({required this.flavor, required this.values});
+  FlavorConfig._internal({
+    required this.flavor,
+    required this.values,
+  });
 
   static FlavorConfig get instance => _instance;
 

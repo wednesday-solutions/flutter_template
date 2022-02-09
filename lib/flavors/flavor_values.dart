@@ -1,9 +1,14 @@
 class FlavorValues {
   final String apiBaseUrl;
-  final bool logSqlStatements;
+  final bool showLogs;
+
+  final bool _logSqlStatements;
 
   const FlavorValues({
     required this.apiBaseUrl,
-    this.logSqlStatements = false,
-  });
+    logSqlStatements = false,
+    this.showLogs = false,
+  }) : _logSqlStatements = showLogs && logSqlStatements;
+
+  bool get logSqlStatements => _logSqlStatements;
 }

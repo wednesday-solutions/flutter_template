@@ -2,9 +2,14 @@
 
 ENTRYPOINT=""
 case $1 in
-  dev) ENTRYPOINT="lib/entrypoints/main_dev.dart";;
-  qa) ENTRYPOINT="lib/entrypoints/main_qa.dart";;
-  prod) ENTRYPOINT="lib/entrypoints/main_prod.dart";;
+  dev) ENTRYPOINT="entrypoints/main_dev.dart";;
+  qa) ENTRYPOINT="entrypoints/main_qa.dart";;
+  prod) ENTRYPOINT="entrypoints/main_prod.dart";;
 esac
 
-flutter run --flavor $1 -t "$ENTRYPOINT" $2
+if [ $2 == ios ]
+then
+  sed -i '' "s#.*entrypoints/main.*#import 'package:flutter_template/$ENTRYPOINT' as entrypoint;#" lib/main.dart
+fi
+
+flutter run $2 --flavor $1 -t "lib/$ENTRYPOINT" $3 $4

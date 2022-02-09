@@ -9,6 +9,7 @@ void main() {
     values: const FlavorValues(
       apiBaseUrl: "https://www.metaweather.com/",
       logSqlStatements: true,
+      showLogs: true,
     ),
   );
   startApp();

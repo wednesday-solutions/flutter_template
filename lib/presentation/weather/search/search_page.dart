@@ -114,14 +114,14 @@ class _SearchPageResults extends ConsumerWidget {
         child: ResponsiveBuilder(
           builder: (context, mediaQueryData, boxConstraints) {
             return UIList<SearchScreenIntent>(
-            renderers: const {
-              UICity: UICityRenderer(),
-            },
-            items: searchList,
-            numberOfColumns:
-                mediaQueryData.orientation == Orientation.landscape ? 5 : 1,
-            intentHandler: viewModel.onIntent,
-          );
+              renderers: const {
+                UICity: UICityRenderer(),
+              },
+              items: searchList,
+              numberOfColumns:
+                  mediaQueryData.orientation == Orientation.landscape ? 5 : 1,
+              intentHandler: viewModel.onIntent,
+            );
           },
         ),
       );
