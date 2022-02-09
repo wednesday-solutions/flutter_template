@@ -1,4 +1,4 @@
-name: CI
+name: CD
 on:
   push:
     branches:
@@ -11,6 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - name: Get Dependencies
+        run: flutter pub get
+      - name: Run build_runner
+        run: flutter pub run build_runner build
       - name: Decode Keystore
         id: decode_keystore
         uses: timheuer/base64-to-file@v1
