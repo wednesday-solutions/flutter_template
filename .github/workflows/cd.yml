@@ -23,11 +23,12 @@ jobs:
         uses: timheuer/base64-to-file@v1
         with:
           fileName: 'flutter_template_keystore.jks'
-          fileDir: '/home/runner/work/flutter_template/flutter_template/keystore'
+          fileDir: '/keystore'
           encodedString: ${{ secrets.KEYSTORE }}
       - name: Build APK
         run: scripts/build.sh apk qa --release
         env:
+          KEY_STORE_PATH: ${{ steps.decode_keystore.outputs.filePath }}
           RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
           RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
           RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
