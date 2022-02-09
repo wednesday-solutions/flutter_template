@@ -70,9 +70,9 @@ android {
     signingConfigs {
         release {
             storeFile file("../../keystore/flutter_template_keystore.jks")
-            storePassword "flutter_template_keystore_password"
-            keyAlias "key0"
-            keyPassword "flutter_template_keystore_password"
+            storePassword System.getenv("RELEASE_STORE_PASSWORD")
+            keyAlias System.getenv("RELEASE_KEY_ALIAS")
+            keyPassword System.getenv("RELEASE_KEY_PASSWORD")
         }
     }
 
