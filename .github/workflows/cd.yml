@@ -22,7 +22,8 @@ jobs:
         id: decode_keystore
         uses: timheuer/base64-to-file@v1
         with:
-          fileName: 'keystore/flutter_template_keystore.jks'
+          fileName: 'flutter_template_keystore.jks'
+          fileDir: '/home/runner/work/flutter_template/flutter_template/keystore'
           encodedString: ${{ secrets.KEYSTORE }}
       - name: Build APK
         run: scripts/build.sh apk qa --release
