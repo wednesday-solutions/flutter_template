@@ -11,12 +11,15 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../mocks/mocks.dart';
+import '../../../base/test_helpers.dart';
 
 void main() {
   late SearchNavigator searchNavigator;
   late SearchCityInteractor searchCityInteractor;
   late FavoriteWeatherInteractor favoriteWeatherInteractor;
   late SearchViewModel viewModel;
+
+  setUpAll(baseSetupAll);
 
   setUp(() {
     searchNavigator = MockSearchNavigator();

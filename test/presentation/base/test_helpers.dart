@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/flavors/flavor.dart';
+import 'package:flutter_template/flavors/flavor_config.dart';
+import 'package:flutter_template/flavors/flavor_values.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 extension WidgetTesterExt on WidgetTester {
@@ -24,4 +27,11 @@ extension WidgetTesterExt on WidgetTester {
           )),
     ));
   }
+}
+
+void baseSetupAll() {
+  FlavorConfig.initialize(
+    flavor: Flavor.dev,
+    values: const FlavorValues(apiBaseUrl: ""),
+  );
 }
