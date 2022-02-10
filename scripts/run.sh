@@ -7,9 +7,10 @@ case $1 in
   prod) ENTRYPOINT="entrypoints/main_prod.dart";;
 esac
 
-if [ $2 == ios ]
-then
-  sed -i '' "s#.*entrypoints/main.*#import 'package:flutter_template/$ENTRYPOINT' as entrypoint;#" lib/main.dart
-fi
+# Uncomment if generated_main causes error on ios
+#if [ $2 == ios ]
+#then
+#  sed -i '' "s#.*entrypoints/main.*#import 'package:flutter_template/$ENTRYPOINT' as entrypoint;#" lib/main.dart
+#fi
 
-flutter run $2 --flavor $1 -t "lib/$ENTRYPOINT" $3 $4
+flutter run --flavor $1 -t "lib/$ENTRYPOINT" $2 $3
