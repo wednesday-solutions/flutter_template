@@ -106,5 +106,10 @@ jobs:
       - name: Bump Version
         run: scripts/bump-build-number.sh
 
+      - name: Congifure Git
+        run: |
+          git config user.name "Github Actions CD"
+          git config user.email "<>"
+
       - name: Commit Version Change
         run: scripts/commit-version.sh
