@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-      - new_template
   workflow_dispatch:
 
 jobs:
@@ -69,19 +68,6 @@ jobs:
     steps:
       - name: TO BE IMPLEMENTED
         run: echo "Workflow to be implemented"
-      - uses: actions/checkout@v2
-      - name: Bump Build Number
-        run: scripts/bump-build-number.sh
-      - name: Add Tag Name to ENV
-        run: scripts/gh-action-read-and-set-version-env.sh
-      - name: Create temp file
-        run: echo "temp" >> temp.txt
-      - name: Temp upload test
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ env.tag_name }}
-          files: |
-            temp.txt
 #      - uses: actions/checkout@v2
 #      - uses: subosito/flutter-action@v2
 #        with:
