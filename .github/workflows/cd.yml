@@ -3,12 +3,15 @@ on:
   push:
     branches:
       - main
+      - new_template
   workflow_dispatch:
 
 jobs:
   build-android:
-    name: Deploy Android
+    name: Release Android To AppCenter
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v2
 
@@ -45,19 +48,40 @@ jobs:
         uses: wzieba/AppCenter-Github-Action@v1
         with:
           appName: shounak-wednesday.is/Flutter-template-test-Android
-          token: ${{secrets.APP_CENTER_TOKEN}}
+          token: ${{ secrets.APP_CENTER_TOKEN }}
           group: testers
           file: build/app/outputs/flutter-apk/app-qa-release.apk
           notifyTesters: true
 
-      - name: Commit and tag release
-        run: scripts/commit-and-tag-version.sh
+      - name: Add Tag Name to ENV
+        run: scripts/gh-action-read-and-set-version-env.sh
+
+      - name: Create Release and Add APK Artifact
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.tag_name }}
+          files: |
+            build/app/outputs/flutter-apk/app-qa-release.apk
 
 
-#  build-ios:
-#    name: Deploy iOS
-#    runs-on: macos-latest
-#    steps:
+  build-ios:
+    name: Release iOS to TestFlight
+    runs-on: macos-latest
+    steps:
+      - name: TO BE IMPLEMENTED
+        run: echo "Workflow to be implemented"
+      - name: Bump Build Number
+        run: scripts/bump-build-number.sh
+      - name: Add Tag Name to ENV
+        run: scripts/gh-action-read-and-set-version-env.sh
+      - name: Create temp file
+        run: echo "temp" >> temp.txt
+      - name: Temp upload test
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.tag_name }}
+          files: |
+            temp.txt
 #      - uses: actions/checkout@v2
 #      - uses: subosito/flutter-action@v2
 #        with:
@@ -68,3 +92,19 @@ jobs:
 #        run: flutter pub run build_runner build
 #      - name: Build iOS
 #        run: scripts/build.sh ios qa --release --no-codesign
+
+  commit-version-update:
+    name: Commit Version Change
+    runs-on: ubuntu-latest
+    needs: [ build-android, build-ios ]
+    if: |
+      always() &&
+      (needs.build-android.result == 'success' || needs.build-ios.result == 'success')
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Bump Version
+        run: scripts/bump-build-number.sh
+
+      - name: Commit Version Change
+        run: scripts/commit-version.sh
