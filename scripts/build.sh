@@ -12,4 +12,4 @@ then
   sed -i '' "s#.*entrypoints/main.*#import 'package:flutter_template/$ENTRYPOINT' as entrypoint;#" lib/main.dart
 fi
 
-flutter build $1 --flavor $2 -t "lib/$ENTRYPOINT" $3 $4
+flutter build $1 --flavor $2 -t "lib/$ENTRYPOINT" $3 $4 $5

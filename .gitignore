@@ -54,3 +54,4 @@ app.*.map.json
 pubspec.lock
 
 /coverage
+/debug-info

@@ -35,7 +35,7 @@ jobs:
           encodedString: ${{ secrets.KEYSTORE }}
 
       - name: Build APK
-        run: scripts/build.sh apk qa --release
+        run: scripts/build.sh apk qa --release --obfuscate --split-debug-info=debug-info
         env:
           KEY_STORE_PATH: ${{ steps.decode_keystore.outputs.filePath }}
           RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
@@ -60,6 +60,9 @@ jobs:
           tag_name: ${{ env.tag_name }}
           files: |
             build/app/outputs/flutter-apk/app-qa-release.apk
+            debug-info/app.android-arm.symbols
+            debug-info/app.android-arm64.symbols
+            debug-info/app.android-x64.symbols
 
 
   build-ios:

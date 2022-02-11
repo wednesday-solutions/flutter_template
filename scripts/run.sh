@@ -13,4 +13,4 @@ esac
 #  sed -i '' "s#.*entrypoints/main.*#import 'package:flutter_template/$ENTRYPOINT' as entrypoint;#" lib/main.dart
 #fi
 
-flutter run --flavor $1 -t "lib/$ENTRYPOINT" $2 $3
+flutter run --flavor $1 -t "lib/$ENTRYPOINT" $2 $3 $4
