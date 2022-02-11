@@ -18,13 +18,13 @@ class HomeViewModelImpl extends HomeViewModel {
   }) : super(_initialState);
 
   static get _initialState => HomeScreenState(
-    toolbar: UIToolbar(
-      title: LocaleKeys.homePageTitle.tr,
-      hasBackButton: false,
-    ),
-    showLoading: false,
-    weatherList: List.empty(),
-  );
+        toolbar: UIToolbar(
+          title: LocaleKeys.homePageTitle.tr,
+          hasBackButton: false,
+        ),
+        showLoading: false,
+        weatherList: List.empty(),
+      );
 
   @override
   void onInit() {
