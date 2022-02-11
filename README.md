@@ -6,7 +6,7 @@
     <h1 align="left">Flutter Template</h1>
   </p>
   <p>
-  A flutter template application that shows the architecture patterns we follow.
+  A Flutter template application showcasing - Clean architecture, Responsive design, State management, Dependency Injection, Widget and Unit testing, Navigation, Localization, Continuous Integration and Continuous Deployment.
   </p>
 
   ___
