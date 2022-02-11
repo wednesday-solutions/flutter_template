@@ -35,15 +35,7 @@ jobs:
           encodedString: ${{ secrets.KEYSTORE }}
 
       - name: Set Flavor Name
-        run: |
-          CURRENT_BRANCH=`git branch --show-current`
-          if [[ "$CURRENT_BRANCH" == 'master' ]]; then
-              echo "FLAVOR_NAME=prod" >> "$GITHUB_ENV"
-              echo "APK_PATH=build/app/outputs/flutter-apk/app-prod-release.apk" >> "$GITHUB_ENV"
-          else
-              echo "FLAVOR_NAME=qa" >> "$GITHUB_ENV"
-              echo "APK_PATH=build/app/outputs/flutter-apk/app-qa-release.apk" >> "$GITHUB_ENV"
-          fi
+        run: scripts/set-flavor-and-apk-path-to-env.sh
 
       - name: Build APK
         run: scripts/build.sh apk $FLAVOR_NAME --release --obfuscate --split-debug-info=debug-info
