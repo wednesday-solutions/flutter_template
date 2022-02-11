@@ -35,17 +35,19 @@ jobs:
           fileName: 'flutter_template_keystore.jks'
           encodedString: ${{ secrets.KEYSTORE }}
 
-      - name: Set APK Path
+      - name: Set Flavor Name
         run: |
           CURRENT_BRANCH=`git branch --show-current`
-          if [[ $CURRENT_BRANCH == 'master' ]]; then
+          if [[ "$CURRENT_BRANCH" == 'master' ]]; then
+              echo "FLAVOR_NAME=prod" >> "$GITHUB_ENV"
               echo "APK_PATH=build/app/outputs/flutter-apk/app-prod-release.apk" >> "$GITHUB_ENV"
           else
+              echo "FLAVOR_NAME=qa" >> "$GITHUB_ENV"
               echo "APK_PATH=build/app/outputs/flutter-apk/app-qa-release.apk" >> "$GITHUB_ENV"
           fi
 
       - name: Build APK
-        run: scripts/build.sh apk $ENVIRONMENT_NAME --release --obfuscate --split-debug-info=debug-info
+        run: scripts/build.sh apk $FLAVOR_NAME --release --obfuscate --split-debug-info=debug-info
         env:
           KEY_STORE_PATH: ${{ steps.decode_keystore.outputs.filePath }}
           RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
