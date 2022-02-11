@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_template/presentation/base/controller/base_view_model.dart';
-import 'package:flutter_template/presentation/base/controller/view_model_provider_ext.dart';
+import 'package:flutter_template/presentation/base/view_model_provider/base_view_model.dart';
+import 'package:flutter_template/presentation/base/view_model_provider/view_model_provider_ext.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/screen/screen_state.dart';
 

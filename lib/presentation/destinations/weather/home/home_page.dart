@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/foundation/extensions/string_ext.dart';
+import 'package:flutter_template/presentation/base/page/base_page.dart';
 import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
-import 'package:flutter_template/presentation/base/widgets/page/base_page.dart';
 import 'package:flutter_template/presentation/base/widgets/responsive/responsive_builder.dart';
+import 'package:flutter_template/presentation/destinations/weather/home/home_screen_intent.dart';
+import 'package:flutter_template/presentation/destinations/weather/home/home_screen_state.dart';
+import 'package:flutter_template/presentation/destinations/weather/home/home_view_model.dart';
+import 'package:flutter_template/presentation/destinations/weather/home/list/ui_weather_renderer.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_weather.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
-import 'package:flutter_template/presentation/weather/home/home_screen_intent.dart';
-import 'package:flutter_template/presentation/weather/home/home_screen_state.dart';
-import 'package:flutter_template/presentation/weather/home/home_view_model.dart';
-import 'package:flutter_template/presentation/weather/home/list/ui_weather_renderer.dart';
 
 class HomePage extends ConsumerWidget {
   final HomeScreen homeScreen;

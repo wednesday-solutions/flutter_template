@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/presentation/base/exceptions/unhandled_effect_exception.dart';
+import 'package:flutter_template/presentation/base/page/base_page.dart';
 import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
-import 'package:flutter_template/presentation/base/widgets/page/base_page.dart';
 import 'package:flutter_template/presentation/base/widgets/responsive/responsive_builder.dart';
 import 'package:flutter_template/presentation/base/widgets/snackbar/snackbar.dart';
+import 'package:flutter_template/presentation/destinations/weather/search/search_screen_intent.dart';
+import 'package:flutter_template/presentation/destinations/weather/search/search_screen_state.dart';
+import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';
 import 'package:flutter_template/presentation/entity/effect/effect.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
-import 'package:flutter_template/presentation/weather/search/list/ui_city_renderer.dart';
-import 'package:flutter_template/presentation/weather/search/search_screen_intent.dart';
-import 'package:flutter_template/presentation/weather/search/search_screen_state.dart';
-import 'package:flutter_template/presentation/weather/search/search_view_model.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:tuple/tuple.dart';
+import 'package:flutter_template/presentation/destinations/weather/search/list/ui_city_renderer.dart';
 
 class SearchPage extends StatelessWidget {
   final SearchScreen searchScreen;

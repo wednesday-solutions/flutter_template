@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
+import 'package:flutter_template/presentation/destinations/weather/home/home_screen_intent.dart';
+import 'package:flutter_template/presentation/destinations/weather/home/list/ui_day_weather_heading_renderer.dart';
+import 'package:flutter_template/presentation/destinations/weather/home/list/ui_day_weather_renderer.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_day_weather.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_day_weather_heading.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_weather.dart';
-import 'package:flutter_template/presentation/weather/home/home_screen_intent.dart';
-import 'package:flutter_template/presentation/weather/home/list/ui_day_weather_heading_renderer.dart';
-import 'package:flutter_template/presentation/weather/home/list/ui_day_weather_renderer.dart';
 
 class UIWeatherListItem extends StatelessWidget {
   final UIWeather weather;

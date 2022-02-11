@@ -2,13 +2,13 @@ import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/interactor/weather/search/search_city_interactor.dart';
 import 'package:flutter_template/navigation/weather/search/search_navigator.dart';
+import 'package:flutter_template/presentation/destinations/weather/search/search_screen_intent.dart';
+import 'package:flutter_template/presentation/destinations/weather/search/search_screen_state.dart';
+import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/base/ui_toolbar.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
-import 'package:flutter_template/presentation/weather/search/search_screen_intent.dart';
-import 'package:flutter_template/presentation/weather/search/search_screen_state.dart';
-import 'package:flutter_template/presentation/weather/search/search_view_model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class SearchViewModelImpl extends SearchViewModel {
