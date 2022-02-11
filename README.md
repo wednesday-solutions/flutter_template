@@ -49,4 +49,15 @@ Read the [scripts documentation](scripts/README.md) to learn about all the scrip
 ## Architecture
 The architecture is separeted into the following layers
 - [`lib/presentation`](lib/presentation): All UI and state management elements like widgets, pages and view models.
-- [`lib/interactor`](lib/interactor): 
+- [`lib/presentation/destinations`](lib/presentation/destinations): Navigatable destinations in the app. 
+- [`lib/navigation`](lib/navigation): navigators to navigate between destinations.
+- [`lib/interactor`](lib/interactor): provides feature specific functionality.
+- [`lib/domain`](lib/domain): use cases for individual pieces of work.
+- [`lib/repository`](lib/repository): repositories to manage various data sources.
+- [`lib/services`](lib/services): services provide access to external elements such as databases, apis, etc.
+
+Apart from these layers, the template has
+- [`lib/foundation`](lib/foundation): Extentions on primitive data types, loggers, global type alias etc.
+- [`lib/flavors`](lib/flavors): Flavor i.e. Environment reledated classes.
+- [`lib/entrypoints`](lib/entrypoints): Target files for flutter to run for each flavor.
+- [`lib/app.dart`](lib/app.dart): App initialization code.
