@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - new_template
   workflow_dispatch:
 
 jobs:
@@ -34,8 +35,17 @@ jobs:
           fileName: 'flutter_template_keystore.jks'
           encodedString: ${{ secrets.KEYSTORE }}
 
+      - name: Set APK Path
+        run: |
+          CURRENT_BRANCH=`git branch --show-current`
+          if [[ $CURRENT_BRANCH == 'master' ]]; then
+              echo "APK_PATH=build/app/outputs/flutter-apk/app-prod-release.apk" >> "$GITHUB_ENV"
+          else
+              echo "APK_PATH=build/app/outputs/flutter-apk/app-qa-release.apk" >> "$GITHUB_ENV"
+          fi
+
       - name: Build APK
-        run: scripts/build.sh apk qa --release --obfuscate --split-debug-info=debug-info
+        run: scripts/build.sh apk $ENVIRONMENT_NAME --release --obfuscate --split-debug-info=debug-info
         env:
           KEY_STORE_PATH: ${{ steps.decode_keystore.outputs.filePath }}
           RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
@@ -48,7 +58,7 @@ jobs:
           appName: shounak-wednesday.is/Flutter-template-test-Android
           token: ${{ secrets.APP_CENTER_TOKEN }}
           group: testers
-          file: build/app/outputs/flutter-apk/app-qa-release.apk
+          file: ${{ env.APK_PATH }}
           notifyTesters: true
 
       - name: Add Tag Name to ENV

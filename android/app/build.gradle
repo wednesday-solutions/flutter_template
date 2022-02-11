@@ -78,7 +78,7 @@ android {
 
     buildTypes {
         release {
-            // Replace with signingConfigs.debug so `flutter run --release` works.
+            // Only replace with signingConfigs.debug so `flutter run --release` works locally.
             signingConfig signingConfigs.release
         }
     }
