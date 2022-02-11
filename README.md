@@ -29,9 +29,24 @@
 
   ___
 
-  <span>We’re always looking for people who value their work, so come and join us. <a href="https://www.wednesday.is/hiring">We are hiring!</a></span>
+<span>We’re always looking for people who value their work, so come and join us. <a href="https://www.wednesday.is/hiring">We are hiring!</a></span>
 </div>
 
-<img src="https://github.com/wednesday-solutions/flutter_template/blob/master/flutter_template.gif">
+## Getting Started
+Clone the repo and run the following commands to setup the project.
 
+#### Get Dependencies
+```shell
+flutter pub get
+```
+#### Run Code Generation
+```shell
+scripts/generate-all.sh
+```
 
+Read the [scripts documentation](scripts/README.md) to learn about all the scrips used in the project.
+
+## Architecture
+The architecture is separeted into the following layers
+- [`lib/presentation`](lib/presentation): All UI and state management elements like widgets, pages and view models.
+- [`lib/interactor`](lib/interactor): 
