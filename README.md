@@ -117,11 +117,29 @@ Each page accepts the [`Screen`](#screen) object as input.
 
 ### Screen
 A [`Screen`](lib/presentation/entity/screen/screen.dart) is a class that represents a `Page` in the context of navigation. It holds the `path` used by the navigator to navigate to a `Page` and also holds any arguments required to navigate to that `Page`.
+
+## Flavors
+The template comes with built-in support for 3 flavors. Each flavor uses a diffrent `main.dart` file.
+- Dev - [`main_dev.dart`](lib/entrypoints/main_dev.dart)
+- QA - [`main_qa.dart`](lib/entrypoints/main_qa.dart)
+- Prod - [`main_prod.dart`](lib/entrypoints/main_prod.dart)
+
+You can setup any environment specific values in the respective `main.dart` files.
+
+To run a specific falvor you need to specify the flavor and target file.
+```shell
+ flutter run --flavor qa -t lib/entrypoints/main_qa.dart
+```
+
+**To avoid specifying all the flags every time, use the [`run.sh`](scripts/README.md#run) script**
+
+Read the [scripts documentation](scripts/README.md) to learn about all the scrips used in the project.
  
 ## Content
 The Flutter Template contains:
-- A [Flutter](https://flutter.dev/) application.
-- A [reactive base architectire](#architecture) for your application.
+- A [`Flutter`](https://flutter.dev/) application.
+- Built-in support for 3 [`flavors`](https://docs.flutter.dev/deployment/flavors) - `dev`, `qa` and `prod`.
+- A [`reactive base architectire`](#architecture) for your application.
 - [`Riverpod`](https://riverpod.dev/) along with [`state_notifier`](https://pub.dev/packages/state_notifier) for state management.
 - [`Drift`](https://drift.simonbinder.eu/) as local database for storage.
 - [`Dio`](https://github.com/flutterchina/dio) for making API calls.
@@ -137,3 +155,11 @@ The template was build using dart null safety. Dart 2.12 or greater and Flutter 
 Dart 2.15 or greater and Flutter 2.10 or greater is recommended.
 
 [Follow this guide to setup your flutter environment](https://docs.flutter.dev/get-started/install) based on your platform.
+
+## Continuous Integration and Deployment
+The Flutter template comes with built in support for CI/CD.
+
+The [`CI`](.github/workflows/ci.yml) workflow performs the following checks on every pull request:
+- Lints the code with `flutter analyze`.
+- Runs tests using `flutter test`.
+- Build the android debug 
