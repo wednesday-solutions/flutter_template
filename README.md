@@ -157,9 +157,37 @@ Dart 2.15 or greater and Flutter 2.10 or greater is recommended.
 [Follow this guide to setup your flutter environment](https://docs.flutter.dev/get-started/install) based on your platform.
 
 ## Continuous Integration and Deployment
-The Flutter template comes with built in support for CI/CD.
+The Flutter template comes with built in support for CI/CD using Github Actions.
 
+### CI
 The [`CI`](.github/workflows/ci.yml) workflow performs the following checks on every pull request:
 - Lints the code with `flutter analyze`.
 - Runs tests using `flutter test`.
-- Build the android debug 
+- Build the android app.
+- Build the ios app.
+
+### CD
+The [`CD`](.github/workflows/cd.yml) workflow performs the following actions:
+- Bump the build number by 1.
+- Build a signed release apk.
+- Upload apk to app center.
+- Upload apk as artifact to release tag.
+- Build a signed iOS app.
+- Upload ipa to testflight.
+- Upload ipa as artifact to release tag.
+- Commit the updated version to git.
+
+### Android CD setup
+For the android CD workflow to run, we need to perform the following setup steps:
+- Follow these instructions to [generate an upload keystore](https://developer.android.com/studio/publish/app-signing#generate-key). Note down the `store password`, `key alias` and `key password`. You will need these in later steps.
+- Use `openssl` to convert the `jks` file to `Base64`.
+```shell
+openssl base64 < flutter_template_keystore.jks | tr -d '\n' | tee flutter_template_keystore_encoded.txt
+```
+- Store the `base64` output on [`Github Secrets`](https://docs.github.com/en/actions/security-guides/encrypted-secrets) with the key name `KEYSTORE`.
+- Save the `store password` in github secrets with key name `RELEASE_STORE_PASSWORD`.
+- Save the `key alias` in github secrets with key name `RELEASE_KEY_ALIAS`.
+- Save the `key password` in github secrets with key name `RELEASE_KEY_PASSWORD`.
+- [Create a distribution on app center](https://docs.microsoft.com/en-us/appcenter/distribution/) and get the upload key. You can get it from from appcenter.ms/settings.
+- Save the app center upload key on github secrets with key name `APP_CENTER_TOKEN`.
+
