@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:drift/drift.dart';
 import 'package:flutter_template/services/base/database/app_database.dart';
-import 'package:flutter_template/services/model/weather/local/local_city.dart';
-import 'package:flutter_template/services/model/weather/local/local_city_with_weather.dart';
-import 'package:flutter_template/services/model/weather/local/local_day_weather.dart';
-import 'package:flutter_template/services/model/weather/local/local_weather.dart';
+import 'package:flutter_template/services/entity/weather/local/local_city.dart';
+import 'package:flutter_template/services/entity/weather/local/local_city_with_weather.dart';
+import 'package:flutter_template/services/entity/weather/local/local_day_weather.dart';
+import 'package:flutter_template/services/entity/weather/local/local_weather.dart';
 import 'package:flutter_template/services/weather/local/weather_local_service.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -108,7 +108,6 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
 
   @override
   Future<List<LocalCityWithWeather>> getFavoriteCitiesWeatherList() async {
-    // todo might throw error due to duplicate column names.
     final typedResultList = await _getLocalCityWithWeatherQuery().get();
 
     return _getLocalCityWithWeatherList(typedResultList);
@@ -116,7 +115,6 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
 
   @override
   Stream<List<LocalCityWithWeather>> getFavoriteCitiesWeatherStream() {
-    // todo might throw error due to duplicate column names.
     return _getLocalCityWithWeatherQuery().watch().map(
       (typedResultList) {
         return _getLocalCityWithWeatherList(typedResultList);

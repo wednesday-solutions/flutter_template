@@ -1,7 +1,7 @@
 import 'package:flutter_template/domain/entity/weather/weather.dart';
 import 'package:flutter_template/foundation/mapper/mapper.dart';
 import 'package:flutter_template/repository/weather/domain_day_weather_mapper.dart';
-import 'package:flutter_template/services/model/weather/local/local_city_with_weather.dart';
+import 'package:flutter_template/services/entity/weather/local/local_city_with_weather.dart';
 
 abstract class DomainWeatherMapper
     extends Mapper<LocalCityWithWeather, Weather> {}

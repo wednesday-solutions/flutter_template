@@ -1,9 +1,9 @@
 import 'package:drift/native.dart';
 import 'package:flutter_template/flavors/flavor_config.dart';
 import 'package:flutter_template/services/base/database/migrations.dart';
-import 'package:flutter_template/services/model/weather/local/local_city.dart';
-import 'package:flutter_template/services/model/weather/local/local_day_weather.dart';
-import 'package:flutter_template/services/model/weather/local/local_weather.dart';
+import 'package:flutter_template/services/entity/weather/local/local_city.dart';
+import 'package:flutter_template/services/entity/weather/local/local_day_weather.dart';
+import 'package:flutter_template/services/entity/weather/local/local_weather.dart';
 import 'package:flutter_template/services/weather/local/weather_local_service_impl.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;

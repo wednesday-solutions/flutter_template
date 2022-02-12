@@ -1,7 +1,7 @@
 import 'package:drift/drift.dart';
 import 'package:flutter_template/foundation/mapper/mapper2.dart';
 import 'package:flutter_template/services/base/database/app_database.dart';
-import 'package:flutter_template/services/model/weather/remote/remote_weather.dart';
+import 'package:flutter_template/services/entity/weather/remote/remote_weather.dart';
 
 abstract class LocalDayWeatherMapper
     extends Mapper2<RemoteWeather, int, List<LocalDayWeatherCompanion>> {}
