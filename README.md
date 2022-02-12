@@ -118,4 +118,22 @@ Each page accepts the [`Screen`](#screen) object as input.
 ### Screen
 A [`Screen`](lib/presentation/entity/screen/screen.dart) is a class that represents a `Page` in the context of navigation. It holds the `path` used by the navigator to navigate to a `Page` and also holds any arguments required to navigate to that `Page`.
  
+## Content
+The Flutter Template contains:
+- A [Flutter](https://flutter.dev/) application.
+- A [reactive base architectire](#architecture) for your application.
+- [`Riverpod`](https://riverpod.dev/) along with [`state_notifier`](https://pub.dev/packages/state_notifier) for state management.
+- [`Drift`](https://drift.simonbinder.eu/) as local database for storage.
+- [`Dio`](https://github.com/flutterchina/dio) for making API calls.
+- [`Freezed`](https://pub.dev/packages/freezed) for data class functionality.
+- [`Get It`](https://pub.dev/packages/get_it) for dependency injection.
+- [`Flutter Lints`](https://pub.dev/packages/flutter_lints) for linting.
 
+The template contains an example (displaying weather data) with responsive widgets, reactive state management, offline storage and api calls.
+
+## Requirements
+The template was build using dart null safety. Dart 2.12 or greater and Flutter 2 or greater is required. 
+
+Dart 2.15 or greater and Flutter 2.10 or greater is recommended.
+
+[Follow this guide to setup your flutter environment](https://docs.flutter.dev/get-started/install) based on your platform.
