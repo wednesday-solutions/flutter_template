@@ -117,5 +117,77 @@ Each page accepts the [`Screen`](#screen) object as input.
 
 ### Screen
 A [`Screen`](lib/presentation/entity/screen/screen.dart) is a class that represents a `Page` in the context of navigation. It holds the `path` used by the navigator to navigate to a `Page` and also holds any arguments required to navigate to that `Page`.
+
+## Flavors
+The template comes with built-in support for 3 flavors. Each flavor uses a diffrent `main.dart` file.
+- Dev - [`main_dev.dart`](lib/entrypoints/main_dev.dart)
+- QA - [`main_qa.dart`](lib/entrypoints/main_qa.dart)
+- Prod - [`main_prod.dart`](lib/entrypoints/main_prod.dart)
+
+You can setup any environment specific values in the respective `main.dart` files.
+
+To run a specific falvor you need to specify the flavor and target file.
+```shell
+ flutter run --flavor qa -t lib/entrypoints/main_qa.dart
+```
+
+**To avoid specifying all the flags every time, use the [`run.sh`](scripts/README.md#run) script**
+
+Read the [scripts documentation](scripts/README.md) to learn about all the scrips used in the project.
  
+## Content
+The Flutter Template contains:
+- A [`Flutter`](https://flutter.dev/) application.
+- Built-in support for 3 [`flavors`](https://docs.flutter.dev/deployment/flavors) - `dev`, `qa` and `prod`.
+- A [`reactive base architectire`](#architecture) for your application.
+- [`Riverpod`](https://riverpod.dev/) along with [`state_notifier`](https://pub.dev/packages/state_notifier) for state management.
+- [`Drift`](https://drift.simonbinder.eu/) as local database for storage.
+- [`Dio`](https://github.com/flutterchina/dio) for making API calls.
+- [`Freezed`](https://pub.dev/packages/freezed) for data class functionality.
+- [`Get It`](https://pub.dev/packages/get_it) for dependency injection.
+- [`Flutter Lints`](https://pub.dev/packages/flutter_lints) for linting.
+
+The template contains an example (displaying weather data) with responsive widgets, reactive state management, offline storage and api calls.
+
+## Requirements
+The template was build using dart null safety. Dart 2.12 or greater and Flutter 2 or greater is required. 
+
+Dart 2.15 or greater and Flutter 2.10 or greater is recommended.
+
+[Follow this guide to setup your flutter environment](https://docs.flutter.dev/get-started/install) based on your platform.
+
+## Continuous Integration and Deployment
+The Flutter template comes with built in support for CI/CD using Github Actions.
+
+### CI
+The [`CI`](.github/workflows/ci.yml) workflow performs the following checks on every pull request:
+- Lints the code with `flutter analyze`.
+- Runs tests using `flutter test`.
+- Build the android app.
+- Build the ios app.
+
+### CD
+The [`CD`](.github/workflows/cd.yml) workflow performs the following actions:
+- Bump the build number by 1.
+- Build a signed release apk.
+- Upload apk to app center.
+- Upload apk as artifact to release tag.
+- Build a signed iOS app.
+- Upload ipa to testflight.
+- Upload ipa as artifact to release tag.
+- Commit the updated version to git.
+
+### Android CD setup
+For the android CD workflow to run, we need to perform the following setup steps:
+- Follow these instructions to [generate an upload keystore](https://developer.android.com/studio/publish/app-signing#generate-key). Note down the `store password`, `key alias` and `key password`. You will need these in later steps.
+- Use `openssl` to convert the `jks` file to `Base64`.
+```shell
+openssl base64 < flutter_template_keystore.jks | tr -d '\n' | tee flutter_template_keystore_encoded.txt
+```
+- Store the `base64` output on [`Github Secrets`](https://docs.github.com/en/actions/security-guides/encrypted-secrets) with the key name `KEYSTORE`.
+- Save the `store password` in github secrets with key name `RELEASE_STORE_PASSWORD`.
+- Save the `key alias` in github secrets with key name `RELEASE_KEY_ALIAS`.
+- Save the `key password` in github secrets with key name `RELEASE_KEY_PASSWORD`.
+- [Create a distribution on app center](https://docs.microsoft.com/en-us/appcenter/distribution/) and get the upload key. You can get it from from appcenter.ms/settings.
+- Save the app center upload key on github secrets with key name `APP_CENTER_TOKEN`.
 
