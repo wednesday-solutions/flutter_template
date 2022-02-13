@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_displaymode/flutter_displaymode.dart';
 import 'package:flutter_template/domain/di/domain_module.dart';
 import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/interactor/di/interactor_module.dart';
@@ -32,6 +36,14 @@ Future _initialiseApp() async {
 
   await EasyLocalization.ensureInitialized();
   EasyLocalization.logger.printer = customEasyLogger;
+
+  if (Platform.isAndroid) {
+    try {
+      FlutterDisplayMode.setHighRefreshRate();
+    } on PlatformException catch (exception) {
+      log.e(exception);
+    }
+  }
 
   bindings.allowFirstFrame();
 }
