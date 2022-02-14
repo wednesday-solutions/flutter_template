@@ -50,7 +50,7 @@ jobs:
         with:
           appName: shounak-wednesday.is/Flutter-template-test-Android
           token: ${{ secrets.APP_CENTER_TOKEN }}
-          group: testers
+          group: Testers
           file: ${{ env.APK_PATH }}
           notifyTesters: true
 
