@@ -65,7 +65,7 @@ jobs:
         with:
           tag_name: ${{ env.tag_name }}
           files: |
-            build/app/outputs/flutter-apk/app-qa-release.apk
+            ${{ env.APK_PATH }}
             debug-info/app.android-arm.symbols
             debug-info/app.android-arm64.symbols
             debug-info/app.android-x64.symbols
