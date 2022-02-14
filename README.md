@@ -191,7 +191,7 @@ openssl base64 < flutter_template_keystore.jks | tr -d '\n' | tee flutter_templa
 - [Create a distribution on app center](https://docs.microsoft.com/en-us/appcenter/distribution/) and get the upload key. You can get it from from appcenter.ms/settings.
 - Save the app center upload key on github secrets with key name `APP_CENTER_TOKEN`.
 
-#### Pushing to protected branches
+### Pushing to protected branches
 - If the branches that you will be running CD on are protected, you will need to use a [`Personal Access Token (PAT)`](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to commit the version changes.
 - After creating the `PAT`, exclude the account that the token belongs to from the [`branch protection rules`](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule#creating-a-branch-protection-rule).
 - Save the token in github secrets and update the key name in the `cd.yml` file under each `checkout` action.
