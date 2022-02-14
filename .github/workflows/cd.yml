@@ -51,7 +51,7 @@ jobs:
       - name: Upload Artifact to App Center
         uses: wzieba/AppCenter-Github-Action@v1
         with:
-          appName: shounak-wednesday.is/Flutter-template-test-Android
+          appName: wednesday-solutions/ANDROID-Flutter-Template
           token: ${{ secrets.APP_CENTER_TOKEN }}
           group: Testers
           file: ${{ env.APK_PATH }}
