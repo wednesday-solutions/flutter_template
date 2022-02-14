@@ -13,7 +13,12 @@
 *.iml
 *.ipr
 *.iws
-.idea/
+
+# Add idea runconfigurations to git
+!.idea/
+.idea/*
+!.idea/runConfigurations/
+.idea/libraries/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -44,6 +49,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+/android/.idea/
 
 # Generated files
 *.g.dart
@@ -55,3 +61,5 @@ pubspec.lock
 
 /coverage
 /debug-info
+
+!.idea/runConfigurations/*
