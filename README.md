@@ -1,4 +1,4 @@
-<img align="left" src="https://github.com/wednesday-solutions/flutter_template/blob/master/flutter_template_github.svg" width="480" height="440" />
+<img align="left" src="flutter_template_github.svg" width="480" height="440" />
 
 <div>
   <a href="https://www.wednesday.is?utm_source=gthb&utm_medium=repo&utm_campaign=serverless" align="left"><img src="https://uploads-ssl.webflow.com/5ee36ce1473112550f1e1739/5f5879492fafecdb3e5b0e75_wednesday_logo.svg"></a>
@@ -190,6 +190,14 @@ openssl base64 < flutter_template_keystore.jks | tr -d '\n' | tee flutter_templa
 - Save the `key password` in github secrets with key name `RELEASE_KEY_PASSWORD`.
 - [Create a distribution on app center](https://docs.microsoft.com/en-us/appcenter/distribution/) and get the upload key. You can get it from from appcenter.ms/settings.
 - Save the app center upload key on github secrets with key name `APP_CENTER_TOKEN`.
+
+#### Pushing to protected branches
+- If the branches that you will be running CD on are protected, you will need to use a [`Personal Access Token (PAT)`](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to commit the version changes.
+- After creating the `PAT`, exclude the account that the token belongs to from the [`branch protection rules`](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule#creating-a-branch-protection-rule).
+- Save the token in github secrets and update the key name in the `cd.yml` file under each `checkout` action.
+- Since our `CD` workflow is triggered on a push, and we create a new commit in the workflow itself, the commit message created by the `CD` workflow includes `[skip ci]` tag so that the workflow does not end up in an infinite loop.
+
+**If you do not plan to use the CD workflow on protected branches, you can remove the token part from the checkout actions.**
 
 ## Gotchas
 - Flutter apps might have issues on some android devices with variable refresh rate where the app is locked at 60fps instead of running at the highests refresh rate. This might make your app look like it is running slower than other apps on the device. To fix this the template uses the [`flutter_displaymode`](https://pub.dev/packages/flutter_displaymode) package. The template sets the highest refresh rate available. If you don't want this behaviour you can remove the lines 40 to 46 in [`app.dart`](lib/app.dart#L40). [`Link to frame rate issue on flutter`](https://github.com/flutter/flutter/issues/35162).
