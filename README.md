@@ -191,3 +191,6 @@ openssl base64 < flutter_template_keystore.jks | tr -d '\n' | tee flutter_templa
 - [Create a distribution on app center](https://docs.microsoft.com/en-us/appcenter/distribution/) and get the upload key. You can get it from from appcenter.ms/settings.
 - Save the app center upload key on github secrets with key name `APP_CENTER_TOKEN`.
 
+## Gotchas
+- Flutter apps might have issues on some android devices with variable refresh rate where the app is locked at 60fps instead of running at the highests refresh rate. This might make your app look like it is running slower than other apps on the device. To fix this the template uses the [`flutter_displaymode`](https://pub.dev/packages/flutter_displaymode) package. The template sets the highest refresh rate available. If you don't want this behaviour you can remove the lines 40 to 46 in [`app.dart`](lib/app.dart#L40). [`Link to frame rate issue on flutter`](https://github.com/flutter/flutter/issues/35162).
+
