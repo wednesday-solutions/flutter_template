@@ -50,7 +50,7 @@ Read the [scripts documentation](scripts/README.md) to learn about all the scrip
 The architecture of the template facilitates seperation of concerns and avoids tight coupling between it's various layers. The goal is to have the ability to make changes to individual layers without affecting the entire app. This architecture is an adaptation of concepts from [`The Clean Architecture`](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 
 ### Layers
-The architecture is separeted into the following layers
+The architecture is separated into the following layers
 - [`lib/presentation`](lib/presentation): All UI and state management elements like widgets, pages and view models.
 - [`lib/navigation`](lib/navigation): navigators to navigate between destinations.
 - [`lib/interactor`](lib/interactor): provides feature specific functionality.
@@ -75,7 +75,7 @@ The layers `presentation`, `domain` and `services` each have an `entity` directo
 
 ### Other Directories
 Apart from the main layers, the template has
-- [`lib/foundation`](lib/foundation): Extentions on primitive data types, loggers, global type alias etc.
+- [`lib/foundation`](lib/foundation): Extensions on primitive data types, loggers, global type alias etc.
 - [`lib/flavors`](lib/flavors): Flavor i.e. Environment reledated classes.
 - [`lib/entrypoints`](lib/entrypoints): Target files for flutter to run for each flavor.
 - [`lib/app.dart`](lib/app.dart): App initialization code.
@@ -195,7 +195,7 @@ openssl base64 < flutter_template_keystore.jks | tr -d '\n' | tee flutter_templa
 - If the branches that you will be running CD on are protected, you will need to use a [`Personal Access Token (PAT)`](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to commit the version changes.
 - After creating the `PAT`, exclude the account that the token belongs to from the [`branch protection rules`](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule#creating-a-branch-protection-rule).
 - Save the token in github secrets and update the key name in the `cd.yml` file under each `checkout` action.
-- Since our `CD` workflow is triggered on a push, and we create a new commit in the workflow itself, the commit message created by the `CD` workflow includes `[skip ci]` tag so that the workflow does not end up in an infinite loop.
+- Since our `CD` workflow is triggered on a push, and we create a new commit in the workflow itself, the commit message created by the `CD` workflow includes `[skip ci]` tag so that the workflow does not end up in an infinite loop.Read more about this [here](https://docs.github.com/en/actions/managing-workflow-runs/skipping-workflow-runs)
 
 **If you do not plan to use the CD workflow on protected branches, you can remove the token part from the checkout actions.**
 
