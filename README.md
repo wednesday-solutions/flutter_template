@@ -47,7 +47,7 @@ scripts/generate-all.sh
 Read the [scripts documentation](scripts/README.md) to learn about all the scrips used in the project.
 
 ## Architecture
-The architecture of the template facilitates seperation of concerns and avoids tight coupling between it's various layers. The goal is to have the ability to make changes to individual layers without affecting the entire app. This architecture is an adaptation of concepts from [`The Clean Architecture`](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
+The architecture of the template facilitates separation of concerns and avoids tight coupling between it's various layers. The goal is to have the ability to make changes to individual layers without affecting the entire app. This architecture is an adaptation of concepts from [`The Clean Architecture`](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 
 ### Layers
 The architecture is separated into the following layers
@@ -63,37 +63,37 @@ Each layer has a `di` directory to manage Dependency Injection for that layer.
 ### Entities
 The layers `presentation`, `domain` and `services` each have an `entity` directory.
 - [`lib/presentation/entity`](lib/presentation/entity): Classes that model the visual elements used by the widgets.
-- [`lib/domain/entity`](lib/domain/entity): Model classes for performing business logic manipulations. They act as a abstraction to hide the local and remote data models.
+- [`lib/domain/entity`](lib/domain/entity): Model classes for performing business logic manipulations. They act as an abstraction to hide the local and remote data models.
 - [`lib/services/entity`](lib/services/entity): Contains local models (data classes for the database) and remote models (data classes for the api).
 
 #### Entity Naming Convention
 - Presentation entities are prefixed with `UI` (eg: UICity).
-- Domain entites do not have any prefix. (eg: City).
+- Domain entities do not have any prefix. (eg: City).
 - Service entities are of 2 types:
-  - Local / Database entites are prefixed with `Local` (eg: LocalCity).
-  - Remote / API entitiess are prefixed with `Remote` (eg: RemoteCity).
+  - Local / Database entities are prefixed with `Local` (eg: LocalCity).
+  - Remote / API entities are prefixed with `Remote` (eg: RemoteCity).
 
 ### Other Directories
 Apart from the main layers, the template has
 - [`lib/foundation`](lib/foundation): Extensions on primitive data types, loggers, global type alias etc.
-- [`lib/flavors`](lib/flavors): Flavor i.e. Environment reledated classes.
+- [`lib/flavors`](lib/flavors): Flavor i.e. Environment related classes.
 - [`lib/entrypoints`](lib/entrypoints): Target files for flutter to run for each flavor.
 - [`lib/app.dart`](lib/app.dart): App initialization code.
 
 ## Understanding the Presentation Layer
 The presentation layer houses all the visual components and state management logic.
 
-The [`base`](lib/presentation/base) directory has all the resuable and common elements used as building blocks for the UI like common widgets, app theme data, exceptions, base view models etc.
+The [`base`](lib/presentation/base) directory has all the reusable and common elements used as building blocks for the UI like common widgets, app theme data, exceptions, base view models etc.
 
 ### View Model
 State Management is done using the [`riverpod`](https://riverpod.dev/) along with [`state_notifier`](https://pub.dev/packages/state_notifier). The class that manages state is called the `View Model`. 
 
-Each `View Model` is a sub class of the `BaseViewModel`. The [`BaseViewModel`](lib/presentation/base/view_model_provider/base_view_model.dart) is a `StateNotifier` of [`ScreenState`](#screen-state). Along with the ScreenState it also exposes a stream of [`Effect`](#effect). 
+Each `View Model` is a subclass of the `BaseViewModel`. The [`BaseViewModel`](lib/presentation/base/view_model_provider/base_view_model.dart) is a `StateNotifier` of [`ScreenState`](#screen-state). Along with the ScreenState it also exposes a stream of [`Effect`](#effect). 
 
 Implementations of the BaseViewModel can also choose to handle [`Intents`](#intent).
 
 ### Screen State
-[`ScreenState`](lib/presentation/entity/screen/screen_state.dart) encapsulates all the state required by a [`Page`](#page). State is any data that represents the current situtation of a Page.
+[`ScreenState`](lib/presentation/entity/screen/screen_state.dart) encapsulates all the state required by a [`Page`](#page). State is any data that represents the current situation of a Page.
 
 For example, the [`HomeScreenState`](lib/presentation/destinations/weather/home/home_screen_state.dart) holds the state required by the [`HomePage`](lib/presentation/destinations/weather/home/home_page.dart).
 
@@ -104,7 +104,7 @@ Showing a snackbar or hiding the keyboard are examples of an effect.
 
 
 ### Intent
-Intent is any action takes place on page. It may or may not be user initiated. 
+Intent is any action that takes place on a page. It may or may not be user initiated. 
 
 [`SearchScreenIntent`](lib/presentation/destinations/weather/search/search_screen_intent.dart) has the actions that can happen on the [`SearchPage`](lib/presentation/destinations/weather/search/search_page.dart).
 
@@ -119,7 +119,7 @@ Each page accepts the [`Screen`](#screen) object as input.
 A [`Screen`](lib/presentation/entity/screen/screen.dart) is a class that represents a `Page` in the context of navigation. It holds the `path` used by the navigator to navigate to a `Page` and also holds any arguments required to navigate to that `Page`.
 
 ## Flavors
-The template comes with built-in support for 3 flavors. Each flavor uses a diffrent `main.dart` file.
+The template comes with built-in support for 3 flavors. Each flavor uses a different `main.dart` file.
 - Dev - [`main_dev.dart`](lib/entrypoints/main_dev.dart)
 - QA - [`main_qa.dart`](lib/entrypoints/main_qa.dart)
 - Prod - [`main_prod.dart`](lib/entrypoints/main_prod.dart)
@@ -139,7 +139,7 @@ Read the [scripts documentation](scripts/README.md) to learn about all the scrip
 The Flutter Template contains:
 - A [`Flutter`](https://flutter.dev/) application.
 - Built-in support for 3 [`flavors`](https://docs.flutter.dev/deployment/flavors) - `dev`, `qa` and `prod`.
-- A [`reactive base architectire`](#architecture) for your application.
+- A [`reactive base architecture`](#architecture) for your application.
 - [`Riverpod`](https://riverpod.dev/) along with [`state_notifier`](https://pub.dev/packages/state_notifier) for state management.
 - [`Drift`](https://drift.simonbinder.eu/) as local database for storage.
 - [`Dio`](https://github.com/flutterchina/dio) for making API calls.
@@ -157,7 +157,7 @@ Dart 2.15 or greater and Flutter 2.10 or greater is recommended.
 [Follow this guide to setup your flutter environment](https://docs.flutter.dev/get-started/install) based on your platform.
 
 ## Continuous Integration and Deployment
-The Flutter template comes with built in support for CI/CD using Github Actions.
+The Flutter template comes with built-in support for CI/CD using Github Actions.
 
 ### CI
 The [`CI`](.github/workflows/ci.yml) workflow performs the following checks on every pull request:
@@ -170,11 +170,11 @@ The [`CI`](.github/workflows/ci.yml) workflow performs the following checks on e
 The [`CD`](.github/workflows/cd.yml) workflow performs the following actions:
 - Bump the build number by 1.
 - Build a signed release apk.
-- Upload apk to app center.
+- Upload apk to the app center.
 - Upload apk as artifact to release tag.
 - Build a signed iOS app.
 - Upload ipa to testflight.
-- Upload ipa as artifact to release tag.
+- Upload the ipa as an artifact to release the tag.
 - Commit the updated version to git.
 
 ### Android CD setup
@@ -185,10 +185,10 @@ For the android CD workflow to run, we need to perform the following setup steps
 openssl base64 < flutter_template_keystore.jks | tr -d '\n' | tee flutter_template_keystore_encoded.txt
 ```
 - Store the `base64` output on [`Github Secrets`](https://docs.github.com/en/actions/security-guides/encrypted-secrets) with the key name `KEYSTORE`.
-- Save the `store password` in github secrets with key name `RELEASE_STORE_PASSWORD`.
-- Save the `key alias` in github secrets with key name `RELEASE_KEY_ALIAS`.
-- Save the `key password` in github secrets with key name `RELEASE_KEY_PASSWORD`.
-- [Create a distribution on app center](https://docs.microsoft.com/en-us/appcenter/distribution/) and get the upload key. You can get it from from appcenter.ms/settings.
+- Save the `store password` in github secrets with the key name `RELEASE_STORE_PASSWORD`.
+- Save the `key alias` in github secrets with the key name `RELEASE_KEY_ALIAS`.
+- Save the `key password` in github secrets with the key name `RELEASE_KEY_PASSWORD`.
+- [Create a distribution on app center](https://docs.microsoft.com/en-us/appcenter/distribution/) and get the upload key. You can get it from appcenter.ms/settings.
 - Save the app center upload key on github secrets with key name `APP_CENTER_TOKEN`.
 
 ### Pushing to protected branches
@@ -201,4 +201,5 @@ openssl base64 < flutter_template_keystore.jks | tr -d '\n' | tee flutter_templa
 
 ## Gotchas
 - Flutter apps might have issues on some android devices with variable refresh rate where the app is locked at 60fps instead of running at the highests refresh rate. This might make your app look like it is running slower than other apps on the device. To fix this the template uses the [`flutter_displaymode`](https://pub.dev/packages/flutter_displaymode) package. The template sets the highest refresh rate available. If you don't want this behaviour you can remove the lines 40 to 46 in [`app.dart`](lib/app.dart#L40). [`Link to frame rate issue on flutter`](https://github.com/flutter/flutter/issues/35162).
+
 
