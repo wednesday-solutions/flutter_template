@@ -16,7 +16,6 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../../mocks/viewmodels/fake_search_view_model.dart';
 import '../../../../base/test_helpers.dart';
 
-
 void main() {
   late FakeSearchViewModel fakeSearchViewModel;
 
