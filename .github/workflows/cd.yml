@@ -107,8 +107,8 @@ jobs:
       - name: Upload the signed ipa to TestFlight
         env:
           PASSWORD: ${{ secrets.APPSTORE_PASSWORD }}
-          IPA_PATH: ${{ env.GITHUB_WORKSPACE }}/build/ios/ipa/prod.ipa
-        run: xcrun altool --upload-app --file $IPA_PATH --username "ios@wednesday.is" --password $PASSWORD --type ios
+          IPA_PATH: build/ios/ipa/prod.ipa
+        run: xcrun altool --upload-app --file $IPA_PATH --username "ios@wednesday.is" --password $PASSWORD --type ios --verbose
 
 #  commit-version-update:
 #    name: Commit Version Change

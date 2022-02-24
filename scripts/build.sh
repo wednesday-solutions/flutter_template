@@ -20,7 +20,6 @@ then
   FLAGS="$FLAGS --export-options-plist=$PLIST_LOCATION"
 #  flutter build $1 --flavor $2 -t "lib/$ENTRYPOINT" --export-options-plist=$PLIST_LOCATION
 fi
-echo $FLAGS
 echo "**********************************************************************************************"
 echo "Running flutter build $FLAGS"
 echo "**********************************************************************************************"
