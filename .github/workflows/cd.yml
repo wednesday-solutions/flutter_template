@@ -96,14 +96,14 @@ jobs:
           P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
           BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
           KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
-        run: scripts/install_certs.sh
+        run: chmod u+x scripts/install_certs.sh && scripts/install_certs.sh
       - name: Retrieve Export-Options.plist from secrets
         env:
           PLIST: ${{ secrets.IOS_PLIST }}
           PLIST_PATH: ${{ runner.temp }}/options.plist
         run: echo -n "$PLIST" | base64 --decode --output $PLIST_PATH
       - name: Build the signed ipa
-        run: scripts/build.sh ipa prod --release
+        run: chmod u+x scripts/build.sh && scripts/build.sh ipa prod --release
       - name: Upload the signed ipa to TestFlight
         env:
           PASSWORD: ${{ secrets.APPSTORE_PASSWORD }}
