@@ -3,73 +3,74 @@ on:
   push:
     branches:
       - main
+      -
   workflow_dispatch:
 
 jobs:
-  build-android:
-    name: Release Android To AppCenter
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v2
-        # Replace with your Personal Access Token
-        with:
-          token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}
-
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-
-      - name: Get Dependencies
-        run: flutter pub get
-
-      - name: Run build_runner
-        run: flutter pub run build_runner build
-
-      - name: Bump Build Number
-        run: scripts/bump-build-number.sh
-
-      - name: Decode Keystore
-        id: decode_keystore
-        uses: timheuer/base64-to-file@v1
-        with:
-          fileName: 'flutter_template_keystore.jks'
-          encodedString: ${{ secrets.KEYSTORE }}
-
-      - name: Set Flavor Name
-        run: scripts/set-flavor-and-apk-path-to-env.sh
-
-      - name: Build APK
-        run: scripts/build.sh apk $FLAVOR_NAME --release --obfuscate --split-debug-info=debug-info
-        env:
-          KEY_STORE_PATH: ${{ steps.decode_keystore.outputs.filePath }}
-          RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
-          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
-          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
-
-      - name: Upload Artifact to App Center
-        uses: wzieba/AppCenter-Github-Action@v1
-        with:
-          appName: wednesday-solutions/ANDROID-Flutter-Template
-          token: ${{ secrets.APP_CENTER_TOKEN }}
-          group: Testers
-          file: ${{ env.APK_PATH }}
-          notifyTesters: true
-
-      - name: Add Tag Name to ENV
-        run: scripts/gh-action-read-and-set-version-env.sh
-
-      - name: Create Release and Add APK Artifact
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ env.tag_name }}
-          files: |
-            ${{ env.APK_PATH }}
-            debug-info/app.android-arm.symbols
-            debug-info/app.android-arm64.symbols
-            debug-info/app.android-x64.symbols
-
+#  build-android:
+#    name: Release Android To AppCenter
+#    runs-on: ubuntu-latest
+#    permissions:
+#      contents: write
+#    steps:
+#      - uses: actions/checkout@v2
+#        # Replace with your Personal Access Token
+#        with:
+#          token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}
+#
+#      - uses: subosito/flutter-action@v2
+#        with:
+#          channel: 'stable'
+#
+#      - name: Get Dependencies
+#        run: flutter pub get
+#
+#      - name: Run build_runner
+#        run: flutter pub run build_runner build
+#
+#      - name: Bump Build Number
+#        run: scripts/bump-build-number.sh
+#
+#      - name: Decode Keystore
+#        id: decode_keystore
+#        uses: timheuer/base64-to-file@v1
+#        with:
+#          fileName: 'flutter_template_keystore.jks'
+#          encodedString: ${{ secrets.KEYSTORE }}
+#
+#      - name: Set Flavor Name
+#        run: scripts/set-flavor-and-apk-path-to-env.sh
+#
+#      - name: Build APK
+#        run: scripts/build.sh apk $FLAVOR_NAME --release --obfuscate --split-debug-info=debug-info
+#        env:
+#          KEY_STORE_PATH: ${{ steps.decode_keystore.outputs.filePath }}
+#          RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
+#          RELEASE_KEY_ALIAS: ${{ secrets.RELEASE_KEY_ALIAS }}
+#          RELEASE_KEY_PASSWORD: ${{ secrets.RELEASE_KEY_PASSWORD }}
+#
+#      - name: Upload Artifact to App Center
+#        uses: wzieba/AppCenter-Github-Action@v1
+#        with:
+#          appName: wednesday-solutions/ANDROID-Flutter-Template
+#          token: ${{ secrets.APP_CENTER_TOKEN }}
+#          group: Testers
+#          file: ${{ env.APK_PATH }}
+#          notifyTesters: true
+#
+#      - name: Add Tag Name to ENV
+#        run: scripts/gh-action-read-and-set-version-env.sh
+#
+#      - name: Create Release and Add APK Artifact
+#        uses: softprops/action-gh-release@v1
+#        with:
+#          tag_name: ${{ env.tag_name }}
+#          files: |
+#            ${{ env.APK_PATH }}
+#            debug-info/app.android-arm.symbols
+#            debug-info/app.android-arm64.symbols
+#            debug-info/app.android-x64.symbols
+#
 
   build-ios:
     name: Release iOS to TestFlight
