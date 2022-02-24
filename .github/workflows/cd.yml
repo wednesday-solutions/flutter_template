@@ -76,6 +76,9 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}
+      - uses: mikehardy/buildcache-action@v1
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
