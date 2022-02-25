@@ -197,18 +197,16 @@ For the IOS job in the `cd.yml` to run, you first need to have a valid [Apple De
 
 We will divide the guide into steps so that it is easier to understand
 
-> #### Step 1: Setup on the AppStore
+#### Step 1: Setup on the AppStore
 - Register your `Bundle ID`. You can view the official Flutter guide [here](https://docs.flutter.dev/deployment/ios#register-a-bundle-id)
-```
-CAUTION: Apple doesn't allow underscore in the bundle identifier. Read about valid identifiers [here](https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleidentifier)
-```
+> CAUTION: Apple doesn't allow underscore in the bundle identifier. Read about valid identifiers [here](https://developer.apple.com/documentation/bundleresources/information_property_list/cfbundleidentifier)
 - Create an application on the AppStore Connect Portal. Check out the official guide [here](https://docs.flutter.dev/deployment/ios#create-an-application-record-on-app-store-connect)
 
-> #### Step 2: Getting a Distribution Certificate and Provisioning Profile
+#### Step 2: Getting a Distribution Certificate and Provisioning Profile
 - Create a `Distribution Certificate` for your machine locally once. You can refer to [this](https://support.magplus.com/hc/en-us/articles/203808748-iOS-Creating-a-Distribution-Certificate-and-p12-File) guide. Download the `.p12` file for use later. Remember the password used to create this certificate as we will need this later
 - Create a `Provisioning Profile` for your `Bundle ID` you registered above. You can refer to [this](https://support.staffbase.com/hc/en-us/articles/115003598691-Creating-the-iOS-Provisioning-Profiles) guide. Download the profile for use later.
 
-> #### Step 3: Getting the options.plist
+#### Step 3: Getting the options.plist
 - In the following template
    - Replace `BUNDLE ID` with your `Bundle Identifier` (You got that already from Step 1)
    - Replace `PROVISIONING PROFILE NAME` with your Provisioning Profile Name (You already created one in Step 2, use that)
@@ -248,13 +246,14 @@ CAUTION: Apple doesn't allow underscore in the bundle identifier. Read about val
 </plist>
 ```
 </details>
+
 - Create a new file called `options.plist` and save the above contents in that file
 
-> #### Step 4: Making an app specific password
+#### Step 4: Making an app specific password
 - Read the [official guide](https://support.apple.com/en-us/HT204397) to create an app specific password and remember it(;P)
 - The pipeline uses this password to upload an ipa to testflight
 
-> #### Step 5: Bringing it all together
+#### Step 5: Bringing it all together
 - Add the following keys to [Github Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
  - `BUILD_CERTIFICATE_BASE64` : The base64 of the p12 file we generated(Step 2)
  - `P12_PASSWORD`: The password of the p12 certificate generated above in Step 2
