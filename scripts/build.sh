@@ -18,10 +18,12 @@ if [ $1 == ipa ]
 then
   sed -i '' "s#.*entrypoints/main.*#import 'package:flutter_template/$ENTRYPOINT' as entrypoint;#" lib/main.dart
   FLAGS="$FLAGS --export-options-plist=$PLIST_LOCATION"
-#  flutter build $1 --flavor $2 -t "lib/$ENTRYPOINT" --export-options-plist=$PLIST_LOCATION
+elif [ $1 == ios ]
+then
+  sed -i '' "s#.*entrypoints/main.*#import 'package:flutter_template/$ENTRYPOINT' as entrypoint;#" lib/main.dart
 fi
-echo "**********************************************************************************************"
+echo "************************************************************************************************************"
 echo "Running flutter build $FLAGS"
-echo "**********************************************************************************************"
+echo "************************************************************************************************************"
 
 flutter build $FLAGS
