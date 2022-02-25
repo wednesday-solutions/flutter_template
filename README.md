@@ -212,7 +212,7 @@ We will divide the guide into steps so that it is easier to understand
    - Replace `PROVISIONING PROFILE NAME` with your Provisioning Profile Name (You already created one in Step 2, use that)
    - Replace `TEAM_ID` with your team id. Look at [this](https://stackoverflow.com/a/18727947) answer on "How to find your Team ID"
 <details>
-<summary><b>Click to View Template</b></summary>
+<summary><i>Click to View Template</i></summary>
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
