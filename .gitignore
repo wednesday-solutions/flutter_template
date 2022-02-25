@@ -58,8 +58,12 @@ app.*.map.json
 
 # Pub
 pubspec.lock
-
 /coverage
 /debug-info
 
 !.idea/runConfigurations/*
+/scripts/ioskey.p12
+/scripts/key.p8
+/scripts/options.plist
+
+#Pods

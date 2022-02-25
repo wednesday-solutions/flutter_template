@@ -69,24 +69,55 @@ jobs:
             debug-info/app.android-arm.symbols
             debug-info/app.android-arm64.symbols
             debug-info/app.android-x64.symbols
-
+#
 
   build-ios:
     name: Release iOS to TestFlight
     runs-on: macos-latest
     steps:
-      - name: TO BE IMPLEMENTED
-        run: echo "Workflow to be implemented"
-#      - uses: actions/checkout@v2
-#      - uses: subosito/flutter-action@v2
-#        with:
-#          channel: 'stable'
-#      - name: Get Dependencies
-#        run: flutter pub get
-#      - name: Run build_runner
-#        run: flutter pub run build_runner build
-#      - name: Build iOS
-#        run: scripts/build.sh ios qa --release --no-codesign
+      - uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+
+      - name: Get Dependencies
+        run: flutter pub get
+
+      - name: Run build_runner
+        run: flutter pub run build_runner build
+
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Bump Build Number
+        run: scripts/bump-build-number.sh
+
+      - name: Install the Apple certificate and provisioning profile
+        env:
+          BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
+          P12_PASSWORD: ${{ secrets.P12_PASSWORD }}
+          BUILD_PROVISION_PROFILE_BASE64: ${{ secrets.BUILD_PROVISION_PROFILE_BASE64 }}
+          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: chmod u+x scripts/install_certs.sh && scripts/install_certs.sh
+
+      - name: Retrieve Export-Options.plist from secrets
+        env:
+          PLIST: ${{ secrets.IOS_PLIST }}
+          PLIST_PATH: ${{ runner.temp }}/options.plist
+        run: echo -n "$PLIST" | base64 --decode --output $PLIST_PATH
+
+      - name: Build the signed ipa
+        run: chmod u+x scripts/build.sh && scripts/build.sh ipa prod --release
+
+      - name: Upload the signed ipa to TestFlight
+        env:
+          PASSWORD: ${{ secrets.APPSTORE_PASSWORD }}
+          IPA_PATH: build/ios/ipa/prod.ipa
+        run: xcrun altool --upload-app --file $IPA_PATH --username "ios@wednesday.is" --password $PASSWORD --type ios --verbose
 
   commit-version-update:
     name: Commit Version Change
@@ -104,7 +135,7 @@ jobs:
       - name: Bump Version
         run: scripts/bump-build-number.sh
 
-      - name: Congifure Git
+      - name: Configure Git
         run: |
           git config user.name "Github Actions CD"
           git config user.email "<>"
