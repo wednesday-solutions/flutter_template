@@ -103,6 +103,8 @@ jobs:
           PLIST: ${{ secrets.IOS_PLIST }}
           PLIST_PATH: ${{ runner.temp }}/options.plist
         run: echo -n "$PLIST" | base64 --decode --output $PLIST_PATH
+      - name: Checking if plist is not empty and cat the content
+        run: cat $PLIST_PATH
       - name: Build the signed ipa
         run: chmod u+x scripts/build.sh && scripts/build.sh ipa prod --release
       - name: Upload the signed ipa to TestFlight
