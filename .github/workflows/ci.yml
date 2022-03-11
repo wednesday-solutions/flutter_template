@@ -17,7 +17,7 @@ jobs:
       - name: Lint
         run: flutter analyze --fatal-infos --fatal-warnings
       - name: Unit tests
-        run: flutter test
+        run: flutter test --exclude-tags=golden
       - name: Build Android
         run: scripts/build.sh apk dev --debug
   build-ios:
@@ -33,5 +33,7 @@ jobs:
         run: flutter pub get
       - name: Run build_runner
         run: flutter pub run build_runner build
+      - name: Golden tests
+        run: flutter test --tags=golden
       - name: Build iOS
         run: scripts/build.sh ios dev --debug --no-codesign
