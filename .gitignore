@@ -65,4 +65,5 @@ app.*.map.json
 /scripts/key.p8
 /scripts/options.plist
 
-#Pods
+# Golden failure output
+**/failures/*.png
