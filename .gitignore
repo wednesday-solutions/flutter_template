@@ -57,7 +57,6 @@ app.*.map.json
 *.gr.dart
 
 # Pub
-pubspec.lock
 /coverage
 /debug-info
 
