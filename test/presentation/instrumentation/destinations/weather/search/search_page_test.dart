@@ -1,8 +1,5 @@
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/list/ui_city_list_item.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_page.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_screen_intent.dart';
@@ -21,49 +18,24 @@ import '../../../../../mocks/viewmodels/fake_search_view_model.dart';
 import '../../../../base/test_helpers.dart';
 import '../../../../base/widdget_tester_ext.dart';
 
-const double _kGoldenDiffTolerance = 0.05;
-
-class CustomGoldenComparator extends LocalFileComparator {
-  CustomGoldenComparator(String testFile) : super(Uri.parse(testFile));
-
-  @override
-  Future<bool> compare(Uint8List imageBytes, Uri golden) async {
-    final ComparisonResult result = await GoldenFileComparator.compareLists(
-      imageBytes,
-      await getGoldenBytes(golden),
-    );
-
-    if (!result.passed && result.diffPercent > _kGoldenDiffTolerance) {
-      final String error = await generateFailureOutput(result, golden, basedir);
-      throw FlutterError(error);
-    }
-    if (!result.passed) {
-      log.d('A tolerable difference of ${result.diffPercent * 100}% was found when '
-          'comparing $golden.');
-    }
-    return result.passed || result.diffPercent <= _kGoldenDiffTolerance;
-  }
-}
-
 void main() {
   late FakeSearchViewModel fakeSearchViewModel;
 
   var _fakeSearchViewModelProvider =
-  StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>(
+      StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>(
           (ref) {
-        fakeSearchViewModel = FakeSearchViewModel(SearchScreenState(
-          toolbar:
+    fakeSearchViewModel = FakeSearchViewModel(SearchScreenState(
+      toolbar:
           UIToolbar(title: LocaleKeys.searchPageTitle, hasBackButton: true),
-          showLoading: false,
-          searchList: List.empty(),
-        ));
-        return fakeSearchViewModel;
-      });
+      showLoading: false,
+      searchList: List.empty(),
+    ));
+    return fakeSearchViewModel;
+  });
 
   setUpAll(baseSetupAll);
 
-  setUp(() {
-  });
+  setUp(() {});
 
   tearDown(() {
     GetIt.instance.reset();
@@ -88,16 +60,16 @@ void main() {
 
   testPageGolden(
       "Given search page is opened, When no other action is taken, Then text field and search results text should be present",
-      goldenName: "search_page_default_state",
-      test: (tester) async {
-        // Given
-        await _loadPageForGolden(tester);
+      goldenName: "search_page_default_state", test: (tester) async {
+    // Given
+    await _loadPageForGolden(tester);
 
-        // Then
-        expect(find.byType(TextField), findsOneWidget);
-        expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]), findsOneWidget);
-        expect(find.byType(SearchPageLoadingShimmer), findsNothing);
-      });
+    // Then
+    expect(find.byType(TextField), findsOneWidget);
+    expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]),
+        findsOneWidget);
+    expect(find.byType(SearchPageLoadingShimmer), findsNothing);
+  });
 
   testPageGolden(
       "Given search page is opened, When showLoading is true, Then ShimmerLoading should be visible",
@@ -114,21 +86,20 @@ void main() {
 
         // Then
         expect(find.byType(TextField), findsOneWidget);
-        expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]), findsNothing);
+        expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]),
+            findsNothing);
         expect(find.byType(SearchPageLoadingShimmer), findsOneWidget);
       });
 
   testPageGolden(
       "Given search results are empty, When non empty search term is present, Then noResultsFound should be displayed",
-      goldenName: "search_page_no_results",
-      test: (tester) async {
-        // Given
-        await _loadPageForGolden(tester);
+      goldenName: "search_page_no_results", test: (tester) async {
+    // Given
+    await _loadPageForGolden(tester);
 
-        // When
-        fakeSearchViewModel
-            .setState((state) =>
-            state.copyWith(showLoading: true, searchList: [
+    // When
+    fakeSearchViewModel
+        .setState((state) => state.copyWith(showLoading: true, searchList: [
               UICity(
                 cityId: 1,
                 title: "title",
@@ -137,170 +108,160 @@ void main() {
                 isFavourite: false,
               )
             ]));
-        await tester.pump();
-        fakeSearchViewModel.updateSearchTerm("newTerm");
-        fakeSearchViewModel.setState((state) =>
-            state.copyWith(
-              showLoading: false,
-              searchList: List.empty(),
-            ));
-        await tester.pump();
+    await tester.pump();
+    fakeSearchViewModel.updateSearchTerm("newTerm");
+    fakeSearchViewModel.setState((state) => state.copyWith(
+          showLoading: false,
+          searchList: List.empty(),
+        ));
+    await tester.pump();
 
-        // Then
-        expect(find.byType(TextField), findsOneWidget);
-        expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]), findsNothing);
-        expect(find.byType(SearchPageLoadingShimmer), findsNothing);
-        expect(find.text(englishUS[LocaleKeys.noResultsFound]), findsOneWidget);
-      });
+    // Then
+    expect(find.byType(TextField), findsOneWidget);
+    expect(
+        find.text(englishUS[LocaleKeys.searchResultsAppearHere]), findsNothing);
+    expect(find.byType(SearchPageLoadingShimmer), findsNothing);
+    expect(find.text(englishUS[LocaleKeys.noResultsFound]), findsOneWidget);
+  });
 
   testPageGolden(
       "Given search results are not empty, When non empty search term is present, Then results should be displayed",
-      goldenName: "search_page_results",
-      test: (tester) async {
-        // Given
-        await _loadPageForGolden(tester);
+      goldenName: "search_page_results", test: (tester) async {
+    // Given
+    await _loadPageForGolden(tester);
 
-        // When
-        fakeSearchViewModel.setState(
-                (state) =>
-                state.copyWith(showLoading: false, searchList: [
-                  UICity(
-                    cityId: 1,
-                    title: "title",
-                    locationType: "locationType",
-                    location: "location",
-                    isFavourite: false,
-                  ),
-                  UICity(
-                    cityId: 2,
-                    title: "title 2",
-                    locationType: "locationType 2",
-                    location: "location 2",
-                    isFavourite: false,
-                  ),
-                ]));
-        await tester.pumpAndSettle();
+    // When
+    fakeSearchViewModel
+        .setState((state) => state.copyWith(showLoading: false, searchList: [
+              UICity(
+                cityId: 1,
+                title: "title",
+                locationType: "locationType",
+                location: "location",
+                isFavourite: false,
+              ),
+              UICity(
+                cityId: 2,
+                title: "title 2",
+                locationType: "locationType 2",
+                location: "location 2",
+                isFavourite: false,
+              ),
+            ]));
+    await tester.pumpAndSettle();
 
-        // Then
-        expect(find.byType(TextField), findsOneWidget);
-        expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]), findsNothing);
-        expect(find.byType(SearchPageLoadingShimmer), findsNothing);
-        expect(find.text(englishUS[LocaleKeys.noResultsFound]), findsNothing);
-        expect(find.byType(UICityListItem), findsNWidgets(2));
-      });
+    // Then
+    expect(find.byType(TextField), findsOneWidget);
+    expect(
+        find.text(englishUS[LocaleKeys.searchResultsAppearHere]), findsNothing);
+    expect(find.byType(SearchPageLoadingShimmer), findsNothing);
+    expect(find.text(englishUS[LocaleKeys.noResultsFound]), findsNothing);
+    expect(find.byType(UICityListItem), findsNWidgets(2));
+  });
 
   testPageGolden(
       "Given search list is displayed, When a city is marked as favorite, Then the icon is in selected state",
-      goldenName: "search_page_favorite_icon",
-      test: (tester) async {
-        // Given
-        await _loadPageForGolden(tester);
-        final uiCityList = [
-          UICity(
-            cityId: 1,
-            title: "title",
-            locationType: "locationType",
-            location: "location",
-            isFavourite: true,
-          ),
-          UICity(
-            cityId: 2,
-            title: "title 2",
-            locationType: "locationType 2",
-            location: "location 2",
-            isFavourite: false,
-          ),
-        ];
+      goldenName: "search_page_favorite_icon", test: (tester) async {
+    // Given
+    await _loadPageForGolden(tester);
+    final uiCityList = [
+      UICity(
+        cityId: 1,
+        title: "title",
+        locationType: "locationType",
+        location: "location",
+        isFavourite: true,
+      ),
+      UICity(
+        cityId: 2,
+        title: "title 2",
+        locationType: "locationType 2",
+        location: "location 2",
+        isFavourite: false,
+      ),
+    ];
 
-        // When
-        fakeSearchViewModel.setState(
-                (state) =>
-                state.copyWith(showLoading: false, searchList: uiCityList));
-        await tester.pump();
+    // When
+    fakeSearchViewModel.setState(
+        (state) => state.copyWith(showLoading: false, searchList: uiCityList));
+    await tester.pump();
 
-        // Then
-        expect(find.byIcon(Icons.favorite), findsOneWidget);
-      });
+    // Then
+    expect(find.byIcon(Icons.favorite), findsOneWidget);
+  });
 
   testWidgets(
       "Given search page opened, When text is entered in text field, Then search intent is fired",
-          (tester) async {
-        // Given
-        await _loadPage(tester);
+      (tester) async {
+    // Given
+    await _loadPage(tester);
 
-        // When
-        await tester.enterText(find.byType(TextField), "search");
-        await tester.pump();
+    // When
+    await tester.enterText(find.byType(TextField), "search");
+    await tester.pump();
 
-        // Then
-        verify(() =>
-            fakeSearchViewModel
-                .onIntent(SearchScreenIntent.search(searchTerm: "search")))
-            .called(1);
-      });
+    // Then
+    verify(() => fakeSearchViewModel
+        .onIntent(SearchScreenIntent.search(searchTerm: "search"))).called(1);
+  });
 
   testWidgets(
       "Given search page is opened, When back button is pressed, Then back intent is fired",
-          (tester) async {
-        // Given
-        await _loadPage(tester);
+      (tester) async {
+    // Given
+    await _loadPage(tester);
 
-        // When
+    // When
 
-        await tester.tap(find.byTooltip("Back"));
-        await tester.pump();
+    await tester.tap(find.byTooltip("Back"));
+    await tester.pump();
 
-        // Then
-        verify(() => fakeSearchViewModel.onIntent(SearchScreenIntent.back()))
-            .called(1);
-      });
+    // Then
+    verify(() => fakeSearchViewModel.onIntent(SearchScreenIntent.back()))
+        .called(1);
+  });
 
   testWidgets(
       "Given search list is displayed, When favorite is pressed, Then favorite intent is fired",
-          (tester) async {
-        // Given
-        await _loadPage(tester);
-        final uiCityList = [
-          UICity(
-            cityId: 1,
-            title: "title",
-            locationType: "locationType",
-            location: "location",
-            isFavourite: false,
-          ),
-          UICity(
-            cityId: 2,
-            title: "title 2",
-            locationType: "locationType 2",
-            location: "location 2",
-            isFavourite: false,
-          ),
-        ];
+      (tester) async {
+    // Given
+    await _loadPage(tester);
+    final uiCityList = [
+      UICity(
+        cityId: 1,
+        title: "title",
+        locationType: "locationType",
+        location: "location",
+        isFavourite: false,
+      ),
+      UICity(
+        cityId: 2,
+        title: "title 2",
+        locationType: "locationType 2",
+        location: "location 2",
+        isFavourite: false,
+      ),
+    ];
 
-        // When
-        fakeSearchViewModel.setState(
-                (state) =>
-                state.copyWith(showLoading: false, searchList: uiCityList));
-        await tester.pump();
-        await tester.tap(find
-            .descendant(
+    // When
+    fakeSearchViewModel.setState(
+        (state) => state.copyWith(showLoading: false, searchList: uiCityList));
+    await tester.pump();
+    await tester.tap(find
+        .descendant(
             of: find.byType(UICityListItem), matching: find.byType(IconButton))
-            .first);
-        await tester.pump();
-        await tester.tap(find
-            .descendant(
+        .first);
+    await tester.pump();
+    await tester.tap(find
+        .descendant(
             of: find.byType(UICityListItem), matching: find.byType(IconButton))
-            .last);
-        await tester.pump();
+        .last);
+    await tester.pump();
 
-        // Then
-        verify(() =>
-            fakeSearchViewModel.onIntent(
-                SearchScreenIntent.toggleFavorite(city: uiCityList.first)))
-            .called(1);
-        verify(() =>
-            fakeSearchViewModel.onIntent(
-                SearchScreenIntent.toggleFavorite(city: uiCityList.last)))
-            .called(1);
-      });
+    // Then
+    verify(() => fakeSearchViewModel.onIntent(
+        SearchScreenIntent.toggleFavorite(city: uiCityList.first))).called(1);
+    verify(() => fakeSearchViewModel.onIntent(
+        SearchScreenIntent.toggleFavorite(city: uiCityList.last))).called(1);
+  });
 }
