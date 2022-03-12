@@ -1,5 +1,8 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/list/ui_city_list_item.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_page.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_screen_intent.dart';
@@ -17,6 +20,30 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../../mocks/viewmodels/fake_search_view_model.dart';
 import '../../../../base/test_helpers.dart';
 import '../../../../base/widdget_tester_ext.dart';
+
+const double _kGoldenDiffTolerance = 1.5;
+
+class CustomGoldenComparator extends LocalFileComparator {
+  CustomGoldenComparator(String testFile) : super(Uri.parse(testFile));
+
+  @override
+  Future<bool> compare(Uint8List imageBytes, Uri golden) async {
+    final ComparisonResult result = await GoldenFileComparator.compareLists(
+      imageBytes,
+      await getGoldenBytes(golden),
+    );
+
+    if (!result.passed && result.diffPercent > _kGoldenDiffTolerance) {
+      final String error = await generateFailureOutput(result, golden, basedir);
+      throw FlutterError(error);
+    }
+    if (!result.passed) {
+      log.d('A tolerable difference of ${result.diffPercent * 100}% was found when '
+          'comparing $golden.');
+    }
+    return result.passed || result.diffPercent <= _kGoldenDiffTolerance;
+  }
+}
 
 void main() {
   late FakeSearchViewModel fakeSearchViewModel;
