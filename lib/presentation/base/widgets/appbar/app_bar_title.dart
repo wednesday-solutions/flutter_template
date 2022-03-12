@@ -18,6 +18,9 @@ class AppBarTitle<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
           .viewModelProvider<VIEW_MODEL, SCREEN_STATE>()
           .select((state) => state.toolbar.title),
     );
-    return Text(title, overflow: TextOverflow.ellipsis,);
+    return Text(
+      title,
+      overflow: TextOverflow.ellipsis,
+    );
   }
 }

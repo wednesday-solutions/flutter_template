@@ -7,9 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:meta/meta.dart';
-import 'package:path/path.dart' as path;
 
-import '../instrumentation/destinations/weather/search/search_page_test.dart';
 
 extension WidgetTesterExt on WidgetTester {
   Future loadPageForGolden({
@@ -85,10 +83,10 @@ testPageGolden(
   testGoldens(description, (tester) async {
     await test(tester);
 
-    goldenFileComparator = CustomGoldenComparator(path.join(
-      (goldenFileComparator as LocalFileComparator).basedir.toString(),
-      goldenName
-    ));
+    // goldenFileComparator = CustomGoldenComparator(path.join(
+    //   (goldenFileComparator as LocalFileComparator).basedir.toString(),
+    //   goldenName
+    // ));
 
     await multiScreenGolden(
       tester,
