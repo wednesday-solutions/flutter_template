@@ -21,7 +21,7 @@ import '../../../../../mocks/viewmodels/fake_search_view_model.dart';
 import '../../../../base/test_helpers.dart';
 import '../../../../base/widdget_tester_ext.dart';
 
-const double _kGoldenDiffTolerance = 1.5;
+const double _kGoldenDiffTolerance = 0.05;
 
 class CustomGoldenComparator extends LocalFileComparator {
   CustomGoldenComparator(String testFile) : super(Uri.parse(testFile));
