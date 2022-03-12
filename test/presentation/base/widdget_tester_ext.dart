@@ -17,7 +17,6 @@ extension WidgetTesterExt on WidgetTester {
     TestWidgetsFlutterBinding.ensureInitialized();
     SharedPreferences.setMockInitialValues({});
     await EasyLocalization.ensureInitialized();
-    await loadAppFonts();
 
     await pumpWidget(
       EasyLocalization(
@@ -28,6 +27,7 @@ extension WidgetTesterExt on WidgetTester {
         child: Builder(builder: (context) {
           return MaterialApp(
             theme: lightTheme,
+            debugShowCheckedModeBanner: false,
             darkTheme: darkTheme,
             themeMode: ThemeMode.dark,
             localizationsDelegates: context.localizationDelegates,
