@@ -21,7 +21,7 @@ class UICityListItem extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(city.title),
+          Expanded(child: Text(city.title)),
           IconButton(
             icon: Icon(
               city.isFavourite ? Icons.favorite : Icons.favorite_outline,
