@@ -14,14 +14,14 @@ import 'package:mocktail/mocktail.dart';
 
 import '../../exception/test_exceptions.dart';
 import '../../mocks/mocks.dart';
-import 'models/city_models.dart';
-import 'models/local_city_data_models.dart';
-import 'models/local_city_with_weather_models.dart';
-import 'models/local_day_weather_companion.dart';
-import 'models/local_day_weather_models.dart';
-import 'models/local_weather_companion_models.dart';
-import 'models/remote_weather_models.dart';
-import 'models/weather_models.dart';
+import '../../test_models/city_models.dart';
+import '../../test_models/local_city_data_models.dart';
+import '../../test_models/local_city_with_weather_models.dart';
+import '../../test_models/local_day_weather_companion.dart';
+import '../../test_models/local_day_weather_models.dart';
+import '../../test_models/local_weather_companion_models.dart';
+import '../../test_models/remote_weather_models.dart';
+import '../../test_models/weather_models.dart';
 
 void main() {
   late WeatherLocalService weatherLocalService;
@@ -65,8 +65,8 @@ void main() {
       "Given local service returns list of LocalCityData, When getFavoriteCitiesList is called, Then Future<List<City>> is returned",
       () async {
     // Given
-    final localCityData = localCityDataList;
-    final cityData = cityList;
+    final localCityData = singleLocalCityDataList;
+    final cityData = singleCityList;
     when(() => weatherLocalService.getFavouriteCities())
         .thenAnswer((_) => Future.value(localCityData));
     when(() => domainCityMapper.mapList(localCityData)).thenReturn(cityData);
@@ -104,8 +104,8 @@ void main() {
       "Given local services returns stream of local city data, When getFavoriteCitiesStream is called, then Stream<List<City>> is returned",
       () {
     // Given
-    final localCityData = localCityDataList;
-    final cityData = cityList;
+    final localCityData = singleLocalCityDataList;
+    final cityData = singleCityList;
     when(() => weatherLocalService.getFavoriteCitiesStream())
         .thenAnswer((_) => Stream.value(localCityData));
     when(() => domainCityMapper.mapList(localCityData)).thenReturn(cityData);
@@ -218,7 +218,7 @@ void main() {
       () async {
     // Given
     const date = Date(year: 1970, month: 1, day: 1);
-    final localCityData = localCityDataList;
+    final localCityData = singleLocalCityDataList;
     final localCity = localCityData.first;
     final remoteWeatherData = remoteWeather;
     const localWeatherCompanionData = localWeatherCompanion;
@@ -271,7 +271,7 @@ void main() {
     // Given
     const date = Date(year: 1970, month: 1, day: 1);
     const nowDate = Date(year: 2021, month: 1, day: 31);
-    final localCityData = localCityDataList;
+    final localCityData = singleLocalCityDataList;
     final localCity = localCityData.first;
     final remoteWeatherData = remoteWeather;
     const localWeatherCompanionData = localWeatherCompanion;
@@ -324,7 +324,7 @@ void main() {
       () async {
     // Given
     const date = Date(year: 1970, month: 1, day: 1);
-    final localCityData = localCityDataList;
+    final localCityData = singleLocalCityDataList;
     final localCity = localCityData.first;
     const localWeatherCompanionData = localWeatherCompanion;
     final localDayWeatherCompanionData = localDayWeatherCompanionList;

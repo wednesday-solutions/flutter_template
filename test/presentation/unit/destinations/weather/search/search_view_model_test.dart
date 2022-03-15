@@ -18,7 +18,7 @@ import '../../../../../extensions/mock_extensions.dart';
 import '../../../../../extensions/stream_extensions.dart';
 import '../../../../../mocks/mocks.dart';
 import '../../../../base/test_helpers.dart';
-import '../models/ui_city_models.dart';
+import '../../../../../test_models/ui_city_models.dart';
 
 void main() {
   late SearchNavigator searchNavigator;
