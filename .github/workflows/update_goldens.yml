@@ -1,0 +1,26 @@
+name: Update Goldens
+on: workflow_dispatch
+jobs:
+  update_goldens:
+    name: Updaate Golden Files
+    runs-on: macos-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+      - name: Get Dependencies
+        run: flutter pub get
+      - name: Run build_runner
+        run: flutter pub run build_runner build
+      - name: Generate Goldens
+        run: flutter test --tags=golden --update-presentation.goldens
+      - name: Configure Git
+        run: |
+          git config user.name "Github Actions Bot"
+          git config user.email "<>"
+      - name: Commit changes
+        run: git add test/presentation.goldens && git commit -m "Updated golden files"
+
