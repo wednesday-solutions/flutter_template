@@ -34,6 +34,6 @@ jobs:
       - name: Run build_runner
         run: flutter pub run build_runner build
       - name: Golden tests
-        run: flutter test --tags=golden
+        run:  flutter test --tags=golden test/presentation/goldens
       - name: Build iOS
         run: scripts/build.sh ios dev --debug --no-codesign
