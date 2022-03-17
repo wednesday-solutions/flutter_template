@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -79,18 +81,24 @@ testPageGolden(
   CustomPump? customPump,
   required Future Function(WidgetTester tester) test,
 }) {
-  testGoldens(description, (tester) async {
-    await test(tester);
+  testGoldens(
+    description,
+    (tester) async {
+      await test(tester);
 
-    await multiScreenGolden(
-      tester,
-      goldenName,
-      devices: devices ??
-          [
-            Device.iphone11,
-            Device.phone.copyWith(name: "smallPhone"),
-          ],
-      customPump: customPump,
-    );
-  });
+      await multiScreenGolden(
+        tester,
+        goldenName,
+        devices: devices ??
+            [
+              Device.iphone11,
+              Device.phone.copyWith(name: "smallPhone"),
+            ],
+        customPump: customPump,
+      );
+    },
+    // Only run golden tests on one platform (macos in this case) to maintain
+    // consistency of rendered png images.
+    skip: !Platform.isMacOS,
+  );
 }
