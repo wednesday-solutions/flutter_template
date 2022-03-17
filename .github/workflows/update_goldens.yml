@@ -2,7 +2,7 @@ name: Update Goldens
 on: workflow_dispatch
 jobs:
   update_goldens:
-    name: Updaate Golden Files
+    name: Update Golden Files
     runs-on: macos-latest
     permissions:
       contents: write
@@ -23,4 +23,7 @@ jobs:
           git config user.email "<>"
       - name: Commit changes
         run: git add test/presentation/goldens && git commit -m "Updated golden files"
+      - uses: nelonoel/branch-name@v1.0.1
+      - name: Push changes
+        run: git push origin ${BRANCH_NAME}
 
