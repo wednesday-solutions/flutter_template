@@ -16,11 +16,11 @@ jobs:
       - name: Run build_runner
         run: flutter pub run build_runner build
       - name: Generate Goldens
-        run: flutter test --tags=golden --update-presentation.goldens
+        run: flutter test --tags=golden test/presentation/goldens --update-goldens
       - name: Configure Git
         run: |
           git config user.name "Github Actions Bot"
           git config user.email "<>"
       - name: Commit changes
-        run: git add test/presentation.goldens && git commit -m "Updated golden files"
+        run: git add test/presentation/goldens && git commit -m "Updated golden files"
 
