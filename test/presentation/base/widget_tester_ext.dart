@@ -71,6 +71,12 @@ extension WidgetTesterExt on WidgetTester {
       ),
     );
   }
+
+  Future loadWidget({
+    required Widget widget,
+  }) async {
+    await pumpWidget(MaterialApp(home: Scaffold(body: widget)));
+  }
 }
 
 @isTest
