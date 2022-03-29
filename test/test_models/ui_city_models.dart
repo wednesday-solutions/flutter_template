@@ -7,3 +7,8 @@ final uiCity = UICity(
   location: "location",
   isFavourite: false,
 );
+
+final searchList = [
+  uiCity,
+  uiCity.copyWith(cityId: 2, title: "title 2", isFavourite: true),
+];

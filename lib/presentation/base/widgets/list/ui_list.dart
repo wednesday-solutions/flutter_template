@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter_template/presentation/base/exceptions/renderer_not_registered_exception.dart';
+import 'package:flutter_template/presentation/base/intent/intent_handler_callback.dart';
 import 'package:flutter_template/presentation/base/renderer/list_item_renderer.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/intent/intent.dart';
 
 class UIList<INTENT extends BaseIntent> extends StatefulWidget {
   final Map<Type, ListItemRenderer> renderers;
-  final Function(INTENT intent)? intentHandler;
+  final IntentHandlerCallback<INTENT>? intentHandler;
   final List<UIListItem> items;
   final Axis scrollDirection;
   final bool shrinkWrap;

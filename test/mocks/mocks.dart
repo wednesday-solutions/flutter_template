@@ -1,6 +1,8 @@
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/interactor/weather/search/search_city_interactor.dart';
 import 'package:flutter_template/navigation/weather/search/search_navigator.dart';
+import 'package:flutter_template/presentation/base/intent/intent_handler.dart';
+import 'package:flutter_template/presentation/entity/intent/intent.dart';
 import 'package:flutter_template/repository/date/date_repository.dart';
 import 'package:flutter_template/repository/weather/domain_city_mapper.dart';
 import 'package:flutter_template/repository/weather/domain_weather_mapper.dart';
@@ -41,3 +43,6 @@ class MockSearchCityInteractor extends Mock implements SearchCityInteractor {}
 
 // Navigator
 class MockSearchNavigator extends Mock implements SearchNavigator {}
+
+// Intent Handler
+class MockIntentHandler<T extends BaseIntent> extends Mock implements IntentHandler<T> {}
