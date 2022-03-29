@@ -6,7 +6,7 @@
     <h1 align="left">Flutter Template</h1>
   </p>
   <p>
-  A Flutter template application showcasing - Clean architecture, Responsive design, State management, Dependency Injection, Widget and Unit testing, Navigation, Localization, Continuous Integration and Continuous Deployment.
+  A Flutter template application showcasing - Clean architecture, Responsive design, State management, Decoupled widgets using the connector pattern, Dependency Injection, Widget and Unit testing, Navigation, Localization, Continuous Integration and Continuous Deployment.
   </p>
 
   ___
@@ -114,6 +114,11 @@ A page is a widget that the navigator can navigate to. It should return the [`Ba
 The `BasePage` creates the structure for the page, initialises the [`ViewModel`](#view-model) and provides the view model in the widget tree so that all the children have access to it. It also listens to the effects from the view model and notifies the page about it.
 
 Each page accepts the [`Screen`](#screen) object as input.
+
+### Widgets
+Each destination has a `widgets` directory. It holds all the widgets that appear on a [`Page`](#page) excluding the page itself. 
+
+Each widget the requires access to data from the view model it split into two dart files. The connector widget communicates with the view model, and the content widget has the actual UI. The connector widget passes all the required data to the content widget. Thus the content widget never depends on the state managent solution used. This helps in easy replacement of state management solution if needed and also makes it easier to test widgets.
 
 ### Screen
 A [`Screen`](lib/presentation/entity/screen/screen.dart) is a class that represents a `Page` in the context of navigation. It holds the `path` used by the navigator to navigate to a `Page` and also holds any arguments required to navigate to that `Page`.
