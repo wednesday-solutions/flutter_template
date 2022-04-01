@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/presentation/destinations/weather/search/widgets/search_page_results/search_page_results.dart';
 
 class SearchPageBodyContent extends StatelessWidget {
   final TextEditingController textController;
   final String searchHint;
+  final Widget child;
 
   const SearchPageBodyContent({
     Key? key,
     required this.textController,
     required this.searchHint,
+    required this.child,
   }) : super(key: key);
 
   @override
@@ -25,7 +26,7 @@ class SearchPageBodyContent extends StatelessWidget {
               labelText: searchHint,
             ),
           ),
-          const SearchPageResults(),
+          child,
         ],
       ),
     );
