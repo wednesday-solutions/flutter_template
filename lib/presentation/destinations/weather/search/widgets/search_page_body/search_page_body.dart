@@ -4,6 +4,7 @@ import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_screen_intent.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/widgets/search_page_body/search_page_body_content.dart';
+import 'package:flutter_template/presentation/destinations/weather/search/widgets/search_page_results/search_page_results.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -27,6 +28,7 @@ class SearchPageBody extends HookConsumerWidget {
     return SearchPageBodyContent(
       textController: textController,
       searchHint: LocaleKeys.startTypingToSearch.tr,
+      child: const SearchPageResults(),
     );
   }
 }
