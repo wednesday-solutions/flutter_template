@@ -50,6 +50,8 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.2
   tuple: ^2.0.0
   uuid: ^3.0.5
+  google_fonts: ^2.3.2
+  hexcolor: ^2.0.7
 
 dev_dependencies:
   auto_route_generator: ^3.2.1
