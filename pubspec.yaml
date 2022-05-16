@@ -52,6 +52,7 @@ dependencies:
   uuid: ^3.0.5
   google_fonts: ^2.3.2
   hexcolor: ^2.0.7
+  dynamic_color: 
 
 dev_dependencies:
   auto_route_generator: ^3.2.1
