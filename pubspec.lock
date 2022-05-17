@@ -239,13 +239,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.1"
-  dynamic_color:
-    dependency: "direct main"
-    description:
-      name: dynamic_color
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.0"
   easy_localization:
     dependency: "direct main"
     description:
@@ -406,13 +399,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  hexcolor:
-    dependency: "direct main"
-    description:
-      name: hexcolor
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.7"
   hooks_riverpod:
     dependency: "direct main"
     description:
