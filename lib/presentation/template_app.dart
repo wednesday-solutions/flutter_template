@@ -33,7 +33,7 @@ class TemplateApp extends StatelessWidget {
           builder: DevicePreview.appBuilder,
           theme: m3Light,
           darkTheme: m3Dark,
-          themeMode: ThemeMode.dark,
+          themeMode: ThemeMode.system,
           routerDelegate: _appRouter.delegate(
             initialRoutes: [HomeRoute(homeScreen: const HomeScreen())],
           ),
