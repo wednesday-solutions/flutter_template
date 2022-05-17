@@ -28,9 +28,9 @@ extension WidgetTesterExt on WidgetTester {
         assetLoader: const CodegenLoader(),
         child: Builder(builder: (context) {
           return MaterialApp(
-            theme: lightTheme,
+            theme: m3Light,
             debugShowCheckedModeBanner: false,
-            darkTheme: darkTheme,
+            darkTheme: m3Dark,
             themeMode: ThemeMode.dark,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
