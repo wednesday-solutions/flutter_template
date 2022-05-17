@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_template/services/base/database/app_database.dart';
 import 'package:flutter_template/services/entity/weather/local/local_city.dart';
@@ -14,10 +15,12 @@ part 'weather_local_service_impl.g.dart';
 class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
     with _$WeatherLocalServiceImplMixin
     implements WeatherLocalService {
-  WeatherLocalServiceImpl(AppDatabase attachedDatabase) : super(attachedDatabase);
+  WeatherLocalServiceImpl(AppDatabase attachedDatabase)
+      : super(attachedDatabase);
 
   @override
-  Future<void> addLocalDayWeather({required LocalDayWeatherCompanion weather}) async {
+  Future<void> addLocalDayWeather(
+      {required LocalDayWeatherCompanion weather}) async {
     await into(localDayWeather).insert(
       weather,
       mode: InsertMode.insertOrReplace,
@@ -84,13 +87,17 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
   }
 
   @override
-  Future<List<LocalDayWeatherData>> getLocalDayWeather({required int woeid}) async {
-    return await (select(localDayWeather)..where((tbl) => tbl.cityWoeid.equals(woeid))).get();
+  Future<List<LocalDayWeatherData>> getLocalDayWeather(
+      {required int woeid}) async {
+    return await (select(localDayWeather)
+          ..where((tbl) => tbl.cityWoeid.equals(woeid)))
+        .get();
   }
 
   @override
   Future<LocalWeatherData?> getLocalWeather({required int woeid}) async {
-    return await (select(localWeather)..where((tbl) => tbl.cityWoeid.equals(woeid)))
+    return await (select(localWeather)
+          ..where((tbl) => tbl.cityWoeid.equals(woeid)))
         .getSingleOrNull();
   }
 
@@ -101,7 +108,7 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
 
   @override
   Future<List<LocalCityWithWeather>> getFavoriteCitiesWeatherList() async {
-    final query = _getLocalCityWithWeatherQuery()..groupBy([localCity.woeid]);
+    final query = _getLocalCityWithWeatherQuery();
     final typedResultList = await query.get();
 
     return _getLocalCityWithWeatherList(typedResultList);
@@ -128,20 +135,22 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
           localDayWeather.cityWoeid.equalsExp(localCity.woeid),
         )
       ],
-    )..groupBy([localCity.woeid]);
+    );
   }
 
-  List<LocalCityWithWeather> _getLocalCityWithWeatherList(List<TypedResult> typedResult) {
+  List<LocalCityWithWeather> _getLocalCityWithWeatherList(
+      List<TypedResult> typedResult) {
     final groupedByWoeid = groupBy(typedResult, (TypedResult row) {
       final localCityData = row.readTable(localCity);
       return localCityData.woeid;
     });
 
-    final localCityWithWeatherList = List<LocalCityWithWeather>.empty(growable: true);
+    final localCityWithWeatherList =
+        List<LocalCityWithWeather>.empty(growable: true);
 
-    for (final row in typedResult) {
-      final localCityData = row.readTable(localCity);
-      final localWeatherData = row.readTable(localWeather);
+    groupedByWoeid.forEach((key, results) {
+      final localCityData = results.first.readTable(localCity);
+      final localWeatherData = results.first.readTable(localWeather);
       final dayWeatherList = results
           .map(
             (row) => row.readTable(localDayWeather),
@@ -153,7 +162,7 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
         weather: localWeatherData,
         dayWeather: dayWeatherList,
       ));
-    }
+    });
 
     return localCityWithWeatherList;
   }

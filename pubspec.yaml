@@ -42,7 +42,6 @@ dependencies:
   json_serializable: ^6.2.0
   logger: ^1.1.0
   path: ^1.8.1
-  path_provider: ^2.0.10
   rxdart: ^0.27.3
   shared_preferences: ^2.0.15
   shimmer: ^2.0.0
@@ -50,6 +49,8 @@ dependencies:
   tuple: ^2.0.0
   uuid: ^3.0.6
   google_fonts: ^2.3.2
+  easy_logger: ^0.0.2
+  path_provider: ^2.0.10
 
 dev_dependencies:
   auto_route_generator: ^4.0.0
@@ -60,6 +61,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.0.3+1
   golden_toolkit: ^0.13.0
+  meta: ^1.7.0
   mocktail: ^0.3.0
 
 # The following section is specific to Flutter.

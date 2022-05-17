@@ -21,7 +21,7 @@ import '../../../../base/widget_tester_ext.dart';
 void main() {
   late FakeSearchViewModel fakeSearchViewModel;
 
-  var _fakeSearchViewModelProvider =
+  var fakeSearchViewModelProvider =
       StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>((ref) {
     fakeSearchViewModel = FakeSearchViewModel(SearchScreenState(
       toolbar: UIToolbar(
@@ -47,7 +47,7 @@ void main() {
     await tester.loadPageForGolden(
       page: const SearchPage(searchScreen: SearchScreen()),
       viewModelProvider: searchViewModelProvider,
-      fakeViewModelProvider: _fakeSearchViewModelProvider,
+      fakeViewModelProvider: fakeSearchViewModelProvider,
     );
   }
 

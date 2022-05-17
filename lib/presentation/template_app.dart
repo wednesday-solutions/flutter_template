@@ -17,13 +17,15 @@ class TemplateApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const enableDevicePreview = String.fromEnvironment("enableDevicePreview") == "true";
-    final _useDevicePreview =
-        enableDevicePreview && kDebugMode && FlavorConfig.instance.flavor == Flavor.dev;
+    const enableDevicePreview =
+        String.fromEnvironment("enableDevicePreview") == "true";
+    final useDevicePreview = enableDevicePreview &&
+        kDebugMode &&
+        FlavorConfig.instance.flavor == Flavor.dev;
 
     return ProviderScope(
       child: MaterialApp.router(
-        useInheritedMediaQuery: _useDevicePreview,
+        useInheritedMediaQuery: useDevicePreview,
         theme: material3LightTheme,
         darkTheme: material3DarkTheme,
         themeMode: ThemeMode.system,
