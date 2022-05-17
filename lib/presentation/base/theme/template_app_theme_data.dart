@@ -1,30 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/presentation/base/theme/color_palette.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hexcolor/hexcolor.dart';
-
-final lightTheme = ThemeData(
-  brightness: Brightness.light,
-  snackBarTheme: const SnackBarThemeData(),
-  appBarTheme: const AppBarTheme(),
-  cardTheme: const _AppCardTheme(),
-);
-
-final darkTheme = ThemeData(
-  brightness: Brightness.dark,
-  snackBarTheme: const SnackBarThemeData(),
-  appBarTheme: const AppBarTheme(),
-  cardTheme: const _AppCardTheme(),
-);
 
 final m3Light = ThemeData(
   useMaterial3: true,
   fontFamily: GoogleFonts.signika().fontFamily,
   snackBarTheme: const SnackBarThemeData(),
   cardTheme: const _AppCardTheme(),
-  colorScheme: ColorScheme.fromSeed(
-    seedColor: HexColor('#6c8cf5'),
-    brightness: Brightness.light,
-  ),
+  colorScheme: lightColorScheme,
 );
 
 final m3Dark = ThemeData(
@@ -32,10 +15,7 @@ final m3Dark = ThemeData(
   fontFamily: GoogleFonts.signika().fontFamily,
   snackBarTheme: const SnackBarThemeData(),
   cardTheme: const _AppCardTheme(),
-  colorScheme: ColorScheme.fromSeed(
-    seedColor: HexColor('#6c8cf5'),
-    brightness: Brightness.dark,
-  ),
+  colorScheme: darkColorScheme,
 );
 
 class _AppCardTheme extends CardTheme {
