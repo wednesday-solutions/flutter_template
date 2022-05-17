@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -18,32 +17,24 @@ class TemplateApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const enableDevicePreview =
-        String.fromEnvironment("enableDevicePreview") == "true";
-    final _useDevicePreview = enableDevicePreview &&
-        kDebugMode &&
-        FlavorConfig.instance.flavor == Flavor.dev;
+    const enableDevicePreview = String.fromEnvironment("enableDevicePreview") == "true";
+    final _useDevicePreview =
+        enableDevicePreview && kDebugMode && FlavorConfig.instance.flavor == Flavor.dev;
 
     return ProviderScope(
-      child: DevicePreview(
-        enabled: _useDevicePreview,
-        builder: (context) => MaterialApp.router(
-          useInheritedMediaQuery: _useDevicePreview,
-          builder: DevicePreview.appBuilder,
-          theme: material3LightTheme,
-          darkTheme: material3DarkTheme,
-          themeMode: ThemeMode.system,
-          routerDelegate: _appRouter.delegate(
-            initialRoutes: [HomeRoute(homeScreen: const HomeScreen())],
-          ),
-          routeInformationParser: _appRouter.defaultRouteParser(),
-          localizationsDelegates: context.localizationDelegates,
-          supportedLocales: context.supportedLocales,
-          locale: _useDevicePreview
-              ? DevicePreview.locale(context)
-              : context.locale,
-          scaffoldMessengerKey: scaffoldMessengerKey,
+      child: MaterialApp.router(
+        useInheritedMediaQuery: _useDevicePreview,
+        theme: material3LightTheme,
+        darkTheme: material3DarkTheme,
+        themeMode: ThemeMode.system,
+        routerDelegate: _appRouter.delegate(
+          initialRoutes: [HomeRoute(homeScreen: const HomeScreen())],
         ),
+        routeInformationParser: _appRouter.defaultRouteParser(),
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
+        scaffoldMessengerKey: scaffoldMessengerKey,
       ),
     );
   }
