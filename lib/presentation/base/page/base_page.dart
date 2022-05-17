@@ -96,7 +96,7 @@ class _BasePageContent<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
       color: context.theme.primaryColorDark,
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: context.theme.backgroundColor,
+          backgroundColor: context.theme.scaffoldBackgroundColor,
           appBar: AppBar(
             leading: hasBackButton
                 ? AppBarBackButton<VIEW_MODEL, SCREEN_STATE>(

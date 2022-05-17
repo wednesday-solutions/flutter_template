@@ -30,8 +30,8 @@ class TemplateApp extends StatelessWidget {
         builder: (context) => MaterialApp.router(
           useInheritedMediaQuery: _useDevicePreview,
           builder: DevicePreview.appBuilder,
-          theme: m3Light,
-          darkTheme: m3Dark,
+          theme: material3LightTheme,
+          darkTheme: material3DarkTheme,
           themeMode: ThemeMode.system,
           routerDelegate: _appRouter.delegate(
             initialRoutes: [HomeRoute(homeScreen: const HomeScreen())],

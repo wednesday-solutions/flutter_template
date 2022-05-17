@@ -7,8 +7,8 @@ import 'package:flutter_template/presentation/base/theme/template_app_theme_data
 import 'package:flutter_template/presentation/intl/translations/translation_loader.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 extension WidgetTesterExt on WidgetTester {
   Future loadPageForGolden({
@@ -28,9 +28,9 @@ extension WidgetTesterExt on WidgetTester {
         assetLoader: const CodegenLoader(),
         child: Builder(builder: (context) {
           return MaterialApp(
-            theme: lightTheme,
+            theme: material3LightTheme,
             debugShowCheckedModeBanner: false,
-            darkTheme: darkTheme,
+            darkTheme: material3DarkTheme,
             themeMode: ThemeMode.dark,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
