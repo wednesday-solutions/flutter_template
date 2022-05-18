@@ -1,21 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/presentation/base/theme/color_palette.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-final lightTheme = ThemeData(
-  brightness: Brightness.light,
+final material3LightTheme = ThemeData(
+  useMaterial3: true,
+  fontFamily: GoogleFonts.openSans().fontFamily,
   snackBarTheme: const SnackBarThemeData(),
-  appBarTheme: const AppBarTheme(),
-  cardTheme: const _AppCardTheme(),
+  cardTheme: _AppCardTheme(cardColor: lightColorScheme.surface),
+  colorScheme: lightColorScheme,
+  scaffoldBackgroundColor: lightColorScheme.surfaceVariant,
 );
 
-final darkTheme = ThemeData(
-  brightness: Brightness.dark,
+final material3DarkTheme = ThemeData(
+  useMaterial3: true,
+  fontFamily: GoogleFonts.openSans().fontFamily,
   snackBarTheme: const SnackBarThemeData(),
-  appBarTheme: const AppBarTheme(),
-  cardTheme: const _AppCardTheme(),
+  cardTheme: _AppCardTheme(cardColor: darkColorScheme.surface),
+  colorScheme: darkColorScheme,
+  scaffoldBackgroundColor: darkColorScheme.surfaceVariant,
 );
 
 class _AppCardTheme extends CardTheme {
   final ShapeBorder? shapeBorder;
+  final Color cardColor;
 
   const _AppCardTheme({
     this.shapeBorder = const RoundedRectangleBorder(
@@ -23,5 +30,6 @@ class _AppCardTheme extends CardTheme {
         Radius.circular(8),
       ),
     ),
-  }) : super(shape: shapeBorder);
+    required this.cardColor,
+  }) : super(shape: shapeBorder, color: cardColor);
 }

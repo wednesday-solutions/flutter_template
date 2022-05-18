@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_template/services/base/database/app_database.dart';
 import 'package:flutter_template/services/entity/weather/local/local_city.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_template/services/entity/weather/local/local_city_with_w
 import 'package:flutter_template/services/entity/weather/local/local_day_weather.dart';
 import 'package:flutter_template/services/entity/weather/local/local_weather.dart';
 import 'package:flutter_template/services/weather/local/weather_local_service.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'weather_local_service_impl.g.dart';
 
@@ -108,7 +108,8 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
 
   @override
   Future<List<LocalCityWithWeather>> getFavoriteCitiesWeatherList() async {
-    final typedResultList = await _getLocalCityWithWeatherQuery().get();
+    final query = _getLocalCityWithWeatherQuery();
+    final typedResultList = await query.get();
 
     return _getLocalCityWithWeatherList(typedResultList);
   }
