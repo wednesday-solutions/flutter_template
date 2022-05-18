@@ -1,0 +1,14 @@
+targets:
+  $default:
+    builders:
+      drift_dev|drift_dev:
+        generate_for:
+          - "**/services/**.dart"
+      json_serializable|json_serializable:
+        generate_for:
+          - "**/services/entity/**.dart"
+      freezed|freezed:
+        generate_for:
+          - "**/presentation/entity/**.dart"
+          - "**/presentation/destinations/**.dart"
+          - "**/domain/entity/**.dart"
