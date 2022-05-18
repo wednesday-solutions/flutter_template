@@ -10,4 +10,5 @@ targets:
       freezed|freezed:
         generate_for:
           - "**/presentation/entity/**.dart"
+          - "**/presentation/destinations/**.dart"
           - "**/domain/entity/**.dart"
