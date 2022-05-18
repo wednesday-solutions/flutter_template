@@ -5,6 +5,7 @@ import 'package:flutter_template/services/weather/local/weather_local_service_im
 import 'package:flutter_template/services/weather/remote/weather_remote_service.dart';
 import 'package:flutter_template/services/weather/remote/weather_remote_service_impl.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 extension ServiceModule on GetIt {
   void serviceModule() {
@@ -13,6 +14,9 @@ extension ServiceModule on GetIt {
 
     // Drift
     registerLazySingleton<AppDatabase>(() => AppDatabase());
+
+    // Shared Preferences
+    registerFactory(() => SharedPreferences.getInstance());
 
     // weather
     registerLazySingleton<WeatherRemoteService>(
