@@ -3,6 +3,10 @@ import 'package:flutter_template/repository/date/date_repository.dart';
 import 'package:flutter_template/repository/date/date_repository_impl.dart';
 import 'package:flutter_template/repository/date/date_time_mapper.dart';
 import 'package:flutter_template/repository/date/time_mapper.dart';
+import 'package:flutter_template/repository/preferences/preferences_repository.dart';
+import 'package:flutter_template/repository/preferences/preferences_repository_impl.dart';
+import 'package:flutter_template/repository/theme/theme_repository.dart';
+import 'package:flutter_template/repository/theme/theme_repository_impl.dart';
 import 'package:flutter_template/repository/weather/domain_city_mapper.dart';
 import 'package:flutter_template/repository/weather/domain_day_weather_mapper.dart';
 import 'package:flutter_template/repository/weather/domain_weather_mapper.dart';
@@ -47,6 +51,16 @@ extension RepositoryModule on GetIt {
           localWeatherMapper: get(),
           localDayWeatherMapper: get(),
           dateRepository: get(),
+        ));
+
+    // preferences
+    registerLazySingleton<PreferencesRepository>(() => PreferencesRepositoryImpl(
+          preferencesService: get(),
+        ));
+
+    // theme
+    registerLazySingleton<ThemeRepository>(() => ThemeRepositoryImpl(
+          preferencesRepo: get(),
         ));
   }
 }

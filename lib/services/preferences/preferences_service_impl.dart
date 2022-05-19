@@ -18,14 +18,17 @@ class PreferencesServiceImpl implements PreferencesService {
       sharedPreferences.setString(key, value);
 
   @override
-  bool? getBool({required String key, bool? defaultValue}) =>
+  bool getBool({required String key, required bool defaultValue}) =>
       sharedPreferences.getBool(key) ?? defaultValue;
 
   @override
-  int? getInt({required String key, int? defaultValue}) =>
+  int getInt({required String key, required int defaultValue}) =>
       sharedPreferences.getInt(key) ?? defaultValue;
 
   @override
-  String? getString({required String key, String? defaultValue}) =>
+  String getString({required String key, required String defaultValue}) =>
       sharedPreferences.getString(key) ?? defaultValue;
+
+  @override
+  bool containsKey(String key) => sharedPreferences.containsKey(key);
 }
