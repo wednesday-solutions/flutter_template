@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/foundation/extensions/theme_ext.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SearchPageLoadingShimmer extends StatelessWidget {
@@ -8,8 +9,8 @@ class SearchPageLoadingShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Shimmer.fromColors(
-        baseColor: Theme.of(context).scaffoldBackgroundColor.withOpacity(0.1),
-        highlightColor: Theme.of(context).primaryColor.withOpacity(0.2),
+        baseColor: context.theme.colorScheme.surface.withOpacity(0.2),
+        highlightColor: context.theme.colorScheme.inverseSurface.withOpacity(0.2),
         period: const Duration(seconds: 1),
         direction: ShimmerDirection.ltr,
         child: ListView.builder(

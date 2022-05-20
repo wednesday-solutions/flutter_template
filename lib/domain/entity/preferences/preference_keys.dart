@@ -1,5 +1,6 @@
 enum PreferenceKeys {
-  themeMode(key: "app_theme_mode");
+  themeMode(key: "app_theme_mode"),
+  isDynamicEnabled(key: "is_dynamic_enabled");
 
   final String key;
 

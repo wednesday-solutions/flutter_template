@@ -10,10 +10,10 @@ class ThemePicker extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeViewModel = ref.watch(themeViewModelProvider.notifier);
-    final themeMode = ref.watch(themeViewModelProvider);
+    final themeState = ref.watch(themeViewModelProvider);
 
     return ThemePickerContent(
-      themeMode: themeMode,
+      themeMode: themeState.themeMode,
       onThemeModeSelected: (ThemeMode mode) {
         themeViewModel.onIntent(ThemeIntent.setThemeMode(mode));
       },

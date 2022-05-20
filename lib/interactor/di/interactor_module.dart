@@ -35,16 +35,15 @@ extension InteractorModule on GetIt {
           citySearchResultMapper: get(),
         ));
 
-    registerFactory<FavoriteWeatherInteractor>(
-        () => FavoriteWeatherInteractorImpl(
-              fetchFavoriteCitiesWeatherUseCase: get(),
-              getFavoriteCitiesStreamUseCase: get(),
-              setCityFavoriteUseCase: get(),
-              removeFavoriteCityUseCase: get(),
-              getFavoriteCitiesWeatherStreamUseCase: get(),
-              uiCityMapper: get(),
-              weatherListMapper: get(),
-            ));
+    registerFactory<FavoriteWeatherInteractor>(() => FavoriteWeatherInteractorImpl(
+          fetchFavoriteCitiesWeatherUseCase: get(),
+          getFavoriteCitiesStreamUseCase: get(),
+          setCityFavoriteUseCase: get(),
+          removeFavoriteCityUseCase: get(),
+          getFavoriteCitiesWeatherStreamUseCase: get(),
+          uiCityMapper: get(),
+          weatherListMapper: get(),
+        ));
 
     // theme
     registerFactory<ThemeModeMapper>(() => ThemeModeMapperImpl());
@@ -52,6 +51,8 @@ extension InteractorModule on GetIt {
     registerFactory<ThemeInteractor>(() => ThemeInteractorImpl(
           setThemeModeUseCase: get(),
           getThemeModeUseCase: get(),
+          setIsDynamicThemeEnabled: get(),
+          getIsDynamicThemeEnabled: get(),
           themeModeMapper: get(),
         ));
   }

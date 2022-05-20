@@ -26,4 +26,20 @@ class ThemeRepositoryImpl implements ThemeRepository {
       value: themeMode.serializedValue,
     );
   }
+
+  @override
+  bool getIsDynamicEnabled() {
+    return preferencesRepo.getBool(
+      key: PreferenceKeys.isDynamicEnabled.key,
+      defaultValue: true,
+    );
+  }
+
+  @override
+  Future setIsDynamicEnabled({required bool isDynamic}) {
+    return preferencesRepo.save(
+      key: PreferenceKeys.isDynamicEnabled.key,
+      value: isDynamic,
+    );
+  }
 }

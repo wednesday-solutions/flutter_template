@@ -51,6 +51,7 @@ dependencies:
   google_fonts: ^2.3.2
   easy_logger: ^0.0.2
   path_provider: ^2.0.10
+  dynamic_color: ^1.2.2
 
 dev_dependencies:
   auto_route_generator: ^4.0.0

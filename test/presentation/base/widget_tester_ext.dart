@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_template/presentation/base/theme/template_app_theme_data.dart';
+import 'package:flutter_template/presentation/base/theme/theme_data/template_app_theme_data.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_loader.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
