@@ -1,3 +1,6 @@
+import 'package:flutter_template/interactor/theme/theme_interactor.dart';
+import 'package:flutter_template/interactor/theme/theme_interactor_impl.dart';
+import 'package:flutter_template/interactor/theme/theme_mode_mapper.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor_impl.dart';
 import 'package:flutter_template/interactor/weather/favorite/ui_day_weather_mapper.dart';
@@ -32,15 +35,25 @@ extension InteractorModule on GetIt {
           citySearchResultMapper: get(),
         ));
 
-    registerFactory<FavoriteWeatherInteractor>(
-        () => FavoriteWeatherInteractorImpl(
-              fetchFavoriteCitiesWeatherUseCase: get(),
-              getFavoriteCitiesStreamUseCase: get(),
-              setCityFavoriteUseCase: get(),
-              removeFavoriteCityUseCase: get(),
-              getFavoriteCitiesWeatherStreamUseCase: get(),
-              uiCityMapper: get(),
-              weatherListMapper: get(),
-            ));
+    registerFactory<FavoriteWeatherInteractor>(() => FavoriteWeatherInteractorImpl(
+          fetchFavoriteCitiesWeatherUseCase: get(),
+          getFavoriteCitiesStreamUseCase: get(),
+          setCityFavoriteUseCase: get(),
+          removeFavoriteCityUseCase: get(),
+          getFavoriteCitiesWeatherStreamUseCase: get(),
+          uiCityMapper: get(),
+          weatherListMapper: get(),
+        ));
+
+    // theme
+    registerFactory<ThemeModeMapper>(() => ThemeModeMapperImpl());
+
+    registerFactory<ThemeInteractor>(() => ThemeInteractorImpl(
+          setThemeModeUseCase: get(),
+          getThemeModeUseCase: get(),
+          setIsDynamicThemeEnabled: get(),
+          getIsDynamicThemeEnabled: get(),
+          themeModeMapper: get(),
+        ));
   }
 }

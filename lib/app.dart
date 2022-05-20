@@ -14,6 +14,7 @@ import 'package:flutter_template/presentation/template_app.dart';
 import 'package:flutter_template/repository/di/repository_module.dart';
 import 'package:flutter_template/services/di/service_module.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void startApp() async {
   await _initialiseApp();
@@ -32,9 +33,13 @@ Future _initialiseApp() async {
 
   bindings.deferFirstFrame();
 
-  await _initialiseGetIt();
+  _initialiseGetIt();
 
-  await EasyLocalization.ensureInitialized();
+  await Future.wait([
+    _initSharedPreferences(),
+    EasyLocalization.ensureInitialized(),
+  ]);
+
   EasyLocalization.logger.printer = customEasyLogger;
 
   if (Platform.isAndroid) {
@@ -48,7 +53,12 @@ Future _initialiseApp() async {
   bindings.allowFirstFrame();
 }
 
-Future _initialiseGetIt() async {
+Future _initSharedPreferences() async {
+  final sharedPreferences = await SharedPreferences.getInstance();
+  GetIt.instance.registerSingleton(sharedPreferences);
+}
+
+void _initialiseGetIt() {
   log.d("Initializing dependencies...");
   GetIt.instance
     ..serviceModule()

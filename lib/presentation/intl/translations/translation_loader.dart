@@ -22,7 +22,8 @@ class CodegenLoader extends AssetLoader {
         "Weather for your favorite cities will appear here. Search cities to add to favorites.",
     "startTypingToSearch": "Start typing to search",
     "searchResultsAppearHere": "Search results appear here...",
-    "noResultsFound": "No results found..."
+    "noResultsFound": "No results found...",
+    "dynamicTheme": "Dynamic Theme"
   };
   static const Map<String, Map<String, dynamic>> mapLocales = {"en_US": en_US};
 }

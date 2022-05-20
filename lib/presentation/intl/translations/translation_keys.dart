@@ -8,4 +8,5 @@ abstract class LocaleKeys {
   static const startTypingToSearch = 'startTypingToSearch';
   static const searchResultsAppearHere = 'searchResultsAppearHere';
   static const noResultsFound = 'noResultsFound';
+  static const dynamicTheme = 'dynamicTheme';
 }

@@ -18,8 +18,7 @@ class SearchViewModelImpl extends SearchViewModel {
   final _searchTermSubject = BehaviorSubject.seeded("");
 
   @override
-  String get searchTerm =>
-      _searchTermSubject.hasValue ? _searchTermSubject.value : "";
+  String get searchTerm => _searchTermSubject.hasValue ? _searchTermSubject.value : "";
 
   SearchViewModelImpl({
     required this.searchNavigator,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/presentation/base/page/base_page.dart';
+import 'package:flutter_template/presentation/base/widgets/theme/theme_picker/theme_picker.dart';
 import 'package:flutter_template/presentation/destinations/weather/home/home_screen_intent.dart';
 import 'package:flutter_template/presentation/destinations/weather/home/home_screen_state.dart';
 import 'package:flutter_template/presentation/destinations/weather/home/home_view_model.dart';
@@ -28,7 +29,8 @@ class HomePage extends ConsumerWidget {
             viewModel.onIntent(HomeScreenIntent.search());
           },
           icon: const Icon(Icons.search),
-        )
+        ),
+        const ThemePicker(),
       ],
       body: const HomePageBody(),
     );
