@@ -11,7 +11,8 @@ class PreferencesServiceImpl implements PreferencesService {
       sharedPreferences.setBool(key, value);
 
   @override
-  Future setInt({required String key, required int value}) => sharedPreferences.setInt(key, value);
+  Future setInt({required String key, required int value}) =>
+      sharedPreferences.setInt(key, value);
 
   @override
   Future setString({required String key, required String value}) =>

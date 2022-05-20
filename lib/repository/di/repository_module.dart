@@ -54,9 +54,10 @@ extension RepositoryModule on GetIt {
         ));
 
     // preferences
-    registerLazySingleton<PreferencesRepository>(() => PreferencesRepositoryImpl(
-          preferencesService: get(),
-        ));
+    registerLazySingleton<PreferencesRepository>(
+        () => PreferencesRepositoryImpl(
+              preferencesService: get(),
+            ));
 
     // theme
     registerLazySingleton<ThemeRepository>(() => ThemeRepositoryImpl(

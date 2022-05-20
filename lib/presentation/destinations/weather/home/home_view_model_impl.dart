@@ -46,8 +46,10 @@ class HomeViewModelImpl extends HomeViewModel {
 
   @override
   void onIntent(HomeScreenIntent intent) {
-    intent.when(search: () {
-      homeNavigator.toSearchScreen();
-    });
+    intent.when(
+      search: () {
+        homeNavigator.toSearchScreen();
+      },
+    );
   }
 }

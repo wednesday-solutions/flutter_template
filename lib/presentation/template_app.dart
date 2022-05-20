@@ -7,6 +7,7 @@ import 'package:flutter_template/flavors/flavor_config.dart';
 import 'package:flutter_template/navigation/base/app_router.dart';
 import 'package:flutter_template/presentation/base/theme/template_app_theme_data.dart';
 import 'package:flutter_template/presentation/base/widgets/snackbar/snackbar.dart';
+import 'package:flutter_template/presentation/base/widgets/theme/theme_listener.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:get_it/get_it.dart';
 
@@ -24,19 +25,21 @@ class TemplateApp extends StatelessWidget {
         FlavorConfig.instance.flavor == Flavor.dev;
 
     return ProviderScope(
-      child: MaterialApp.router(
-        useInheritedMediaQuery: useDevicePreview,
-        theme: material3LightTheme,
-        darkTheme: material3DarkTheme,
-        themeMode: ThemeMode.system,
-        routerDelegate: _appRouter.delegate(
-          initialRoutes: [HomeRoute(homeScreen: const HomeScreen())],
+      child: ThemeListener(
+        builder: (themeMode) => MaterialApp.router(
+          useInheritedMediaQuery: useDevicePreview,
+          theme: material3LightTheme,
+          darkTheme: material3DarkTheme,
+          themeMode: themeMode,
+          routerDelegate: _appRouter.delegate(
+            initialRoutes: [HomeRoute(homeScreen: const HomeScreen())],
+          ),
+          routeInformationParser: _appRouter.defaultRouteParser(),
+          localizationsDelegates: context.localizationDelegates,
+          supportedLocales: context.supportedLocales,
+          locale: context.locale,
+          scaffoldMessengerKey: scaffoldMessengerKey,
         ),
-        routeInformationParser: _appRouter.defaultRouteParser(),
-        localizationsDelegates: context.localizationDelegates,
-        supportedLocales: context.supportedLocales,
-        locale: context.locale,
-        scaffoldMessengerKey: scaffoldMessengerKey,
       ),
     );
   }

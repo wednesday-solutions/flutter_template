@@ -1,3 +1,5 @@
+import 'package:flutter_template/presentation/base/theme/theme_view_model.dart';
+import 'package:flutter_template/presentation/base/theme/theme_view_model_impl.dart';
 import 'package:flutter_template/presentation/destinations/weather/home/home_view_model.dart';
 import 'package:flutter_template/presentation/destinations/weather/home/home_view_model_impl.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';
@@ -22,5 +24,10 @@ extension PresentationModule on GetIt {
         favoriteWeatherInteractor: get(),
       ),
     );
+
+    // theme
+    registerFactory<ThemeViewModel>(() => ThemeViewModelImpl(
+          themeInteractor: get(),
+        ));
   }
 }

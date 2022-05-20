@@ -32,6 +32,7 @@ class PreferencesRepositoryImpl implements PreferencesRepository {
     if (value is String) {
       return await preferencesService.setString(key: key, value: value);
     }
-    throw ArgumentError.value(value, null, "Cannot save type ${value.runtimeType} to preferences.");
+    throw ArgumentError.value(
+        value, null, "Cannot save type ${value.runtimeType} to preferences.");
   }
 }

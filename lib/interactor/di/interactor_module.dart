@@ -1,3 +1,6 @@
+import 'package:flutter_template/interactor/theme/theme_interactor.dart';
+import 'package:flutter_template/interactor/theme/theme_interactor_impl.dart';
+import 'package:flutter_template/interactor/theme/theme_mode_mapper.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor_impl.dart';
 import 'package:flutter_template/interactor/weather/favorite/ui_day_weather_mapper.dart';
@@ -42,5 +45,14 @@ extension InteractorModule on GetIt {
               uiCityMapper: get(),
               weatherListMapper: get(),
             ));
+
+    // theme
+    registerFactory<ThemeModeMapper>(() => ThemeModeMapperImpl());
+
+    registerFactory<ThemeInteractor>(() => ThemeInteractorImpl(
+          setThemeModeUseCase: get(),
+          getThemeModeUseCase: get(),
+          themeModeMapper: get(),
+        ));
   }
 }
