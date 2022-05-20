@@ -11,4 +11,6 @@ targets:
         generate_for:
           - "**/presentation/entity/**.dart"
           - "**/presentation/destinations/**.dart"
+          - "**/presentation/base/theme/**.dart"
+          - "**/domain/entity/**.dart"
           - "**/domain/entity/**.dart"
