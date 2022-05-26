@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather.dart';
 import 'package:flutter_template/services/entity/open_weather/geo_coding/remote/remote_location.dart';
 import 'package:flutter_template/services/weather/remote/weather_remote_service.dart';
@@ -11,6 +12,7 @@ class WeatherRemoteServiceImpl implements WeatherRemoteService {
   @override
   Future<RemoteCurrentWeather> currentWeather(
       {required String cityAndState}) async {
+    logD("currentWeather: cityAndState = $cityAndState");
     final response = await dio.get(
       "data/2.5/weather?units=metric",
       queryParameters: {
@@ -24,8 +26,9 @@ class WeatherRemoteServiceImpl implements WeatherRemoteService {
   @override
   Future<List<RemoteLocation>> geocodingSearch(
       {required String searchTerm}) async {
+    logD("geocodingSearch: searchTerm = $searchTerm");
     final response = await dio.get(
-      "/api/location/search",
+      "geo/1.0/direct",
       queryParameters: {
         "q": searchTerm,
         "limit": 5,

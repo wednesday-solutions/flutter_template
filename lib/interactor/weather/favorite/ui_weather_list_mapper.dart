@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_template/domain/entity/weather/weather.dart';
+import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/foundation/mapper/mapper.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_weather.dart';
@@ -10,6 +11,7 @@ abstract class UIWeatherListMapper
 class UIWeatherListMapperImpl extends UIWeatherListMapper {
   @override
   List<UIListItem> map(List<Weather> from) {
+    logD("map: from = $from");
     return (from
           ..sort(
             (a, b) => a.title.compareTo(b.title),

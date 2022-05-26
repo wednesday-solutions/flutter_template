@@ -3,6 +3,7 @@ import 'package:flutter_template/domain/weather/get_favorite_cities_stream_use_c
 import 'package:flutter_template/domain/weather/get_favorite_cities_weather_stream_use_case.dart';
 import 'package:flutter_template/domain/weather/remove_favorite_city_use_case.dart';
 import 'package:flutter_template/domain/weather/set_city_favorite_use_case.dart';
+import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/foundation/unit.dart';
 import 'package:flutter_template/interactor/base/base_interactor.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
@@ -35,23 +36,27 @@ class FavoriteWeatherInteractorImpl extends BaseInteractor
 
   @override
   Future<UIResult<void>> fetchFavouriteCitiesWeather() async {
+    logD("fetchFavouriteCitiesWeather");
     return mapResult(await fetchFavoriteCitiesWeatherUseCase(param: unit));
   }
 
   @override
   Stream<List<UICity>> getFavoriteCitiesStream() {
+    logD("getFavoriteCitiesStream");
     return getFavoriteCitiesStreamUseCase(unit)
         .map(uiCityMapper.mapFavouriteCityList);
   }
 
   @override
   Stream<List<UIListItem>> getFavoriteWeatherUIList() {
+    logD("getFavoriteWeatherUIList");
     return getFavoriteCitiesWeatherStreamUseCase(unit)
         .map(weatherListMapper.map);
   }
 
   @override
   Future<UIResult<void>> removeCityFavorite(UICity uiCity) async {
+    logD("removeCityFavorite: uiCity = $uiCity");
     return mapResult(await removeFavoriteCityUseCase(
       param: uiCityMapper.mapCity(uiCity),
     ));
@@ -59,6 +64,7 @@ class FavoriteWeatherInteractorImpl extends BaseInteractor
 
   @override
   Future<UIResult<void>> setCityFavorite(UICity uiCity) async {
+    logD("setCityFavorite: uiCity = $uiCity");
     return mapResult(await setCityFavoriteUseCase(
       param: uiCityMapper.mapCity(uiCity),
     ));

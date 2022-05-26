@@ -9,10 +9,10 @@ import 'package:flutter_template/presentation/destinations/weather/search/widget
 import 'package:flutter_template/presentation/entity/base/ui_toolbar.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
+import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
 import 'package:flutter_template/presentation/intl/translations/translations.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get_it/get_it.dart';
-import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
 import 'package:mocktail/mocktail.dart';
 
 import '../../../../../mocks/viewmodels/fake_search_view_model.dart';
@@ -23,11 +23,9 @@ void main() {
   late FakeSearchViewModel fakeSearchViewModel;
 
   var fakeSearchViewModelProvider =
-      StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>(
-          (ref) {
+      StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>((ref) {
     fakeSearchViewModel = FakeSearchViewModel(SearchScreenState(
-      toolbar:
-          UIToolbar(title: LocaleKeys.searchPageTitle, hasBackButton: true),
+      toolbar: UIToolbar(title: LocaleKeys.searchPageTitle, hasBackButton: true),
       showLoading: false,
       searchList: List.empty(),
     ));
@@ -59,8 +57,7 @@ void main() {
 
     // Then
     expect(find.byType(TextField), findsOneWidget);
-    expect(find.text(LocaleKeys.searchResultsAppearHere),
-        findsOneWidget);
+    expect(find.text(LocaleKeys.searchResultsAppearHere), findsOneWidget);
     expect(find.byType(SearchPageLoadingShimmer), findsNothing);
   });
 
@@ -76,8 +73,7 @@ void main() {
 
     // Then
     expect(find.byType(TextField), findsOneWidget);
-    expect(
-        find.text(LocaleKeys.searchResultsAppearHere), findsNothing);
+    expect(find.text(LocaleKeys.searchResultsAppearHere), findsNothing);
     expect(find.byType(SearchPageLoadingShimmer), findsOneWidget);
   });
 
@@ -88,16 +84,17 @@ void main() {
     await _loadPage(tester);
 
     // When
-    fakeSearchViewModel
-        .setState((state) => state.copyWith(showLoading: true, searchList: [
-              UICity(
-                cityId: 1,
-                title: "title",
-                locationType: "locationType",
-                location: "location",
-                isFavourite: false,
-              )
-            ]));
+    fakeSearchViewModel.setState((state) => state.copyWith(showLoading: true, searchList: [
+          UICity(
+            cityId: 1,
+            title: "title",
+            locationType: "locationType",
+            location: "location",
+            isFavourite: false,
+            state: '',
+            displayTitle: '',
+          )
+        ]));
     await tester.pump();
     fakeSearchViewModel.updateSearchTerm("newTerm");
     fakeSearchViewModel.setState((state) => state.copyWith(
@@ -108,8 +105,7 @@ void main() {
 
     // Then
     expect(find.byType(TextField), findsOneWidget);
-    expect(
-        find.text(LocaleKeys.searchResultsAppearHere), findsNothing);
+    expect(find.text(LocaleKeys.searchResultsAppearHere), findsNothing);
     expect(find.byType(SearchPageLoadingShimmer), findsNothing);
     expect(find.text(LocaleKeys.noResultsFound), findsOneWidget);
   });
@@ -121,29 +117,31 @@ void main() {
     await _loadPage(tester);
 
     // When
-    fakeSearchViewModel
-        .setState((state) => state.copyWith(showLoading: false, searchList: [
-              UICity(
-                cityId: 1,
-                title: "title",
-                locationType: "locationType",
-                location: "location",
-                isFavourite: false,
-              ),
-              UICity(
-                cityId: 2,
-                title: "title 2",
-                locationType: "locationType 2",
-                location: "location 2",
-                isFavourite: false,
-              ),
-            ]));
+    fakeSearchViewModel.setState((state) => state.copyWith(showLoading: false, searchList: [
+          UICity(
+            cityId: 1,
+            title: "title",
+            locationType: "locationType",
+            location: "location",
+            isFavourite: false,
+            state: '',
+            displayTitle: '',
+          ),
+          UICity(
+            cityId: 2,
+            title: "title 2",
+            locationType: "locationType 2",
+            location: "location 2",
+            isFavourite: false,
+            state: '',
+            displayTitle: '',
+          ),
+        ]));
     await tester.pumpAndSettle();
 
     // Then
     expect(find.byType(TextField), findsOneWidget);
-    expect(
-        find.text(englishUS[LocaleKeys.searchResultsAppearHere]), findsNothing);
+    expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]), findsNothing);
     expect(find.byType(SearchPageLoadingShimmer), findsNothing);
     expect(find.text(englishUS[LocaleKeys.noResultsFound]), findsNothing);
     expect(find.byType(UICityListItem), findsNWidgets(2));
@@ -161,6 +159,8 @@ void main() {
         locationType: "locationType",
         location: "location",
         isFavourite: true,
+        state: '',
+        displayTitle: '',
       ),
       UICity(
         cityId: 2,
@@ -168,12 +168,14 @@ void main() {
         locationType: "locationType 2",
         location: "location 2",
         isFavourite: false,
+        state: '',
+        displayTitle: '',
       ),
     ];
 
     // When
-    fakeSearchViewModel.setState(
-        (state) => state.copyWith(showLoading: false, searchList: uiCityList));
+    fakeSearchViewModel
+        .setState((state) => state.copyWith(showLoading: false, searchList: uiCityList));
     await tester.pump();
 
     // Then
@@ -191,12 +193,11 @@ void main() {
     await tester.pump();
 
     // Then
-    verify(() => fakeSearchViewModel
-        .onIntent(SearchScreenIntent.search(searchTerm: "search"))).called(1);
+    verify(() => fakeSearchViewModel.onIntent(SearchScreenIntent.search(searchTerm: "search")))
+        .called(1);
   });
 
-  testWidgets(
-      "Given search page is opened, When back button is pressed, Then back intent is fired",
+  testWidgets("Given search page is opened, When back button is pressed, Then back intent is fired",
       (tester) async {
     // Given
     await _loadPage(tester);
@@ -207,8 +208,7 @@ void main() {
     await tester.pump();
 
     // Then
-    verify(() => fakeSearchViewModel.onIntent(SearchScreenIntent.back()))
-        .called(1);
+    verify(() => fakeSearchViewModel.onIntent(SearchScreenIntent.back())).called(1);
   });
 
   testWidgets(
@@ -223,6 +223,8 @@ void main() {
         locationType: "locationType",
         location: "location",
         isFavourite: false,
+        displayTitle: '',
+        state: '',
       ),
       UICity(
         cityId: 2,
@@ -230,28 +232,28 @@ void main() {
         locationType: "locationType 2",
         location: "location 2",
         isFavourite: false,
+        displayTitle: '',
+        state: '',
       ),
     ];
 
     // When
-    fakeSearchViewModel.setState(
-        (state) => state.copyWith(showLoading: false, searchList: uiCityList));
+    fakeSearchViewModel
+        .setState((state) => state.copyWith(showLoading: false, searchList: uiCityList));
     await tester.pump();
-    await tester.tap(find
-        .descendant(
-            of: find.byType(UICityListItem), matching: find.byType(IconButton))
-        .first);
+    await tester.tap(
+        find.descendant(of: find.byType(UICityListItem), matching: find.byType(IconButton)).first);
     await tester.pump();
-    await tester.tap(find
-        .descendant(
-            of: find.byType(UICityListItem), matching: find.byType(IconButton))
-        .last);
+    await tester.tap(
+        find.descendant(of: find.byType(UICityListItem), matching: find.byType(IconButton)).last);
     await tester.pump();
 
     // Then
-    verify(() => fakeSearchViewModel.onIntent(
-        SearchScreenIntent.toggleFavorite(city: uiCityList.first))).called(1);
-    verify(() => fakeSearchViewModel.onIntent(
-        SearchScreenIntent.toggleFavorite(city: uiCityList.last))).called(1);
+    verify(() =>
+            fakeSearchViewModel.onIntent(SearchScreenIntent.toggleFavorite(city: uiCityList.first)))
+        .called(1);
+    verify(() =>
+            fakeSearchViewModel.onIntent(SearchScreenIntent.toggleFavorite(city: uiCityList.last)))
+        .called(1);
   });
 }

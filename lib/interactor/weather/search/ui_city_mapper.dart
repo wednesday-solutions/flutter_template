@@ -1,4 +1,5 @@
 import 'package:flutter_template/domain/entity/weather/city.dart';
+import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/foundation/mapper/mapper2.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 
@@ -14,6 +15,7 @@ abstract class UICityMapper extends Mapper2<City, bool, UICity> {
 class UICityMapperImpl extends UICityMapper {
   @override
   UICity map(City from1, bool from2) {
+    logD("map: from1 = $from1, from2 = $from2");
     return UICity(
       cityId: from1.id,
       title: from1.title,
@@ -27,6 +29,7 @@ class UICityMapperImpl extends UICityMapper {
 
   @override
   UICity mapFavouriteCity(City from) {
+    logD("mapFavouriteCity: from = $from");
     return UICity(
       cityId: from.id,
       title: from.title,
@@ -40,6 +43,7 @@ class UICityMapperImpl extends UICityMapper {
 
   @override
   City mapCity(UICity from) {
+    logD("mapCity: from = $from");
     final coords = from.location.split(" ");
     return City(
       id: from.cityId,

@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:drift/drift.dart';
+import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/foundation/mapper/mapper3.dart';
 import 'package:flutter_template/repository/date/date_repository.dart';
 import 'package:flutter_template/services/base/database/app_database.dart';
@@ -16,7 +17,11 @@ class LocalWeatherMapperImpl extends LocalWeatherMapper {
 
   @override
   LocalCurrentWeatherCompanion map(
-      RemoteCurrentWeather from1, double from2, double from3) {
+    RemoteCurrentWeather from1,
+    double from2,
+    double from3,
+  ) {
+    logD("map: from1 = $from1, from2 = $from2, from3 = $from3");
     final weather = from1.weather.firstOrNull ??
         RemoteCurrentWeatherWeather(
           id: 0,

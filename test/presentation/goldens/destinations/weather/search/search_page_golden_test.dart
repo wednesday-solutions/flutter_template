@@ -99,6 +99,8 @@ void main() {
               locationType: "locationType",
               location: "location",
               isFavourite: false,
+              displayTitle: '',
+              state: '',
             )
           ]));
       await tester.pump();
@@ -132,6 +134,8 @@ void main() {
               locationType: "locationType",
               location: "location",
               isFavourite: false,
+              displayTitle: '',
+              state: '',
             ),
             UICity(
               cityId: 2,
@@ -139,6 +143,8 @@ void main() {
               locationType: "locationType 2",
               location: "location 2",
               isFavourite: false,
+              displayTitle: '',
+              state: '',
             ),
           ]));
       await tester.pumpAndSettle();
@@ -165,6 +171,8 @@ void main() {
           locationType: "locationType",
           location: "location",
           isFavourite: true,
+          state: '',
+          displayTitle: '',
         ),
         UICity(
           cityId: 2,
@@ -172,6 +180,8 @@ void main() {
           locationType: "locationType 2",
           location: "location 2",
           isFavourite: false,
+          displayTitle: '',
+          state: '',
         ),
       ];
 

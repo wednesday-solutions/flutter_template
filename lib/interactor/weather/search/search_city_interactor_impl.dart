@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:flutter_template/domain/entity/weather/city.dart';
 import 'package:flutter_template/domain/weather/get_favorite_cities_stream_use_case.dart';
 import 'package:flutter_template/domain/weather/search_cities_use_case.dart';
+import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/foundation/logger/logger.dart';
 import 'package:flutter_template/foundation/unit.dart';
 import 'package:flutter_template/interactor/weather/search/city_search_result_mapper.dart';
@@ -33,10 +35,13 @@ class SearchCityInteractorImpl extends SearchCityInteractor {
             searchResults,
           );
         },
-      );
+      ).doOnData((event) {
+        logD("searchResultsStream: emit = $event");
+      });
 
   @override
   Future<void> search(String term) async {
+    logD("search: term = $term");
     final searchResults = await searchCitiesUseCase(param: term);
     searchResults.when(
       success: (data) => _searchResultsStreamController.sink.add(data),
