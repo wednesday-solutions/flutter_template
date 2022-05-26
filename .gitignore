@@ -69,4 +69,5 @@ app.*.map.json
 **/failures/*.png
 
 # Secrets
+lib/secrets/
 !lib/secrets/app_secrets.skeleton.dart
