@@ -1,5 +1,6 @@
 import 'package:flutter_template/services/base/database/app_database.dart';
 import 'package:flutter_template/services/base/di/dio_provider.dart';
+import 'package:flutter_template/services/base/dio/interceptors/open_weather_api_key_interceptor.dart';
 import 'package:flutter_template/services/preferences/preferences_service.dart';
 import 'package:flutter_template/services/preferences/preferences_service_impl.dart';
 import 'package:flutter_template/services/weather/local/weather_local_service.dart';
@@ -11,7 +12,15 @@ import 'package:get_it/get_it.dart';
 extension ServiceModule on GetIt {
   void serviceModule() {
     // Dio
-    registerLazySingleton(() => provideDio());
+    registerFactory(() => OpenWeatherApiKeyInterceptor());
+
+    registerLazySingleton(
+      () => provideDio(
+        interceptors: [
+          get<OpenWeatherApiKeyInterceptor>(),
+        ],
+      ),
+    );
 
     // Drift
     registerLazySingleton<AppDatabase>(() => AppDatabase());

@@ -1,19 +1,19 @@
+import 'dart:io';
+
+import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:flutter_template/flavors/flavor_config.dart';
 import 'package:flutter_template/services/base/database/migrations.dart';
-import 'package:flutter_template/services/entity/weather/local/local_city.dart';
-import 'package:flutter_template/services/entity/weather/local/local_day_weather.dart';
-import 'package:flutter_template/services/entity/weather/local/local_weather.dart';
+import 'package:flutter_template/services/entity/open_weather/current_weather/local/local_current_weather.dart';
+import 'package:flutter_template/services/entity/open_weather/geo_coding/local/local_location.dart';
 import 'package:flutter_template/services/weather/local/weather_local_service_impl.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
-import 'package:drift/drift.dart';
-import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 part 'app_database.g.dart';
 
 @DriftDatabase(
-  tables: [LocalCity, LocalDayWeather, LocalWeather],
+  tables: [LocalLocation, LocalCurrentWeather],
   daos: [WeatherLocalServiceImpl],
 )
 class AppDatabase extends _$AppDatabase {
@@ -29,7 +29,7 @@ class AppDatabase extends _$AppDatabase {
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
-    final file = File(p.join(dbFolder.path, 'db.sqlite'));
+    final file = File(p.join(dbFolder.path, 'template_app_db.sqlite'));
     return NativeDatabase(
       file,
       logStatements: FlavorConfig.instance.values.logSqlStatements,

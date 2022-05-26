@@ -1,169 +1,69 @@
-import 'dart:async';
-
-import 'package:collection/collection.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_template/services/base/database/app_database.dart';
-import 'package:flutter_template/services/entity/weather/local/local_city.dart';
-import 'package:flutter_template/services/entity/weather/local/local_city_with_weather.dart';
-import 'package:flutter_template/services/entity/weather/local/local_day_weather.dart';
-import 'package:flutter_template/services/entity/weather/local/local_weather.dart';
+import 'package:flutter_template/services/entity/open_weather/current_weather/local/local_current_weather.dart';
+import 'package:flutter_template/services/entity/open_weather/geo_coding/local/local_location.dart';
 import 'package:flutter_template/services/weather/local/weather_local_service.dart';
 
 part 'weather_local_service_impl.g.dart';
 
-@DriftAccessor(tables: [LocalCity, LocalWeather, LocalDayWeather])
+@DriftAccessor(tables: [
+  LocalLocation,
+  LocalCurrentWeather,
+])
 class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
     with _$WeatherLocalServiceImplMixin
     implements WeatherLocalService {
-  WeatherLocalServiceImpl(AppDatabase attachedDatabase)
-      : super(attachedDatabase);
+  WeatherLocalServiceImpl(AppDatabase attachedDatabase) : super(attachedDatabase);
 
   @override
-  Future<void> addLocalDayWeather(
-      {required LocalDayWeatherCompanion weather}) async {
-    await into(localDayWeather).insert(
-      weather,
-      mode: InsertMode.insertOrReplace,
-    );
+  Future<void> deleteFavoriteCity({required LocalLocationCompanion city}) {
+    return delete(localLocation).delete(city);
   }
 
   @override
-  Future<void> addLocalWeather({required LocalWeatherCompanion weather}) async {
-    await into(localWeather).insert(
-      weather,
-      mode: InsertMode.insertOrReplace,
-    );
+  Future deleteLocalCurrentWeather({required double lat, required double lon}) async {
+    return (delete(localCurrentWeather)
+          ..where(
+            (tbl) => tbl.coordLat.equals(lat) & tbl.coordLon.equals(lon),
+          ))
+        .go();
   }
 
   @override
-  Future<void> deleteCurrentAndAddNewWeatherData(
-      {required int woeid,
-      required LocalWeatherCompanion weather,
-      required List<LocalDayWeatherCompanion> weatherList}) async {
-    await transaction(
-      () async {
-        await deleteLocalWeather(woeid: woeid);
-        await deleteLocalDayWeather(woeid: woeid);
-
-        await addLocalWeather(weather: weather);
-
-        await Future.forEach(
-          weatherList,
-          (LocalDayWeatherCompanion dayWeather) async {
-            await addLocalDayWeather(weather: dayWeather);
-          },
-        );
-      },
-    );
+  Stream<List<LocalLocationData>> getFavoriteCitiesStream() {
+    return select(localLocation).watch();
   }
 
   @override
-  Future<void> deleteFavoriteCity({required LocalCityCompanion city}) async {
-    await delete(localCity).delete(city);
+  Future<List<LocalCurrentWeatherData>> getFavoriteCitiesWeatherList() {
+    return select(localCurrentWeather).get();
   }
 
   @override
-  Future<void> deleteLocalDayWeather({required int woeid}) async {
-    delete(localDayWeather)
-      ..where((tbl) => tbl.cityWoeid.equals(woeid))
-      ..go();
+  Stream<List<LocalCurrentWeatherData>> getFavoriteCitiesWeatherStream() {
+    return select(localCurrentWeather).watch();
   }
 
   @override
-  Future<void> deleteLocalWeather({required int woeid}) async {
-    delete(localWeather)
-      ..where((tbl) => tbl.cityWoeid.equals(woeid))
-      ..go();
+  Future<List<LocalLocationData>> getFavouriteCities() {
+    return select(localLocation).get();
   }
 
   @override
-  Stream<List<LocalCityData>> getFavoriteCitiesStream() {
-    return select(localCity).watch();
+  Future<LocalCurrentWeatherData?> getLocalCurrentWeather(
+      {required double lat, required double lon}) {
+    return (select(localCurrentWeather)
+          ..where((tbl) => tbl.coordLat.equals(lat) & tbl.coordLon.equals(lon)))
+        .getSingle();
   }
 
   @override
-  Future<List<LocalCityData>> getFavouriteCities() async {
-    return await select(localCity).get();
+  Future<void> markCityAsFavorite({required LocalLocationCompanion city}) {
+    return into(localLocation).insert(city, mode: InsertMode.insertOrReplace);
   }
 
   @override
-  Future<List<LocalDayWeatherData>> getLocalDayWeather(
-      {required int woeid}) async {
-    return await (select(localDayWeather)
-          ..where((tbl) => tbl.cityWoeid.equals(woeid)))
-        .get();
-  }
-
-  @override
-  Future<LocalWeatherData?> getLocalWeather({required int woeid}) async {
-    return await (select(localWeather)
-          ..where((tbl) => tbl.cityWoeid.equals(woeid)))
-        .getSingleOrNull();
-  }
-
-  @override
-  Future<void> markCityAsFavorite({required LocalCityCompanion city}) async {
-    await into(localCity).insertOnConflictUpdate(city);
-  }
-
-  @override
-  Future<List<LocalCityWithWeather>> getFavoriteCitiesWeatherList() async {
-    final query = _getLocalCityWithWeatherQuery();
-    final typedResultList = await query.get();
-
-    return _getLocalCityWithWeatherList(typedResultList);
-  }
-
-  @override
-  Stream<List<LocalCityWithWeather>> getFavoriteCitiesWeatherStream() {
-    return _getLocalCityWithWeatherQuery().watch().map(
-      (typedResultList) {
-        return _getLocalCityWithWeatherList(typedResultList);
-      },
-    );
-  }
-
-  JoinedSelectStatement<HasResultSet, dynamic> _getLocalCityWithWeatherQuery() {
-    return select(localCity).join(
-      [
-        innerJoin(
-          localWeather,
-          localWeather.cityWoeid.equalsExp(localCity.woeid),
-        ),
-        innerJoin(
-          localDayWeather,
-          localDayWeather.cityWoeid.equalsExp(localCity.woeid),
-        )
-      ],
-    );
-  }
-
-  List<LocalCityWithWeather> _getLocalCityWithWeatherList(
-      List<TypedResult> typedResult) {
-    final groupedByWoeid = groupBy(typedResult, (TypedResult row) {
-      final localCityData = row.readTable(localCity);
-      return localCityData.woeid;
-    });
-
-    final localCityWithWeatherList =
-        List<LocalCityWithWeather>.empty(growable: true);
-
-    groupedByWoeid.forEach((key, results) {
-      final localCityData = results.first.readTable(localCity);
-      final localWeatherData = results.first.readTable(localWeather);
-      final dayWeatherList = results
-          .map(
-            (row) => row.readTable(localDayWeather),
-          )
-          .toList();
-
-      localCityWithWeatherList.add(LocalCityWithWeather(
-        city: localCityData,
-        weather: localWeatherData,
-        dayWeather: dayWeatherList,
-      ));
-    });
-
-    return localCityWithWeatherList;
+  Future<void> upsertLocalCurrentWeather({required LocalCurrentWeatherCompanion weather}) {
+    return into(localCurrentWeather).insert(weather, mode: InsertMode.insertOrReplace);
   }
 }
