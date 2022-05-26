@@ -67,3 +67,6 @@ app.*.map.json
 
 # Golden failure output
 **/failures/*.png
+
+# Secrets
+!lib/secrets/app_secrets.skeleton.dart
