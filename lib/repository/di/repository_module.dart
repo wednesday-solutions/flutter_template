@@ -8,10 +8,8 @@ import 'package:flutter_template/repository/preferences/preferences_repository_i
 import 'package:flutter_template/repository/theme/theme_repository.dart';
 import 'package:flutter_template/repository/theme/theme_repository_impl.dart';
 import 'package:flutter_template/repository/weather/domain_city_mapper.dart';
-import 'package:flutter_template/repository/weather/domain_day_weather_mapper.dart';
 import 'package:flutter_template/repository/weather/domain_weather_mapper.dart';
 import 'package:flutter_template/repository/weather/local_city_mapper.dart';
-import 'package:flutter_template/repository/weather/local_day_weather_mapper.dart';
 import 'package:flutter_template/repository/weather/local_weather_mapper.dart';
 import 'package:flutter_template/repository/weather/weather_repository.dart';
 import 'package:flutter_template/repository/weather/weather_repository_impl.dart';
@@ -32,15 +30,13 @@ extension RepositoryModule on GetIt {
 
     // weather
     registerFactory<DomainCityMapper>(() => DomainCityMapperImpl());
-    registerFactory<DomainDayWeatherMapper>(() => DomainDayWeatherMapperImpl(
-          dateRepository: get(),
-        ));
-    registerFactory<DomainWeatherMapper>(() => DomainWeatherMapperImpl(
-          domainDayWeatherMapper: get(),
-        ));
+
+    registerFactory<DomainWeatherMapper>(() => DomainWeatherMapperImpl());
+
     registerFactory<LocalCityMapper>(() => LocalCityMapperImpl());
-    registerFactory<LocalDayWeatherMapper>(() => LocalDayWeatherMapperImpl());
-    registerFactory<LocalWeatherMapper>(() => LocalWeatherMapperImpl());
+
+    registerFactory<LocalWeatherMapper>(
+        () => LocalWeatherMapperImpl(dateRepository: get()));
 
     registerLazySingleton<WeatherRepository>(() => WeatherRepositoryImpl(
           weatherLocalService: get(),
@@ -49,7 +45,6 @@ extension RepositoryModule on GetIt {
           domainWeatherMapper: get(),
           localCityMapper: get(),
           localWeatherMapper: get(),
-          localDayWeatherMapper: get(),
           dateRepository: get(),
         ));
 

@@ -17,9 +17,11 @@ class UICityMapperImpl extends UICityMapper {
     return UICity(
       cityId: from1.id,
       title: from1.title,
-      locationType: from1.locationType,
-      location: from1.location,
+      location: "${from1.lat} ${from1.lon}",
       isFavourite: from2,
+      displayTitle: from1.title,
+      locationType: from1.country,
+      state: from1.state,
     );
   }
 
@@ -28,19 +30,24 @@ class UICityMapperImpl extends UICityMapper {
     return UICity(
       cityId: from.id,
       title: from.title,
-      locationType: from.locationType,
-      location: from.location,
+      location: "${from.lat} ${from.lon}",
       isFavourite: true,
+      displayTitle: from.title,
+      locationType: from.country,
+      state: from.state,
     );
   }
 
   @override
   City mapCity(UICity from) {
+    final coords = from.location.split(" ");
     return City(
       id: from.cityId,
       title: from.title,
-      locationType: from.locationType,
-      location: from.location,
+      country: from.locationType,
+      state: from.state,
+      lon: double.parse(coords.first),
+      lat: double.parse(coords.last),
     );
   }
 }

@@ -1,10 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
-import 'package:flutter_template/presentation/destinations/weather/home/home_screen_intent.dart';
-import 'package:flutter_template/presentation/destinations/weather/home/widgets/list/ui_day_weather_heading_renderer.dart';
-import 'package:flutter_template/presentation/destinations/weather/home/widgets/list/ui_day_weather_renderer.dart';
-import 'package:flutter_template/presentation/entity/weather/ui_day_weather.dart';
-import 'package:flutter_template/presentation/entity/weather/ui_day_weather_heading.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_weather.dart';
 
 class UIWeatherListItem extends StatelessWidget {
@@ -37,16 +31,6 @@ class UIWeatherListItem extends StatelessWidget {
                     style: const TextStyle(fontSize: 30),
                   ),
                 ],
-              ),
-              UIList<HomeScreenIntent>(
-                renderers: const {
-                  UIDayWeatherHeading: UIDayWeatherHeaderRenderer(),
-                  UIDayWeather: UIDayWeatherRenderer()
-                },
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                intentHandler: null,
-                items: weather.dayWeatherList,
               ),
             ],
           ),

@@ -1,4 +1,3 @@
-import 'package:flutter_template/services/base/database/app_database.dart';
 
 final localDayWeatherList = [
   LocalDayWeatherData(

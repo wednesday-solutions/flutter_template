@@ -10,6 +10,8 @@ class UICity with _$UICity implements UIListItem {
   factory UICity({
     required int cityId,
     required String title,
+    required String? state,
+    required String displayTitle,
     required String locationType,
     required String location,
     required bool isFavourite,

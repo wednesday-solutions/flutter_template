@@ -9,7 +9,8 @@ class WeatherRemoteServiceImpl implements WeatherRemoteService {
   WeatherRemoteServiceImpl({required this.dio});
 
   @override
-  Future<RemoteCurrentWeather> currentWeather({required String cityAndState}) async {
+  Future<RemoteCurrentWeather> currentWeather(
+      {required String cityAndState}) async {
     final response = await dio.get(
       "data/2.5/weather?units=metric",
       queryParameters: {
@@ -21,7 +22,8 @@ class WeatherRemoteServiceImpl implements WeatherRemoteService {
   }
 
   @override
-  Future<List<RemoteLocation>> geocodingSearch({required String searchTerm}) async {
+  Future<List<RemoteLocation>> geocodingSearch(
+      {required String searchTerm}) async {
     final response = await dio.get(
       "/api/location/search",
       queryParameters: {

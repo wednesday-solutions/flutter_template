@@ -1,4 +1,3 @@
-import 'package:flutter_template/services/base/database/app_database.dart';
 import 'package:flutter_template/services/entity/weather/local/local_city_with_weather.dart';
 
 import 'local_day_weather_models.dart';

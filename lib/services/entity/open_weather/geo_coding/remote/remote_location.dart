@@ -18,5 +18,6 @@ class RemoteLocation {
     this.state,
   });
 
-  factory RemoteLocation.fromJson(Map<String, dynamic> json) => _$RemoteLocationFromJson(json);
+  factory RemoteLocation.fromJson(Map<String, dynamic> json) =>
+      _$RemoteLocationFromJson(json);
 }

@@ -54,6 +54,20 @@ class DateRepositoryImpl implements DateRepository {
   }
 
   @override
+  DartDateTime mapDartDateTimeFromDateTime(DateTime date) {
+    return DartDateTime(
+      date.year,
+      date.month,
+      date.day,
+      date.hour,
+      date.minute,
+      date.second,
+      date.millisecond,
+      0,
+    );
+  }
+
+  @override
   String formatDate(Date date, String format) {
     final dartDateTime = mapDartDateTimeFromDate(date);
     return DateFormat(format).format(dartDateTime);
@@ -62,6 +76,12 @@ class DateRepositoryImpl implements DateRepository {
   @override
   int convertDateToMillis(Date date) {
     final dartDate = mapDartDateTimeFromDate(date);
+    return dartDate.millisecondsSinceEpoch;
+  }
+
+  @override
+  int convertDateTimeToMillis(DateTime date) {
+    final dartDate = mapDartDateTimeFromDateTime(date);
     return dartDate.millisecondsSinceEpoch;
   }
 }

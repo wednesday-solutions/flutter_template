@@ -1,5 +1,4 @@
 import 'package:drift/drift.dart';
-import 'package:flutter_template/services/base/database/app_database.dart';
 
 final localDayWeatherCompanionList = [
   LocalDayWeatherCompanion(
