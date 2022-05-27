@@ -52,6 +52,8 @@ dependencies:
   easy_logger: ^0.0.2
   path_provider: ^2.0.10
   dynamic_color: ^1.2.2
+  faker: ^2.0.0
+  cached_network_image: ^3.2.0
 
 dev_dependencies:
   auto_route_generator: ^4.0.0

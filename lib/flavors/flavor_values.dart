@@ -2,8 +2,9 @@ import 'package:flutter_template/secrets/app_secrets.dart';
 
 class FlavorValues {
   final String apiBaseUrl;
-  final bool showLogs;
   final AppSecrets secrets;
+  final bool useFakeData;
+  final bool showLogs;
 
   final bool _logSqlStatements;
 
@@ -12,6 +13,7 @@ class FlavorValues {
     required this.secrets,
     logSqlStatements = false,
     this.showLogs = false,
+    this.useFakeData = false,
   }) : _logSqlStatements = showLogs && logSqlStatements;
 
   bool get logSqlStatements => _logSqlStatements;

@@ -12,6 +12,7 @@ void main() {
       secrets: AppSecrets.appSecretsDev,
       logSqlStatements: true,
       showLogs: true,
+      useFakeData: false,
     ),
   );
   startApp();

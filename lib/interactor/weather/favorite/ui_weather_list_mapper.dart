@@ -23,10 +23,11 @@ class UIWeatherListMapperImpl extends UIWeatherListMapper {
           lon: weather.lon,
           title: weather.title,
           description: toBeginningOfSentenceCase(weather.description)!,
-          currentTemp: "${weather.temp} °C",
+          currentTemp: "${weather.temp.toStringAsPrecision(4)} °C",
           minMaxTemp:
-              "With a high of ${weather.maxTemp} °C and low of ${weather.minTemp} °C",
-          feelsLike: "Feels like: ${weather.feelsLike} °C",
+              "With a high of ${weather.maxTemp.toStringAsPrecision(4)} °C and low of ${weather.minTemp.toStringAsPrecision(4)} °C",
+          feelsLike:
+              "Feels like: ${weather.feelsLike.toStringAsPrecision(4)} °C",
           iconUrl: weather.iconUrl,
         );
       },

@@ -16,12 +16,13 @@ class UICityListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final title = city.title + (city.state != null ? ", ${city.state}" : "");
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Expanded(child: Text(city.title)),
+          Expanded(child: Text(title)),
           IconButton(
             icon: Icon(
               city.isFavourite ? Icons.favorite : Icons.favorite_outline,

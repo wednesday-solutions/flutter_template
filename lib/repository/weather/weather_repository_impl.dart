@@ -9,6 +9,7 @@ import 'package:flutter_template/repository/weather/local_weather_mapper.dart';
 import 'package:flutter_template/repository/weather/weather_repository.dart';
 import 'package:flutter_template/services/weather/local/weather_local_service.dart';
 import 'package:flutter_template/services/weather/remote/weather_remote_service.dart';
+import 'package:rxdart/rxdart.dart';
 
 class WeatherRepositoryImpl implements WeatherRepository {
   final WeatherLocalService weatherLocalService;
@@ -84,7 +85,11 @@ class WeatherRepositoryImpl implements WeatherRepository {
   @override
   Stream<List<Weather>> getFavoriteCitiesWeatherStream() {
     logD("getFavoriteCitiesWeatherStream");
-    return weatherLocalService.getFavoriteCitiesWeatherStream().map(
+    return weatherLocalService
+        .getFavoriteCitiesWeatherStream()
+        .doOnData(
+            (data) => logD("getFavoriteCitiesWeatherStream: onEmit: $data"))
+        .map(
       (cityWithWeatherList) {
         return domainWeatherMapper.mapList(cityWithWeatherList);
       },
