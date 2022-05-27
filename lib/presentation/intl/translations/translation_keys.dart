@@ -1,6 +1,6 @@
 // DO NOT EDIT. This is code generated via package:easy_localization/generate.dart
 
-abstract class LocaleKeys {
+abstract class  LocaleKeys {
   static const homePageTitle = 'homePageTitle';
   static const searchPageTitle = 'searchPageTitle';
   static const forecast = 'forecast';
@@ -9,4 +9,5 @@ abstract class LocaleKeys {
   static const searchResultsAppearHere = 'searchResultsAppearHere';
   static const noResultsFound = 'noResultsFound';
   static const dynamicTheme = 'dynamicTheme';
+
 }

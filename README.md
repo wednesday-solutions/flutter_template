@@ -41,7 +41,7 @@ flutter pub get
 ```
 #### Run Code Generation
 ```shell
-scripts/generate-all.sh
+bash scripts/generate-all.sh
 ```
 
 Read the [scripts documentation](scripts/README.md) to learn about all the scrips used in the project.
