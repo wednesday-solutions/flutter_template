@@ -9,16 +9,18 @@ final allLocalCityDataList = [
   localCityData2,
 ];
 
-final localCityData1 = LocalCityData(
-  woeid: 1,
-  title: "title 1",
-  locationType: "locationType 1",
-  location: "location 1",
+final localCityData1 = LocalLocationData(
+  name: "name 1",
+  country: "country 1",
+  lat: 100.45,
+  lon: 90.12,
+  state: "state 1",
 );
 
-final localCityData2 = LocalCityData(
-  woeid: 2,
-  title: "title 2",
-  locationType: "locationType 2",
-  location: "location 2",
+final localCityData2 = LocalLocationData(
+  name: "name 2",
+  country: "country 2",
+  lat: -45.45,
+  lon: 19.55,
+  state: "state 2",
 );

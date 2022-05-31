@@ -11,14 +11,18 @@ final allCityList = [
 
 final city1 = City(
   id: 1,
-  title: "title 1",
-  locationType: "locationType 1",
-  location: "location 1",
+  title: "name 1",
+  lat: 100.45,
+  lon: 90.12,
+  state: "state 1",
+  country: "country 1",
 );
 
 final city2 = City(
   id: 2,
-  title: "title 2",
-  locationType: "locationType 2",
-  location: "location 2",
+  title: "name 2",
+  country: "country 2",
+  state: "state 2",
+  lat: -45.45,
+  lon: 19.55,
 );

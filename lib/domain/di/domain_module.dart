@@ -81,12 +81,14 @@ extension DomainModule on GetIt {
           themeRepository: get(),
         ));
 
-    registerFactory<SetIsDynamicThemeEnabled>(() => SetIsDynamicThemeEnabledImpl(
-          themeRepository: get(),
-        ));
+    registerFactory<SetIsDynamicThemeEnabled>(
+        () => SetIsDynamicThemeEnabledImpl(
+              themeRepository: get(),
+            ));
 
-    registerFactory<GetIsDynamicThemeEnabled>(() => GetIsDynamicThemeEnabledImpl(
-          themeRepository: get(),
-        ));
+    registerFactory<GetIsDynamicThemeEnabled>(
+        () => GetIsDynamicThemeEnabledImpl(
+              themeRepository: get(),
+            ));
   }
 }

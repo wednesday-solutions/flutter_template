@@ -9,8 +9,9 @@ class SearchPageLoadingShimmer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Shimmer.fromColors(
-        baseColor: context.theme.colorScheme.surface.withOpacity(0.2),
-        highlightColor: context.theme.colorScheme.inverseSurface.withOpacity(0.2),
+        baseColor: context.theme.colorScheme.surfaceVariant.withOpacity(0.2),
+        highlightColor:
+            context.theme.colorScheme.onSurfaceVariant.withOpacity(0.1),
         period: const Duration(seconds: 1),
         direction: ShimmerDirection.ltr,
         child: ListView.builder(

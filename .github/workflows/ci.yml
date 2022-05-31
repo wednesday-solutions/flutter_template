@@ -7,19 +7,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+
+      - name: Setup app_secrets.dart
+        env:
+            APP_SECRETS: ${{ secrets.APP_SECRETS }}
+            APP_SECRETS_PATH: lib/secrets/app_secrets.dart
+        run: echo -n $APP_SECRETS | base64 --decode > $APP_SECRETS_PATH
+
       - name: Get Dependencies
         run: flutter pub get
+
       - name: Run build_runner
         run: flutter pub run build_runner build --delete-conflicting-outputs
+
       - name: Lint
         run: flutter analyze --fatal-infos --fatal-warnings
+
       - name: Unit tests
         run: flutter test --exclude-tags=golden
+
       - name: Build Android
         run: scripts/build.sh apk dev --debug
+
   build-ios:
     name: Golden Tests and Build iOS
     runs-on: macos-latest
@@ -29,11 +42,21 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+
+      - name: Setup app_secrets.dart
+        env:
+          APP_SECRETS: ${{ secrets.APP_SECRETS }}
+          APP_SECRETS_PATH: lib/secrets/app_secrets.dart
+        run: echo -n $APP_SECRETS | base64 --decode > $APP_SECRETS_PATH
+
       - name: Get Dependencies
         run: flutter pub get
+
       - name: Run build_runner
         run: flutter pub run build_runner build
+
       - name: Golden tests
         run:  flutter test --tags=golden test/presentation/goldens
+
       - name: Build iOS
         run: scripts/build.sh ios dev --debug --no-codesign

@@ -10,7 +10,8 @@ class DynamicThemeSwitch extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final themeViewModel = ref.watch(themeViewModelProvider.notifier);
-    final isDynamic = ref.watch(themeViewModelProvider.select((value) => value.isDynamic));
+    final isDynamic =
+        ref.watch(themeViewModelProvider.select((value) => value.isDynamic));
     return DynamicThemeSwitchContent(
       isDynamic: isDynamic,
       onIsDynamicToggled: (isDynamic) {

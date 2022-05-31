@@ -33,7 +33,13 @@
 </div>
 
 ## Getting Started
-Clone the repo and run the following commands to setup the project.
+Clone the repo and follow these steps to setup the project.
+
+#### App Secrets
+Sensitive information like api keys, credentials, etc should not be checked into git repos, especially public ones. To keep such data safe the template uses `app_secrets.dart` file.
+If you want to run the app locally, you will need to create a new file `app_secrets.dart` under [`lib/secrets`](lib/secrets). To help with setting up the secrets file, the template inclued a skeleton secrets file. Copy all the content from [`app_secrets.skeleton.dart`](lib/secrets/app_secrets.skeleton.dart) to the `app_secrets.dart` file you just created. Uncomment the code and replace the the placeholders with your secret data.
+
+You can get your Open Weather API key from [here](https://openweathermap.org/appid#start).
 
 #### Get Dependencies
 ```shell
@@ -41,7 +47,7 @@ flutter pub get
 ```
 #### Run Code Generation
 ```shell
-scripts/generate-all.sh
+bash scripts/generate-all.sh
 ```
 
 Read the [scripts documentation](scripts/README.md) to learn about all the scrips used in the project.

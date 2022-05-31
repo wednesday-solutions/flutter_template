@@ -1,20 +1,22 @@
-import 'package:flutter_template/services/entity/weather/remote/remote_city.dart';
+import 'package:flutter_template/services/entity/open_weather/geo_coding/remote/remote_location.dart';
 
-const allRemoteCityList = [
+final allRemoteCityList = [
   remoteCity1,
   remoteCity2,
 ];
 
-const remoteCity1 = RemoteCity(
-  woeid: 1,
-  title: "title 1",
-  locationType: "locationType 1",
-  location: "location 1",
+final remoteCity1 = RemoteLocation(
+  name: "name 1",
+  country: "country 1",
+  lat: 100.45,
+  lon: 90.12,
+  state: "state 1",
 );
 
-const remoteCity2 = RemoteCity(
-  woeid: 2,
-  title: "title 2",
-  locationType: "locationType 2",
-  location: "location 2",
+final remoteCity2 = RemoteLocation(
+  name: "name 2",
+  country: "country 2",
+  lat: -45.45,
+  lon: 19.55,
+  state: "state 2",
 );

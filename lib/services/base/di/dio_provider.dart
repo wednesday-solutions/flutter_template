@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_template/flavors/flavor_config.dart';
 
-Dio provideDio() {
+Dio provideDio({List<Interceptor> interceptors = const []}) {
   final baseOption = BaseOptions(
     baseUrl: FlavorConfig.instance.values.apiBaseUrl,
   );
@@ -15,6 +15,8 @@ Dio provideDio() {
   if (FlavorConfig.instance.values.showLogs) {
     dio.interceptors.add(logInterceptor);
   }
+
+  dio.interceptors.addAll(interceptors);
 
   return dio;
 }

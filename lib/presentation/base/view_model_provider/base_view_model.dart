@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_template/foundation/logger/logger.dart';
+import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/presentation/entity/effect/effect.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/screen/screen_state.dart';
@@ -27,7 +27,7 @@ abstract class BaseViewModel<SCREEN extends Screen,
   onBind(SCREEN? screen) {}
 
   BaseViewModel(SCREEN_STATE state) : super(state) {
-    log.d("$runtimeType onInit.");
+    logD("onInit.");
     onInit();
   }
 
@@ -35,7 +35,7 @@ abstract class BaseViewModel<SCREEN extends Screen,
 
   bind(SCREEN? screenData) {
     _screen = screenData;
-    log.d("$runtimeType onBind.");
+    logD("onBind.");
     onBind(screen);
   }
 
@@ -71,7 +71,7 @@ abstract class BaseViewModel<SCREEN extends Screen,
   @override
   void dispose() {
     super.dispose();
-    log.d("$runtimeType onDispose.");
+    logD("onDispose.");
     for (var subscription in _streamSubscriptions) {
       subscription.cancel();
     }

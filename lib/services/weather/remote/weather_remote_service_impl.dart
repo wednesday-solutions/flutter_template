@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/services/entity/weather/remote/remote_city.dart';
-import 'package:flutter_template/services/entity/weather/remote/remote_weather.dart';
+import 'package:flutter_template/foundation/extensions/object_ext.dart';
+import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather.dart';
+import 'package:flutter_template/services/entity/open_weather/geo_coding/remote/remote_location.dart';
 import 'package:flutter_template/services/weather/remote/weather_remote_service.dart';
 
 class WeatherRemoteServiceImpl implements WeatherRemoteService {
@@ -9,23 +10,33 @@ class WeatherRemoteServiceImpl implements WeatherRemoteService {
   WeatherRemoteServiceImpl({required this.dio});
 
   @override
-  Future<List<RemoteCity>> searchCities({required String searchTerm}) async {
+  Future<RemoteCurrentWeather> currentWeather(
+      {required String cityAndState}) async {
+    logD("currentWeather: cityAndState = $cityAndState");
     final response = await dio.get(
-      "/api/location/search",
+      "data/2.5/weather?units=metric",
       queryParameters: {
-        "query": searchTerm,
+        "q": cityAndState,
       },
     );
-    return (response.data as List)
-        .map((e) => RemoteCity.fromJson(e as Map<String, dynamic>))
-        .toList();
+
+    return RemoteCurrentWeather.fromJson(response.data as Map<String, dynamic>);
   }
 
   @override
-  Future<RemoteWeather> weatherForCity({required int id}) async {
-    final response = await dio.get("/api/location/$id");
+  Future<List<RemoteLocation>> geocodingSearch(
+      {required String searchTerm}) async {
+    logD("geocodingSearch: searchTerm = $searchTerm");
+    final response = await dio.get(
+      "geo/1.0/direct",
+      queryParameters: {
+        "q": searchTerm,
+        "limit": 5,
+      },
+    );
 
-    final json = (response.data as Map<String, dynamic>);
-    return RemoteWeather.fromJson(json);
+    return (response.data as List)
+        .map((e) => RemoteLocation.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/repository/preferences/preferences_repository.dart';
 import 'package:flutter_template/services/preferences/preferences_service.dart';
 
@@ -7,22 +8,32 @@ class PreferencesRepositoryImpl implements PreferencesRepository {
   PreferencesRepositoryImpl({required this.preferencesService});
 
   @override
-  bool contains({required String key}) => preferencesService.containsKey(key);
+  bool contains({required String key}) {
+    logD("contains: key = $key");
+    return preferencesService.containsKey(key);
+  }
 
   @override
-  bool getBool({required String key, required bool defaultValue}) =>
-      preferencesService.getBool(key: key, defaultValue: defaultValue);
+  bool getBool({required String key, required bool defaultValue}) {
+    logD("getBool: key = $key, defaultValue = $defaultValue");
+    return preferencesService.getBool(key: key, defaultValue: defaultValue);
+  }
 
   @override
-  int getInt({required String key, required int defaultValue}) =>
-      preferencesService.getInt(key: key, defaultValue: defaultValue);
+  int getInt({required String key, required int defaultValue}) {
+    logD("getInt: key = $key, defaultValue = $defaultValue");
+    return preferencesService.getInt(key: key, defaultValue: defaultValue);
+  }
 
   @override
-  String getString({required String key, required String defaultValue}) =>
-      preferencesService.getString(key: key, defaultValue: defaultValue);
+  String getString({required String key, required String defaultValue}) {
+    logD("getString: key = $key, defaultValue = $defaultValue");
+    return preferencesService.getString(key: key, defaultValue: defaultValue);
+  }
 
   @override
   Future save<T>({required String key, required T value}) async {
+    logD("save: key = $key, value = $value");
     if (value is bool) {
       return await preferencesService.setBool(key: key, value: value);
     }

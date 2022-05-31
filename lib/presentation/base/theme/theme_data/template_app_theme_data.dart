@@ -11,10 +11,11 @@ ThemeData buildTheme(ColorScheme colorScheme) {
   return ThemeData(
     useMaterial3: true,
     fontFamily: primaryFontFamily,
-    popupMenuTheme: PopupMenuThemeData(color: colorScheme.primaryContainer),
-    cardTheme: AppCardTheme(cardColor: colorScheme.primaryContainer),
+    popupMenuTheme: PopupMenuThemeData(color: colorScheme.surface),
+    cardTheme: AppCardTheme(cardColor: colorScheme.surface),
     snackBarTheme: SnackBarThemeData(backgroundColor: colorScheme.surface),
+    appBarTheme: AppBarTheme(color: colorScheme.surfaceVariant),
     colorScheme: colorScheme,
-    scaffoldBackgroundColor: colorScheme.surfaceVariant,
+    scaffoldBackgroundColor: colorScheme.background,
   );
 }

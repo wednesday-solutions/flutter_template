@@ -9,15 +9,18 @@ class UIWeather with _$UIWeather implements UIListItem {
   const UIWeather._();
 
   const factory UIWeather({
-    required int cityId,
+    required double lat,
+    required double lon,
     required String title,
+    required String description,
     required String currentTemp,
     required String minMaxTemp,
-    required List<UIListItem> dayWeatherList,
+    required String feelsLike,
+    required String iconUrl,
   }) = _UIWeather;
 
   @override
-  String get key => "UIWeather $cityId";
+  String get key => "UIWeather $lat $lon";
 
   @override
   Type get type => UIWeather;

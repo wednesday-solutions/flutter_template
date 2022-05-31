@@ -1,4 +1,5 @@
 import 'package:flutter_template/domain/entity/weather/city.dart';
+import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/foundation/mapper/mapper2.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 
@@ -14,33 +15,43 @@ abstract class UICityMapper extends Mapper2<City, bool, UICity> {
 class UICityMapperImpl extends UICityMapper {
   @override
   UICity map(City from1, bool from2) {
+    logD("map: from1 = $from1, from2 = $from2");
     return UICity(
       cityId: from1.id,
       title: from1.title,
-      locationType: from1.locationType,
-      location: from1.location,
+      location: "${from1.lat} ${from1.lon}",
       isFavourite: from2,
+      displayTitle: from1.title,
+      locationType: from1.country,
+      state: from1.state,
     );
   }
 
   @override
   UICity mapFavouriteCity(City from) {
+    logD("mapFavouriteCity: from = $from");
     return UICity(
       cityId: from.id,
       title: from.title,
-      locationType: from.locationType,
-      location: from.location,
+      location: "${from.lat} ${from.lon}",
       isFavourite: true,
+      displayTitle: from.title,
+      locationType: from.country,
+      state: from.state,
     );
   }
 
   @override
   City mapCity(UICity from) {
+    logD("mapCity: from = $from");
+    final coords = from.location.split(" ");
     return City(
       id: from.cityId,
       title: from.title,
-      locationType: from.locationType,
-      location: from.location,
+      country: from.locationType,
+      state: from.state,
+      lon: double.parse(coords.first),
+      lat: double.parse(coords.last),
     );
   }
 }

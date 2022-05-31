@@ -1,13 +1,17 @@
 class City {
   final int id;
   final String title;
-  final String locationType;
-  final String location;
+  final String country;
+  final String? state;
+  final double lat;
+  final double lon;
 
   City({
     required this.id,
     required this.title,
-    required this.locationType,
-    required this.location,
+    required this.country,
+    required this.state,
+    required this.lat,
+    required this.lon,
   });
 }
