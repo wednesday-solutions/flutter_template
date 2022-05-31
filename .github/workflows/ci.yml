@@ -15,7 +15,7 @@ jobs:
             APP_SECRETS: ${{ secrets.APP_SECRETS }}
             APP_SECRETS_PATH: lib/secrets/app_secrets.dart
         run: echo -n $APP_SECRETS | base64 --decode > $APP_SECRETS_PATH
-      - run: cat $APP_SECRETS_PATH
+      - run: ls lib/secrets
       - name: Get Dependencies
         run: flutter pub get
       - name: Run build_runner
