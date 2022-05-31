@@ -34,7 +34,6 @@ void main() {
       expect(result.title, city.title);
       expect(result.lat, city.lat);
       expect(result.lon, city.lon);
-      expect(result.id, city.id);
       expect(result.state, city.state);
       expect(result.country, city.country);
     },
@@ -54,7 +53,6 @@ void main() {
       expect(result, isA<List<City>>());
       result.forEachIndexed((index, city) {
         expect(city.title, cityList[index].title);
-        expect(city.id, cityList[index].id);
         expect(city.country, cityList[index].country);
         expect(city.lat, cityList[index].lat);
         expect(city.lon, cityList[index].lon);
@@ -77,7 +75,6 @@ void main() {
       expect(result.title, city.title);
       expect(result.lat, city.lat);
       expect(result.lon, city.lon);
-      expect(result.id, city.id);
       expect(result.state, city.state);
       expect(result.country, city.country);
     },
@@ -97,7 +94,6 @@ void main() {
       expect(result, isA<List<City>>());
       result.forEachIndexed((index, city) {
         expect(city.title, cityList[index].title);
-        expect(city.id, cityList[index].id);
         expect(city.country, cityList[index].country);
         expect(city.lat, cityList[index].lat);
         expect(city.lon, cityList[index].lon);

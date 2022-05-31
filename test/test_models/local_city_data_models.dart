@@ -14,6 +14,7 @@ final localCityData1 = LocalLocationData(
   country: "country 1",
   lat: 100.45,
   lon: 90.12,
+  state: "state 1",
 );
 
 final localCityData2 = LocalLocationData(
@@ -21,4 +22,5 @@ final localCityData2 = LocalLocationData(
   country: "country 2",
   lat: -45.45,
   lon: 19.55,
+  state: "state 2",
 );
