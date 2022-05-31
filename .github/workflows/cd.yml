@@ -23,9 +23,9 @@ jobs:
 
       - name: Setup app_secrets.dart
         env:
-            APP_SECRETS: ${{ secrets.APP_SECRETS }}
-            APP_SECRETS_PATH: lib/secrets/app_secrets.dart
-        run: echo -n "$PROPS" | base64 --decode > $APP_SECRETS_PATH
+          APP_SECRETS: ${{ secrets.APP_SECRETS }}
+          APP_SECRETS_PATH: lib/secrets/app_secrets.dart
+        run: echo -n $APP_SECRETS | base64 --decode > $APP_SECRETS_PATH
 
       - name: Get Dependencies
         run: flutter pub get
@@ -75,7 +75,6 @@ jobs:
             debug-info/app.android-arm.symbols
             debug-info/app.android-arm64.symbols
             debug-info/app.android-x64.symbols
-#
 
   build-ios:
     name: Release iOS to TestFlight
@@ -88,6 +87,12 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+
+      - name: Setup app_secrets.dart
+        env:
+          APP_SECRETS: ${{ secrets.APP_SECRETS }}
+          APP_SECRETS_PATH: lib/secrets/app_secrets.dart
+        run: echo -n $APP_SECRETS | base64 --decode > $APP_SECRETS_PATH
 
       - name: Get Dependencies
         run: flutter pub get
