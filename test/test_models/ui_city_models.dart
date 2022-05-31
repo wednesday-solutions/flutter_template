@@ -6,6 +6,8 @@ final uiCity = UICity(
   locationType: "locationType",
   location: "location",
   isFavourite: false,
+  displayTitle: "displayTitle",
+  state: "state",
 );
 
 final searchList = [

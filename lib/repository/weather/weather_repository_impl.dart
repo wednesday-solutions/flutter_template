@@ -45,7 +45,8 @@ class WeatherRepositoryImpl implements WeatherRepository {
         lon: city.lon,
       );
       final isWeatherDataStale = localCurrentWeather != null &&
-          (nowMillis - localCurrentWeather.updatedAt.millisecondsSinceEpoch) >
+          (nowMillis -
+                  localCurrentWeather.updatedAt.millisecondsSinceEpoch.abs()) >
               twoHours;
 
       if (localCurrentWeather == null || isWeatherDataStale) {
