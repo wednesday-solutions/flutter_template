@@ -10,7 +10,6 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: echo "$PROPS"
       - name: Setup app_secrets.dart
         env:
             APP_SECRETS: ${{ secrets.APP_SECRETS }}
