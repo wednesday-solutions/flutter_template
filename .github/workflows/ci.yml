@@ -15,7 +15,7 @@ jobs:
         env:
             APP_SECRETS: ${{ secrets.APP_SECRETS }}
             APP_SECRETS_PATH: lib/secrets/app_secrets.dart
-        run: echo -n "$PROPS" | base64 --decode > $APP_SECRETS_PATH
+        run: base64 --decode $APP_SECRETS > $APP_SECRETS_PATH
       - run: cat $APP_SECRETS_PATH
       - name: Get Dependencies
         run: flutter pub get
