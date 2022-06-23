@@ -6,6 +6,18 @@ packages:
   - .
 
 scripts:
+  clean-all:
+    run: melos run build-clean && melos run flutter-clean
+
+  flutter-clean:
+    exec: flutter clean
+
+  build-clean:
+    run: melos exec --scope="service,flutter_template" flutter pub run build_runner clean
+
+  generate:
+    run: melos exec --scope="service,flutter_template" -- flutter pub run build_runner build --delete-conflicting-outputs
+
   get:
     exec: flutter pub get
 
