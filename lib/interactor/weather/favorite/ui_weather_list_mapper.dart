@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_template/domain/entity/weather/weather.dart';
-import 'package:flutter_template/foundation/extensions/object_ext.dart';
-import 'package:flutter_template/foundation/mapper/mapper.dart';
+import 'package:foundation/foundation.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_weather.dart';
 

@@ -1,4 +1,4 @@
-import 'package:flutter_template/foundation/logger/logger.dart';
+import 'package:foundation/src/logger/logger.dart';
 
 extension ObjectExt on Object {
   void logD(String message) {

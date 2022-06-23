@@ -3,10 +3,9 @@ import 'package:flutter_template/domain/theme/get_is_dynamic_theme_enabled.dart'
 import 'package:flutter_template/domain/theme/get_theme_mode_use_case.dart';
 import 'package:flutter_template/domain/theme/set_is_dynamic_theme_enabled.dart';
 import 'package:flutter_template/domain/theme/set_theme_mode_use_case.dart';
-import 'package:flutter_template/foundation/logger/logger.dart';
-import 'package:flutter_template/foundation/unit.dart';
 import 'package:flutter_template/interactor/theme/theme_interactor.dart';
 import 'package:flutter_template/interactor/theme/theme_mode_mapper.dart';
+import 'package:foundation/foundation.dart';
 
 class ThemeInteractorImpl implements ThemeInteractor {
   final SetThemeModeUseCase setThemeModeUseCase;

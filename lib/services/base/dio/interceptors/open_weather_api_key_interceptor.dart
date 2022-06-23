@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/flavors/flavor_config.dart';
+import 'package:foundation/foundation.dart';
 
 class OpenWeatherApiKeyInterceptor extends Interceptor {
   static const String _appId = "appid";

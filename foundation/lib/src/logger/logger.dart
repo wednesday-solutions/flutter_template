@@ -1,6 +1,6 @@
 import 'package:easy_logger/easy_logger.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_template/flavors/flavor_config.dart';
+import 'package:foundation/src/flavors/flavor_config.dart';
 import 'package:logger/logger.dart';
 
 class LogHelper {

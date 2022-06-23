@@ -1,4 +1,4 @@
-import 'package:flutter_template/foundation/extensions/object_ext.dart';
+import 'package:foundation/foundation.dart';
 
 abstract class BaseUnsafeUseCase<IN, OUT> {
   OUT callInternal(IN param);

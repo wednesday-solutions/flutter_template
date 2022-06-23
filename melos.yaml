@@ -1,0 +1,18 @@
+name: flutter_template
+
+packages:
+  - foundation
+  - .
+
+scripts:
+  tidy:
+    run: melos run format && melos run dart-fix
+
+  analyze:
+    exec: flutter analyze --fatal-infos --fatal-warnings
+
+  format:
+    exec: flutter format .
+
+  dart-fix:
+    exec: dart fix --apply

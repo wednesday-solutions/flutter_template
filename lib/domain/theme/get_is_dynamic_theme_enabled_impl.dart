@@ -1,5 +1,5 @@
 import 'package:flutter_template/domain/theme/get_is_dynamic_theme_enabled.dart';
-import 'package:flutter_template/foundation/unit.dart';
+import 'package:foundation/foundation.dart';
 import 'package:flutter_template/repository/theme/theme_repository.dart';
 
 class GetIsDynamicThemeEnabledImpl extends GetIsDynamicThemeEnabled {

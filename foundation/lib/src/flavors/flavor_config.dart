@@ -1,5 +1,5 @@
-import 'package:flutter_template/flavors/flavor.dart';
-import 'package:flutter_template/flavors/flavor_values.dart';
+import 'package:foundation/src/flavors/flavor.dart';
+import 'package:foundation/src/flavors/flavor_values.dart';
 
 class FlavorConfig {
   final Flavor flavor;

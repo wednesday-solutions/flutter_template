@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/foundation/extensions/string_ext.dart';
+import 'package:flutter_template/presentation/base/translation/translation_ext.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
 
 class DynamicThemeSwitchContent extends StatelessWidget {

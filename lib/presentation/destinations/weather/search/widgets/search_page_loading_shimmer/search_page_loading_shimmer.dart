@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/foundation/extensions/theme_ext.dart';
+import 'package:flutter_template/presentation/base/theme/theme_ext.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SearchPageLoadingShimmer extends StatelessWidget {

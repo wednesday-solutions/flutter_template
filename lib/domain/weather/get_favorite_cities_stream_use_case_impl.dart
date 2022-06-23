@@ -1,7 +1,7 @@
 import 'package:flutter_template/domain/entity/weather/city.dart';
 import 'package:flutter_template/domain/weather/get_favorite_cities_stream_use_case.dart';
-import 'package:flutter_template/foundation/unit.dart';
 import 'package:flutter_template/repository/weather/weather_repository.dart';
+import 'package:foundation/foundation.dart';
 
 class GetFavoriteCitiesStreamUseCaseImpl
     extends GetFavoriteCitiesStreamUseCase {

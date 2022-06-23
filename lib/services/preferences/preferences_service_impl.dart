@@ -1,4 +1,4 @@
-import 'package:flutter_template/foundation/extensions/object_ext.dart';
+import 'package:foundation/foundation.dart';
 import 'package:flutter_template/services/preferences/preferences_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

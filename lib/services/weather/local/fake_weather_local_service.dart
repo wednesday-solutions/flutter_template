@@ -1,7 +1,7 @@
 import 'package:faker/faker.dart';
-import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/services/base/database/app_database.dart';
 import 'package:flutter_template/services/weather/local/weather_local_service.dart';
+import 'package:foundation/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 
 class FakeWeatherLocalService implements WeatherLocalService {

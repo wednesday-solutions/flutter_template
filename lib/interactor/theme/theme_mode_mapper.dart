@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/entity/theme/theme_mode.dart';
-import 'package:flutter_template/foundation/mapper/mapper.dart';
+import 'package:foundation/foundation.dart';
 
 abstract class ThemeModeMapper extends Mapper<AppThemeMode, ThemeMode> {
   AppThemeMode mapThemeMode(ThemeMode from);

@@ -2,7 +2,9 @@ import 'package:mocktail/mocktail.dart';
 
 extension WhenJustRunExt on When<Future<void>> {
   void justRun() {
-    thenAnswer((_) async { return; });
+    thenAnswer((_) async {
+      return;
+    });
   }
 }
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/presentation/base/intent/intent_handler_callback.dart';
+import 'package:flutter_template/presentation/base/translation/translation_ext.dart';
 import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
 import 'package:flutter_template/presentation/base/widgets/responsive/responsive_builder.dart';
 import 'package:flutter_template/presentation/destinations/weather/home/home_screen_intent.dart';

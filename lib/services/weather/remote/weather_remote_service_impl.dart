@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather.dart';
 import 'package:flutter_template/services/entity/open_weather/geo_coding/remote/remote_location.dart';
 import 'package:flutter_template/services/weather/remote/weather_remote_service.dart';
+import 'package:foundation/foundation.dart';
 
 class WeatherRemoteServiceImpl implements WeatherRemoteService {
   final Dio dio;

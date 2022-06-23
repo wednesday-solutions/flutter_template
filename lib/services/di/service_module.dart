@@ -1,4 +1,4 @@
-import 'package:flutter_template/flavors/flavor_config.dart';
+import 'package:foundation/foundation.dart';
 import 'package:flutter_template/services/base/database/app_database.dart';
 import 'package:flutter_template/services/base/di/dio_provider.dart';
 import 'package:flutter_template/services/base/dio/interceptors/open_weather_api_key_interceptor.dart';

@@ -1,5 +1,4 @@
-import 'package:flutter_template/foundation/extensions/object_ext.dart';
-import 'package:flutter_template/foundation/logger/logger.dart';
+import 'package:foundation/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 
 abstract class BaseStreamUseCase<IN, OUT> {

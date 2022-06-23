@@ -1,6 +1,6 @@
 import 'package:flutter_template/domain/entity/preferences/preference_keys.dart';
 import 'package:flutter_template/domain/entity/theme/theme_mode.dart';
-import 'package:flutter_template/foundation/extensions/object_ext.dart';
+import 'package:foundation/foundation.dart';
 import 'package:flutter_template/repository/preferences/preferences_repository.dart';
 import 'package:flutter_template/repository/theme/theme_repository.dart';
 

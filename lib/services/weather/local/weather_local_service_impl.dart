@@ -1,9 +1,9 @@
 import 'package:drift/drift.dart';
-import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/services/base/database/app_database.dart';
 import 'package:flutter_template/services/entity/open_weather/current_weather/local/local_current_weather.dart';
 import 'package:flutter_template/services/entity/open_weather/geo_coding/local/local_location.dart';
 import 'package:flutter_template/services/weather/local/weather_local_service.dart';
+import 'package:foundation/foundation.dart';
 
 part 'weather_local_service_impl.g.dart';
 

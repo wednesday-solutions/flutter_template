@@ -1,6 +1,5 @@
 import 'package:flutter_template/domain/entity/weather/city.dart';
 import 'package:flutter_template/domain/entity/weather/weather.dart';
-import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/repository/date/date_repository.dart';
 import 'package:flutter_template/repository/weather/domain_city_mapper.dart';
 import 'package:flutter_template/repository/weather/domain_weather_mapper.dart';
@@ -9,6 +8,7 @@ import 'package:flutter_template/repository/weather/local_weather_mapper.dart';
 import 'package:flutter_template/repository/weather/weather_repository.dart';
 import 'package:flutter_template/services/weather/local/weather_local_service.dart';
 import 'package:flutter_template/services/weather/remote/weather_remote_service.dart';
+import 'package:foundation/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 
 class WeatherRepositoryImpl implements WeatherRepository {

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
-import 'package:flutter_template/flavors/flavor_config.dart';
+import 'package:foundation/foundation.dart';
 import 'package:flutter_template/services/base/database/migrations.dart';
 import 'package:flutter_template/services/entity/open_weather/current_weather/local/local_current_weather.dart';
 import 'package:flutter_template/services/entity/open_weather/geo_coding/local/local_location.dart';
