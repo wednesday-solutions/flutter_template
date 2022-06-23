@@ -26,3 +26,5 @@ migrate_working_dir/
 .dart_tool/
 .packages
 build/
+
+lib/src/secrets/app_secrets.dart
