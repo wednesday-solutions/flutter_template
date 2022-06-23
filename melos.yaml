@@ -2,7 +2,14 @@ name: flutter_template
 
 packages:
   - foundation
+  - service_entity
   - service
+  - repository
+  - domain_entity
+  - domain
+  - interactor
+  - presentation_entity
+  - presentation
   - .
 
 scripts:
@@ -13,10 +20,10 @@ scripts:
     exec: flutter clean
 
   build-clean:
-    run: melos exec --scope="service,flutter_template" flutter pub run build_runner clean
+    run: melos exec --scope="service,flutter_template,foundation" flutter pub run build_runner clean
 
   generate:
-    run: melos exec --scope="service,flutter_template" -- flutter pub run build_runner build --delete-conflicting-outputs
+    run: melos exec --scope="service,flutter_template,foundation" -- flutter pub run build_runner build --delete-conflicting-outputs
 
   get:
     exec: flutter pub get
@@ -32,3 +39,12 @@ scripts:
 
   dart-fix:
     exec: dart fix --apply
+
+  test:
+    exec: flutter test --exclude-tags=golden
+
+  test-update-golden:
+    run: flutter test --tags=golden presentation/test/goldens --update-goldens
+
+  test-golden:
+    run: flutter test --tags=golden presentation/test/goldens

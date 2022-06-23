@@ -1,6 +1,6 @@
 import 'package:faker/faker.dart';
-import 'package:service/entity/entity.dart';
 import 'package:service/interface/weather/remote/weather_remote_service.dart';
+import 'package:service_entity/service_entity.dart';
 
 class FakeWeatherRemoteService extends WeatherRemoteService {
   @override

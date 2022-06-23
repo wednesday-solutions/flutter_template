@@ -1,7 +1,7 @@
 name: foundation
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
+publish_to: none
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -12,11 +12,14 @@ dependencies:
   flutter:
     sdk: flutter
   logger: ^1.1.0
+  freezed_annotation: ^2.0.3
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  freezed: ^2.0.3+1
+  build_runner: ^2.1.10
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

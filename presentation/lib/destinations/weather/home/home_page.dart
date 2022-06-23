@@ -1,0 +1,38 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:presentation/base/page/base_page.dart';
+import 'package:presentation/base/widgets/theme/theme_picker/theme_picker.dart';
+import 'package:presentation/destinations/weather/home/home_screen_intent.dart';
+import 'package:presentation/destinations/weather/home/home_screen_state.dart';
+import 'package:presentation/destinations/weather/home/home_view_model.dart';
+import 'package:presentation_entity/presentation_entity.dart';
+
+import 'widgets/home_page_body/home_page_body.dart';
+
+class HomePage extends ConsumerWidget {
+  final HomeScreen homeScreen;
+
+  const HomePage({
+    Key? key,
+    required this.homeScreen,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return BasePage<HomeScreen, HomeScreenState, HomeViewModel>(
+      viewModelProvider: homeViewModelProvider,
+      screen: homeScreen,
+      appBarActions: () => [
+        IconButton(
+          onPressed: () {
+            final viewModel = ref.watch(homeViewModelProvider.notifier);
+            viewModel.onIntent(HomeScreenIntent.search());
+          },
+          icon: const Icon(Icons.search),
+        ),
+        const ThemePicker(),
+      ],
+      body: const HomePageBody(),
+    );
+  }
+}

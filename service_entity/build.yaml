@@ -1,0 +1,9 @@
+targets:
+  $default:
+    builders:
+      drift_dev|drift_dev:
+        generate_for:
+          - "lib/src/entity/**.dart"
+      json_serializable|json_serializable:
+        generate_for:
+          - "lib/src/entity/**.dart"

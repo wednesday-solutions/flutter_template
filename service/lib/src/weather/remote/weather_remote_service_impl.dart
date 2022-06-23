@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:foundation/foundation.dart';
-import 'package:service/entity/entity.dart';
+import 'package:service_entity/service_entity.dart';
 import 'package:service/interface/weather/remote/weather_remote_service.dart';
+import 'package:service_entity/service_entity.dart';
 
 class WeatherRemoteServiceImpl implements WeatherRemoteService {
   final Dio dio;

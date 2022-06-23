@@ -1,0 +1,6 @@
+targets:
+  $default:
+    builders:
+      freezed|freezed:
+        generate_for:
+          - "lib/src/entity/**.dart"

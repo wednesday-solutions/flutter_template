@@ -1,0 +1,25 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:presentation_entity/src/entity/base/ui_list_item.dart';
+
+part 'ui_city.freezed.dart';
+
+@freezed
+class UICity with _$UICity implements UIListItem {
+  const UICity._();
+
+  factory UICity({
+    required int cityId,
+    required String title,
+    required String? state,
+    required String displayTitle,
+    required String locationType,
+    required String location,
+    required bool isFavourite,
+  }) = _UICity;
+
+  @override
+  String get key => "UICity $cityId";
+
+  @override
+  Type get type => UICity;
+}

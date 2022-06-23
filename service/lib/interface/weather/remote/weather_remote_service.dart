@@ -1,4 +1,4 @@
-import 'package:service/entity/entity.dart';
+import 'package:service_entity/service_entity.dart';
 
 abstract class WeatherRemoteService {
   Future<List<RemoteLocation>> geocodingSearch({required String searchTerm});

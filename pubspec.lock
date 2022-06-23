@@ -232,6 +232,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.6"
+  domain:
+    dependency: "direct main"
+    description:
+      path: domain
+      relative: true
+    source: path
+    version: "0.0.1"
+  domain_entity:
+    dependency: transitive
+    description:
+      path: domain_entity
+      relative: true
+    source: path
+    version: "0.0.1"
   drift:
     dependency: "direct main"
     description:
@@ -476,6 +490,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  interactor:
+    dependency: "direct main"
+    description:
+      path: interactor
+      relative: true
+    source: path
+    version: "0.0.1"
   intl:
     dependency: "direct main"
     description:
@@ -679,6 +700,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.5.0"
+  presentation:
+    dependency: "direct main"
+    description:
+      path: presentation
+      relative: true
+    source: path
+    version: "0.0.1"
+  presentation_entity:
+    dependency: transitive
+    description:
+      path: presentation_entity
+      relative: true
+    source: path
+    version: "0.0.1"
   process:
     dependency: transitive
     description:
@@ -721,6 +756,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  repository:
+    dependency: "direct main"
+    description:
+      path: repository
+      relative: true
+    source: path
+    version: "0.0.1"
   riverpod:
     dependency: transitive
     description:
@@ -739,6 +781,13 @@ packages:
     dependency: "direct main"
     description:
       path: service
+      relative: true
+    source: path
+    version: "0.0.1"
+  service_entity:
+    dependency: transitive
+    description:
+      path: service_entity
       relative: true
     source: path
     version: "0.0.1"

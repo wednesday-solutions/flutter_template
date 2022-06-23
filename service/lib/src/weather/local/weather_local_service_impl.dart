@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 import 'package:foundation/foundation.dart';
-import 'package:service/entity/entity.dart';
+import 'package:service_entity/service_entity.dart';
 import 'package:service/interface/weather/local/weather_local_service.dart';
 import 'package:service/src/base/database/app_database.dart';
 

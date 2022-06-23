@@ -5,7 +5,7 @@ import 'package:drift/native.dart';
 import 'package:foundation/foundation.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
-import 'package:service/entity/entity.dart';
+import 'package:service_entity/service_entity.dart';
 import 'package:service/src/base/database/migrations.dart';
 import 'package:service/src/weather/local/weather_local_service_impl.dart';
 

@@ -16,6 +16,10 @@ dependencies:
 
   foundation:
     path: ../foundation
+
+  service_entity:
+    path: ../service_entity
+
   freezed_annotation: ^2.0.3
   get_it: ^7.2.0
   rxdart: ^0.27.4
