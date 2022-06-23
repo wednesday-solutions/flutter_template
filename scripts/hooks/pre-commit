@@ -2,7 +2,7 @@
 
 echo "Running static analysis with flutter analyze:"
 
-flutter analyze --fatal-infos --fatal-warnings
+melos run analyze
 
 status=$?
 
@@ -11,8 +11,8 @@ if [ "$status" = 0 ] ; then
   exit 0
 else
   echo "Static analysis failed. Running dart fix."
-  dart fix --apply
+  melos run dart-fix
   echo "Static analysis failed. Running flutter format"
-  flutter format lib
+  melos run format
   exit 1
 fi

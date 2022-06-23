@@ -20,10 +20,13 @@ scripts:
     exec: flutter clean
 
   build-clean:
-    run: melos exec --scope="service,flutter_template,foundation" flutter pub run build_runner clean
+    run: melos exec --scope="service,service_entity,domain_entity,presentation_entity,presentation,foundation" flutter pub run build_runner clean
 
   generate:
-    run: melos exec --scope="service,flutter_template,foundation" -- flutter pub run build_runner build --delete-conflicting-outputs
+    run: melos exec --scope="service,service_entity,domain_entity,presentation_entity,presentation,foundation" -- flutter pub run build_runner build --delete-conflicting-outputs
+
+  generate-translations:
+    run: ./scripts/generate-translations.sh
 
   get:
     exec: flutter pub get
@@ -35,7 +38,7 @@ scripts:
     exec: flutter analyze --fatal-infos --fatal-warnings
 
   format:
-    exec: flutter format .
+    exec: flutter format lib
 
   dart-fix:
     exec: dart fix --apply

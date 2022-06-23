@@ -1,0 +1,7 @@
+targets:
+  $default:
+    builders:
+      freezed|freezed:
+        generate_for:
+          - "lib/base/theme/**.dart"
+          - "lib/destinations/**.dart"
