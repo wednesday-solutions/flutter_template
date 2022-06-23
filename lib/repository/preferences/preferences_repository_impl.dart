@@ -1,6 +1,6 @@
 import 'package:flutter_template/repository/preferences/preferences_repository.dart';
-import 'package:flutter_template/services/preferences/preferences_service.dart';
 import 'package:foundation/foundation.dart';
+import 'package:service/service.dart';
 
 class PreferencesRepositoryImpl implements PreferencesRepository {
   final PreferencesService preferencesService;
@@ -43,7 +43,6 @@ class PreferencesRepositoryImpl implements PreferencesRepository {
     if (value is String) {
       return await preferencesService.setString(key: key, value: value);
     }
-    throw ArgumentError.value(
-        value, null, "Cannot save type ${value.runtimeType} to preferences.");
+    throw ArgumentError.value(value, null, "Cannot save type ${value.runtimeType} to preferences.");
   }
 }

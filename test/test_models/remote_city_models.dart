@@ -1,4 +1,4 @@
-import 'package:flutter_template/services/entity/open_weather/geo_coding/remote/remote_location.dart';
+import 'package:service/entity/entity.dart';
 
 final allRemoteCityList = [
   remoteCity1,

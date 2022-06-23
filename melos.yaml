@@ -2,9 +2,13 @@ name: flutter_template
 
 packages:
   - foundation
+  - service
   - .
 
 scripts:
+  get:
+    exec: flutter pub get
+
   tidy:
     run: melos run format && melos run dart-fix
 

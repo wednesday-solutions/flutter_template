@@ -1,5 +1,5 @@
 import 'package:foundation/foundation.dart';
-import 'package:flutter_template/services/preferences/preferences_service.dart';
+import 'package:service/interface/preferences/preferences_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PreferencesServiceImpl implements PreferencesService {

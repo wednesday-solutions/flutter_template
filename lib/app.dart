@@ -11,9 +11,9 @@ import 'package:flutter_template/presentation/di/presentation_module.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_loader.dart';
 import 'package:flutter_template/presentation/template_app.dart';
 import 'package:flutter_template/repository/di/repository_module.dart';
-import 'package:flutter_template/services/di/service_module.dart';
 import 'package:foundation/foundation.dart';
 import 'package:get_it/get_it.dart';
+import 'package:service/service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void startApp() async {

@@ -1,4 +1,4 @@
-import 'package:flutter_template/services/base/database/app_database.dart';
+import 'package:service/service.dart';
 
 final singleLocalCityDataList = [
   localCityData1,

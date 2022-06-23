@@ -1,18 +1,10 @@
 import 'package:faker/faker.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_clouds.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_coord.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_main.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_sys.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_weather.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_wind.dart';
-import 'package:flutter_template/services/entity/open_weather/geo_coding/remote/remote_location.dart';
-import 'package:flutter_template/services/weather/remote/weather_remote_service.dart';
+import 'package:service/entity/entity.dart';
+import 'package:service/interface/weather/remote/weather_remote_service.dart';
 
 class FakeWeatherRemoteService extends WeatherRemoteService {
   @override
-  Future<RemoteCurrentWeather> currentWeather(
-      {required String cityAndState}) async {
+  Future<RemoteCurrentWeather> currentWeather({required String cityAndState}) async {
     await Future.delayed(const Duration(seconds: 1));
     return RemoteCurrentWeather(
       coord: RemoteCurrentWeatherCoord(
@@ -41,8 +33,7 @@ class FakeWeatherRemoteService extends WeatherRemoteService {
         speed: faker.randomGenerator.decimal(),
         deg: faker.randomGenerator.integer(360),
       ),
-      clouds:
-          RemoteCurrentWeatherClouds(all: faker.randomGenerator.integer(100)),
+      clouds: RemoteCurrentWeatherClouds(all: faker.randomGenerator.integer(100)),
       dt: faker.randomGenerator.integer(100),
       sys: RemoteCurrentWeatherSys(
         country: faker.address.country(),
@@ -57,8 +48,7 @@ class FakeWeatherRemoteService extends WeatherRemoteService {
   }
 
   @override
-  Future<List<RemoteLocation>> geocodingSearch(
-      {required String searchTerm}) async {
+  Future<List<RemoteLocation>> geocodingSearch({required String searchTerm}) async {
     await Future.delayed(const Duration(seconds: 1));
     return [
       RemoteLocation(

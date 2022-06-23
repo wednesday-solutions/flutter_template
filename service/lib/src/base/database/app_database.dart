@@ -3,12 +3,11 @@ import 'dart:io';
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
 import 'package:foundation/foundation.dart';
-import 'package:flutter_template/services/base/database/migrations.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/local/local_current_weather.dart';
-import 'package:flutter_template/services/entity/open_weather/geo_coding/local/local_location.dart';
-import 'package:flutter_template/services/weather/local/weather_local_service_impl.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
+import 'package:service/entity/entity.dart';
+import 'package:service/src/base/database/migrations.dart';
+import 'package:service/src/weather/local/weather_local_service_impl.dart';
 
 part 'app_database.g.dart';
 

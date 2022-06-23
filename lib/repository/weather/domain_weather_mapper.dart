@@ -1,9 +1,8 @@
 import 'package:flutter_template/domain/entity/weather/weather.dart';
 import 'package:foundation/foundation.dart';
-import 'package:flutter_template/services/base/database/app_database.dart';
+import 'package:service/service.dart';
 
-abstract class DomainWeatherMapper
-    extends Mapper<LocalCurrentWeatherData, Weather> {}
+abstract class DomainWeatherMapper extends Mapper<LocalCurrentWeatherData, Weather> {}
 
 class DomainWeatherMapperImpl extends DomainWeatherMapper {
   @override

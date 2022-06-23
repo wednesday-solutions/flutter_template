@@ -608,7 +608,7 @@ packages:
       name: path_provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.10"
+    version: "2.0.11"
   path_provider_android:
     dependency: transitive
     description:
@@ -734,7 +734,14 @@ packages:
       name: rxdart
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.27.3"
+    version: "0.27.4"
+  service:
+    dependency: "direct main"
+    description:
+      path: service
+      relative: true
+    source: path
+    version: "0.0.1"
   shared_preferences:
     dependency: "direct main"
     description:

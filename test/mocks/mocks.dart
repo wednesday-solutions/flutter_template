@@ -9,9 +9,8 @@ import 'package:flutter_template/repository/weather/domain_weather_mapper.dart';
 import 'package:flutter_template/repository/weather/local_city_mapper.dart';
 import 'package:flutter_template/repository/weather/local_weather_mapper.dart';
 import 'package:flutter_template/repository/weather/weather_repository.dart';
-import 'package:flutter_template/services/weather/local/weather_local_service.dart';
-import 'package:flutter_template/services/weather/remote/weather_remote_service.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:service/service.dart';
 
 // Service
 class MockWeatherLocalService extends Mock implements WeatherLocalService {}
@@ -33,8 +32,7 @@ class MockDateRepository extends Mock implements DateRepository {}
 class MockWeatherRepository extends Mock implements WeatherRepository {}
 
 // Interactors
-class MockFavoriteWeatherInteractor extends Mock
-    implements FavoriteWeatherInteractor {}
+class MockFavoriteWeatherInteractor extends Mock implements FavoriteWeatherInteractor {}
 
 class MockSearchCityInteractor extends Mock implements SearchCityInteractor {}
 
@@ -42,5 +40,4 @@ class MockSearchCityInteractor extends Mock implements SearchCityInteractor {}
 class MockSearchNavigator extends Mock implements SearchNavigator {}
 
 // Intent Handler
-class MockIntentHandler<T extends BaseIntent> extends Mock
-    implements IntentHandler<T> {}
+class MockIntentHandler<T extends BaseIntent> extends Mock implements IntentHandler<T> {}

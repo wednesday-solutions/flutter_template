@@ -1,10 +1,4 @@
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_clouds.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_coord.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_main.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_sys.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_weather.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_wind.dart';
+import 'package:service/service.dart';
 
 final remoteWeather = RemoteCurrentWeather(
   coord: RemoteCurrentWeatherCoord(

@@ -1,7 +1,6 @@
 import 'package:flutter_template/domain/entity/weather/city.dart';
-import 'package:flutter_template/services/base/database/app_database.dart';
-import 'package:flutter_template/services/entity/open_weather/geo_coding/remote/remote_location.dart';
 import 'package:foundation/foundation.dart';
+import 'package:service/service.dart';
 
 abstract class DomainCityMapper extends Mapper<LocalLocationData, City> {
   City mapRemoteCity(RemoteLocation from);

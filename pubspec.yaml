@@ -58,6 +58,9 @@ dependencies:
   foundation:
     path: foundation
 
+  service:
+    path: service
+
 dev_dependencies:
   auto_route_generator: ^4.0.0
   build_runner: ^2.1.10

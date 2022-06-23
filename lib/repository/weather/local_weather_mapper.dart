@@ -1,13 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:drift/drift.dart';
 import 'package:flutter_template/repository/date/date_repository.dart';
-import 'package:flutter_template/services/base/database/app_database.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_weather.dart';
 import 'package:foundation/foundation.dart';
+import 'package:service/service.dart';
 
-abstract class LocalWeatherMapper extends Mapper3<RemoteCurrentWeather, double,
-    double, LocalCurrentWeatherCompanion> {}
+abstract class LocalWeatherMapper
+    extends Mapper3<RemoteCurrentWeather, double, double, LocalCurrentWeatherCompanion> {}
 
 class LocalWeatherMapperImpl extends LocalWeatherMapper {
   final DateRepository dateRepository;

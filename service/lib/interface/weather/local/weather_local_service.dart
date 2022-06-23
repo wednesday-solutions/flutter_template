@@ -1,4 +1,4 @@
-import 'package:flutter_template/services/base/database/app_database.dart';
+import 'package:service/src/base/database/app_database.dart';
 
 abstract class WeatherLocalService {
   Stream<List<LocalLocationData>> getFavoriteCitiesStream();
@@ -9,8 +9,7 @@ abstract class WeatherLocalService {
 
   Future<void> deleteFavoriteCity({required LocalLocationCompanion city});
 
-  Future<void> upsertLocalCurrentWeather(
-      {required LocalCurrentWeatherCompanion weather});
+  Future<void> upsertLocalCurrentWeather({required LocalCurrentWeatherCompanion weather});
 
   Future deleteLocalCurrentWeather({
     required double lat,

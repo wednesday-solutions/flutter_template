@@ -6,10 +6,9 @@ import 'package:flutter_template/repository/weather/domain_weather_mapper.dart';
 import 'package:flutter_template/repository/weather/local_city_mapper.dart';
 import 'package:flutter_template/repository/weather/local_weather_mapper.dart';
 import 'package:flutter_template/repository/weather/weather_repository.dart';
-import 'package:flutter_template/services/weather/local/weather_local_service.dart';
-import 'package:flutter_template/services/weather/remote/weather_remote_service.dart';
 import 'package:foundation/foundation.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:service/interface/interface.dart';
 
 class WeatherRepositoryImpl implements WeatherRepository {
   final WeatherLocalService weatherLocalService;
@@ -33,25 +32,20 @@ class WeatherRepositoryImpl implements WeatherRepository {
   @override
   Future<void> fetchWeatherForFavoriteCities() async {
     logD("fetchWeatherForFavoriteCities");
-    final nowMillis =
-        dateRepository.convertDateTimeToMillis(dateRepository.nowDateTime());
+    final nowMillis = dateRepository.convertDateTimeToMillis(dateRepository.nowDateTime());
     const twoHours = 2 * 60 * 60 * 1000;
 
     final favoriteCities = await weatherLocalService.getFavouriteCities();
     for (final city in favoriteCities) {
-      final localCurrentWeather =
-          await weatherLocalService.getLocalCurrentWeather(
+      final localCurrentWeather = await weatherLocalService.getLocalCurrentWeather(
         lat: city.lat,
         lon: city.lon,
       );
       final isWeatherDataStale = localCurrentWeather != null &&
-          (nowMillis -
-                  localCurrentWeather.updatedAt.millisecondsSinceEpoch.abs()) >
-              twoHours;
+          (nowMillis - localCurrentWeather.updatedAt.millisecondsSinceEpoch.abs()) > twoHours;
 
       if (localCurrentWeather == null || isWeatherDataStale) {
-        final searchQuery =
-            city.name + (city.state != null ? ", ${city.state}" : "");
+        final searchQuery = city.name + (city.state != null ? ", ${city.state}" : "");
 
         final remoteCurrentWeather = await weatherRemoteService.currentWeather(
           cityAndState: searchQuery,
@@ -88,8 +82,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
     logD("getFavoriteCitiesWeatherStream");
     return weatherLocalService
         .getFavoriteCitiesWeatherStream()
-        .doOnData(
-            (data) => logD("getFavoriteCitiesWeatherStream: onEmit: $data"))
+        .doOnData((data) => logD("getFavoriteCitiesWeatherStream: onEmit: $data"))
         .map(
       (cityWithWeatherList) {
         return domainWeatherMapper.mapList(cityWithWeatherList);
@@ -100,8 +93,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
   @override
   Future<List<Weather>> getFavoriteCitiesWeatherList() async {
     logD("getFavoriteCitiesWeatherList");
-    final cityWithWeatherList =
-        await weatherLocalService.getFavoriteCitiesWeatherList();
+    final cityWithWeatherList = await weatherLocalService.getFavoriteCitiesWeatherList();
     return domainWeatherMapper.mapList(cityWithWeatherList);
   }
 
@@ -111,8 +103,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
     await weatherLocalService.deleteFavoriteCity(
       city: localCityMapper.map(city),
     );
-    await weatherLocalService.deleteLocalCurrentWeather(
-        lat: city.lat, lon: city.lon);
+    await weatherLocalService.deleteLocalCurrentWeather(lat: city.lat, lon: city.lon);
   }
 
   @override

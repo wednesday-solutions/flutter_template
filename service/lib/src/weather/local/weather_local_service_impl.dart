@@ -1,9 +1,8 @@
 import 'package:drift/drift.dart';
-import 'package:flutter_template/services/base/database/app_database.dart';
-import 'package:flutter_template/services/entity/open_weather/current_weather/local/local_current_weather.dart';
-import 'package:flutter_template/services/entity/open_weather/geo_coding/local/local_location.dart';
-import 'package:flutter_template/services/weather/local/weather_local_service.dart';
 import 'package:foundation/foundation.dart';
+import 'package:service/entity/entity.dart';
+import 'package:service/interface/weather/local/weather_local_service.dart';
+import 'package:service/src/base/database/app_database.dart';
 
 part 'weather_local_service_impl.g.dart';
 
@@ -14,8 +13,7 @@ part 'weather_local_service_impl.g.dart';
 class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
     with _$WeatherLocalServiceImplMixin
     implements WeatherLocalService {
-  WeatherLocalServiceImpl(AppDatabase attachedDatabase)
-      : super(attachedDatabase);
+  WeatherLocalServiceImpl(AppDatabase attachedDatabase) : super(attachedDatabase);
 
   @override
   Future<void> deleteFavoriteCity({required LocalLocationCompanion city}) {
@@ -24,8 +22,7 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
   }
 
   @override
-  Future deleteLocalCurrentWeather(
-      {required double lat, required double lon}) async {
+  Future deleteLocalCurrentWeather({required double lat, required double lon}) async {
     logD("deleteLocalCurrentWeather: lat = $lat, lon = $lon");
     return (delete(localCurrentWeather)
           ..where(
@@ -76,10 +73,8 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
   }
 
   @override
-  Future<void> upsertLocalCurrentWeather(
-      {required LocalCurrentWeatherCompanion weather}) {
+  Future<void> upsertLocalCurrentWeather({required LocalCurrentWeatherCompanion weather}) {
     logD("upsertLocalCurrentWeather: weather = $weather");
-    return into(localCurrentWeather)
-        .insert(weather, mode: InsertMode.insertOrReplace);
+    return into(localCurrentWeather).insert(weather, mode: InsertMode.insertOrReplace);
   }
 }
