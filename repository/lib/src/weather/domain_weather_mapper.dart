@@ -2,7 +2,8 @@ import 'package:domain_entity/domain_entity.dart';
 import 'package:foundation/foundation.dart';
 import 'package:service/service.dart';
 
-abstract class DomainWeatherMapper extends Mapper<LocalCurrentWeatherData, Weather> {}
+abstract class DomainWeatherMapper
+    extends Mapper<LocalCurrentWeatherData, Weather> {}
 
 class DomainWeatherMapperImpl extends DomainWeatherMapper {
   @override

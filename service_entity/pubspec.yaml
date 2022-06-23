@@ -8,6 +8,7 @@ environment:
   flutter: ">=1.17.0"
 
 dependencies:
+  drift: ^1.6.0
   flutter:
     sdk: flutter
   json_annotation: ^4.5.0

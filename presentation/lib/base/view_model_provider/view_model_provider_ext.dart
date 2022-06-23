@@ -6,7 +6,8 @@ import 'package:presentation_entity/presentation_entity.dart';
 
 extension ViewModelProviderExt on BuildContext {
   AutoDisposeStateNotifierProvider<VIEW_MODEL, SCREEN_STATE> viewModelProvider<
-      VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>, SCREEN_STATE extends ScreenState>() {
+      VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
+      SCREEN_STATE extends ScreenState>() {
     return ViewModelProvider.of<VIEW_MODEL, SCREEN_STATE>(this).provider;
   }
 

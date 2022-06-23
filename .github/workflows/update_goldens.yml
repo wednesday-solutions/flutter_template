@@ -47,4 +47,3 @@ jobs:
 
       - name: Push changes
         run: git push origin ${BRANCH_NAME}
-

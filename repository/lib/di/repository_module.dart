@@ -35,7 +35,8 @@ extension RepositoryModule on GetIt {
 
     registerFactory<LocalCityMapper>(() => LocalCityMapperImpl());
 
-    registerFactory<LocalWeatherMapper>(() => LocalWeatherMapperImpl(dateRepository: get()));
+    registerFactory<LocalWeatherMapper>(
+        () => LocalWeatherMapperImpl(dateRepository: get()));
 
     registerLazySingleton<WeatherRepository>(() => WeatherRepositoryImpl(
           weatherLocalService: get(),
@@ -48,9 +49,10 @@ extension RepositoryModule on GetIt {
         ));
 
     // preferences
-    registerLazySingleton<PreferencesRepository>(() => PreferencesRepositoryImpl(
-          preferencesService: get(),
-        ));
+    registerLazySingleton<PreferencesRepository>(
+        () => PreferencesRepositoryImpl(
+              preferencesService: get(),
+            ));
 
     // theme
     registerLazySingleton<ThemeRepository>(() => ThemeRepositoryImpl(

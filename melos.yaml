@@ -10,7 +10,6 @@ packages:
   - interactor
   - presentation_entity
   - presentation
-  - .
 
 scripts:
   clean-all:

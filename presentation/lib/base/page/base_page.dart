@@ -11,9 +11,11 @@ import 'package:presentation/base/widgets/scaffold/scaffold_body_with_loading_in
 import 'package:presentation_entity/presentation_entity.dart';
 
 class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
-    VIEW_MODEL extends BaseViewModel<SCREEN, SCREEN_STATE>> extends HookConsumerWidget {
+        VIEW_MODEL extends BaseViewModel<SCREEN, SCREEN_STATE>>
+    extends HookConsumerWidget {
   final Widget body;
-  final AutoDisposeStateNotifierProvider<VIEW_MODEL, SCREEN_STATE> viewModelProvider;
+  final AutoDisposeStateNotifierProvider<VIEW_MODEL, SCREEN_STATE>
+      viewModelProvider;
   final SCREEN? screen;
   final AppBar? appBar;
   final Function(VIEW_MODEL viewModel)? onAppBarBackPressed;
@@ -97,7 +99,8 @@ class _BasePageContent<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
             leading: hasBackButton
                 ? AppBarBackButton<VIEW_MODEL, SCREEN_STATE>(
                     onBackPressed: () {
-                      onAppBarBackPressed?.call(context.viewModel<VIEW_MODEL, SCREEN_STATE>(ref));
+                      onAppBarBackPressed?.call(
+                          context.viewModel<VIEW_MODEL, SCREEN_STATE>(ref));
                     },
                   )
                 : null,

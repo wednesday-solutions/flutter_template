@@ -2,7 +2,8 @@ import 'package:domain/interface/weather/fetch_favorite_cities_weather_use_case.
 import 'package:foundation/foundation.dart';
 import 'package:repository/repository.dart';
 
-class FetchFavoriteCitiesWeatherUseCaseImpl extends FetchFavoriteCitiesWeatherUseCase {
+class FetchFavoriteCitiesWeatherUseCaseImpl
+    extends FetchFavoriteCitiesWeatherUseCase {
   final WeatherRepository weatherRepository;
 
   FetchFavoriteCitiesWeatherUseCaseImpl({required this.weatherRepository});

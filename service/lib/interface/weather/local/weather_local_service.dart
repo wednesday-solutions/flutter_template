@@ -9,7 +9,8 @@ abstract class WeatherLocalService {
 
   Future<void> deleteFavoriteCity({required LocalLocationCompanion city});
 
-  Future<void> upsertLocalCurrentWeather({required LocalCurrentWeatherCompanion weather});
+  Future<void> upsertLocalCurrentWeather(
+      {required LocalCurrentWeatherCompanion weather});
 
   Future deleteLocalCurrentWeather({
     required double lat,

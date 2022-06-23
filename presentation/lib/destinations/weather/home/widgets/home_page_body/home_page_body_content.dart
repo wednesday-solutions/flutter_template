@@ -31,7 +31,8 @@ class HomePageBodyContent extends StatelessWidget {
     } else {
       return ResponsiveBuilder(
         builder: (context, mediaQueryData, boxConstraints) {
-          final columns = mediaQueryData.orientation == Orientation.landscape ? 2 : 1;
+          final columns =
+              mediaQueryData.orientation == Orientation.landscape ? 2 : 1;
           return UIList<HomeScreenIntent>(
             renderers: const {
               UIWeather: UIWeatherRenderer(),

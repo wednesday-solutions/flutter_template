@@ -10,7 +10,8 @@ class UIWeatherRenderer extends ListItemRenderer<UIWeather, HomeScreenIntent> {
   const UIWeatherRenderer();
 
   @override
-  Widget getWidget(BuildContext context, UIWeather data, StreamSink<HomeScreenIntent> sink) {
+  Widget getWidget(
+      BuildContext context, UIWeather data, StreamSink<HomeScreenIntent> sink) {
     return UIWeatherListItem(weather: data);
   }
 }

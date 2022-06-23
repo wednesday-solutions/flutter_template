@@ -1,4 +1,3 @@
-import 'package:domain_entity/domain_entity.dart';
 import 'package:foundation/foundation.dart';
 
 abstract class BaseAsyncUseCase<IN, OUT> {

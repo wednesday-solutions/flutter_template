@@ -56,6 +56,7 @@ dev_dependencies:
   mocktail: ^0.3.0
   base_test:
     path: ../base_test
+  shared_preferences: ^2.0.15
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

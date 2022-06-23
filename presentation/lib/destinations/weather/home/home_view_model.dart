@@ -7,7 +7,8 @@ import 'package:presentation/destinations/weather/home/home_screen_state.dart';
 import 'package:presentation_entity/presentation_entity.dart';
 
 final homeViewModelProvider =
-    StateNotifierProvider.autoDispose<HomeViewModel, HomeScreenState>((ref) => GetIt.I.get());
+    StateNotifierProvider.autoDispose<HomeViewModel, HomeScreenState>(
+        (ref) => GetIt.I.get());
 
 abstract class HomeViewModel extends BaseViewModel<HomeScreen, HomeScreenState>
     implements IntentHandler<HomeScreenIntent> {

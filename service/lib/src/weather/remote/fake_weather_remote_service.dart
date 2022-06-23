@@ -4,7 +4,8 @@ import 'package:service_entity/service_entity.dart';
 
 class FakeWeatherRemoteService extends WeatherRemoteService {
   @override
-  Future<RemoteCurrentWeather> currentWeather({required String cityAndState}) async {
+  Future<RemoteCurrentWeather> currentWeather(
+      {required String cityAndState}) async {
     await Future.delayed(const Duration(seconds: 1));
     return RemoteCurrentWeather(
       coord: RemoteCurrentWeatherCoord(
@@ -33,7 +34,8 @@ class FakeWeatherRemoteService extends WeatherRemoteService {
         speed: faker.randomGenerator.decimal(),
         deg: faker.randomGenerator.integer(360),
       ),
-      clouds: RemoteCurrentWeatherClouds(all: faker.randomGenerator.integer(100)),
+      clouds:
+          RemoteCurrentWeatherClouds(all: faker.randomGenerator.integer(100)),
       dt: faker.randomGenerator.integer(100),
       sys: RemoteCurrentWeatherSys(
         country: faker.address.country(),
@@ -48,7 +50,8 @@ class FakeWeatherRemoteService extends WeatherRemoteService {
   }
 
   @override
-  Future<List<RemoteLocation>> geocodingSearch({required String searchTerm}) async {
+  Future<List<RemoteLocation>> geocodingSearch(
+      {required String searchTerm}) async {
     await Future.delayed(const Duration(seconds: 1));
     return [
       RemoteLocation(

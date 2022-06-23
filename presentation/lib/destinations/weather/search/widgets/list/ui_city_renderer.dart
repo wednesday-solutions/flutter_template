@@ -9,7 +9,8 @@ import 'package:presentation_entity/presentation_entity.dart';
 class UICityRenderer extends ListItemRenderer<UICity, SearchScreenIntent> {
   const UICityRenderer();
   @override
-  Widget getWidget(BuildContext context, UICity data, StreamSink<SearchScreenIntent> sink) {
+  Widget getWidget(
+      BuildContext context, UICity data, StreamSink<SearchScreenIntent> sink) {
     return UICityListItem(
       city: data,
       sink: sink,

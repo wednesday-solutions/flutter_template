@@ -170,7 +170,7 @@ packages:
     source: hosted
     version: "2.2.3"
   drift:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: drift
       url: "https://pub.dartlang.org"

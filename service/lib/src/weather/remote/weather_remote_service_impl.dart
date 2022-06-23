@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:foundation/foundation.dart';
 import 'package:service_entity/service_entity.dart';
 import 'package:service/interface/weather/remote/weather_remote_service.dart';
-import 'package:service_entity/service_entity.dart';
 
 class WeatherRemoteServiceImpl implements WeatherRemoteService {
   final Dio dio;
@@ -10,7 +9,8 @@ class WeatherRemoteServiceImpl implements WeatherRemoteService {
   WeatherRemoteServiceImpl({required this.dio});
 
   @override
-  Future<RemoteCurrentWeather> currentWeather({required String cityAndState}) async {
+  Future<RemoteCurrentWeather> currentWeather(
+      {required String cityAndState}) async {
     logD("currentWeather: cityAndState = $cityAndState");
     final response = await dio.get(
       "data/2.5/weather?units=metric",
@@ -23,7 +23,8 @@ class WeatherRemoteServiceImpl implements WeatherRemoteService {
   }
 
   @override
-  Future<List<RemoteLocation>> geocodingSearch({required String searchTerm}) async {
+  Future<List<RemoteLocation>> geocodingSearch(
+      {required String searchTerm}) async {
     logD("geocodingSearch: searchTerm = $searchTerm");
     final response = await dio.get(
       "geo/1.0/direct",

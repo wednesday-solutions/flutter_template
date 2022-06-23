@@ -3,7 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:foundation/foundation.dart';
 import 'package:presentation_entity/presentation_entity.dart';
 
-abstract class UIWeatherListMapper extends Mapper<List<Weather>, List<UIListItem>> {}
+abstract class UIWeatherListMapper
+    extends Mapper<List<Weather>, List<UIListItem>> {}
 
 class UIWeatherListMapperImpl extends UIWeatherListMapper {
   @override
@@ -23,7 +24,8 @@ class UIWeatherListMapperImpl extends UIWeatherListMapper {
           currentTemp: "${weather.temp.toStringAsPrecision(4)} °C",
           minMaxTemp:
               "With a high of ${weather.maxTemp.toStringAsPrecision(4)} °C and low of ${weather.minTemp.toStringAsPrecision(4)} °C",
-          feelsLike: "Feels like: ${weather.feelsLike.toStringAsPrecision(4)} °C",
+          feelsLike:
+              "Feels like: ${weather.feelsLike.toStringAsPrecision(4)} °C",
           iconUrl: weather.iconUrl,
         );
       },

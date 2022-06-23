@@ -4,7 +4,8 @@ import 'package:presentation/base/view_model_provider/base_view_model.dart';
 import 'package:presentation/base/view_model_provider/view_model_provider_ext.dart';
 import 'package:presentation_entity/presentation_entity.dart';
 
-class ScaffoldBodyWithLoadingIndicator<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
+class ScaffoldBodyWithLoadingIndicator<
+    VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
     SCREEN_STATE extends ScreenState> extends ConsumerWidget {
   const ScaffoldBodyWithLoadingIndicator({
     Key? key,
@@ -19,8 +20,10 @@ class ScaffoldBodyWithLoadingIndicator<VIEW_MODEL extends BaseViewModel<Screen, 
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final viewModelProvider = context.viewModelProvider<VIEW_MODEL, SCREEN_STATE>();
-    final showLoading = ref.watch(viewModelProvider.select((state) => state.showLoading));
+    final viewModelProvider =
+        context.viewModelProvider<VIEW_MODEL, SCREEN_STATE>();
+    final showLoading =
+        ref.watch(viewModelProvider.select((state) => state.showLoading));
     return Center(
       child: Stack(alignment: AlignmentDirectional.center, children: [
         showLoading && !hideDefaultLoading

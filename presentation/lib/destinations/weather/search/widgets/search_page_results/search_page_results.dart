@@ -14,8 +14,8 @@ class SearchPageResults extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewModel = ref.watch(searchViewModelProvider.notifier);
-    final loadingToSearchListPair = ref.watch(
-        searchViewModelProvider.select((value) => Tuple2(value.showLoading, value.searchList)));
+    final loadingToSearchListPair = ref.watch(searchViewModelProvider
+        .select((value) => Tuple2(value.showLoading, value.searchList)));
 
     final showLoading = loadingToSearchListPair.item1;
     final searchList = loadingToSearchListPair.item2;

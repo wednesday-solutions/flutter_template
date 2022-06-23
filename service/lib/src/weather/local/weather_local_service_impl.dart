@@ -13,7 +13,8 @@ part 'weather_local_service_impl.g.dart';
 class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
     with _$WeatherLocalServiceImplMixin
     implements WeatherLocalService {
-  WeatherLocalServiceImpl(AppDatabase attachedDatabase) : super(attachedDatabase);
+  WeatherLocalServiceImpl(AppDatabase attachedDatabase)
+      : super(attachedDatabase);
 
   @override
   Future<void> deleteFavoriteCity({required LocalLocationCompanion city}) {
@@ -22,7 +23,8 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
   }
 
   @override
-  Future deleteLocalCurrentWeather({required double lat, required double lon}) async {
+  Future deleteLocalCurrentWeather(
+      {required double lat, required double lon}) async {
     logD("deleteLocalCurrentWeather: lat = $lat, lon = $lon");
     return (delete(localCurrentWeather)
           ..where(
@@ -73,8 +75,10 @@ class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
   }
 
   @override
-  Future<void> upsertLocalCurrentWeather({required LocalCurrentWeatherCompanion weather}) {
+  Future<void> upsertLocalCurrentWeather(
+      {required LocalCurrentWeatherCompanion weather}) {
     logD("upsertLocalCurrentWeather: weather = $weather");
-    return into(localCurrentWeather).insert(weather, mode: InsertMode.insertOrReplace);
+    return into(localCurrentWeather)
+        .insert(weather, mode: InsertMode.insertOrReplace);
   }
 }

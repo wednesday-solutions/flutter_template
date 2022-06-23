@@ -32,8 +32,8 @@ packages:
   base_test:
     dependency: "direct dev"
     description:
-      path: "../base_test"
-      relative: true
+      path: "/Users/shounakmulay/Documents/Work/Flutter/flutter_template/repository/../base_test"
+      relative: false
     source: path
     version: "0.0.1"
   boolean_selector:
@@ -451,7 +451,7 @@ packages:
     source: hosted
     version: "1.2.0"
   rxdart:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: rxdart
       url: "https://pub.dartlang.org"

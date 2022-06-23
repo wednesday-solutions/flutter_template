@@ -24,7 +24,8 @@ class ResponsiveScreenTypeBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return ResponsiveBuilder(
       builder: (context, mediaQueryData, boxConstraints) {
-        final screenType = getScreenType(size: mediaQueryData.size, breakpoints: breakpoints);
+        final screenType =
+            getScreenType(size: mediaQueryData.size, breakpoints: breakpoints);
         final isLandscape = mediaQueryData.orientation == Orientation.landscape;
 
         if (screenType == ScreenType.desktop) {

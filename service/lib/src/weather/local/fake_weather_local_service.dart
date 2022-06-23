@@ -6,12 +6,14 @@ import 'package:service/src/base/database/app_database.dart';
 
 class FakeWeatherLocalService implements WeatherLocalService {
   @override
-  Future<void> deleteFavoriteCity({required LocalLocationCompanion city}) async {
+  Future<void> deleteFavoriteCity(
+      {required LocalLocationCompanion city}) async {
     return;
   }
 
   @override
-  Future deleteLocalCurrentWeather({required double lat, required double lon}) async {
+  Future deleteLocalCurrentWeather(
+      {required double lat, required double lon}) async {
     return;
   }
 
@@ -62,12 +64,14 @@ class FakeWeatherLocalService implements WeatherLocalService {
   }
 
   @override
-  Future<void> markCityAsFavorite({required LocalLocationCompanion city}) async {
+  Future<void> markCityAsFavorite(
+      {required LocalLocationCompanion city}) async {
     return;
   }
 
   @override
-  Future<void> upsertLocalCurrentWeather({required LocalCurrentWeatherCompanion weather}) async {
+  Future<void> upsertLocalCurrentWeather(
+      {required LocalCurrentWeatherCompanion weather}) async {
     return;
   }
 

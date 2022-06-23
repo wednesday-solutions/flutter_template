@@ -13,7 +13,9 @@ class AppBarTitle<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final title = ref.watch(
-      context.viewModelProvider<VIEW_MODEL, SCREEN_STATE>().select((state) => state.toolbar.title),
+      context
+          .viewModelProvider<VIEW_MODEL, SCREEN_STATE>()
+          .select((state) => state.toolbar.title),
     );
     return Text(
       title,

@@ -7,7 +7,8 @@ abstract class UICityMapper extends Mapper2<City, bool, UICity> {
 
   UICity mapFavouriteCity(City from);
 
-  List<UICity> mapFavouriteCityList(List<City> from) => from.map(mapFavouriteCity).toList();
+  List<UICity> mapFavouriteCityList(List<City> from) =>
+      from.map(mapFavouriteCity).toList();
 }
 
 class UICityMapperImpl extends UICityMapper {

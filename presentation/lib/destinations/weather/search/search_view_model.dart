@@ -7,9 +7,11 @@ import 'package:presentation/destinations/weather/search/search_screen_state.dar
 import 'package:presentation_entity/presentation_entity.dart';
 
 final searchViewModelProvider =
-    StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>((ref) => GetIt.I.get());
+    StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>(
+        (ref) => GetIt.I.get());
 
-abstract class SearchViewModel extends BaseViewModel<SearchScreen, SearchScreenState>
+abstract class SearchViewModel
+    extends BaseViewModel<SearchScreen, SearchScreenState>
     implements IntentHandler<SearchScreenIntent> {
   SearchViewModel(SearchScreenState state) : super(state);
 

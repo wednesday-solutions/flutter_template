@@ -30,7 +30,9 @@ class SearchPageResultsContent extends StatelessWidget {
     if (!showLoading && searchList.isEmpty) {
       return Expanded(
         child: Center(
-          child: searchTerm.isEmpty ? Text(searchResultsPlaceholder) : Text(noResultsPlaceholder),
+          child: searchTerm.isEmpty
+              ? Text(searchResultsPlaceholder)
+              : Text(noResultsPlaceholder),
         ),
       );
     }
@@ -46,7 +48,8 @@ class SearchPageResultsContent extends StatelessWidget {
                 UICity: UICityRenderer(),
               },
               items: searchList,
-              numberOfColumns: mediaQueryData.orientation == Orientation.landscape ? 5 : 1,
+              numberOfColumns:
+                  mediaQueryData.orientation == Orientation.landscape ? 5 : 1,
               intentHandler: intentHandlerCallback,
             );
           },

@@ -5,8 +5,8 @@ import 'package:repository/interface/date/date_repository.dart';
 import 'package:service/service.dart';
 import 'package:service_entity/service_entity.dart';
 
-abstract class LocalWeatherMapper
-    extends Mapper3<RemoteCurrentWeather, double, double, LocalCurrentWeatherCompanion> {}
+abstract class LocalWeatherMapper extends Mapper3<RemoteCurrentWeather, double,
+    double, LocalCurrentWeatherCompanion> {}
 
 class LocalWeatherMapperImpl extends LocalWeatherMapper {
   final DateRepository dateRepository;

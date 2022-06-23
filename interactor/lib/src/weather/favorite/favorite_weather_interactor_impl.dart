@@ -10,7 +10,8 @@ class FavoriteWeatherInteractorImpl implements FavoriteWeatherInteractor {
   final GetFavoriteCitiesStreamUseCase getFavoriteCitiesStreamUseCase;
   final SetCityFavoriteUseCase setCityFavoriteUseCase;
   final RemoveFavoriteCityUseCase removeFavoriteCityUseCase;
-  final GetFavoriteCitiesWeatherStreamUseCase getFavoriteCitiesWeatherStreamUseCase;
+  final GetFavoriteCitiesWeatherStreamUseCase
+      getFavoriteCitiesWeatherStreamUseCase;
   final UICityMapper uiCityMapper;
   final UIWeatherListMapper weatherListMapper;
 
@@ -33,13 +34,15 @@ class FavoriteWeatherInteractorImpl implements FavoriteWeatherInteractor {
   @override
   Stream<List<UICity>> getFavoriteCitiesStream() {
     logD("getFavoriteCitiesStream");
-    return getFavoriteCitiesStreamUseCase(unit).map(uiCityMapper.mapFavouriteCityList);
+    return getFavoriteCitiesStreamUseCase(unit)
+        .map(uiCityMapper.mapFavouriteCityList);
   }
 
   @override
   Stream<List<UIListItem>> getFavoriteWeatherUIList() {
     logD("getFavoriteWeatherUIList");
-    return getFavoriteCitiesWeatherStreamUseCase(unit).map(weatherListMapper.map);
+    return getFavoriteCitiesWeatherStreamUseCase(unit)
+        .map(weatherListMapper.map);
   }
 
   @override

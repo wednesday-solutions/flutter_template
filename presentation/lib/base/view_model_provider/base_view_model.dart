@@ -7,9 +7,10 @@ import 'package:foundation/foundation.dart';
 import 'package:presentation_entity/presentation_entity.dart';
 import 'package:rxdart/rxdart.dart';
 
-abstract class BaseViewModel<SCREEN extends Screen, SCREEN_STATE extends ScreenState>
-    extends StateNotifier<SCREEN_STATE> {
-  final List<StreamSubscription> _streamSubscriptions = List.empty(growable: true);
+abstract class BaseViewModel<SCREEN extends Screen,
+    SCREEN_STATE extends ScreenState> extends StateNotifier<SCREEN_STATE> {
+  final List<StreamSubscription> _streamSubscriptions =
+      List.empty(growable: true);
 
   SCREEN? _screen;
 

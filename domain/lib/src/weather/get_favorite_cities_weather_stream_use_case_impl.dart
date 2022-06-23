@@ -3,7 +3,8 @@ import 'package:domain_entity/domain_entity.dart';
 import 'package:foundation/foundation.dart';
 import 'package:repository/repository.dart';
 
-class GetFavoriteCitiesWeatherStreamUseCaseImpl extends GetFavoriteCitiesWeatherStreamUseCase {
+class GetFavoriteCitiesWeatherStreamUseCaseImpl
+    extends GetFavoriteCitiesWeatherStreamUseCase {
   final WeatherRepository weatherRepository;
 
   GetFavoriteCitiesWeatherStreamUseCaseImpl({required this.weatherRepository});

@@ -13,12 +13,14 @@ class ViewModelProvider<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
     required this.provider,
   }) : super(key: key, child: child);
 
-  static ViewModelProvider<VIEW_MODEL, SCREEN_STATE>
-      of<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>, SCREEN_STATE extends ScreenState>(
-          BuildContext context) {
+  static ViewModelProvider<VIEW_MODEL, SCREEN_STATE> of<
+      VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
+      SCREEN_STATE extends ScreenState>(BuildContext context) {
     final ViewModelProvider<VIEW_MODEL, SCREEN_STATE>? result =
-        context.dependOnInheritedWidgetOfExactType<ViewModelProvider<VIEW_MODEL, SCREEN_STATE>>();
-    assert(result != null, 'No View Model Provider of type $VIEW_MODEL found in context');
+        context.dependOnInheritedWidgetOfExactType<
+            ViewModelProvider<VIEW_MODEL, SCREEN_STATE>>();
+    assert(result != null,
+        'No View Model Provider of type $VIEW_MODEL found in context');
     return result!;
   }
 

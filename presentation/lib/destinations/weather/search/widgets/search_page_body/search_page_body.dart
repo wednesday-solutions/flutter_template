@@ -15,7 +15,8 @@ class SearchPageBody extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final textController = useTextEditingController.fromValue(TextEditingValue.empty);
+    final textController =
+        useTextEditingController.fromValue(TextEditingValue.empty);
 
     textController.addListener(() {
       final viewModel = ref.read(searchViewModelProvider.notifier);

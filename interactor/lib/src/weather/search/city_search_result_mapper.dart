@@ -3,7 +3,8 @@ import 'package:foundation/foundation.dart';
 import 'package:interactor/src/weather/search/ui_city_mapper.dart';
 import 'package:presentation_entity/presentation_entity.dart';
 
-abstract class CitySearchResultMapper extends Mapper2<List<City>, List<City>, List<UIListItem>> {}
+abstract class CitySearchResultMapper
+    extends Mapper2<List<City>, List<City>, List<UIListItem>> {}
 
 class CitySearchResultMapperImpl extends CitySearchResultMapper {
   final UICityMapper uiCityMapper;

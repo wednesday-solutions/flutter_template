@@ -29,7 +29,8 @@ class ThemeViewModelImpl extends ThemeViewModel {
       },
       setIsDynamic: (isDynamic) async {
         await themeInteractor.setIsDynamicEnabled(isDynamic);
-        state = state.copyWith(isDynamic: themeInteractor.getIsDynamicEnabled());
+        state =
+            state.copyWith(isDynamic: themeInteractor.getIsDynamicEnabled());
       },
     );
   }
