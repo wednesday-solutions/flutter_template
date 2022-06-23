@@ -1,4 +1,4 @@
-#!bin/sh
+#!/bin/bash
 
 flutter config --no-analytics
 flutter pub global activate melos 2.4.0
