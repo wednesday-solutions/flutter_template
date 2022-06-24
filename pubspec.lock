@@ -50,6 +50,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+  base_test:
+    dependency: "direct overridden"
+    description:
+      path: base_test
+      relative: true
+    source: path
+    version: "0.0.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -240,12 +247,12 @@ packages:
     source: path
     version: "0.0.1"
   domain_entity:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: domain_entity
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.0"
   drift:
     dependency: "direct main"
     description:
@@ -708,12 +715,12 @@ packages:
     source: path
     version: "0.0.1"
   presentation_entity:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: presentation_entity
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.0"
   process:
     dependency: transitive
     description:
@@ -785,7 +792,7 @@ packages:
     source: path
     version: "0.0.1"
   service_entity:
-    dependency: transitive
+    dependency: "direct overridden"
     description:
       path: service_entity
       relative: true

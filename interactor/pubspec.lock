@@ -126,7 +126,7 @@ packages:
       path: "../domain_entity"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.0"
   drift:
     dependency: transitive
     description:
@@ -391,7 +391,7 @@ packages:
       path: "../presentation_entity"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.0"
   process:
     dependency: transitive
     description:

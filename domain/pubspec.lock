@@ -32,8 +32,8 @@ packages:
   base_test:
     dependency: "direct dev"
     description:
-      path: "/Users/shounakmulay/Documents/Work/Flutter/flutter_template/domain/../base_test"
-      relative: false
+      path: "../base_test"
+      relative: true
     source: path
     version: "0.0.1"
   boolean_selector:
@@ -133,7 +133,7 @@ packages:
       path: "../domain_entity"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.0"
   drift:
     dependency: transitive
     description:
