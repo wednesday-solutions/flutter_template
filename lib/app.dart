@@ -20,7 +20,7 @@ void startApp() async {
   await _initialiseApp();
 
   runApp(EasyLocalization(
-    supportedLocales: const [Locale("en", "US")],
+    supportedLocales: const [Locale("en", "US"), Locale("hi", "IN")],
     path: "assets/translations",
     fallbackLocale: const Locale("en", "US"),
     assetLoader: const CodegenLoader(),
