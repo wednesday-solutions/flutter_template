@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_template/foundation/extensions/string_ext.dart';
+import 'package:flutter_template/foundation/extensions/context_ext.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/widgets/search_page_results/search_page_results_content.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
