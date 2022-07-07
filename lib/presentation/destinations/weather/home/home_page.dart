@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/presentation/base/page/base_page.dart';
@@ -23,6 +24,17 @@ class HomePage extends ConsumerWidget {
       viewModelProvider: homeViewModelProvider,
       screen: homeScreen,
       appBarActions: () => [
+        IconButton(
+          onPressed: () {
+            String locale = context.locale.toString();
+            if (locale == "hi_IN") {
+              context.setLocale(const Locale("en", "US"));
+            } else {
+              context.setLocale(const Locale("hi", "IN"));
+            }
+          },
+          icon: const Icon(Icons.language),
+        ),
         IconButton(
           onPressed: () {
             final viewModel = ref.watch(homeViewModelProvider.notifier);
