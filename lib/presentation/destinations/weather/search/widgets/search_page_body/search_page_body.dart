@@ -27,7 +27,7 @@ class SearchPageBody extends HookConsumerWidget {
 
     return SearchPageBodyContent(
       textController: textController,
-      searchHint: LocaleKeys.startTypingToSearch.tr,
+      searchHint: context.tr(LocaleKeys.startTypingToSearch),
       child: const SearchPageResults(),
     );
   }

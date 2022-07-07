@@ -16,7 +16,7 @@ class DynamicThemeSwitchContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(LocaleKeys.dynamicTheme.tr),
+        Text(context.tr(LocaleKeys.dynamicTheme)),
         Switch(
           value: isDynamic,
           onChanged: onIsDynamicToggled,

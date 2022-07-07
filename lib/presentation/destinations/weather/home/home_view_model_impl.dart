@@ -1,4 +1,3 @@
-import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/navigation/weather/home/home_navigator.dart';
 import 'package:flutter_template/presentation/destinations/weather/home/home_screen_intent.dart';
@@ -19,7 +18,7 @@ class HomeViewModelImpl extends HomeViewModel {
 
   static get _initialState => HomeScreenState(
         toolbar: UIToolbar(
-          title: LocaleKeys.homePageTitle.tr,
+          title: LocaleKeys.homePageTitle,
           hasBackButton: false,
         ),
         showLoading: false,

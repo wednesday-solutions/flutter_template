@@ -26,7 +26,7 @@ class HomePageBodyContent extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(
-          LocaleKeys.favCitiesAppearHere.tr,
+          context.tr(LocaleKeys.favCitiesAppearHere),
           textAlign: TextAlign.center,
         ),
       );
