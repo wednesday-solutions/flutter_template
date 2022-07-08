@@ -27,6 +27,7 @@ extension WidgetTesterExt on WidgetTester {
         fallbackLocale: const Locale("en", "US"),
         assetLoader: const CodegenLoader(),
         child: Builder(builder: (context) {
+          context.setLocale(const Locale("en", "US"));
           return MaterialApp(
             theme: material3LightTheme,
             debugShowCheckedModeBanner: false,
@@ -34,6 +35,7 @@ extension WidgetTesterExt on WidgetTester {
             themeMode: ThemeMode.dark,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
+            locale: context.locale,
             home: ProviderScope(
               overrides: [
                 viewModelProvider.overrideWithProvider(fakeViewModelProvider),
@@ -56,20 +58,37 @@ extension WidgetTesterExt on WidgetTester {
       devicePixelRatio: 3,
     ),
   }) async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    SharedPreferences.setMockInitialValues({});
+    await EasyLocalization.ensureInitialized();
     await pumpWidget(
-      MediaQuery(
-        data: mediaQueryData,
-        child: MaterialApp(
-          useInheritedMediaQuery: true,
-          home: ProviderScope(
-            overrides: [
-              viewModelProvider.overrideWithProvider(fakeViewModelProvider),
-            ],
-            child: widget,
-          ),
+      EasyLocalization(
+        supportedLocales: const [Locale("en", "US"), Locale("hi", "IN")],
+        path: "assets/translations",
+        fallbackLocale: const Locale("en", "US"),
+        assetLoader: const CodegenLoader(),
+        child: Builder(
+          builder: (context) {
+            context.setLocale(const Locale("en", "US"));
+            return MediaQuery(
+              data: mediaQueryData,
+              child: MaterialApp(
+                locale: context.locale,
+                useInheritedMediaQuery: true,
+                home: ProviderScope(
+                  overrides: [
+                    viewModelProvider
+                        .overrideWithProvider(fakeViewModelProvider),
+                  ],
+                  child: widget,
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
+    await pumpAndSettle();
   }
 
   Future loadWidget({
