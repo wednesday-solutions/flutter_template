@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/foundation/extensions/string_ext.dart';
+import 'package:flutter_template/foundation/extensions/context_ext.dart';
 import 'package:flutter_template/presentation/base/intent/intent_handler_callback.dart';
 import 'package:flutter_template/presentation/base/widgets/list/ui_list.dart';
 import 'package:flutter_template/presentation/base/widgets/responsive/responsive_builder.dart';
@@ -26,7 +26,7 @@ class HomePageBodyContent extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Text(
-          LocaleKeys.favCitiesAppearHere.tr,
+          context.tr(LocaleKeys.favCitiesAppearHere),
           textAlign: TextAlign.center,
         ),
       );

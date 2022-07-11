@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/foundation/extensions/string_ext.dart';
+import 'package:flutter_template/foundation/extensions/context_ext.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
 
 class DynamicThemeSwitchContent extends StatelessWidget {
@@ -16,7 +16,7 @@ class DynamicThemeSwitchContent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(LocaleKeys.dynamicTheme.tr),
+        Text(context.tr(LocaleKeys.dynamicTheme)),
         Switch(
           value: isDynamic,
           onChanged: onIsDynamicToggled,

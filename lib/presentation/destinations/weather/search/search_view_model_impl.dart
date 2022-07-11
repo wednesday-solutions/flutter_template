@@ -51,7 +51,7 @@ class SearchViewModelImpl extends SearchViewModel {
 
   static SearchScreenState get _initialState => SearchScreenState(
         toolbar: UIToolbar(
-          title: LocaleKeys.searchPageTitle.tr,
+          title: LocaleKeys.searchPageTitle,
           hasBackButton: true,
         ),
         showLoading: false,

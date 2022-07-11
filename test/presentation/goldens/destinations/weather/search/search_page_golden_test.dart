@@ -22,7 +22,8 @@ void main() {
   late FakeSearchViewModel fakeSearchViewModel;
 
   var fakeSearchViewModelProvider =
-      StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>((ref) {
+      StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>(
+          (ref) {
     fakeSearchViewModel = FakeSearchViewModel(SearchScreenState(
       toolbar: UIToolbar(
         title: LocaleKeys.searchPageTitle,
@@ -60,7 +61,8 @@ void main() {
 
       // Then
       expect(find.byType(TextField), findsOneWidget);
-      expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]), findsOneWidget);
+      expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]),
+          findsOneWidget);
       expect(find.byType(SearchPageLoadingShimmer), findsNothing);
     },
   );
@@ -74,12 +76,14 @@ void main() {
       await _loadPageForGolden(tester);
 
       // When
-      fakeSearchViewModel.setState((state) => state.copyWith(showLoading: true));
+      fakeSearchViewModel
+          .setState((state) => state.copyWith(showLoading: true));
       await tester.pump();
 
       // Then
       expect(find.byType(TextField), findsOneWidget);
-      expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]), findsNothing);
+      expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]),
+          findsNothing);
       expect(find.byType(SearchPageLoadingShimmer), findsOneWidget);
     },
   );
@@ -92,17 +96,18 @@ void main() {
       await _loadPageForGolden(tester);
 
       // When
-      fakeSearchViewModel.setState((state) => state.copyWith(showLoading: true, searchList: [
-            UICity(
-              cityId: 1,
-              title: "title",
-              locationType: "locationType",
-              location: "location",
-              isFavourite: false,
-              displayTitle: '',
-              state: '',
-            )
-          ]));
+      fakeSearchViewModel
+          .setState((state) => state.copyWith(showLoading: true, searchList: [
+                UICity(
+                  cityId: 1,
+                  title: "title",
+                  locationType: "locationType",
+                  location: "location",
+                  isFavourite: false,
+                  displayTitle: '',
+                  state: '',
+                )
+              ]));
       await tester.pump();
       fakeSearchViewModel.updateSearchTerm("newTerm");
       fakeSearchViewModel.setState((state) => state.copyWith(
@@ -113,7 +118,8 @@ void main() {
 
       // Then
       expect(find.byType(TextField), findsOneWidget);
-      expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]), findsNothing);
+      expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]),
+          findsNothing);
       expect(find.byType(SearchPageLoadingShimmer), findsNothing);
       expect(find.text(englishUS[LocaleKeys.noResultsFound]), findsOneWidget);
     },
@@ -127,31 +133,33 @@ void main() {
       await _loadPageForGolden(tester);
 
       // When
-      fakeSearchViewModel.setState((state) => state.copyWith(showLoading: false, searchList: [
-            UICity(
-              cityId: 1,
-              title: "title",
-              locationType: "locationType",
-              location: "location",
-              isFavourite: false,
-              displayTitle: '',
-              state: '',
-            ),
-            UICity(
-              cityId: 2,
-              title: "title 2",
-              locationType: "locationType 2",
-              location: "location 2",
-              isFavourite: false,
-              displayTitle: '',
-              state: '',
-            ),
-          ]));
+      fakeSearchViewModel
+          .setState((state) => state.copyWith(showLoading: false, searchList: [
+                UICity(
+                  cityId: 1,
+                  title: "title",
+                  locationType: "locationType",
+                  location: "location",
+                  isFavourite: false,
+                  displayTitle: '',
+                  state: '',
+                ),
+                UICity(
+                  cityId: 2,
+                  title: "title 2",
+                  locationType: "locationType 2",
+                  location: "location 2",
+                  isFavourite: false,
+                  displayTitle: '',
+                  state: '',
+                ),
+              ]));
       await tester.pumpAndSettle();
 
       // Then
       expect(find.byType(TextField), findsOneWidget);
-      expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]), findsNothing);
+      expect(find.text(englishUS[LocaleKeys.searchResultsAppearHere]),
+          findsNothing);
       expect(find.byType(SearchPageLoadingShimmer), findsNothing);
       expect(find.text(englishUS[LocaleKeys.noResultsFound]), findsNothing);
       expect(find.byType(UICityListItem), findsNWidgets(2));
@@ -186,8 +194,8 @@ void main() {
       ];
 
       // When
-      fakeSearchViewModel
-          .setState((state) => state.copyWith(showLoading: false, searchList: uiCityList));
+      fakeSearchViewModel.setState((state) =>
+          state.copyWith(showLoading: false, searchList: uiCityList));
       await tester.pump();
 
       // Then

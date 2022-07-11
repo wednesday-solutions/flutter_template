@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter_template/foundation/extensions/string_ext.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/interactor/weather/search/search_city_interactor.dart';
 import 'package:flutter_template/navigation/weather/search/search_navigator.dart';
@@ -17,8 +16,8 @@ import 'package:mocktail/mocktail.dart';
 import '../../../../../extensions/mock_extensions.dart';
 import '../../../../../extensions/stream_extensions.dart';
 import '../../../../../mocks/mocks.dart';
-import '../../../../base/test_helpers.dart';
 import '../../../../../test_models/ui_city_models.dart';
+import '../../../../base/test_helpers.dart';
 
 void main() {
   late SearchNavigator searchNavigator;
@@ -48,7 +47,7 @@ void main() {
 
   SearchScreenState _getInitialState() => SearchScreenState(
         toolbar: UIToolbar(
-          title: LocaleKeys.searchPageTitle.tr,
+          title: LocaleKeys.searchPageTitle,
           hasBackButton: true,
         ),
         showLoading: false,
