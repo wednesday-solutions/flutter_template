@@ -41,7 +41,7 @@ void main() {
     resetMocktailState();
   });
 
-  _loadPage(WidgetTester tester) async {
+  loadPage(WidgetTester tester) async {
     await tester.loadPage(
       widget: const SearchPage(searchScreen: SearchScreen()),
       viewModelProvider: searchViewModelProvider,
@@ -53,7 +53,7 @@ void main() {
       "Given search page is opened, When no other action is taken, Then text field and search results text should be present",
       (tester) async {
     // Given
-    await _loadPage(tester);
+    await loadPage(tester);
 
     // Then
     expect(find.byType(TextField), findsOneWidget);
@@ -65,7 +65,7 @@ void main() {
       "Given search page is opened, When showLoading is true, Then ShimmerLoading should be visible",
       (tester) async {
     // Given
-    await _loadPage(tester);
+    await loadPage(tester);
 
     // When
     fakeSearchViewModel.setState((state) => state.copyWith(showLoading: true));
@@ -81,7 +81,7 @@ void main() {
       "Given search results are empty, When non empty search term is present, Then noResultsFound should be displayed",
       (tester) async {
     // Given
-    await _loadPage(tester);
+    await loadPage(tester);
 
     // When
     fakeSearchViewModel.setState((state) => state.copyWith(showLoading: true, searchList: [
@@ -114,7 +114,7 @@ void main() {
       "Given search results are not empty, When non empty search term is present, Then results should be displayed",
       (tester) async {
     // Given
-    await _loadPage(tester);
+    await loadPage(tester);
 
     // When
     fakeSearchViewModel.setState((state) => state.copyWith(showLoading: false, searchList: [
@@ -151,7 +151,7 @@ void main() {
       "Given search list is displayed, When a city is marked as favorite, Then the icon is in selected state",
       (tester) async {
     // Given
-    await _loadPage(tester);
+    await loadPage(tester);
     final uiCityList = [
       UICity(
         cityId: 1,
@@ -186,7 +186,7 @@ void main() {
       "Given search page opened, When text is entered in text field, Then search intent is fired",
       (tester) async {
     // Given
-    await _loadPage(tester);
+    await loadPage(tester);
 
     // When
     await tester.enterText(find.byType(TextField), "search");
@@ -200,7 +200,7 @@ void main() {
   testWidgets("Given search page is opened, When back button is pressed, Then back intent is fired",
       (tester) async {
     // Given
-    await _loadPage(tester);
+    await loadPage(tester);
 
     // When
 
@@ -215,7 +215,7 @@ void main() {
       "Given search list is displayed, When favorite is pressed, Then favorite intent is fired",
       (tester) async {
     // Given
-    await _loadPage(tester);
+    await loadPage(tester);
     final uiCityList = [
       UICity(
         cityId: 1,

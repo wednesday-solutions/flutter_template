@@ -37,7 +37,7 @@ void main() {
     resetMocktailState();
   });
 
-  _createViewModel() {
+  createViewModel() {
     viewModel = SearchViewModelImpl(
       searchNavigator: searchNavigator,
       searchCityInteractor: searchCityInteractor,
@@ -45,7 +45,7 @@ void main() {
     );
   }
 
-  SearchScreenState _getInitialState() => SearchScreenState(
+  SearchScreenState getInitialState() => SearchScreenState(
         toolbar: UIToolbar(
           title: LocaleKeys.searchPageTitle,
           hasBackButton: true,
@@ -61,13 +61,13 @@ void main() {
     when(() => searchCityInteractor.searchResultsStream)
         .thenAnswer((invocation) => const Stream.empty());
 
-    _createViewModel();
+    createViewModel();
 
     // When
     final initialState = viewModel.debugState;
 
     // Then
-    expect(initialState, _getInitialState());
+    expect(initialState, getInitialState());
   });
 
   test(
@@ -79,11 +79,11 @@ void main() {
         .thenAnswer((_) => Stream.value(uiCityList));
 
     // When
-    _createViewModel();
+    createViewModel();
 
     // Then
     viewModel.stream.inOrder([
-      emits(_getInitialState().copyWith(searchList: uiCityList)),
+      emits(getInitialState().copyWith(searchList: uiCityList)),
     ]);
   });
 
@@ -92,17 +92,16 @@ void main() {
       () async {
     // Given
     const searchTerm = "Pune";
-    when(() => searchCityInteractor.searchResultsStream)
-        .thenReturnEmptyListStream();
+    when(() => searchCityInteractor.searchResultsStream).thenReturnEmptyListStream();
     when(() => searchCityInteractor.search(searchTerm)).justRun();
 
     // When
-    _createViewModel();
+    createViewModel();
 
     viewModel.stream.inOrder([
       // Then
-      emits(_getInitialState().copyWith(showLoading: true)),
-      emits(_getInitialState().copyWith(showLoading: false)),
+      emits(getInitialState().copyWith(showLoading: true)),
+      emits(getInitialState().copyWith(showLoading: false)),
     ]);
 
     viewModel.onIntent(SearchScreenIntent.search(searchTerm: searchTerm));
@@ -116,16 +115,15 @@ void main() {
     const searchTerm2 = "Pu";
     const searchTerm3 = "Pun";
     const searchTerm4 = "Pune";
-    when(() => searchCityInteractor.searchResultsStream)
-        .thenReturnEmptyListStream();
+    when(() => searchCityInteractor.searchResultsStream).thenReturnEmptyListStream();
     when(() => searchCityInteractor.search(searchTerm4)).justRun();
 
     // When
-    _createViewModel();
+    createViewModel();
 
     viewModel.stream.inOrder([
-      emits(_getInitialState().copyWith(showLoading: true)),
-      emits(_getInitialState().copyWith(showLoading: false)),
+      emits(getInitialState().copyWith(showLoading: true)),
+      emits(getInitialState().copyWith(showLoading: false)),
     ]);
 
     viewModel.onIntent(SearchScreenIntent.search(searchTerm: searchTerm1));
@@ -146,9 +144,8 @@ void main() {
       "Given search page is open, When back intent is fired, Then back should be called on search navigator",
       () {
     // Given
-    when(() => searchCityInteractor.searchResultsStream)
-        .thenReturnEmptyListStream();
-    _createViewModel();
+    when(() => searchCityInteractor.searchResultsStream).thenReturnEmptyListStream();
+    createViewModel();
 
     // When
     viewModel.onIntent(SearchScreenIntent.back());
@@ -162,11 +159,10 @@ void main() {
       () {
     // Given
     final city = uiCity;
-    when(() => searchCityInteractor.searchResultsStream)
-        .thenReturnEmptyListStream();
+    when(() => searchCityInteractor.searchResultsStream).thenReturnEmptyListStream();
     when(() => favoriteWeatherInteractor.setCityFavorite(city))
         .thenAnswer((_) async => UIResult<void>.success(null));
-    _createViewModel();
+    createViewModel();
 
     // When
     viewModel.onIntent(SearchScreenIntent.toggleFavorite(city: city));
@@ -181,11 +177,10 @@ void main() {
       () {
     // Given
     final city = uiCity.copyWith(isFavourite: true);
-    when(() => searchCityInteractor.searchResultsStream)
-        .thenReturnEmptyListStream();
+    when(() => searchCityInteractor.searchResultsStream).thenReturnEmptyListStream();
     when(() => favoriteWeatherInteractor.removeCityFavorite(city))
         .thenAnswer((_) async => UIResult<void>.success(null));
-    _createViewModel();
+    createViewModel();
 
     // When
     viewModel.onIntent(SearchScreenIntent.toggleFavorite(city: city));
