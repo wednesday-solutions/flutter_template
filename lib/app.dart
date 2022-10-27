@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_displaymode/flutter_displaymode.dart';
@@ -42,7 +43,7 @@ Future _initialiseApp() async {
 
   EasyLocalization.logger.printer = customEasyLogger;
 
-  if (Platform.isAndroid) {
+  if (!kIsWeb && Platform.isAndroid) {
     try {
       FlutterDisplayMode.setHighRefreshRate();
     } on PlatformException catch (exception) {
