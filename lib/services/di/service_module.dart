@@ -26,7 +26,7 @@ extension ServiceModule on GetIt {
     );
 
     // Drift
-    registerLazySingleton<AppDatabase>(() => AppDatabase());
+    registerLazySingleton<AppDatabase>(() => connect());
 
     // Shared Preferences
     registerLazySingleton<PreferencesService>(() => PreferencesServiceImpl(

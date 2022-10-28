@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_template/presentation/entity/intent/intent.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
