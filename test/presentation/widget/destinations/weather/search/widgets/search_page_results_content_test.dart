@@ -17,7 +17,7 @@ void main() {
     intentHandler = MockIntentHandler();
   });
 
-  _loadWidget(WidgetTester tester, SearchPageResultsContent widget) async {
+  loadWidget(WidgetTester tester, SearchPageResultsContent widget) async {
     await tester.loadWidget(
       widget: Flex(
         direction: Axis.vertical,
@@ -36,7 +36,7 @@ void main() {
       "Given showLoading is true, When no results are present, Then loading shimmer should be visible",
       (tester) async {
     // Given
-    await _loadWidget(
+    await loadWidget(
       tester,
       SearchPageResultsContent(
         showLoading: true,
@@ -59,7 +59,7 @@ void main() {
       "Given showLoading is true, When results are present, Then loading shimmer should be visible",
       (tester) async {
     // Given
-    await _loadWidget(
+    await loadWidget(
       tester,
       SearchPageResultsContent(
         showLoading: true,
@@ -82,7 +82,7 @@ void main() {
       "Given showLoading is false, When results are present, Then results should be displayed",
       (tester) async {
     // Given
-    await _loadWidget(
+    await loadWidget(
       tester,
       SearchPageResultsContent(
         showLoading: false,
@@ -106,7 +106,7 @@ void main() {
       (tester) async {
     // Given
     const searchResultsPlaceholder = "searchResultsPlaceholder";
-    await _loadWidget(
+    await loadWidget(
       tester,
       SearchPageResultsContent(
         showLoading: false,
@@ -131,7 +131,7 @@ void main() {
       (tester) async {
     // Given
     const noResultsPlaceholder = "noResultsPlaceholder";
-    await _loadWidget(
+    await loadWidget(
       tester,
       SearchPageResultsContent(
         showLoading: false,
@@ -155,7 +155,7 @@ void main() {
       "Given search list is not empty, When favorite icon is tapped, Then intent handler callback is called with correct intent",
       (tester) async {
     // Given
-    await _loadWidget(
+    await loadWidget(
       tester,
       SearchPageResultsContent(
         showLoading: false,

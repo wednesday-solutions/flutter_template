@@ -44,7 +44,7 @@ void main() {
     resetMocktailState();
   });
 
-  _loadPageForGolden(WidgetTester tester) async {
+  loadPageForGolden(WidgetTester tester) async {
     await tester.loadPageForGolden(
       page: const SearchPage(searchScreen: SearchScreen()),
       viewModelProvider: searchViewModelProvider,
@@ -57,7 +57,7 @@ void main() {
     goldenName: "search_page_default_state",
     test: (tester) async {
       // Given
-      await _loadPageForGolden(tester);
+      await loadPageForGolden(tester);
 
       // Then
       expect(find.byType(TextField), findsOneWidget);
@@ -73,7 +73,7 @@ void main() {
     customPump: (tester) => tester.pump(),
     test: (tester) async {
       // Given
-      await _loadPageForGolden(tester);
+      await loadPageForGolden(tester);
 
       // When
       fakeSearchViewModel
@@ -93,7 +93,7 @@ void main() {
     goldenName: "search_page_no_results",
     test: (tester) async {
       // Given
-      await _loadPageForGolden(tester);
+      await loadPageForGolden(tester);
 
       // When
       fakeSearchViewModel
@@ -130,7 +130,7 @@ void main() {
     goldenName: "search_page_results",
     test: (tester) async {
       // Given
-      await _loadPageForGolden(tester);
+      await loadPageForGolden(tester);
 
       // When
       fakeSearchViewModel
@@ -171,7 +171,7 @@ void main() {
     goldenName: "search_page_favorite_icon",
     test: (tester) async {
       // Given
-      await _loadPageForGolden(tester);
+      await loadPageForGolden(tester);
       final uiCityList = [
         UICity(
           cityId: 1,
