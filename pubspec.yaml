@@ -75,8 +75,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   # To add assets to your application, add an assets section, like this:
-  #  assets:
-  #    - assets/translations/
+  assets:
+    - assets/pre_populated_cities.sqlite
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
