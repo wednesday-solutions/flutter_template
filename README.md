@@ -292,4 +292,4 @@ openssl base64 < FILENAME | tr -d '\n' | tee ENCODED_FILENAME.txt
 - Flutter apps might have issues on some android devices with variable refresh rate where the app is locked at 60fps instead of running at the highest refresh rate. This might make your app look like it is running slower than other apps on the device. To fix this the template uses the [`flutter_displaymode`](https://pub.dev/packages/flutter_displaymode) package. The template sets the highest refresh rate available. If you don't want this behaviour you can remove the lines 40 to 46 in [`app.dart`](lib/app.dart#L40). [`Link to frame rate issue on flutter`](https://github.com/flutter/flutter/issues/35162).
 
 ## Issues
-- Additionally look into the Issues for the repository for some commonly faced problems while setup
+- Additionally look into the Issues for the repository for some commonly faced problems while setup. They are marked with the label `documentation` and are mostly closed
