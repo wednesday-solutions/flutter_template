@@ -20,7 +20,7 @@ AppDatabase connect() {
     
     return NativeDatabase(
       file,
-      logStatements: FlavorConfig.instance.values.logSqlStatements,
+      logStatements: FlavorConfig.values.logSqlStatements,
     );
   });
 

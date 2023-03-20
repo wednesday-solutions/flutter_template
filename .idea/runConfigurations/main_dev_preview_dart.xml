@@ -1,8 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="main_dev_preview.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
-    <option name="additionalArgs" value="--dart-define=enableDevicePreview=&quot;true&quot;" />
-    <option name="buildFlavor" value="dev" />
-    <option name="filePath" value="$PROJECT_DIR$/lib/entrypoints/main_dev.dart" />
-    <method v="2" />
-  </configuration>
-</component>

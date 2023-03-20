@@ -2,15 +2,16 @@ import 'package:flutter_template/flavors/flavor.dart';
 import 'package:flutter_template/flavors/flavor_values.dart';
 
 class FlavorConfig {
-  final Flavor flavor;
-  final FlavorValues values;
+  final Flavor _flavor;
+  final FlavorValues _values;
 
   static late FlavorConfig _instance;
   static var _initialized = false;
 
-  factory FlavorConfig.initialize(
-      {required Flavor flavor, required FlavorValues values}) {
+  factory FlavorConfig.initialize({required String flavorString}) {
     if (!_initialized) {
+      final flavor = Flavor.fromString(flavor: flavorString);
+      final values = FlavorValues.fromEnvironment();
       _instance = FlavorConfig._internal(flavor: flavor, values: values);
       _initialized = true;
     }
@@ -18,15 +19,18 @@ class FlavorConfig {
   }
 
   FlavorConfig._internal({
-    required this.flavor,
-    required this.values,
-  });
+    required Flavor flavor,
+    required FlavorValues values,
+  })  : _flavor = flavor,
+        _values = values;
 
-  static FlavorConfig get instance => _instance;
+  static Flavor get flavor => _instance._flavor;
 
-  static bool isPROD() => _instance.flavor == Flavor.prod;
+  static FlavorValues get values => _instance._values;
 
-  static bool isQA() => _instance.flavor == Flavor.qa;
+  static bool isPROD() => _instance._flavor == Flavor.prod;
 
-  static bool isDEV() => _instance.flavor == Flavor.dev;
+  static bool isQA() => _instance._flavor == Flavor.qa;
+
+  static bool isDEV() => _instance._flavor == Flavor.dev;
 }

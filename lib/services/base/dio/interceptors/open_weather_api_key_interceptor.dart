@@ -8,7 +8,7 @@ class OpenWeatherApiKeyInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     final newOptions = options.copyWith(queryParameters: {
       ...options.queryParameters,
-      _appId: FlavorConfig.instance.values.secrets.openWeatherApiKey,
+      _appId: FlavorConfig.values.openWeatherApiKey,
     });
 
     handler.next(newOptions);

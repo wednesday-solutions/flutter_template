@@ -36,7 +36,7 @@ extension ServiceModule on GetIt {
     // weather
     registerLazySingleton<WeatherRemoteService>(
       () {
-        if (FlavorConfig.instance.values.useFakeData) {
+        if (FlavorConfig.values.useFakeData) {
           return FakeWeatherRemoteService();
         }
 
@@ -48,7 +48,7 @@ extension ServiceModule on GetIt {
 
     registerLazySingleton<WeatherLocalService>(
       () {
-        if (FlavorConfig.instance.values.useFakeData) {
+        if (FlavorConfig.values.useFakeData) {
           return FakeWeatherLocalService();
         }
 

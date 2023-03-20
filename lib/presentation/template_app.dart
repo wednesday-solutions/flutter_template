@@ -23,7 +23,7 @@ class TemplateApp extends StatelessWidget {
         String.fromEnvironment("enableDevicePreview") == "true";
     final useDevicePreview = enableDevicePreview &&
         kDebugMode &&
-        FlavorConfig.instance.flavor == Flavor.dev;
+        FlavorConfig.flavor == Flavor.dev;
 
     return ProviderScope(
       child: ThemeStateListener(

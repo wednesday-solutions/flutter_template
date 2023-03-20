@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="main_qa.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
-    <option name="buildFlavor" value="qa" />
-    <option name="filePath" value="$PROJECT_DIR$/lib/entrypoints/main_qa.dart" />
-    <method v="2" />
-  </configuration>
-</component>
