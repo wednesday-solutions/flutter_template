@@ -35,6 +35,30 @@ scripts:
     exclude-goldens: flutter test --exclude-tags=golden
     goldens: flutter test --tags=golden test/presentation/goldens
     update-goldens: flutter test --tags=golden test/presentation/goldens --update-goldens
+  analyze: flutter analyze --fatal-infos --fatal-warnings
+  format: dart format --set-exit-if-changed .
+  fix: dart fix --apply
+  build:
+    apk:
+      dev: flutter build apk --flavor=dev --dart-define=flavor=dev
+      qa: flutter build apk --flavor=qa --dart-define=flavor=qa
+      prod: flutter build apk --flavor=prod --dart-define=flavor=prod
+    release-apk:
+      qa: flutter build apk --flavor=qa --dart-define=flavor=qa --release --obfuscate --split-debug-info=debug-info
+      prod: flutter build apk --flavor=prod --dart-define=flavor=prod --release --obfuscate --split-debug-info=debug-info
+    appbundle:
+      dev: flutter build appbundle --flavor=dev --dart-define=flavor=dev
+      qa: flutter build appbundle --flavor=qa --dart-define=flavor=qa
+      prod: flutter build appbundle --flavor=prod --dart-define=flavor=prod
+    ios:
+      dev: flutter build ios --flavor=dev --dart-define=flavor=dev --debug --no-codesign
+      qa: flutter build ios --flavor=qa --dart-define=flavor=qa --debug --no-codesign
+      prod: flutter build ios --flavor=prod --dart-define=flavor=prod --debug --no-codesign
+    web:
+      dev: flutter build web --flavor=dev --dart-define=flavor=dev
+      qa: flutter build web --flavor=qa --dart-define=flavor=qa
+      prod: flutter build web --flavor=prod --dart-define=flavor=prod
+
 
 dependencies:
   auto_route: ^6.0.0+1

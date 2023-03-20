@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/base/theme/color/color_palette.dart';
 import 'package:flutter_template/presentation/base/theme/theme_data/card_theme_data.dart';
+import 'package:flutter_template/presentation/base/theme/type/text_theme.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 final material3LightTheme = buildTheme(lightColorScheme);
@@ -10,7 +11,7 @@ final material3DarkTheme = buildTheme(darkColorScheme);
 ThemeData buildTheme(ColorScheme colorScheme) {
   return ThemeData(
     useMaterial3: true,
-    textTheme: GoogleFonts.openSansTextTheme(),
+    textTheme: GoogleFonts.openSansTextTheme(getTextTheme(colorScheme)),
     fontFamily: GoogleFonts.openSans().fontFamily,
     popupMenuTheme: PopupMenuThemeData(color: colorScheme.surface),
     cardTheme: AppCardTheme(cardColor: colorScheme.surface),

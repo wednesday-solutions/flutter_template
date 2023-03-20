@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_template/foundation/extensions/theme_ext.dart';
+import 'package:flutter_template/presentation/base/theme/type/text_style_extensions.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_weather.dart';
 
 class UIWeatherListItem extends StatelessWidget {
@@ -31,11 +33,11 @@ class UIWeatherListItem extends StatelessWidget {
                       children: [
                         Text(
                           weather.title,
-                          style: const TextStyle(fontSize: 20),
+                          style: context.theme.textTheme.titleLarge?.onCard(context),
                         ),
                         Text(
                           weather.currentTemp,
-                          style: const TextStyle(fontSize: 40),
+                          style: context.theme.textTheme.headlineLarge?.onCard(context),
                         ),
                       ],
                     ),
@@ -53,19 +55,19 @@ class UIWeatherListItem extends StatelessWidget {
               ),
               Text(
                 weather.feelsLike,
-                style: const TextStyle(fontSize: 20),
+                style: context.theme.textTheme.titleLarge?.onCard(context),
               ),
               const SizedBox(
                 height: 10,
               ),
               Text(
                 weather.minMaxTemp,
-                style: const TextStyle(fontSize: 18),
+                style: context.theme.textTheme.bodySmall?.onCard(context),
               ),
               const SizedBox(
                 height: 10,
               ),
-              Text(weather.description),
+              Text(weather.description, style: context.theme.textTheme.bodySmall?.onCard(context)),
             ],
           ),
         ),
