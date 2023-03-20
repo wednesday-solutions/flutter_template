@@ -1,16 +1,14 @@
-import 'package:auto_route/annotations.dart';
-import 'package:flutter_template/presentation/destinations/weather/home/home_page.dart';
-import 'package:flutter_template/presentation/destinations/weather/search/search_page.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter_template/navigation/base/app_router.dart';
 import 'package:flutter_template/presentation/entity/routes/routes.dart';
 
-const autoRoutes = [
+final autoRoutes = [
   AutoRoute(
     path: Routes.home,
-    page: HomePage,
-    initial: true,
+    page: HomeRoute.page,
   ),
   AutoRoute(
     path: Routes.search,
-    page: SearchPage,
+    page: SearchRoute.page,
   ),
 ];

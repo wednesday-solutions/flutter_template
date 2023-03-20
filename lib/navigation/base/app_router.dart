@@ -10,9 +10,8 @@ import 'package:flutter_template/presentation/destinations/weather/search/search
 
 part 'app_router.gr.dart';
 
-@MaterialAutoRouter(
-  routes: autoRoutes,
-  preferRelativeImports: false,
-  replaceInRouteName: "Page,Route",
-)
-class AppRouter extends _$AppRouter {}
+@AutoRouterConfig()
+class AppRouter extends _$AppRouter {
+  @override
+  List<AutoRoute> get routes => autoRoutes;
+}

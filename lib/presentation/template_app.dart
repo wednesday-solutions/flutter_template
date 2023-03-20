@@ -21,9 +21,8 @@ class TemplateApp extends StatelessWidget {
   Widget build(BuildContext context) {
     const enableDevicePreview =
         String.fromEnvironment("enableDevicePreview") == "true";
-    final useDevicePreview = enableDevicePreview &&
-        kDebugMode &&
-        FlavorConfig.flavor == Flavor.dev;
+    final useDevicePreview =
+        enableDevicePreview && kDebugMode && FlavorConfig.flavor == Flavor.dev;
 
     return ProviderScope(
       child: ThemeStateListener(

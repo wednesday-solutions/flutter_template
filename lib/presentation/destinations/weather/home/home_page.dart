@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_template/presentation/entity/screen/screen.dart';
 
 import 'widgets/home_page_body/home_page_body.dart';
 
+@RoutePage()
 class HomePage extends ConsumerWidget {
   final HomeScreen homeScreen;
 

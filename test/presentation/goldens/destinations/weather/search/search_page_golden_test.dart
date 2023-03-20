@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_page.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_screen_state.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';
@@ -21,20 +20,6 @@ import '../../../../base/widget_tester_ext.dart';
 void main() {
   late FakeSearchViewModel fakeSearchViewModel;
 
-  var fakeSearchViewModelProvider =
-      StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>(
-          (ref) {
-    fakeSearchViewModel = FakeSearchViewModel(SearchScreenState(
-      toolbar: UIToolbar(
-        title: LocaleKeys.searchPageTitle,
-        hasBackButton: true,
-      ),
-      showLoading: false,
-      searchList: List.empty(),
-    ));
-    return fakeSearchViewModel;
-  });
-
   setUpAll(baseSetupAll);
 
   setUp(() {});
@@ -48,7 +33,17 @@ void main() {
     await tester.loadPageForGolden(
       page: const SearchPage(searchScreen: SearchScreen()),
       viewModelProvider: searchViewModelProvider,
-      fakeViewModelProvider: fakeSearchViewModelProvider,
+      fakeViewModelGenerator: (ref) {
+        fakeSearchViewModel = FakeSearchViewModel(SearchScreenState(
+          toolbar: UIToolbar(
+            title: LocaleKeys.searchPageTitle,
+            hasBackButton: true,
+          ),
+          showLoading: false,
+          searchList: List.empty(),
+        ));
+        return fakeSearchViewModel;
+      },
     );
   }
 

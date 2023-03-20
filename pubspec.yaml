@@ -18,7 +18,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+23
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=2.19.2 <3.0.0"
 
 scripts:
   generate:
@@ -30,59 +30,64 @@ scripts:
     dev-preview: flutter run --flavor dev --dart-define=flavor=dev --dart-define=enableDevicePreview="true"
     qa: flutter run --flavor qa --dart-define=flavor=qa
     prod: flutter run --flavor prod --dart-define=flavor=prod
+  test:
+    all: flutter test
+    exclude-goldens: flutter test --exclude-tags=golden
+    goldens: flutter test --tags=golden test/presentation/goldens
+    update-goldens: flutter test --tags=golden test/presentation/goldens --update-goldens
 
 dependencies:
   auto_route: ^6.0.0+1
-  collection: ^1.16.0
-  cupertino_icons: ^1.0.4
+  collection: ^1.17.0
+  cupertino_icons: ^1.0.5
   dio: ^5.0.3
   drift: ^2.5.0
   easy_localization: ^3.0.1
   flutter:
     sdk: flutter
   flutter_displaymode: ^0.5.0
-  flutter_hooks: ^0.18.4
+  flutter_hooks: ^0.18.6
   flutter_riverpod: ^2.3.2
-  flutter_staggered_grid_view: ^0.6.1
-  flutter_state_notifier: ^0.7.1
-  freezed_annotation: ^2.0.3
+  flutter_staggered_grid_view: ^0.6.2
+  flutter_state_notifier: ^0.7.3
+  freezed_annotation: ^2.2.0
   get_it: ^7.2.0
   hooks_riverpod: ^2.3.2
-  intl: ^0.17.0
-  json_annotation: ^4.5.0
-  json_serializable: ^6.2.0
-  logger: ^1.1.0
-  path: ^1.8.1
-  rxdart: ^0.27.3
-  shared_preferences: ^2.0.15
+  json_annotation: ^4.8.0
+  json_serializable: ^6.6.1
+  logger: ^1.3.0
+  path: ^1.8.2
+  rxdart: ^0.27.7
+  shared_preferences: ^2.0.18
   shimmer: ^2.0.0
-  sqlite3_flutter_libs: ^0.5.7
-  tuple: ^2.0.0
-  uuid: ^3.0.6
+  sqlite3_flutter_libs: ^0.5.13
+  tuple: ^2.0.1
+  uuid: ^3.0.7
   google_fonts: ^4.0.3
   easy_logger: ^0.0.2
-  path_provider: ^2.0.10
-  dynamic_color: ^1.2.2
-  faker: ^2.0.0
-  cached_network_image: ^3.2.0
+  path_provider: ^2.0.13
+  dynamic_color: ^1.6.2
+  faker: ^2.1.0
+  cached_network_image: ^3.2.3
   flutter_dotenv: ^5.0.2
 
 dev_dependencies:
   auto_route_generator: ^6.0.0
-  build_runner: ^2.1.10
+  build_runner: ^2.3.3
   drift_dev: ^2.5.2
   flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
-  freezed: ^2.0.3+1
+  freezed: ^2.3.2
   golden_toolkit: ^0.15.0
-  meta: ^1.7.0
+  meta: ^1.8.0
   mocktail: ^0.3.0
 
 flutter:
   uses-material-design: true
   assets:
     - assets/pre_populated_cities.sqlite
+    - assets/google_fonts/
     - .env
     - .env.dev
     - .env.qa

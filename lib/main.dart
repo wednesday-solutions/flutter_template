@@ -1,10 +1,7 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_template/secrets/app_secrets.dart';
 
 import 'app.dart';
-import 'flavors/flavor.dart';
 import 'flavors/flavor_config.dart';
-import 'flavors/flavor_values.dart';
 
 void main() async {
   const flavor = String.fromEnvironment("flavor", defaultValue: "dev");

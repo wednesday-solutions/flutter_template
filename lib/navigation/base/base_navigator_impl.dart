@@ -9,7 +9,7 @@ class BaseNavigatorImpl implements BaseNavigator {
 
   @override
   void back() {
-    appRouter.navigateBack();
+    appRouter.back();
   }
 
   @override

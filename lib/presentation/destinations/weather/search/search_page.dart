@@ -1,3 +1,4 @@
+import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/base/exceptions/unhandled_effect_exception.dart';
 import 'package:flutter_template/presentation/base/page/base_page.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_template/presentation/destinations/weather/search/widget
 import 'package:flutter_template/presentation/entity/effect/effect.dart';
 import 'package:flutter_template/presentation/entity/screen/screen.dart';
 
+@RoutePage()
 class SearchPage extends StatelessWidget {
   final SearchScreen searchScreen;
 

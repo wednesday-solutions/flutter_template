@@ -7,6 +7,7 @@ import 'package:flutter_template/presentation/base/theme/theme_data/template_app
 import 'package:flutter_template/presentation/intl/translations/translation_loader.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,7 +15,10 @@ extension WidgetTesterExt on WidgetTester {
   Future loadPageForGolden({
     required Widget page,
     required AutoDisposeStateNotifierProvider viewModelProvider,
-    required AutoDisposeStateNotifierProvider fakeViewModelProvider,
+    required StateNotifier Function(
+            AutoDisposeStateNotifierProviderRef<StateNotifier<dynamic>,
+                dynamic>)
+        fakeViewModelGenerator,
   }) async {
     TestWidgetsFlutterBinding.ensureInitialized();
     SharedPreferences.setMockInitialValues({});
@@ -29,16 +33,20 @@ extension WidgetTesterExt on WidgetTester {
         child: Builder(builder: (context) {
           context.setLocale(const Locale("en", "US"));
           return MaterialApp(
-            theme: material3LightTheme,
+            theme: material3LightTheme.copyWith(
+                textTheme: GoogleFonts.openSansTextTheme(
+                    material3LightTheme.textTheme)),
             debugShowCheckedModeBanner: false,
-            darkTheme: material3DarkTheme,
+            darkTheme: material3DarkTheme.copyWith(
+                textTheme: GoogleFonts.openSansTextTheme(
+                    material3DarkTheme.textTheme)),
             themeMode: ThemeMode.dark,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
             home: ProviderScope(
               overrides: [
-                viewModelProvider.overrideWithProvider(fakeViewModelProvider),
+                viewModelProvider.overrideWith(fakeViewModelGenerator),
               ],
               child: page,
             ),
@@ -52,7 +60,10 @@ extension WidgetTesterExt on WidgetTester {
   Future loadPage({
     required Widget widget,
     required AutoDisposeStateNotifierProvider viewModelProvider,
-    required AutoDisposeStateNotifierProvider fakeViewModelProvider,
+    required StateNotifier Function(
+            AutoDisposeStateNotifierProviderRef<StateNotifier<dynamic>,
+                dynamic>)
+        fakeViewModelGenerator,
     MediaQueryData mediaQueryData = const MediaQueryData(
       size: Size(320, 640),
       devicePixelRatio: 3,
@@ -77,8 +88,7 @@ extension WidgetTesterExt on WidgetTester {
                 useInheritedMediaQuery: true,
                 home: ProviderScope(
                   overrides: [
-                    viewModelProvider
-                        .overrideWithProvider(fakeViewModelProvider),
+                    viewModelProvider.overrideWith(fakeViewModelGenerator),
                   ],
                   child: widget,
                 ),
@@ -122,8 +132,8 @@ testPageGolden(
         customPump: customPump,
       );
     },
-    // Only run golden tests on one platform (macos in this case) to maintain
-    // consistency of rendered png images.
+// Only run golden tests on one platform (macos in this case) to maintain
+// consistency of rendered png images.
     skip: !Platform.isMacOS,
   );
 }

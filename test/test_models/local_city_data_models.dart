@@ -9,7 +9,7 @@ final allLocalCityDataList = [
   localCityData2,
 ];
 
-final localCityData1 = LocalLocationData(
+const localCityData1 = LocalLocationData(
   name: "name 1",
   country: "country 1",
   lat: 100.45,
@@ -17,7 +17,7 @@ final localCityData1 = LocalLocationData(
   state: "state 1",
 );
 
-final localCityData2 = LocalLocationData(
+const localCityData2 = LocalLocationData(
   name: "name 2",
   country: "country 2",
   lat: -45.45,
