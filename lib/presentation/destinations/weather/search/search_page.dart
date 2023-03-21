@@ -9,7 +9,6 @@ import 'package:flutter_template/presentation/destinations/weather/search/search
 import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/widgets/search_page_body/search_page_body.dart';
 import 'package:flutter_template/presentation/entity/effect/effect.dart';
-import 'package:flutter_template/presentation/entity/screen/screen.dart';
 
 @RoutePage()
 class SearchPage extends StatelessWidget {

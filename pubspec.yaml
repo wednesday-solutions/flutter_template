@@ -36,7 +36,7 @@ scripts:
     goldens: flutter test --tags=golden test/presentation/goldens
     update-goldens: flutter test --tags=golden test/presentation/goldens --update-goldens
   analyze: flutter analyze --fatal-infos --fatal-warnings
-  format: dart format --set-exit-if-changed .
+  format: dart format --set-exit-if-changed lib
   fix: dart fix --apply
   build:
     apk:
