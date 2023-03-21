@@ -136,6 +136,7 @@ jobs:
         run: echo -n "$PLIST" | base64 --decode --output $PLIST_PATH
 
       - name: Build the signed ipa
+        # TODO: Move to derry
         run: chmod u+x scripts/build.sh && scripts/build.sh ipa prod --release
 
       - name: Upload the signed ipa to TestFlight

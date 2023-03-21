@@ -40,9 +40,9 @@ scripts:
   fix: dart fix --apply
   build:
     apk:
-      dev: flutter build apk --flavor=dev --dart-define=flavor=dev
-      qa: flutter build apk --flavor=qa --dart-define=flavor=qa
-      prod: flutter build apk --flavor=prod --dart-define=flavor=prod
+      dev: flutter build apk --flavor=dev --dart-define=flavor=dev --debug
+      qa: flutter build apk --flavor=qa --dart-define=flavor=qa --debug
+      prod: flutter build apk --flavor=prod --dart-define=flavor=prod --debug
     release-apk:
       qa: flutter build apk --flavor=qa --dart-define=flavor=qa --release --obfuscate --split-debug-info=debug-info
       prod: flutter build apk --flavor=prod --dart-define=flavor=prod --release --obfuscate --split-debug-info=debug-info
