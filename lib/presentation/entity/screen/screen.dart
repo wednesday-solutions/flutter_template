@@ -5,6 +5,3 @@ abstract class Screen {
 
   String get path;
 }
-
-
-
