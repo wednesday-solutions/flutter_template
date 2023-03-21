@@ -33,11 +33,13 @@ class UIWeatherListItem extends StatelessWidget {
                       children: [
                         Text(
                           weather.title,
-                          style: context.theme.textTheme.titleLarge?.onCard(context),
+                          style: context.theme.textTheme.titleLarge
+                              ?.onCard(context),
                         ),
                         Text(
                           weather.currentTemp,
-                          style: context.theme.textTheme.headlineLarge?.onCard(context),
+                          style: context.theme.textTheme.headlineLarge
+                              ?.onCard(context),
                         ),
                       ],
                     ),
@@ -67,7 +69,8 @@ class UIWeatherListItem extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              Text(weather.description, style: context.theme.textTheme.bodySmall?.onCard(context)),
+              Text(weather.description,
+                  style: context.theme.textTheme.bodySmall?.onCard(context)),
             ],
           ),
         ),
