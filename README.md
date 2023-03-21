@@ -1,4 +1,5 @@
 
+
 <img align="left" src="flutter_template_github.svg" width="480" height="440" />
 
 <div>
@@ -193,6 +194,31 @@ Each widget the requires access to data from the view model it split into two da
 
 ### Screen
 A [`Screen`](lib/presentation/entity/screen/screen.dart) is a class that represents a `Page` in the context of navigation. It holds the `path` used by the navigator to navigate to a `Page` and also holds any arguments required to navigate to that `Page`.
+
+## Templating
+As you can read from the [Architecture](#architecture) section, adding a new page in the app can require a lot of files to be created. The template uses [`mason`](https://pub.dev/packages/mason_cli) as it's templating engine to automate some of this work.
+
+To get started with mason, first activate mason globally
+```bash
+dart pub global activate mason_cli
+```
+
+Similar to using `pub get` we need to run `mason get` to setup the `bricks` (templates are called brick in mason).
+```bash
+mason get
+```
+You can learn more about `mason` [here](https://docs.brickhub.dev/).
+
+#### Destination Brick
+The template comes with a pre setup brick called `destination`.
+Run the `destination` brick using the following command.
+```bash
+mason make destination -o lib/presentation/destinations/notes --name notesList 
+```
+`-o` flag sets the output directory for the `brick` and `--name` is the name used for the files and classes. This brick generates the required file structure and runs `build_runner` (via mason hooks) to trigger code generation. After running the command, this is what you should see:
+
+<img width="408" alt="Screenshot 2023-03-21 at 2 55 45 PM" src="https://user-images.githubusercontent.com/58199625/226564828-3172bc70-5324-486c-a31d-6ce7f19aa8bb.png">
+
 
 ## Content
 The Flutter Template contains:
