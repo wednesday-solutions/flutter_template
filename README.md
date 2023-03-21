@@ -343,3 +343,4 @@ Flutter Template is licensed under the MIT license. Check the [LICENSE](LICENSE)
 
 ## Other Versions
 ##### Check out the [multi-package branch](https://github.com/wednesday-solutions/flutter_template/tree/multi-package) for a multi package flutter architecture.
+
