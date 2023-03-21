@@ -106,6 +106,7 @@ dev_dependencies:
   golden_toolkit: ^0.15.0
   meta: ^1.8.0
   mocktail: ^0.3.0
+  mason: ^0.1.0-dev.47
 
 flutter:
   uses-material-design: true

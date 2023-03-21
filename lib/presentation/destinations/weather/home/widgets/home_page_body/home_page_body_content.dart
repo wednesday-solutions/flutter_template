@@ -15,10 +15,10 @@ class HomePageBodyContent extends StatelessWidget {
   final IntentHandlerCallback<HomeScreenIntent> intentHandler;
 
   const HomePageBodyContent({
-    Key? key,
+    super.key,
     required this.weatherList,
     required this.intentHandler,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -12,3 +12,4 @@ analyzer:
     - "**.gr.dart"
     - "**/translation_keys.dart"
     - "**/translation_loader.dart"
+    - "bricks/**"

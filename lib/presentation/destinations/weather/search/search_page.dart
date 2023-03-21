@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/base/exceptions/unhandled_effect_exception.dart';
 import 'package:flutter_template/presentation/base/page/base_page.dart';
 import 'package:flutter_template/presentation/base/widgets/snackbar/snackbar.dart';
+import 'package:flutter_template/presentation/destinations/weather/search/search_screen.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_screen_intent.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_screen_state.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';

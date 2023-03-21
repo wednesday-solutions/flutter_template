@@ -1,7 +1,7 @@
 import 'package:flutter_template/navigation/base/app_router.dart';
 import 'package:flutter_template/navigation/base/base_navigator.dart';
 import 'package:flutter_template/navigation/weather/home/home_navigator.dart';
-import 'package:flutter_template/presentation/entity/screen/screen.dart';
+import 'package:flutter_template/presentation/destinations/weather/search/search_screen.dart';
 
 class HomeNavigatorImpl implements HomeNavigator {
   final BaseNavigator navigator;
