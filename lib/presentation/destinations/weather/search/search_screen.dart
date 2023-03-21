@@ -4,6 +4,5 @@ import 'package:flutter_template/presentation/entity/screen/screen.dart';
 class SearchScreen extends Screen {
   const SearchScreen() : super();
 
-  @override
-  String get path => Routes.search;
+  static get path => Routes.search;
 }

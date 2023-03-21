@@ -4,6 +4,5 @@ import 'package:flutter_template/presentation/entity/screen/screen.dart';
 class HomeScreen extends Screen {
   const HomeScreen() : super();
 
-  @override
-  String get path => Routes.home;
+  static get path => Routes.home;
 }
