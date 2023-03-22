@@ -37,7 +37,6 @@
 /build/
 
 # Web related
-lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols
@@ -73,3 +72,5 @@ lib/secrets/
 !lib/secrets/app_secrets.skeleton.dart
 
 .mason
+
+.scannerwork
