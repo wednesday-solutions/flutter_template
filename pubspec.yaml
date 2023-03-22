@@ -55,9 +55,9 @@ scripts:
       qa: flutter build ios --flavor=qa --dart-define=flavor=qa --debug --no-codesign
       prod: flutter build ios --flavor=prod --dart-define=flavor=prod --debug --no-codesign
     web:
-      dev: flutter build web --flavor=dev --dart-define=flavor=dev
-      qa: flutter build web --flavor=qa --dart-define=flavor=qa
-      prod: flutter build web --flavor=prod --dart-define=flavor=prod
+      dev: flutter build web --dart-define=flavor=dev
+      qa: flutter build web --dart-define=flavor=qa
+      prod: flutter build web --dart-define=flavor=prod
 
 
 dependencies:

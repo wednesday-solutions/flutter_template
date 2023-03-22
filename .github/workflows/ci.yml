@@ -118,10 +118,39 @@ jobs:
       - name: Build iOS
         run: derry build ios dev
 
+  build-web:
+    name: Build Android
+    runs-on: ubuntu-latest
+    needs: [ lint-test ]
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Setup .env.dev
+        env:
+          ENV_FILE: ${{ secrets.ENV_DEV }}
+        run: echo -n $ENV_FILE | base64 --decode > .env.dev
+
+      - name: Activate derry
+        run: flutter pub global activate derry
+
+      - name: Get Dependencies
+        run: flutter pub get
+
+      - name: Run build_runner
+        run: derry build_runner
+
+      - name: Build Web
+        run: derry build web dev
+
   sonar-scan:
     name: SonarQube Scan
     runs-on: ubuntu-latest
-    needs: [build-android,build-ios]
+    needs: [build-android,build-ios,build-web]
     steps:
       - uses: actions/checkout@v3
         with:
