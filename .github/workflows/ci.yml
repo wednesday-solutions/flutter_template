@@ -100,6 +100,9 @@ jobs:
           name: base-coverage-${{ github.event.number }}
           path: coverage/lcov.base.info
 
+      - name: Check file
+        run: ls coverage
+
       - name: Golden tests
         run: derry test goldens -- --merge-coverage --coverage
 
