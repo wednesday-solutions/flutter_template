@@ -33,7 +33,7 @@ jobs:
         run: derry format
 
       - name: Unit tests
-        run: derry test exclude-goldens
+        run: derry test all
 
   build-android:
     name: Build Android
@@ -64,33 +64,33 @@ jobs:
         run: derry build apk dev
 
 
-  build-ios:
-    name: Golden Tests and Build iOS
-    runs-on: macos-latest
-    needs: [ lint-test ]
-    steps:
-      - uses: actions/checkout@v2
-
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: 'stable'
-
-      - name: Setup .env.dev
-        env:
-          ENV_FILE: ${{ secrets.ENV_DEV }}
-        run: echo -n $ENV_FILE | base64 --decode > .env.dev
-
-      - name: Activate derry
-        run: flutter pub global activate derry
-
-      - name: Get Dependencies
-        run: flutter pub get
-
-      - name: Run build_runner
-        run: derry build_runner
-
-      - name: Golden tests
-        run:  derry test goldens
-
-      - name: Build iOS
-        run: derry build ios dev
+#  build-ios:
+#    name: Golden Tests and Build iOS
+#    runs-on: macos-latest
+#    needs: [ lint-test ]
+#    steps:
+#      - uses: actions/checkout@v2
+#
+#      - uses: subosito/flutter-action@v2
+#        with:
+#          channel: 'stable'
+#
+#      - name: Setup .env.dev
+#        env:
+#          ENV_FILE: ${{ secrets.ENV_DEV }}
+#        run: echo -n $ENV_FILE | base64 --decode > .env.dev
+#
+#      - name: Activate derry
+#        run: flutter pub global activate derry
+#
+#      - name: Get Dependencies
+#        run: flutter pub get
+#
+#      - name: Run build_runner
+#        run: derry build_runner
+#
+#      - name: Golden tests
+#        run:  derry test goldens
+#
+#      - name: Build iOS
+#        run: derry build ios dev

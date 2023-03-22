@@ -73,3 +73,5 @@ lib/secrets/
 !lib/secrets/app_secrets.skeleton.dart
 
 .mason
+
+.scannerwork

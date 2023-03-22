@@ -33,13 +33,9 @@ extension WidgetTesterExt on WidgetTester {
         child: Builder(builder: (context) {
           context.setLocale(const Locale("en", "US"));
           return MaterialApp(
-            theme: material3LightTheme.copyWith(
-                textTheme: GoogleFonts.openSansTextTheme(
-                    material3LightTheme.textTheme)),
+            theme: material3LightTheme,
             debugShowCheckedModeBanner: false,
-            darkTheme: material3DarkTheme.copyWith(
-                textTheme: GoogleFonts.openSansTextTheme(
-                    material3DarkTheme.textTheme)),
+            darkTheme: material3DarkTheme,
             themeMode: ThemeMode.dark,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,

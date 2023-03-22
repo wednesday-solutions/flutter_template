@@ -116,3 +116,4 @@ flutter:
     - .env
     - .env.dev
     - .env.qa
+    - .env.test
