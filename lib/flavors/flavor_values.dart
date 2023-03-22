@@ -7,6 +7,7 @@ class FlavorValues {
   final bool showLogs;
   final String openWeatherApiKey;
   final bool useGoogleFonts;
+  final bool renderFontsInTest;
 
   final bool _logSqlStatements;
 
@@ -17,6 +18,7 @@ class FlavorValues {
     this.showLogs = false,
     this.useFakeData = false,
     required this.useGoogleFonts,
+    required this.renderFontsInTest,
   }) : _logSqlStatements = showLogs && logSqlStatements;
 
   bool get logSqlStatements => _logSqlStatements;
@@ -25,7 +27,8 @@ class FlavorValues {
     return FlavorValues(
       apiBaseUrl: dotenv.get("OPEN_WEATHER_BASE_URL"),
       openWeatherApiKey: dotenv.get("OPEN_WEATHER_API_KEY"),
-      useGoogleFonts: dotenv.getBoolOrDefault("USE_GOOGLE_FONTS", fallback: true)
+      useGoogleFonts: dotenv.getBoolOrDefault("USE_GOOGLE_FONTS", fallback: true),
+      renderFontsInTest: dotenv.getBoolOrDefault("RENDER_FONTS_IN_TEST", fallback: false)
     );
   }
 }
