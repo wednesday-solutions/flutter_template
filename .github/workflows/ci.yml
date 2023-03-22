@@ -11,6 +11,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          cache: true
 
       - name: Setup .env.dev
         env:
@@ -51,6 +52,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          cache: true
 
       - name: Setup .env.dev
         env:
@@ -80,6 +82,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          cache: true
 
       - name: Setup .env.dev
         env:
@@ -99,6 +102,9 @@ jobs:
         with:
           name: base-coverage-${{ github.event.number }}
           path: coverage
+
+      - name: Setup lcov
+        run: brew install lcov
 
       - name: Golden tests
         run: derry test goldens -- --merge-coverage --coverage
