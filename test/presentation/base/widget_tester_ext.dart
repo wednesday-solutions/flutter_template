@@ -14,7 +14,10 @@ extension WidgetTesterExt on WidgetTester {
   Future loadPageForGolden({
     required Widget page,
     required AutoDisposeStateNotifierProvider viewModelProvider,
-    required AutoDisposeStateNotifierProvider fakeViewModelProvider,
+    required StateNotifier Function(
+            AutoDisposeStateNotifierProviderRef<StateNotifier<dynamic>,
+                dynamic>)
+        fakeViewModelGenerator,
   }) async {
     TestWidgetsFlutterBinding.ensureInitialized();
     SharedPreferences.setMockInitialValues({});
@@ -38,7 +41,7 @@ extension WidgetTesterExt on WidgetTester {
             locale: context.locale,
             home: ProviderScope(
               overrides: [
-                viewModelProvider.overrideWithProvider(fakeViewModelProvider),
+                viewModelProvider.overrideWith(fakeViewModelGenerator),
               ],
               child: page,
             ),
@@ -52,7 +55,10 @@ extension WidgetTesterExt on WidgetTester {
   Future loadPage({
     required Widget widget,
     required AutoDisposeStateNotifierProvider viewModelProvider,
-    required AutoDisposeStateNotifierProvider fakeViewModelProvider,
+    required StateNotifier Function(
+            AutoDisposeStateNotifierProviderRef<StateNotifier<dynamic>,
+                dynamic>)
+        fakeViewModelGenerator,
     MediaQueryData mediaQueryData = const MediaQueryData(
       size: Size(320, 640),
       devicePixelRatio: 3,
@@ -77,8 +83,7 @@ extension WidgetTesterExt on WidgetTester {
                 useInheritedMediaQuery: true,
                 home: ProviderScope(
                   overrides: [
-                    viewModelProvider
-                        .overrideWithProvider(fakeViewModelProvider),
+                    viewModelProvider.overrideWith(fakeViewModelGenerator),
                   ],
                   child: widget,
                 ),
@@ -122,8 +127,8 @@ testPageGolden(
         customPump: customPump,
       );
     },
-    // Only run golden tests on one platform (macos in this case) to maintain
-    // consistency of rendered png images.
+// Only run golden tests on one platform (macos in this case) to maintain
+// consistency of rendered png images.
     skip: !Platform.isMacOS,
   );
 }

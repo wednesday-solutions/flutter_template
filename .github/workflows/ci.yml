@@ -1,62 +1,178 @@
 name: CI
 on:
   pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  lint-test-build-android:
-    name: Lint, Test And Build Android
+  lint-test:
+    name: Lint and Unit Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          cache: true
 
-      - name: Setup app_secrets.dart
+      - name: Setup .env.dev
         env:
-            APP_SECRETS: ${{ secrets.APP_SECRETS }}
-            APP_SECRETS_PATH: lib/secrets/app_secrets.dart
-        run: echo -n $APP_SECRETS | base64 --decode > $APP_SECRETS_PATH
+            ENV_FILE: ${{ secrets.ENV_DEV }}
+        run: echo -n $ENV_FILE | base64 --decode > .env.dev
+
+      - name: Activate derry
+        run: flutter pub global activate derry
 
       - name: Get Dependencies
         run: flutter pub get
 
       - name: Run build_runner
-        run: flutter pub run build_runner build --delete-conflicting-outputs
+        run: derry build_runner
 
       - name: Lint
-        run: flutter analyze --fatal-infos --fatal-warnings
+        run: derry analyze
+
+      - name: Format
+        run: derry format
 
       - name: Unit tests
-        run: flutter test --exclude-tags=golden
+        run: derry test exclude-goldens -- --coverage-path=coverage/lcov.base.info --coverage
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: base-coverage-${{ github.event.number }}
+          path: coverage
+          retention-days: 7
+
+  build-android:
+    name: Build Android
+    runs-on: ubuntu-latest
+    needs: [ lint-test ]
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Setup .env.dev
+        env:
+          ENV_FILE: ${{ secrets.ENV_DEV }}
+        run: echo -n $ENV_FILE | base64 --decode > .env.dev
+
+      - name: Activate derry
+        run: flutter pub global activate derry
+
+      - name: Get Dependencies
+        run: flutter pub get
+
+      - name: Run build_runner
+        run: derry build_runner
 
       - name: Build Android
-        run: scripts/build.sh apk dev --debug
+        run: derry build apk dev
+
 
   build-ios:
     name: Golden Tests and Build iOS
     runs-on: macos-latest
-    needs: [ lint-test-build-android ]
+    needs: [ lint-test ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          cache: true
 
-      - name: Setup app_secrets.dart
+      - name: Setup .env.dev
         env:
-          APP_SECRETS: ${{ secrets.APP_SECRETS }}
-          APP_SECRETS_PATH: lib/secrets/app_secrets.dart
-        run: echo -n $APP_SECRETS | base64 --decode > $APP_SECRETS_PATH
+          ENV_FILE: ${{ secrets.ENV_DEV }}
+        run: echo -n $ENV_FILE | base64 --decode > .env.dev
+
+      - name: Activate derry
+        run: flutter pub global activate derry
 
       - name: Get Dependencies
         run: flutter pub get
 
       - name: Run build_runner
-        run: flutter pub run build_runner build
+        run: derry build_runner
+
+      - uses: actions/download-artifact@v3
+        with:
+          name: base-coverage-${{ github.event.number }}
+          path: coverage
+
+      - name: Setup lcov
+        run: brew install lcov
 
       - name: Golden tests
-        run:  flutter test --tags=golden test/presentation/goldens
+        run: derry test goldens -- --merge-coverage --coverage
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: coverage-${{ github.event.number }}
+          path: coverage
+          retention-days: 7
 
       - name: Build iOS
-        run: scripts/build.sh ios dev --debug --no-codesign
+        run: derry build ios dev
+
+  build-web:
+    name: Build Web
+    runs-on: ubuntu-latest
+    needs: [ lint-test ]
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+
+      - name: Setup .env.dev
+        env:
+          ENV_FILE: ${{ secrets.ENV_DEV }}
+        run: echo -n $ENV_FILE | base64 --decode > .env.dev
+
+      - name: Activate derry
+        run: flutter pub global activate derry
+
+      - name: Get Dependencies
+        run: flutter pub get
+
+      - name: Run build_runner
+        run: derry build_runner
+
+      - name: Build Web
+        run: derry build web dev
+
+  sonar-scan:
+    name: SonarQube Scan
+    runs-on: ubuntu-latest
+    needs: [build-android,build-ios,build-web]
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - uses: actions/download-artifact@v3
+        with:
+          name: coverage-${{ github.event.number }}
+          path: coverage
+      - uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      # If you wish to fail your job when the Quality Gate is red, uncomment the
+      # following lines. This would typically be used to fail a deployment.
+      # We do not recommend to use this in a pull request. Prefer using pull request
+      # decoration instead.
+      # - uses: sonarsource/sonarqube-quality-gate-action@master
+      #   timeout-minutes: 5
+      #   env:
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

@@ -23,7 +23,7 @@ void main() {
     "Given local city data, When map called, Then city is returned",
     () {
       // Given
-      final localCityData = localCityData1;
+      const localCityData = localCityData1;
       final city = city1;
 
       // When

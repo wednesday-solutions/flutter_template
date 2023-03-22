@@ -1,7 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="main_dev.dart" type="FlutterRunConfigurationType" factoryName="Flutter" nameIsGenerated="true">
-    <option name="buildFlavor" value="dev" />
-    <option name="filePath" value="$PROJECT_DIR$/lib/entrypoints/main_dev.dart" />
-    <method v="2" />
-  </configuration>
-</component>

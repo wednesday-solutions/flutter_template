@@ -41,7 +41,7 @@ class _FlutterTemplateLogFilter extends LogFilter {
   @override
   bool shouldLog(LogEvent event) {
     try {
-      return kDebugMode && FlavorConfig.instance.values.showLogs;
+      return kDebugMode && FlavorConfig.values.showLogs;
     } catch (_) {
       return true;
     }

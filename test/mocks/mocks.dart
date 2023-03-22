@@ -33,7 +33,8 @@ class MockDateRepository extends Mock implements DateRepository {}
 class MockWeatherRepository extends Mock implements WeatherRepository {}
 
 // Interactors
-class MockFavoriteWeatherInteractor extends Mock implements FavoriteWeatherInteractor {}
+class MockFavoriteWeatherInteractor extends Mock
+    implements FavoriteWeatherInteractor {}
 
 class MockSearchCityInteractor extends Mock implements SearchCityInteractor {}
 
@@ -41,4 +42,5 @@ class MockSearchCityInteractor extends Mock implements SearchCityInteractor {}
 class MockSearchNavigator extends Mock implements SearchNavigator {}
 
 // Intent Handler
-class MockIntentHandler<T extends BaseIntent> extends Mock implements IntentHandler<T> {}
+class MockIntentHandler<T extends BaseIntent> extends Mock
+    implements IntentHandler<T> {}

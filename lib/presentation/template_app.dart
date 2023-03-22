@@ -9,7 +9,7 @@ import 'package:flutter_template/navigation/base/app_router.dart';
 import 'package:flutter_template/presentation/base/theme/theme_data/template_app_theme_data.dart';
 import 'package:flutter_template/presentation/base/widgets/snackbar/snackbar.dart';
 import 'package:flutter_template/presentation/base/widgets/theme/theme_listener.dart';
-import 'package:flutter_template/presentation/entity/screen/screen.dart';
+import 'package:flutter_template/presentation/destinations/weather/home/home_screen.dart';
 import 'package:get_it/get_it.dart';
 
 class TemplateApp extends StatelessWidget {
@@ -21,9 +21,8 @@ class TemplateApp extends StatelessWidget {
   Widget build(BuildContext context) {
     const enableDevicePreview =
         String.fromEnvironment("enableDevicePreview") == "true";
-    final useDevicePreview = enableDevicePreview &&
-        kDebugMode &&
-        FlavorConfig.instance.flavor == Flavor.dev;
+    final useDevicePreview =
+        enableDevicePreview && kDebugMode && FlavorConfig.flavor == Flavor.dev;
 
     return ProviderScope(
       child: ThemeStateListener(

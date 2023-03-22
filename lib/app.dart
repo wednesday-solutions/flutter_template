@@ -20,13 +20,21 @@ import 'package:shared_preferences/shared_preferences.dart';
 void startApp() async {
   await _initialiseApp();
 
-  runApp(EasyLocalization(
-    supportedLocales: const [Locale("en", "US"), Locale("hi", "IN")],
-    path: "assets/translations",
-    fallbackLocale: const Locale("en", "US"),
-    assetLoader: const CodegenLoader(),
-    child: TemplateApp(),
-  ));
+  // Add fonts license
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString('assets/google_fonts/OFL.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
+
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale("en", "US"), Locale("hi", "IN")],
+      path: "assets/translations",
+      fallbackLocale: const Locale("en", "US"),
+      assetLoader: const CodegenLoader(),
+      child: TemplateApp(),
+    ),
+  );
 }
 
 Future _initialiseApp() async {

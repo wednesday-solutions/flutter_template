@@ -17,6 +17,7 @@ class DynamicThemeSwitchContent extends StatelessWidget {
     return Row(
       children: [
         Text(context.tr(LocaleKeys.dynamicTheme)),
+        const Spacer(),
         Switch(
           value: isDynamic,
           onChanged: onIsDynamicToggled,

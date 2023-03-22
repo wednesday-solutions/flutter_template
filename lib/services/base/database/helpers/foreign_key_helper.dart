@@ -1,6 +1,6 @@
 import 'package:drift/drift.dart';
 
-extension ForeignKeyHelper<T> on ColumnBuilder<T> {
+extension ForeignKeyHelper<T extends Object> on ColumnBuilder<T> {
   ColumnBuilder<T> foreignKey({
     required String column,
     required bool cascadeOnDelete,

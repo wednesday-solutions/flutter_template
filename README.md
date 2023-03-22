@@ -1,3 +1,5 @@
+
+
 <img align="left" src="flutter_template_github.svg" width="480" height="440" />
 
 <div>
@@ -31,28 +33,91 @@
 
 <span>We’re always looking for people who value their work, so come and join us. <a href="https://www.wednesday.is/hiring">We are hiring!</a></span>
 </div>
-
-### Check out the [multi-package branch](https://github.com/wednesday-solutions/flutter_template/tree/multi-package) for a multi package flutter architecture.
  
 ## Getting Started
 Clone the repo and follow these steps to setup the project.
 
-#### App Secrets
-Sensitive information like api keys, credentials, etc should not be checked into git repos, especially public ones. To keep such data safe the template uses `app_secrets.dart` file.
-If you want to run the app locally, you will need to create a new file `app_secrets.dart` under [`lib/secrets`](lib/secrets). To help with setting up the secrets file, the template inclued a skeleton secrets file. Copy all the content from [`app_secrets.skeleton.dart`](lib/secrets/app_secrets.skeleton.dart) to the `app_secrets.dart` file you just created. Uncomment the code and replace the the placeholders with your secret data.
+#### Environment
+The template was build using dart null safety. Dart 2.19.2 or greater and Flutter 3 or greater is required. 
 
-You can get your Open Weather API key from [here](https://openweathermap.org/appid#start).
+[Follow this guide to setup your flutter environment](https://docs.flutter.dev/get-started/install) based on your platform.
 
+#### Flutter
+First and foremost make sure you have Flutter 3 setup on your system. 
+You can check the version by running
+```bash
+flutter --version
+```
+You should see output similar to this. Check if the version is `3.x.x`.
+```bash
+Flutter 3.7.7 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision 2ad6cd72c0 (13 days ago) • 2023-03-08 09:41:59 -0800
+Engine • revision 1837b5be5f
+Tools • Dart 2.19.4 • DevTools 2.20.1
+```
+If not run this command to update flutter to the latest version
+```bash
+flutter upgrade
+```
+
+#### Derry
+This template uses [`derry`](https://pub.dev/packages/derry) as it's script manager.
+Run this command to setup derry
+```bash
+dart pub global activate derry
+```
+Most of the scripts we will use are abstracted away by derry. If you want to know more about the scirpts, read the [scripts documentation](scripts/README.md).
 #### Get Dependencies
 ```shell
 flutter pub get
 ```
 #### Run Code Generation
 ```shell
-bash scripts/generate-all.sh
+derry generate all
 ```
 
-Read the [scripts documentation](scripts/README.md) to learn about all the scrips used in the project.
+#### API Key
+
+> #####  You can skip this step if you just want to get the template running. If you skip this step, the weather search will not give you any results.
+
+Sensitive information like api keys, credentials, etc should not be checked into git repos, especially public ones. To keep such data safe the template uses `.env` files. Each [Flavor](#flavors) uses it's own `.env` file.
+
+The tempalte uses weather api from `openweathermap.org`. 
+You can get your Open Weather API key from [here](https://openweathermap.org/appid#start).
+
+Once you have the key, update the `.env` files with your api key. Replace `YOUR_API_KEY` with the key that you got from open weather api.
+```
+OPEN_WEATHER_API_KEY=YOUR_API_KEY  
+OPEN_WEATHER_BASE_URL=https://api.openweathermap.org/
+```
+
+## Running the app
+With the setup done, we can get the app running.
+
+#### Flavors
+The template comes with built-in support for 3 flavors. Each flavor has it's own `.env` file.
+- dev - [`.env.dev`](.env.dev)
+- qa - [`.env.qa`](.env.qa)
+- prod - [`.env`](.env)
+
+You can setup any environment specific values in the respective `.env` files.
+
+#### Launch 
+To launch the app run the following command and specify the flavor name.
+```shell
+ derry launch dev
+```
+#### Android Studio
+On android studio, you will find pre defined run configurations.
+- Select a flavor from the dropdown
+<img width="596" alt="Screenshot 2023-03-21 at 11 24 35 AM" src="https://user-images.githubusercontent.com/58199625/226533162-0f12665f-ee39-4b85-b35c-06f7b8d55d88.png">
+
+- Select a device to launch on
+<img width="413" alt="Screenshot 2023-03-21 at 11 24 25 AM" src="https://user-images.githubusercontent.com/58199625/226533186-9d61675a-7871-4a1e-a2b3-3dac3d8f16cc.png">
+
+- Click `Run` to launch the app
+
+<img width="423" alt="Screenshot 2023-03-21 at 11 24 45 AM" src="https://user-images.githubusercontent.com/58199625/226533216-0cc430f1-08f5-4c94-95ef-70a853aa2da4.png">
 
 ## Architecture
 The architecture of the template facilitates separation of concerns and avoids tight coupling between it's various layers. The goal is to have the ability to make changes to individual layers without affecting the entire app. This architecture is an adaptation of concepts from [`The Clean Architecture`](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html).
@@ -85,7 +150,6 @@ The layers `presentation`, `domain` and `services` each have an `entity` directo
 Apart from the main layers, the template has
 - [`lib/foundation`](lib/foundation): Extensions on primitive data types, loggers, global type alias etc.
 - [`lib/flavors`](lib/flavors): Flavor i.e. Environment related classes.
-- [`lib/entrypoints`](lib/entrypoints): Target files for flutter to run for each flavor.
 - [`lib/app.dart`](lib/app.dart): App initialization code.
 
 ## Understanding the Presentation Layer
@@ -126,28 +190,45 @@ Each page accepts the [`Screen`](#screen) object as input.
 ### Widgets
 Each destination has a `widgets` directory. It holds all the widgets that appear on a [`Page`](#page) excluding the page itself. 
 
-Each widget the requires access to data from the view model it split into two dart files. The connector widget communicates with the view model, and the content widget has the actual UI. The connector widget passes all the required data to the content widget. Thus the content widget never depends on the state managent solution used. This helps in easy replacement of state management solution if needed and also makes it easier to test widgets.
+Each widget the requires access to data from the view model it split into two dart files. The `connector widget` communicates with the view model, and the `content widget` has the actual UI. The connector widget passes all the required data to the content widget. Thus the content widget never depends on the state managent solution used. This helps in easy replacement of state management solution if needed and also makes it easier to test widgets.
 
 ### Screen
 A [`Screen`](lib/presentation/entity/screen/screen.dart) is a class that represents a `Page` in the context of navigation. It holds the `path` used by the navigator to navigate to a `Page` and also holds any arguments required to navigate to that `Page`.
 
-## Flavors
-The template comes with built-in support for 3 flavors. Each flavor uses a different `main.dart` file.
-- Dev - [`main_dev.dart`](lib/entrypoints/main_dev.dart)
-- QA - [`main_qa.dart`](lib/entrypoints/main_qa.dart)
-- Prod - [`main_prod.dart`](lib/entrypoints/main_prod.dart)
+## Templating
+As you can read from the [Architecture](#architecture) section, adding a new page in the app can require a lot of files to be created. The template uses [`mason`](https://pub.dev/packages/mason_cli) as it's templating engine to automate some of this work.
 
-You can setup any environment specific values in the respective `main.dart` files.
-
-To run a specific flavor you need to specify the flavor and target file.
-```shell
- flutter run --flavor qa -t lib/entrypoints/main_qa.dart
+To get started with mason, first activate mason globally
+```bash
+dart pub global activate mason_cli
 ```
 
-**To avoid specifying all the flags every time, use the [`run.sh`](scripts/README.md#run) script**
+Similar to using `pub get` we need to run `mason get` to setup the `bricks` (templates are called brick in mason).
+```bash
+mason get
+```
+You can learn more about `mason` [here](https://docs.brickhub.dev/).
 
-Read the [scripts documentation](scripts/README.md) to learn about all the scrips used in the project.
- 
+#### Destination Brick
+The template comes with a pre setup brick called `destination`.
+Run the `destination` brick using the following command.
+```bash
+mason make destination -o lib/presentation/destinations/notes --name notesList 
+```
+`-o` flag sets the output directory for the `brick` and `--name` is the name used for the files and classes. This brick generates the required file structure and runs `build_runner` (via mason hooks) to trigger code generation. After running the command, this is what you should see:
+
+<img width="408" alt="Screenshot 2023-03-21 at 2 55 45 PM" src="https://user-images.githubusercontent.com/58199625/226564828-3172bc70-5324-486c-a31d-6ce7f19aa8bb.png">
+
+## Testing
+
+The template also includes a testing setup for
+- [`Unit Tests`](test/repository).
+- [`Widget Tests`](test/presentation/integration)
+- [`Golden Tests`](test/presentation/goldens)
+
+The test coverage and code quality reporting is done using [`sonarqube`](https://docs.sonarqube.org/latest/).
+You can read the documentation about integrating `sonarqube` in you CI workflow [here](https://docs.sonarqube.org/latest/devops-platform-integration/github-integration/#analyzing-projects-with-github-actions).
+
 ## Content
 The Flutter Template contains:
 - A [`Flutter`](https://flutter.dev/) application.
@@ -159,15 +240,11 @@ The Flutter Template contains:
 - [`Freezed`](https://pub.dev/packages/freezed) for data class functionality.
 - [`Get It`](https://pub.dev/packages/get_it) for dependency injection.
 - [`Flutter Lints`](https://pub.dev/packages/flutter_lints) for linting.
+- [`derry`](https://pub.dev/packages/derry) for script management.
+- [`mason`](https://pub.dev/packages/mason_cli) for templating.
+- [`sonarqube`](https://docs.sonarqube.org/latest/) for code inspection.
 
 The template contains an example (displaying weather data) with responsive widgets, reactive state management, offline storage and api calls.
-
-## Requirements
-The template was build using dart null safety. Dart 2.12 or greater and Flutter 2 or greater is required. 
-
-Dart 2.15 or greater and Flutter 2.10 or greater is recommended.
-
-[Follow this guide to setup your flutter environment](https://docs.flutter.dev/get-started/install) based on your platform.
 
 ## Continuous Integration and Deployment
 The Flutter template comes with built-in support for CI/CD using Github Actions.
@@ -175,9 +252,14 @@ The Flutter template comes with built-in support for CI/CD using Github Actions.
 ### CI
 The [`CI`](.github/workflows/ci.yml) workflow performs the following checks on every pull request:
 - Lints the code with `flutter analyze`.
+- Check formatting with `dart format`
 - Runs tests using `flutter test`.
+- Run golden test.
+- Report code coverage and code quality using `sonarqube`.
 - Build the android app.
 - Build the ios app.
+
+You can read the documentation about integrating `sonarqube` in you CI workflow [here](https://docs.sonarqube.org/latest/devops-platform-integration/github-integration/#analyzing-projects-with-github-actions).
 
 ### CD
 The [`CD`](.github/workflows/cd.yml) workflow performs the following actions:
@@ -189,6 +271,12 @@ The [`CD`](.github/workflows/cd.yml) workflow performs the following actions:
 - Upload ipa to testflight.
 - Upload the ipa as an artifact to release the tag.
 - Commit the updated version to git.
+
+### .env files on CD
+The CI and CD workflows grab the `.env` files from github secrets. The secrets are name `ENV_` followed by environment name.
+So for dev the secret name is `ENV_DEV`, qa is `ENV_QA` and prod is `ENV_PROD`.
+Convert your `.env` files with all the api keys populated to base64 strings and set them as secrets on github with the appropriate secret name.
+You can learn more about github actions secrets [here](https://docs.github.com/en/actions/security-guides/encrypted-secrets).
 
 ### Android CD setup
 For the android CD workflow to run, we need to perform the following setup steps:
@@ -284,12 +372,24 @@ openssl base64 < FILENAME | tr -d '\n' | tee ENCODED_FILENAME.txt
 - If the branches that you will be running CD on are protected, you will need to use a [`Personal Access Token (PAT)`](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to commit the version changes.
 - After creating the `PAT`, exclude the account that the token belongs to from the [`branch protection rules`](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/managing-a-branch-protection-rule#creating-a-branch-protection-rule).
 - Save the token in github secrets and update the key name in the `cd.yml` file under each `checkout` action.
-- Since our `CD` workflow is triggered on a push, and we create a new commit in the workflow itself, the commit message created by the `CD` workflow includes `[skip ci]` tag so that the workflow does not end up in an infinite loop.Read more about this [here](https://docs.github.com/en/actions/managing-workflow-runs/skipping-workflow-runs)
+- Since our `CD` workflow is triggered on a push, and we create a new commit in the workflow itself, the commit message created by the `CD` workflow includes `[skip ci]` tag so that the workflow does not end up in an infinite loop. Read more about this [here](https://docs.github.com/en/actions/managing-workflow-runs/skipping-workflow-runs)
 
 **If you do not plan to use the CD workflow on protected branches, you can remove the token part from the checkout actions.**
 
 ## Gotchas
-- Flutter apps might have issues on some android devices with variable refresh rate where the app is locked at 60fps instead of running at the highest refresh rate. This might make your app look like it is running slower than other apps on the device. To fix this the template uses the [`flutter_displaymode`](https://pub.dev/packages/flutter_displaymode) package. The template sets the highest refresh rate available. If you don't want this behaviour you can remove the lines 40 to 46 in [`app.dart`](lib/app.dart#L40). [`Link to frame rate issue on flutter`](https://github.com/flutter/flutter/issues/35162).
 
-## Issues
-- Additionally look into the Issues for the repository for some commonly faced problems while setup. They are marked with the label `documentation` and are mostly closed
+#### Refresh Rate
+Flutter apps might have issues on some android devices with variable refresh rate where the app is locked at 60fps instead of running at the highest refresh rate. This might make your app look like it is running slower than other apps on the device. To fix this the template uses the [`flutter_displaymode`](https://pub.dev/packages/flutter_displaymode) package. The template sets the highest refresh rate available. If you don't want this behaviour you can remove the lines 40 to 46 in [`app.dart`](lib/app.dart#L40). [`Link to frame rate issue on flutter`](https://github.com/flutter/flutter/issues/35162).
+
+#### Golden Tests
+Golden test screenshots (goldens) are rendered using the rendering mechanisms on the os that you are running the tests on. Because of the slight differences in each os, the goldens generated on each os differ slightly from each other. Goldens generated on macos won't match exactly to the goldens generated on windows or linux and your tests will fail.
+To work around this, make sure to generate goldens and run golden tests on a single os. This template uses macos as it's os of choice to deal with goldens. You will find that on [CI](.github/workflows/ci.yml), the golden tests are run on a macos host.
+
+- `What if your team members use different operating systems for development?` - In that case, the devs not using your os of choice should have a way to generate goldens on your os of choice. This template has a [`update_goldens`](.github/workflows/update_goldens.yml) workflow that can be manually triggered on any branch. It will generate the golden files on macos and commit the changes to the same branch.
+
+## License
+Flutter Template is licensed under the MIT license. Check the [LICENSE](LICENSE) file for details.
+
+## Other Versions
+##### Check out the [multi-package branch](https://github.com/wednesday-solutions/flutter_template/tree/multi-package) for a multi package flutter architecture.
+

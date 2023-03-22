@@ -3,7 +3,7 @@ import 'package:flutter_template/flavors/flavor_config.dart';
 
 Dio provideDio({List<Interceptor> interceptors = const []}) {
   final baseOption = BaseOptions(
-    baseUrl: FlavorConfig.instance.values.apiBaseUrl,
+    baseUrl: FlavorConfig.values.apiBaseUrl,
   );
   final dio = Dio(baseOption);
 
@@ -12,7 +12,7 @@ Dio provideDio({List<Interceptor> interceptors = const []}) {
     responseBody: true,
   );
 
-  if (FlavorConfig.instance.values.showLogs) {
+  if (FlavorConfig.values.showLogs) {
     dio.interceptors.add(logInterceptor);
   }
 

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_page.dart';
+import 'package:flutter_template/presentation/destinations/weather/search/search_screen.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_screen_state.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/widgets/list/ui_city_list_item.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/widgets/search_page_loading_shimmer/search_page_loading_shimmer.dart';
 import 'package:flutter_template/presentation/entity/base/ui_toolbar.dart';
-import 'package:flutter_template/presentation/entity/screen/screen.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
 import 'package:flutter_template/presentation/intl/translations/translations.dart';
@@ -21,20 +20,6 @@ import '../../../../base/widget_tester_ext.dart';
 void main() {
   late FakeSearchViewModel fakeSearchViewModel;
 
-  var fakeSearchViewModelProvider =
-      StateNotifierProvider.autoDispose<SearchViewModel, SearchScreenState>(
-          (ref) {
-    fakeSearchViewModel = FakeSearchViewModel(SearchScreenState(
-      toolbar: UIToolbar(
-        title: LocaleKeys.searchPageTitle,
-        hasBackButton: true,
-      ),
-      showLoading: false,
-      searchList: List.empty(),
-    ));
-    return fakeSearchViewModel;
-  });
-
   setUpAll(baseSetupAll);
 
   setUp(() {});
@@ -48,7 +33,17 @@ void main() {
     await tester.loadPageForGolden(
       page: const SearchPage(searchScreen: SearchScreen()),
       viewModelProvider: searchViewModelProvider,
-      fakeViewModelProvider: fakeSearchViewModelProvider,
+      fakeViewModelGenerator: (ref) {
+        fakeSearchViewModel = FakeSearchViewModel(SearchScreenState(
+          toolbar: UIToolbar(
+            title: LocaleKeys.searchPageTitle,
+            hasBackButton: true,
+          ),
+          showLoading: false,
+          searchList: List.empty(),
+        ));
+        return fakeSearchViewModel;
+      },
     );
   }
 

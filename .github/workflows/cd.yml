@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         # Replace with your Personal Access Tokens
         with:
           token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}
@@ -20,18 +20,26 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          cache: true
 
-      - name: Setup app_secrets.dart
+      - name: Setup .env.qa
         env:
-          APP_SECRETS: ${{ secrets.APP_SECRETS }}
-          APP_SECRETS_PATH: lib/secrets/app_secrets.dart
-        run: echo -n $APP_SECRETS | base64 --decode > $APP_SECRETS_PATH
+          ENV_FILE: ${{ secrets.ENV_QA }}
+        run: echo -n $ENV_FILE | base64 --decode > .env.qa
+
+      - name: Setup .env.prod
+        env:
+          ENV_FILE: ${{ secrets.ENV_PROD }}
+        run: echo -n $ENV_FILE | base64 --decode > .env.prod
+
+      - name: Activate derry
+        run: flutter pub global activate derry
 
       - name: Get Dependencies
         run: flutter pub get
 
       - name: Run build_runner
-        run: flutter pub run build_runner build
+        run: derry build_runner
 
       - name: Bump Build Number
         run: scripts/bump-build-number.sh
@@ -47,7 +55,7 @@ jobs:
         run: scripts/set-flavor-and-apk-path-to-env.sh
 
       - name: Build APK
-        run: scripts/build.sh apk $FLAVOR_NAME --release --obfuscate --split-debug-info=debug-info
+        run: derry build release-apk $FLAVOR_NAME
         env:
           KEY_STORE_PATH: ${{ steps.decode_keystore.outputs.filePath }}
           RELEASE_STORE_PASSWORD: ${{ secrets.RELEASE_STORE_PASSWORD }}
@@ -80,25 +88,33 @@ jobs:
     name: Release iOS to TestFlight
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}
 
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
+          cache: true
 
-      - name: Setup app_secrets.dart
+      - name: Setup .env.qa
         env:
-          APP_SECRETS: ${{ secrets.APP_SECRETS }}
-          APP_SECRETS_PATH: lib/secrets/app_secrets.dart
-        run: echo -n $APP_SECRETS | base64 --decode > $APP_SECRETS_PATH
+          ENV_FILE: ${{ secrets.ENV_QA }}
+        run: echo -n $ENV_FILE | base64 --decode > .env.qa
+
+      - name: Setup .env.prod
+        env:
+          ENV_FILE: ${{ secrets.ENV_PROD }}
+        run: echo -n $ENV_FILE | base64 --decode > .env.prod
+
+      - name: Activate derry
+        run: flutter pub global activate derry
 
       - name: Get Dependencies
         run: flutter pub get
 
       - name: Run build_runner
-        run: flutter pub run build_runner build
+        run: derry build_runner
 
       - uses: maxim-lobanov/setup-xcode@v1
         with:
@@ -122,6 +138,7 @@ jobs:
         run: echo -n "$PLIST" | base64 --decode --output $PLIST_PATH
 
       - name: Build the signed ipa
+        # TODO: Move to derry
         run: chmod u+x scripts/build.sh && scripts/build.sh ipa prod --release
 
       - name: Upload the signed ipa to TestFlight
@@ -138,7 +155,7 @@ jobs:
       always() &&
       (needs.build-android.result == 'success' || needs.build-ios.result == 'success')
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         # Replace with your Personal Access Token
         with:
           token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}

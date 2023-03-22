@@ -3,7 +3,7 @@ description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -18,85 +18,102 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+24
 
 environment:
-  sdk: ">=2.17.0 <3.0.0"
+  sdk: ">=2.19.2 <3.0.0"
+
+scripts:
+  generate:
+    all: ./scripts/generate-all.sh
+    translations: ./scripts/generate-translations.sh
+  build_runner: flutter pub run build_runner build --delete-conflicting-outputs
+  launch:
+    dev: flutter run --flavor dev --dart-define=flavor=dev
+    dev-preview: flutter run --flavor dev --dart-define=flavor=dev --dart-define=enableDevicePreview="true"
+    qa: flutter run --flavor qa --dart-define=flavor=qa
+    prod: flutter run --flavor prod --dart-define=flavor=prod
+  test:
+    all: flutter test
+    exclude-goldens: flutter test --exclude-tags=golden
+    goldens: flutter test --tags=golden test/presentation/goldens
+    update-goldens: flutter test --tags=golden test/presentation/goldens --update-goldens
+  analyze: flutter analyze --fatal-infos --fatal-warnings
+  format: dart format --set-exit-if-changed lib
+  fix: dart fix --apply
+  build:
+    apk:
+      dev: flutter build apk --flavor=dev --dart-define=flavor=dev --debug
+      qa: flutter build apk --flavor=qa --dart-define=flavor=qa --debug
+      prod: flutter build apk --flavor=prod --dart-define=flavor=prod --debug
+    release-apk:
+      qa: flutter build apk --flavor=qa --dart-define=flavor=qa --release --obfuscate --split-debug-info=debug-info
+      prod: flutter build apk --flavor=prod --dart-define=flavor=prod --release --obfuscate --split-debug-info=debug-info
+    appbundle:
+      dev: flutter build appbundle --flavor=dev --dart-define=flavor=dev
+      qa: flutter build appbundle --flavor=qa --dart-define=flavor=qa
+      prod: flutter build appbundle --flavor=prod --dart-define=flavor=prod
+    ios:
+      dev: flutter build ios --flavor=dev --dart-define=flavor=dev --debug --no-codesign
+      qa: flutter build ios --flavor=qa --dart-define=flavor=qa --debug --no-codesign
+      prod: flutter build ios --flavor=prod --dart-define=flavor=prod --debug --no-codesign
+    web:
+      dev: flutter build web --dart-define=flavor=dev
+      qa: flutter build web --dart-define=flavor=qa
+      prod: flutter build web --dart-define=flavor=prod
+
 
 dependencies:
-  auto_route: ^4.0.1
-  collection: ^1.16.0
-  cupertino_icons: ^1.0.4
-  dio: ^4.0.6
-  drift: ^1.6.0
+  auto_route: ^6.0.0+1
+  collection: ^1.17.0
+  cupertino_icons: ^1.0.5
+  dio: ^5.0.3
+  drift: ^2.5.0
   easy_localization: ^3.0.1
   flutter:
     sdk: flutter
-  flutter_displaymode: ^0.4.0
-  flutter_hooks: ^0.18.4
-  flutter_riverpod: ^1.0.4
-  flutter_staggered_grid_view: ^0.6.1
-  flutter_state_notifier: ^0.7.1
-  freezed_annotation: ^2.0.3
+  flutter_displaymode: ^0.5.0
+  flutter_hooks: ^0.18.6
+  flutter_riverpod: ^2.3.2
+  flutter_staggered_grid_view: ^0.6.2
+  flutter_state_notifier: ^0.7.3
+  freezed_annotation: ^2.2.0
   get_it: ^7.2.0
-  hooks_riverpod: ^1.0.4
-  intl: ^0.17.0
-  json_annotation: ^4.5.0
-  json_serializable: ^6.2.0
-  logger: ^1.1.0
-  path: ^1.8.1
-  rxdart: ^0.27.3
-  shared_preferences: ^2.0.15
+  hooks_riverpod: ^2.3.2
+  json_annotation: ^4.8.0
+  json_serializable: ^6.6.1
+  logger: ^1.3.0
+  path: ^1.8.2
+  rxdart: ^0.27.7
+  shared_preferences: ^2.0.18
   shimmer: ^2.0.0
-  sqlite3_flutter_libs: ^0.5.7
-  tuple: ^2.0.0
-  uuid: ^3.0.6
-  google_fonts: ^2.3.2
+  sqlite3_flutter_libs: ^0.5.13
+  tuple: ^2.0.1
+  uuid: ^3.0.7
+  google_fonts: ^4.0.3
   easy_logger: ^0.0.2
-  path_provider: ^2.0.10
-  dynamic_color: ^1.2.2
-  faker: ^2.0.0
-  cached_network_image: ^3.2.0
+  path_provider: ^2.0.13
+  dynamic_color: ^1.6.2
+  faker: ^2.1.0
+  cached_network_image: ^3.2.3
+  flutter_dotenv: ^5.0.2
 
 dev_dependencies:
-  auto_route_generator: ^4.0.0
-  build_runner: ^2.1.10
-  drift_dev: ^1.6.0
+  auto_route_generator: ^6.0.0
+  build_runner: ^2.3.3
+  drift_dev: ^2.5.2
   flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
-  freezed: ^2.0.3+1
-  golden_toolkit: ^0.13.0
-  meta: ^1.7.0
+  freezed: ^2.3.2
+  golden_toolkit: ^0.15.0
+  meta: ^1.8.0
   mocktail: ^0.3.0
+  mason: ^0.1.0-dev.47
 
-# The following section is specific to Flutter.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/pre_populated_cities.sqlite
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware.
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
+    - assets/google_fonts/
+    - .env
+    - .env.dev
+    - .env.qa
+    - .env.test

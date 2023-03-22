@@ -15,12 +15,13 @@ AppDatabase connect() {
     if (!await file.exists()) {
       final blob = await rootBundle.load('assets/pre_populated_cities.sqlite');
       final buffer = blob.buffer;
-      await file.writeAsBytes(buffer.asUint8List(blob.offsetInBytes, blob.lengthInBytes));
+      await file.writeAsBytes(
+          buffer.asUint8List(blob.offsetInBytes, blob.lengthInBytes));
     }
-    
+
     return NativeDatabase(
       file,
-      logStatements: FlavorConfig.instance.values.logSqlStatements,
+      logStatements: FlavorConfig.values.logSqlStatements,
     );
   });
 
