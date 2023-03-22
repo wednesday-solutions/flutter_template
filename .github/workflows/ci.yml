@@ -38,7 +38,7 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: base-coverage-${{ github.event.number }}
-          path: coverage/lcov.base.info
+          path: coverage
           retention-days: 7
 
   build-android:
@@ -98,13 +98,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: base-coverage-${{ github.event.number }}
-          path: coverage/lcov.base.info
-
-      - name: Check file
-        run: ls coverage
-
-      - name: Cat file
-        run: cat coverage/lcov.base.info
+          path: coverage
 
       - name: Golden tests
         run: derry test goldens -- --merge-coverage --coverage
