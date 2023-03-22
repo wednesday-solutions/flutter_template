@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         # Replace with your Personal Access Tokens
         with:
           token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}
@@ -87,7 +87,7 @@ jobs:
     name: Release iOS to TestFlight
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}
 
@@ -153,7 +153,7 @@ jobs:
       always() &&
       (needs.build-android.result == 'success' || needs.build-ios.result == 'success')
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         # Replace with your Personal Access Token
         with:
           token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}

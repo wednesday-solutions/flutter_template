@@ -6,7 +6,7 @@ jobs:
     name: Lint and Unit Tests
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: subosito/flutter-action@v2
         with:
@@ -33,7 +33,7 @@ jobs:
         run: derry format
 
       - name: Unit tests
-        run: derry test exclude-goldens -- --machine --coverage-path=coverage/lcov.base.info --coverage
+        run: derry test exclude-goldens -- --coverage-path=coverage/lcov.base.info --coverage
 
       - uses: actions/upload-artifact@v3
         with:
@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: [ lint-test ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: subosito/flutter-action@v2
         with:
@@ -75,7 +75,7 @@ jobs:
     runs-on: macos-latest
     needs: [ lint-test ]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: subosito/flutter-action@v2
         with:
@@ -101,7 +101,7 @@ jobs:
           path: coverage/lcov.base.info
 
       - name: Golden tests
-        run: derry test goldens -- --machine --merge-coverage --coverage
+        run: derry test goldens -- --merge-coverage --coverage
 
       - uses: actions/upload-artifact@v3
         with:
