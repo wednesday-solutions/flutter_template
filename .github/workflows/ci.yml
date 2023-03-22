@@ -119,7 +119,7 @@ jobs:
         run: derry build ios dev
 
   build-web:
-    name: Build Android
+    name: Build Web
     runs-on: ubuntu-latest
     needs: [ lint-test ]
     steps:
