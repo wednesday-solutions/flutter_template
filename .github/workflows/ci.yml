@@ -103,6 +103,9 @@ jobs:
       - name: Check file
         run: ls coverage
 
+      - name: Cat file
+        run: cat coverage/lcov.base.info
+
       - name: Golden tests
         run: derry test goldens -- --merge-coverage --coverage
 
