@@ -1,4 +1,5 @@
 
+
 <img align="left" src="flutter_template_github.svg" width="480" height="440" />
 
 <div>
@@ -194,6 +195,40 @@ Each widget the requires access to data from the view model it split into two da
 ### Screen
 A [`Screen`](lib/presentation/entity/screen/screen.dart) is a class that represents a `Page` in the context of navigation. It holds the `path` used by the navigator to navigate to a `Page` and also holds any arguments required to navigate to that `Page`.
 
+## Templating
+As you can read from the [Architecture](#architecture) section, adding a new page in the app can require a lot of files to be created. The template uses [`mason`](https://pub.dev/packages/mason_cli) as it's templating engine to automate some of this work.
+
+To get started with mason, first activate mason globally
+```bash
+dart pub global activate mason_cli
+```
+
+Similar to using `pub get` we need to run `mason get` to setup the `bricks` (templates are called brick in mason).
+```bash
+mason get
+```
+You can learn more about `mason` [here](https://docs.brickhub.dev/).
+
+#### Destination Brick
+The template comes with a pre setup brick called `destination`.
+Run the `destination` brick using the following command.
+```bash
+mason make destination -o lib/presentation/destinations/notes --name notesList 
+```
+`-o` flag sets the output directory for the `brick` and `--name` is the name used for the files and classes. This brick generates the required file structure and runs `build_runner` (via mason hooks) to trigger code generation. After running the command, this is what you should see:
+
+<img width="408" alt="Screenshot 2023-03-21 at 2 55 45 PM" src="https://user-images.githubusercontent.com/58199625/226564828-3172bc70-5324-486c-a31d-6ce7f19aa8bb.png">
+
+## Testing
+
+The template also includes a testing setup for
+- [`Unit Tests`](test/repository).
+- [`Widget Tests`](test/presentation/integration)
+- [`Golden Tests`](test/presentation/goldens)
+
+The test coverage and code quality reporting is done using [`sonarqube`](https://docs.sonarqube.org/latest/).
+You can read the documentation about integrating `sonarqube` in you CI workflow [here](https://docs.sonarqube.org/latest/devops-platform-integration/github-integration/#analyzing-projects-with-github-actions).
+
 ## Content
 The Flutter Template contains:
 - A [`Flutter`](https://flutter.dev/) application.
@@ -205,7 +240,9 @@ The Flutter Template contains:
 - [`Freezed`](https://pub.dev/packages/freezed) for data class functionality.
 - [`Get It`](https://pub.dev/packages/get_it) for dependency injection.
 - [`Flutter Lints`](https://pub.dev/packages/flutter_lints) for linting.
-- [`derry`](https://pub.dev/packages/derry) for script management
+- [`derry`](https://pub.dev/packages/derry) for script management.
+- [`mason`](https://pub.dev/packages/mason_cli) for templating.
+- [`sonarqube`](https://docs.sonarqube.org/latest/) for code inspection.
 
 The template contains an example (displaying weather data) with responsive widgets, reactive state management, offline storage and api calls.
 
@@ -217,8 +254,12 @@ The [`CI`](.github/workflows/ci.yml) workflow performs the following checks on e
 - Lints the code with `flutter analyze`.
 - Check formatting with `dart format`
 - Runs tests using `flutter test`.
+- Run golden test.
+- Report code coverage and code quality using `sonarqube`.
 - Build the android app.
 - Build the ios app.
+
+You can read the documentation about integrating `sonarqube` in you CI workflow [here](https://docs.sonarqube.org/latest/devops-platform-integration/github-integration/#analyzing-projects-with-github-actions).
 
 ### CD
 The [`CD`](.github/workflows/cd.yml) workflow performs the following actions:
@@ -336,7 +377,15 @@ openssl base64 < FILENAME | tr -d '\n' | tee ENCODED_FILENAME.txt
 **If you do not plan to use the CD workflow on protected branches, you can remove the token part from the checkout actions.**
 
 ## Gotchas
-- Flutter apps might have issues on some android devices with variable refresh rate where the app is locked at 60fps instead of running at the highest refresh rate. This might make your app look like it is running slower than other apps on the device. To fix this the template uses the [`flutter_displaymode`](https://pub.dev/packages/flutter_displaymode) package. The template sets the highest refresh rate available. If you don't want this behaviour you can remove the lines 40 to 46 in [`app.dart`](lib/app.dart#L40). [`Link to frame rate issue on flutter`](https://github.com/flutter/flutter/issues/35162).
+
+#### Refresh Rate
+Flutter apps might have issues on some android devices with variable refresh rate where the app is locked at 60fps instead of running at the highest refresh rate. This might make your app look like it is running slower than other apps on the device. To fix this the template uses the [`flutter_displaymode`](https://pub.dev/packages/flutter_displaymode) package. The template sets the highest refresh rate available. If you don't want this behaviour you can remove the lines 40 to 46 in [`app.dart`](lib/app.dart#L40). [`Link to frame rate issue on flutter`](https://github.com/flutter/flutter/issues/35162).
+
+#### Golden Tests
+Golden test screenshots (goldens) are rendered using the rendering mechanisms on the os that you are running the tests on. Because of the slight differences in each os, the goldens generated on each os differ slightly from each other. Goldens generated on macos won't match exactly to the goldens generated on windows or linux and your tests will fail.
+To work around this, make sure to generate goldens and run golden tests on a single os. This template uses macos as it's os of choice to deal with goldens. You will find that on [CI](.github/workflows/ci.yml), the golden tests are run on a macos host.
+
+- `What if your team members use different operating systems for development?` - In that case, the devs not using your os of choice should have a way to generate goldens on your os of choice. This template has a [`update_goldens`](.github/workflows/update_goldens.yml) workflow that can be manually triggered on any branch. It will generate the golden files on macos and commit the changes to the same branch.
 
 ## License
 Flutter Template is licensed under the MIT license. Check the [LICENSE](LICENSE) file for details.

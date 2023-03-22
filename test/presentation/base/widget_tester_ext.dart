@@ -7,7 +7,6 @@ import 'package:flutter_template/presentation/base/theme/theme_data/template_app
 import 'package:flutter_template/presentation/intl/translations/translation_loader.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -33,13 +32,9 @@ extension WidgetTesterExt on WidgetTester {
         child: Builder(builder: (context) {
           context.setLocale(const Locale("en", "US"));
           return MaterialApp(
-            theme: material3LightTheme.copyWith(
-                textTheme: GoogleFonts.openSansTextTheme(
-                    material3LightTheme.textTheme)),
+            theme: material3LightTheme,
             debugShowCheckedModeBanner: false,
-            darkTheme: material3DarkTheme.copyWith(
-                textTheme: GoogleFonts.openSansTextTheme(
-                    material3DarkTheme.textTheme)),
+            darkTheme: material3DarkTheme,
             themeMode: ThemeMode.dark,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,

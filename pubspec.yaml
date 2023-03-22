@@ -36,7 +36,7 @@ scripts:
     goldens: flutter test --tags=golden test/presentation/goldens
     update-goldens: flutter test --tags=golden test/presentation/goldens --update-goldens
   analyze: flutter analyze --fatal-infos --fatal-warnings
-  format: dart format --set-exit-if-changed .
+  format: dart format --set-exit-if-changed lib
   fix: dart fix --apply
   build:
     apk:
@@ -55,9 +55,9 @@ scripts:
       qa: flutter build ios --flavor=qa --dart-define=flavor=qa --debug --no-codesign
       prod: flutter build ios --flavor=prod --dart-define=flavor=prod --debug --no-codesign
     web:
-      dev: flutter build web --flavor=dev --dart-define=flavor=dev
-      qa: flutter build web --flavor=qa --dart-define=flavor=qa
-      prod: flutter build web --flavor=prod --dart-define=flavor=prod
+      dev: flutter build web --dart-define=flavor=dev
+      qa: flutter build web --dart-define=flavor=qa
+      prod: flutter build web --dart-define=flavor=prod
 
 
 dependencies:
@@ -106,6 +106,7 @@ dev_dependencies:
   golden_toolkit: ^0.15.0
   meta: ^1.8.0
   mocktail: ^0.3.0
+  mason: ^0.1.0-dev.47
 
 flutter:
   uses-material-design: true
@@ -115,3 +116,4 @@ flutter:
     - .env
     - .env.dev
     - .env.qa
+    - .env.test

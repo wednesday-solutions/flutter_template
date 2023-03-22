@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/base/exceptions/unhandled_effect_exception.dart';
 import 'package:flutter_template/presentation/base/page/base_page.dart';
 import 'package:flutter_template/presentation/base/widgets/snackbar/snackbar.dart';
+import 'package:flutter_template/presentation/destinations/weather/search/search_screen.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_screen_intent.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_screen_state.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/widgets/search_page_body/search_page_body.dart';
 import 'package:flutter_template/presentation/entity/effect/effect.dart';
-import 'package:flutter_template/presentation/entity/screen/screen.dart';
 
 @RoutePage()
 class SearchPage extends StatelessWidget {
