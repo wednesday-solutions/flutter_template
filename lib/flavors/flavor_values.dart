@@ -25,10 +25,11 @@ class FlavorValues {
 
   static FlavorValues fromEnvironment() {
     return FlavorValues(
-      apiBaseUrl: dotenv.get("OPEN_WEATHER_BASE_URL"),
-      openWeatherApiKey: dotenv.get("OPEN_WEATHER_API_KEY"),
-      useGoogleFonts: dotenv.getBoolOrDefault("USE_GOOGLE_FONTS", fallback: true),
-      renderFontsInTest: dotenv.getBoolOrDefault("RENDER_FONTS_IN_TEST", fallback: false)
-    );
+        apiBaseUrl: dotenv.get("OPEN_WEATHER_BASE_URL"),
+        openWeatherApiKey: dotenv.get("OPEN_WEATHER_API_KEY"),
+        useGoogleFonts:
+            dotenv.getBoolOrDefault("USE_GOOGLE_FONTS", fallback: true),
+        renderFontsInTest:
+            dotenv.getBoolOrDefault("RENDER_FONTS_IN_TEST", fallback: false));
   }
 }

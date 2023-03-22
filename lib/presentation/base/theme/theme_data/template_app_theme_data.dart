@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_template/flavors/flavor_config.dart';
 import 'package:flutter_template/presentation/base/theme/color/color_palette.dart';
 import 'package:flutter_template/presentation/base/theme/theme_data/card_theme_data.dart';
@@ -15,7 +14,8 @@ ThemeData buildTheme(ColorScheme colorScheme) {
   final textTheme = getTextTheme(colorScheme);
   return ThemeData(
     useMaterial3: true,
-    textTheme: useGoogleFonts ? GoogleFonts.openSansTextTheme(textTheme) : textTheme,
+    textTheme:
+        useGoogleFonts ? GoogleFonts.openSansTextTheme(textTheme) : textTheme,
     fontFamily: useGoogleFonts ? GoogleFonts.openSans().fontFamily : null,
     popupMenuTheme: PopupMenuThemeData(color: colorScheme.surface),
     cardTheme: AppCardTheme(cardColor: colorScheme.surface),
