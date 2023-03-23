@@ -33,6 +33,8 @@
 
 <span>We’re always looking for people who value their work, so come and join us. <a href="https://www.wednesday.is/hiring">We are hiring!</a></span>
 </div>
+
+![CI](https://github.com/wednesday-solutions/flutter_template/actions/workflows/ci.yml/badge.svg)
  
 ## Getting Started
 Clone the repo and follow these steps to setup the project.
