@@ -89,7 +89,7 @@ dependencies:
   google_fonts: ^5.1.0
   easy_logger: ^0.0.2
   path_provider: ^2.0.13
-  dynamic_color: ^1.6.2
+  dynamic_color: ^1.6.6
   faker: ^2.1.0
   cached_network_image: ^3.2.3
   flutter_dotenv: ^5.0.2
