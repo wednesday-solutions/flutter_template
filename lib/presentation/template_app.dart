@@ -1,15 +1,11 @@
 import 'package:dynamic_color/dynamic_color.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_template/flavors/flavor.dart';
-import 'package:flutter_template/flavors/flavor_config.dart';
 import 'package:flutter_template/navigation/base/app_router.dart';
 import 'package:flutter_template/presentation/base/theme/theme_data/template_app_theme_data.dart';
 import 'package:flutter_template/presentation/base/widgets/snackbar/snackbar.dart';
 import 'package:flutter_template/presentation/base/widgets/theme/theme_listener.dart';
-import 'package:flutter_template/presentation/destinations/weather/home/home_screen.dart';
 import 'package:get_it/get_it.dart';
 
 class TemplateApp extends StatelessWidget {
@@ -19,11 +15,6 @@ class TemplateApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const enableDevicePreview =
-        String.fromEnvironment("enableDevicePreview") == "true";
-    final useDevicePreview =
-        enableDevicePreview && kDebugMode && FlavorConfig.flavor == Flavor.dev;
-
     return ProviderScope(
       child: ThemeStateListener(
         builder: (themeState) => DynamicColorBuilder(
@@ -35,13 +26,10 @@ class TemplateApp extends StatelessWidget {
                 ? buildTheme(darkDynamic.harmonized())
                 : material3DarkTheme;
             return MaterialApp.router(
-              useInheritedMediaQuery: useDevicePreview,
               theme: lightTheme,
               darkTheme: darkTheme,
               themeMode: themeState.themeMode,
-              routerDelegate: _appRouter.delegate(
-                initialRoutes: [HomeRoute(homeScreen: const HomeScreen())],
-              ),
+              routerDelegate: _appRouter.delegate(),
               routeInformationParser: _appRouter.defaultRouteParser(),
               localizationsDelegates: context.localizationDelegates,
               supportedLocales: context.supportedLocales,
