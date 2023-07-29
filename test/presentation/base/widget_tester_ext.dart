@@ -80,7 +80,6 @@ extension WidgetTesterExt on WidgetTester {
               data: mediaQueryData,
               child: MaterialApp(
                 locale: context.locale,
-                useInheritedMediaQuery: true,
                 home: ProviderScope(
                   overrides: [
                     viewModelProvider.overrideWith(fakeViewModelGenerator),

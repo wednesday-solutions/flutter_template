@@ -27,7 +27,6 @@ scripts:
   build_runner: flutter pub run build_runner build --delete-conflicting-outputs
   launch:
     dev: flutter run --flavor dev --dart-define=flavor=dev
-    dev-preview: flutter run --flavor dev --dart-define=flavor=dev --dart-define=enableDevicePreview="true"
     qa: flutter run --flavor qa --dart-define=flavor=qa
     prod: flutter run --flavor prod --dart-define=flavor=prod
   test:

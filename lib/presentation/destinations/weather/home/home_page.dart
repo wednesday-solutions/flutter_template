@@ -17,7 +17,7 @@ class HomePage extends ConsumerWidget {
 
   const HomePage({
     Key? key,
-    required this.homeScreen,
+    this.homeScreen = const HomeScreen(),
   }) : super(key: key);
 
   @override

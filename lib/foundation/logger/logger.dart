@@ -12,7 +12,7 @@ class LogHelper {
       final logger = Logger(
         filter: _FlutterTemplateLogFilter(),
         printer: PrettyPrinter(printEmojis: false),
-        level: Level.verbose,
+        level: Level.trace,
       );
 
       _instance = logger;
