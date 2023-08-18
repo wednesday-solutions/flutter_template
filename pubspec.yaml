@@ -106,6 +106,7 @@ dev_dependencies:
   meta: ^1.8.0
   mocktail: ^0.3.0
   mason: ^0.1.0-dev.47
+  patrol: ^2.2.3
 
 flutter:
   uses-material-design: true
@@ -116,3 +117,10 @@ flutter:
     - .env.dev
     - .env.qa
     - .env.test
+
+patrol:
+  app_name: flutter_template
+  android:
+    package_name: com.wednesday.flutter_template.dev
+  ios:
+    bundle_id: com.wednesday.flutter_template.dev
