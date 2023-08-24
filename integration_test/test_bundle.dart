@@ -9,7 +9,8 @@ import 'package:patrol/src/native/contracts/contracts.pbgrpc.dart';
 import 'package:test_api/src/backend/invoker.dart';
 
 // START: GENERATED TEST IMPORTS
-import 'example_test.dart' as example_test;
+import 'favorites_test.dart' as favorites_test;
+import 'language_test.dart' as language_test;
 // END: GENERATED TEST IMPORTS
 
 Future<void> main() async {
@@ -62,7 +63,8 @@ Future<void> main() async {
   });
 
   // START: GENERATED TEST GROUPS
-  group('example_test', example_test.main);
+  group('favorites_test', favorites_test.main);
+  group('language_test', language_test.main);
   // END: GENERATED TEST GROUPS
 
   final dartTestGroup = await testExplorationCompleter.future;

@@ -123,4 +123,4 @@ patrol:
   android:
     package_name: com.wednesday.flutter_template.dev
   ios:
-    bundle_id: com.wednesday.flutter_template.dev
+    bundle_id: com.wednesday.flutterTemplate.dev
