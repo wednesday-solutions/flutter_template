@@ -115,6 +115,12 @@ jobs:
         run: derry test goldens -- --merge-coverage --coverage
 
       - uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: my-artifact
+          path: test/presentation/goldens/**/failures/*.png
+
+      - uses: actions/upload-artifact@v3
         with:
           name: coverage-${{ github.event.number }}
           path: coverage
