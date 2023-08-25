@@ -18,7 +18,7 @@ import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void startApp() async {
-  await _initialiseApp();
+  await initialiseApp();
 
   // Add fonts license
   LicenseRegistry.addLicense(() async* {
@@ -37,7 +37,8 @@ void startApp() async {
   );
 }
 
-Future _initialiseApp() async {
+@visibleForTesting
+Future initialiseApp({bool test = false}) async {
   final bindings = WidgetsFlutterBinding.ensureInitialized();
 
   bindings.deferFirstFrame();
