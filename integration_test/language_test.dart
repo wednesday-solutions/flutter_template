@@ -7,29 +7,35 @@ import 'package:patrol/patrol.dart';
 import 'app_setup.dart';
 import 'test_actions.dart';
 
-
 void main() {
   patrolTest(
     "users are able to change the language of the app",
+    // ignore: deprecated_member_use
     nativeAutomation: true,
-        (patrol) async {
+    (patrol) async {
       await setupApp(patrol);
 
-      expect(find.text(CodegenLoader.en_US[LocaleKeys.homePageTitle]), findsOneWidget);
+      expect(find.text(CodegenLoader.en_US[LocaleKeys.homePageTitle]),
+          findsOneWidget);
 
       await navigateToSearch(patrol);
-      expect(find.text(CodegenLoader.en_US[LocaleKeys.searchPageTitle]), findsOneWidget);
-      expect(find.text(CodegenLoader.en_US[LocaleKeys.searchResultsAppearHere]), findsOneWidget);
+      expect(find.text(CodegenLoader.en_US[LocaleKeys.searchPageTitle]),
+          findsOneWidget);
+      expect(find.text(CodegenLoader.en_US[LocaleKeys.searchResultsAppearHere]),
+          findsOneWidget);
 
       await patrol.tap(find.byIcon(Icons.arrow_back));
 
       await patrol.tap(find.byIcon(Icons.language));
 
-      expect(find.text(CodegenLoader.hi_IN[LocaleKeys.homePageTitle]), findsOneWidget);
+      expect(find.text(CodegenLoader.hi_IN[LocaleKeys.homePageTitle]),
+          findsOneWidget);
 
       await navigateToSearch(patrol);
-      expect(find.text(CodegenLoader.hi_IN[LocaleKeys.searchPageTitle]), findsOneWidget);
-      expect(find.text(CodegenLoader.hi_IN[LocaleKeys.searchResultsAppearHere]), findsOneWidget);
+      expect(find.text(CodegenLoader.hi_IN[LocaleKeys.searchPageTitle]),
+          findsOneWidget);
+      expect(find.text(CodegenLoader.hi_IN[LocaleKeys.searchResultsAppearHere]),
+          findsOneWidget);
     },
   );
 }

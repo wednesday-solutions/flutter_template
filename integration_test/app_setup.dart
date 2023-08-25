@@ -9,10 +9,10 @@ import 'package:patrol/patrol.dart';
 
 Future setupApp(PatrolIntegrationTester patrol) async {
   await dotenv.load(
-    fileName: ".env.dev",
+    fileName: ".env.qa",
   );
 
-  FlavorConfig.initialize(flavorString: "dev");
+  FlavorConfig.initialize(flavorString: "qa");
 
   await initialiseApp();
 

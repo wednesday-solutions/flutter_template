@@ -121,6 +121,6 @@ flutter:
 patrol:
   app_name: flutter_template
   android:
-    package_name: com.wednesday.flutter_template.dev
+    package_name: com.wednesday.flutter_template.qa
   ios:
-    bundle_id: com.wednesday.flutterTemplate.dev
+    bundle_id: com.wednesday.flutterTemplate.qa
