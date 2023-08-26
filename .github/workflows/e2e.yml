@@ -39,7 +39,7 @@ jobs:
         run: dart pub global activate patrol_cli
 
       - name: Generate Test apks
-        run: patrol build android --flavor=qa --dart-define=flavor=qa --verbose
+        run: derry build apk qa
 
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
