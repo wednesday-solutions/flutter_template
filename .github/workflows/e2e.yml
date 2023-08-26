@@ -23,8 +23,8 @@ jobs:
 
       - name: Setup .env.qa
         env:
-          ENV_FILE: ${{ secrets.ENV_DEV }}
-        run: echo -n $ENV_FILE | base64 --decode > .env.dev
+          ENV_FILE: ${{ secrets.ENV_QA }}
+        run: echo -n $ENV_FILE | base64 --decode > .env.qa
 
       - name: Activate derry
         run: dart pub global activate derry
