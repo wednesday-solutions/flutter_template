@@ -20,4 +20,9 @@ class Weather {
     required this.feelsLike,
     required this.iconUrl,
   });
+
+  @override
+  String toString() {
+    return 'Weather{title: $title, description: $description, lat: $lat, lon: $lon, minTemp: $minTemp, maxTemp: $maxTemp, temp: $temp, feelsLike: $feelsLike, iconUrl: $iconUrl}';
+  }
 }
