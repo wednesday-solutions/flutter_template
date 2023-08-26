@@ -11,10 +11,11 @@ class LocalCityMapperImpl extends LocalCityMapper {
   LocalLocationCompanion map(City from) {
     logD("map: from = $from");
     return LocalLocationCompanion(
-        country: Value(from.country),
-        lat: Value(from.lat),
-        lon: Value(from.lon),
-        name: Value(from.title),
-        state: Value.ofNullable(from.state));
+      country: Value(from.country),
+      lat: Value(from.lat),
+      lon: Value(from.lon),
+      name: Value(from.title),
+      state: Value(from.state),
+    );
   }
 }

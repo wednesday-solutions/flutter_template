@@ -1,0 +1,75 @@
+name: CI
+on:
+  pull_request:
+    branches:
+      - release
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  e2e:
+    name: E2E
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true GOOGLE_CLOUD_TEST_LAB_CREDS
+
+      - name: Setup .env.qa
+        env:
+          ENV_FILE: ${{ secrets.ENV_DEV }}
+        run: echo -n $ENV_FILE | base64 --decode > .env.dev
+
+      - name: Activate derry
+        run: dart pub global activate derry
+
+      - name: Get Dependencies
+        run: flutter pub get
+
+      - name: Run build_runner
+        run: derry build_runner
+
+      - name: Activate patrol
+        run: dart pub global activate patrol_cli
+
+      - name: Generate Test apks
+        run: patrol build android --flavor=qa --dart-define=flavor=qa
+
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CLOUD_TEST_LAB_CREDS }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: Firebase Test Lab
+        run: gcloud firebase test android run --type instrumentation --app ./build/app/outputs/apk/qa/debug/app-qa-debug.apk --test ./build/app/outputs/apk/androidTest/qa/debug/app-qa-debug-androidTest.apk --device model=panther,version=33 --environment-variables clearPackageData=true --use-orchestrator
+
+  commit-version-update:
+    name: Commit Version Change
+    runs-on: ubuntu-latest
+    needs: [ e2e ]
+    steps:
+      - uses: actions/checkout@v3
+        # Replace with your Personal Access Token
+        with:
+          token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}
+
+      - name: Bump Version
+        run: scripts/bump-build-number.sh
+
+      - name: Configure Git
+        run: |
+          git config user.name "Github Actions CD"
+          git config user.email "<>"
+
+      - name: Commit Version Change
+        run: scripts/commit-version.sh
