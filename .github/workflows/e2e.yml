@@ -53,9 +53,6 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
 
-      - name: Test rules
-        run: gcloud iam service-accounts get-iam-policy github-actions-test-lab@flutter-template-ws.iam.gserviceaccount.com
-
       - name: Firebase Test Lab
         run: gcloud firebase test android run --type instrumentation --app ./build/app/outputs/apk/qa/debug/app-qa-debug.apk --test ./build/app/outputs/apk/androidTest/qa/debug/app-qa-debug-androidTest.apk --device model=panther,version=33 --environment-variables clearPackageData=true --use-orchestrator
 
