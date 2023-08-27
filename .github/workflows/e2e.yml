@@ -38,8 +38,11 @@ jobs:
       - name: Activate patrol
         run: dart pub global activate patrol_cli
 
+      - name: Setup android
+        run: flutter build apk --config-only
+
       - name: Generate Test apks
-        run: derry build apk qa
+        run: patrol build android --flavor=qa --dart-define=flavor=qa --verbose
 
       - id: 'auth'
         name: 'Authenticate to Google Cloud'
