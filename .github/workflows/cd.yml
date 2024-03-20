@@ -2,7 +2,7 @@ name: CD
 on:
   push:
     branches:
-      - main
+      - release
   workflow_dispatch:
 
 jobs:
@@ -40,9 +40,6 @@ jobs:
 
       - name: Run build_runner
         run: derry build_runner
-
-      - name: Bump Build Number
-        run: scripts/bump-build-number.sh
 
       - name: Decode Keystore
         id: decode_keystore
@@ -120,9 +117,6 @@ jobs:
         with:
           xcode-version: latest-stable
 
-      - name: Bump Build Number
-        run: scripts/bump-build-number.sh
-
       - name: Install the Apple certificate and provisioning profile
         env:
           BUILD_CERTIFICATE_BASE64: ${{ secrets.BUILD_CERTIFICATE_BASE64 }}
@@ -146,27 +140,3 @@ jobs:
           PASSWORD: ${{ secrets.APPSTORE_PASSWORD }}
           IPA_PATH: build/ios/ipa/prod.ipa
         run: xcrun altool --upload-app --file $IPA_PATH --username "ios@wednesday.is" --password $PASSWORD --type ios --verbose
-
-  commit-version-update:
-    name: Commit Version Change
-    runs-on: ubuntu-latest
-    needs: [ build-android, build-ios ]
-    if: |
-      always() &&
-      (needs.build-android.result == 'success' || needs.build-ios.result == 'success')
-    steps:
-      - uses: actions/checkout@v3
-        # Replace with your Personal Access Token
-        with:
-          token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}
-
-      - name: Bump Version
-        run: scripts/bump-build-number.sh
-
-      - name: Configure Git
-        run: |
-          git config user.name "Github Actions CD"
-          git config user.email "<>"
-
-      - name: Commit Version Change
-        run: scripts/commit-version.sh

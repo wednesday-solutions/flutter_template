@@ -15,6 +15,7 @@ void main() {
 
       await _navigateSearchForBengaluruAndMarkFavorite(patrol);
       await patrol.tap(find.byIcon(Icons.arrow_back));
+      await Future.delayed(const Duration(seconds: 1));
       expect(find.text("Bengaluru, IN"), findsOneWidget);
       await _navigateSearchForBengaluruAndMarkFavorite(
         patrol,

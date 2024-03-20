@@ -14,4 +14,9 @@ class City {
     required this.lat,
     required this.lon,
   });
+
+  @override
+  String toString() {
+    return 'City{id: $id, title: $title, country: $country, state: $state, lat: $lat, lon: $lon}';
+  }
 }

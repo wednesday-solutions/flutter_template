@@ -27,6 +27,8 @@ class FlavorValues {
     return FlavorValues(
         apiBaseUrl: dotenv.get("OPEN_WEATHER_BASE_URL"),
         openWeatherApiKey: dotenv.get("OPEN_WEATHER_API_KEY"),
+        showLogs: dotenv.getBoolOrDefault("SHOW_LOGS", fallback: false),
+        logSqlStatements: dotenv.getBoolOrDefault("LOG_SQL", fallback: false),
         useGoogleFonts:
             dotenv.getBoolOrDefault("USE_GOOGLE_FONTS", fallback: true),
         renderFontsInTest:

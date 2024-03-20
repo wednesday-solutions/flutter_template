@@ -14,4 +14,9 @@ class DayWeather {
     required this.date,
     required this.isToday,
   });
+
+  @override
+  String toString() {
+    return 'DayWeather{minTemp: $minTemp, maxTemp: $maxTemp, temp: $temp, date: $date, isToday: $isToday}';
+  }
 }
