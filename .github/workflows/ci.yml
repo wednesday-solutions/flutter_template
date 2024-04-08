@@ -17,7 +17,7 @@ jobs:
         with:
           channel: 'stable'
           cache: true
-          cache-key: "flutter-:os:-:channel:-:version:-:arch:-:hash:"
+          cache-key: "flutterCacheV1-:os:-:channel:-:version:-:arch:-:hash:"
 
       - name: Setup .env.dev
         env:
