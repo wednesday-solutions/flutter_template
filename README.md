@@ -227,6 +227,7 @@ The template also includes a testing setup for
 - [`Unit Tests`](test/repository).
 - [`Widget Tests`](test/presentation/integration)
 - [`Golden Tests`](test/presentation/goldens)
+- [`Integration / E2E tests`](integration_test) using [Patrol](https://patrol.leancode.co/)
 
 The test coverage and code quality reporting is done using [`sonarqube`](https://docs.sonarqube.org/latest/).
 You can read the documentation about integrating `sonarqube` in you CI workflow [here](https://docs.sonarqube.org/latest/devops-platform-integration/github-integration/#analyzing-projects-with-github-actions).
