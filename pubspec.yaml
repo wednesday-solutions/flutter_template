@@ -34,6 +34,7 @@ scripts:
     exclude-goldens: flutter test --exclude-tags=golden
     goldens: flutter test --tags=golden test/presentation/goldens
     update-goldens: flutter test --tags=golden test/presentation/goldens --update-goldens
+    e2e: patrol test --flavor=qa --dart-define=flavor=qa
   analyze: flutter analyze --fatal-infos --fatal-warnings
   format: dart format --set-exit-if-changed lib
   fix: dart fix --apply
