@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/core/entity/result.dart';
+import 'package:flutter_template/domain/entity/theme/theme_mode.dart';
 import 'package:flutter_template/domain/theme/get_is_dynamic_theme_enabled.dart';
 import 'package:flutter_template/domain/theme/get_theme_mode_use_case.dart';
 import 'package:flutter_template/domain/theme/set_is_dynamic_theme_enabled.dart';
@@ -26,6 +28,7 @@ class ThemeInteractorImpl implements ThemeInteractor {
   @override
   ThemeMode getThemeMode() {
     final appThemeMode = getThemeModeUseCase(unit);
+
     return appThemeMode.when(
       success: (mode) => themeModeMapper.map(mode),
       error: (error) {

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_template/core/entity/result.dart';
 import 'package:flutter_template/interactor/weather/favorite/favorite_weather_interactor.dart';
 import 'package:flutter_template/interactor/weather/search/search_city_interactor.dart';
 import 'package:flutter_template/navigation/weather/search/search_navigator.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_template/presentation/destinations/weather/search/search
 import 'package:flutter_template/presentation/destinations/weather/search/search_screen_state.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_view_model_impl.dart';
-import 'package:flutter_template/presentation/entity/base/ui_result.dart';
 import 'package:flutter_template/presentation/entity/base/ui_toolbar.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -165,7 +165,7 @@ void main() {
     when(() => searchCityInteractor.searchResultsStream)
         .thenReturnEmptyListStream();
     when(() => favoriteWeatherInteractor.setCityFavorite(city))
-        .thenAnswer((_) async => UIResult<void>.success(null));
+        .thenAnswer((_) async => const Success<void>(data: null));
     createViewModel();
 
     // When
@@ -184,7 +184,7 @@ void main() {
     when(() => searchCityInteractor.searchResultsStream)
         .thenReturnEmptyListStream();
     when(() => favoriteWeatherInteractor.removeCityFavorite(city))
-        .thenAnswer((_) async => UIResult<void>.success(null));
+        .thenAnswer((_) async => const Success<void>(data: null));
     createViewModel();
 
     // When
