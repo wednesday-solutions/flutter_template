@@ -1,4 +1,6 @@
-sealed class Result<T> {
+import 'package:equatable/equatable.dart';
+
+sealed class Result<T> extends Equatable {
   const Result();
 
   R when<R>({
@@ -38,10 +40,16 @@ class Success<T> extends Result<T> {
   final T data;
 
   const Success({required this.data}) : super();
+
+  @override
+  List<Object?> get props => [data];
 }
 
 class Error<E extends Exception> extends Result<E> {
   final Exception? exception;
 
-  Error({required this.exception}) : super();
+  const Error({required this.exception}) : super();
+
+  @override
+  List<Object?> get props => [exception];
 }

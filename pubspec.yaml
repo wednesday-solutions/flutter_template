@@ -94,6 +94,7 @@ dependencies:
   faker: ^2.1.0
   cached_network_image: ^3.2.3
   flutter_dotenv: ^5.0.2
+  equatable: ^2.0.5
 
 dev_dependencies:
   auto_route_generator: ^8.0.0
