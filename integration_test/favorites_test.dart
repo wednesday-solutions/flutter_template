@@ -8,8 +8,6 @@ import 'test_actions.dart';
 void main() {
   patrolTest(
     'user can search cities and add or remove them from favorites',
-    // ignore: deprecated_member_use
-    nativeAutomation: true,
     (patrol) async {
       await setupApp(patrol);
 

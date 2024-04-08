@@ -10,8 +10,6 @@ import 'test_actions.dart';
 void main() {
   patrolTest(
     "users are able to change the language of the app",
-    // ignore: deprecated_member_use
-    nativeAutomation: true,
     (patrol) async {
       await setupApp(patrol);
 
