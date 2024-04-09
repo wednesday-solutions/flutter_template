@@ -11,7 +11,7 @@ part 'app_database.g.dart';
     tables: [LocalLocation, LocalCurrentWeather],
     daos: [WeatherLocalServiceImpl])
 class AppDatabase extends _$AppDatabase {
-  AppDatabase(QueryExecutor e) : super(e);
+  AppDatabase(super.e);
 
   @override
   int get schemaVersion => 1;

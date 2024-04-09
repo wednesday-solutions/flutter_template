@@ -5,7 +5,7 @@ import 'package:flutter_template/presentation/base/theme/theme_view_model.dart';
 import 'package:flutter_template/presentation/base/widgets/theme/dynamic_theme_switch/dynamic_theme_switch_content.dart';
 
 class DynamicThemeSwitch extends ConsumerWidget {
-  const DynamicThemeSwitch({Key? key}) : super(key: key);
+  const DynamicThemeSwitch({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

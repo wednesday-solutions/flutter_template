@@ -12,5 +12,5 @@ final homeViewModelProvider =
 
 abstract class HomeViewModel extends BaseViewModel<HomeScreen, HomeScreenState>
     implements IntentHandler<HomeScreenIntent> {
-  HomeViewModel(HomeScreenState state) : super(state);
+  HomeViewModel(super.state);
 }

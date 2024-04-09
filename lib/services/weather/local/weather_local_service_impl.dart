@@ -14,8 +14,7 @@ part 'weather_local_service_impl.g.dart';
 class WeatherLocalServiceImpl extends DatabaseAccessor<AppDatabase>
     with _$WeatherLocalServiceImplMixin
     implements WeatherLocalService {
-  WeatherLocalServiceImpl(AppDatabase attachedDatabase)
-      : super(attachedDatabase);
+  WeatherLocalServiceImpl(super.attachedDatabase);
 
   @override
   Future<void> deleteFavoriteCity({required LocalLocationCompanion city}) {

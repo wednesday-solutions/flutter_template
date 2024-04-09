@@ -1,9 +1,8 @@
-import 'package:flutter_template/presentation/destinations/weather/search/search_screen_state.dart';
 import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';
 import 'package:mocktail/mocktail.dart';
 
 class FakeSearchViewModel extends SearchViewModel with Mock {
-  FakeSearchViewModel(SearchScreenState state) : super(state);
+  FakeSearchViewModel(super.state);
 
   String _searchTerm = "";
 

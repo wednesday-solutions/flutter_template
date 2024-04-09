@@ -5,7 +5,7 @@ import 'package:flutter_template/presentation/base/theme/theme_view_model.dart';
 import 'package:flutter_template/presentation/base/widgets/theme/theme_picker/theme_picker_content.dart';
 
 class ThemePicker extends ConsumerWidget {
-  const ThemePicker({Key? key}) : super(key: key);
+  const ThemePicker({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -84,7 +84,7 @@ dependencies:
   rxdart: ^0.27.7
   shared_preferences: ^2.0.18
   shimmer: ^3.0.0
-  sqlite3_flutter_libs: ^0.5.13
+  sqlite3_flutter_libs: ^0.5.20
   tuple: ^2.0.1
   uuid: ^4.3.3
   google_fonts: ^6.2.1

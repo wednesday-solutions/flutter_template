@@ -9,7 +9,7 @@ import 'package:flutter_template/presentation/base/widgets/theme/theme_listener.
 import 'package:get_it/get_it.dart';
 
 class TemplateApp extends StatelessWidget {
-  TemplateApp({Key? key}) : super(key: key);
+  TemplateApp({super.key});
 
   final AppRouter _appRouter = GetIt.I.get();
 

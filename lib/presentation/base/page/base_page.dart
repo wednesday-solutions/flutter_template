@@ -28,7 +28,7 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
   final Function(Effect effect) onEffect;
 
   const BasePage({
-    Key? key,
+    super.key,
     this.appBar,
     required this.viewModelProvider,
     this.screen,
@@ -38,7 +38,7 @@ class BasePage<SCREEN extends Screen, SCREEN_STATE extends ScreenState,
     this.loading,
     this.hideDefaultLoading = false,
     this.onEffect = noopEffectHandler,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -85,13 +85,13 @@ class _BasePageContent<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
   final Widget? loading;
 
   const _BasePageContent({
-    Key? key,
+    super.key,
     required this.onAppBarBackPressed,
     required this.appBarActions,
     required this.body,
     required this.loading,
     required this.hideDefaultLoading,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

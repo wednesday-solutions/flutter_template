@@ -9,10 +9,10 @@ class UICityListItem extends StatelessWidget {
   final StreamSink<SearchScreenIntent> sink;
 
   const UICityListItem({
-    Key? key,
+    super.key,
     required this.city,
     required this.sink,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

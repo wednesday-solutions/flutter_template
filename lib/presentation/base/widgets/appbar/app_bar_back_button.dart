@@ -10,9 +10,9 @@ class AppBarBackButton<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
   final Function() onBackPressed;
 
   const AppBarBackButton({
-    Key? key,
+    super.key,
     required this.onBackPressed,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

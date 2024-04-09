@@ -8,8 +8,8 @@ import 'package:tuple/tuple.dart';
 
 class SearchPageResults extends ConsumerWidget {
   const SearchPageResults({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

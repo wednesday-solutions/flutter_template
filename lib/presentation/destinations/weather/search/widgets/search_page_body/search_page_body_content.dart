@@ -6,11 +6,11 @@ class SearchPageBodyContent extends StatelessWidget {
   final Widget child;
 
   const SearchPageBodyContent({
-    Key? key,
+    super.key,
     required this.textController,
     required this.searchHint,
     required this.child,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

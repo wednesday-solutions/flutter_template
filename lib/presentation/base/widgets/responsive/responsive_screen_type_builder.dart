@@ -12,14 +12,14 @@ class ResponsiveScreenTypeBuilder extends StatelessWidget {
   final Widget Function(BuildContext context)? desktop;
 
   const ResponsiveScreenTypeBuilder({
-    Key? key,
+    super.key,
     this.breakpoints = ResponsiveBreakpoints.defaults,
     required this.mobile,
     this.mobileLandscape,
     this.tablet,
     this.tabletLandscape,
     this.desktop,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -64,7 +64,7 @@ void main() {
     createViewModel();
 
     // When
-    final initialState = viewModel.debugState;
+    final initialState = viewModel.state;
 
     // Then
     expect(initialState, getInitialState());
