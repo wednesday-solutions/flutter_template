@@ -166,3 +166,4 @@ jobs:
 
         - name: Commit Version Change
           run: scripts/commit-version.sh
+
