@@ -17,6 +17,11 @@ jobs:
         with:
           token: ${{ secrets.SHOUNAK_GITHUB_TOKEN }}
 
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+
       - uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
