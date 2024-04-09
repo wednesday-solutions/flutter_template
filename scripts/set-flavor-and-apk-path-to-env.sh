@@ -14,7 +14,7 @@
 
 CURRENT_BRANCH=$(git branch --show-current)
 
-if [ "main" == "$CURRENT_BRANCH" ]; then
+if [ "release" == "$CURRENT_BRANCH" ]; then
   echo "Current Branch is $CURRENT_BRANCH , proceeding with prod build"
   echo "FLAVOR_NAME=prod" >> "$GITHUB_ENV"
   echo "APK_PATH=build/app/outputs/flutter-apk/app-prod-release.apk" >> "$GITHUB_ENV"
