@@ -7,9 +7,9 @@ class UIWeatherListItem extends StatelessWidget {
   final UIWeather weather;
 
   const UIWeatherListItem({
-    Key? key,
+    super.key,
     required this.weather,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

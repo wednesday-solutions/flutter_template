@@ -9,10 +9,10 @@ class ViewModelProvider<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
   final AutoDisposeStateNotifierProvider<VIEW_MODEL, SCREEN_STATE> provider;
 
   const ViewModelProvider({
-    Key? key,
-    required Widget child,
+    super.key,
+    required super.child,
     required this.provider,
-  }) : super(key: key, child: child);
+  });
 
   static ViewModelProvider<VIEW_MODEL, SCREEN_STATE> of<
       VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,

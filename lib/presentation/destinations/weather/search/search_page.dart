@@ -14,7 +14,7 @@ import 'package:flutter_template/presentation/entity/effect/effect.dart';
 class SearchPage extends StatelessWidget {
   final SearchScreen searchScreen;
 
-  const SearchPage({Key? key, required this.searchScreen}) : super(key: key);
+  const SearchPage({super.key, required this.searchScreen});
 
   @override
   Widget build(BuildContext context) {

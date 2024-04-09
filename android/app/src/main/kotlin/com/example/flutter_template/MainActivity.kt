@@ -1,4 +1,5 @@
-package com.example.flutter_template
+package com.wednesday.flutter_template
+
 
 import android.os.Bundle
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen

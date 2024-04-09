@@ -9,11 +9,11 @@ class ScaffoldBodyWithLoadingIndicator<
     VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
     SCREEN_STATE extends ScreenState> extends ConsumerWidget {
   const ScaffoldBodyWithLoadingIndicator({
-    Key? key,
+    super.key,
     required this.body,
     this.loading,
     this.hideDefaultLoading = false,
-  }) : super(key: key);
+  });
 
   final Widget body;
   final Widget? loading;

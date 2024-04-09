@@ -3,7 +3,7 @@ import 'package:flutter_template/foundation/extensions/theme_ext.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SearchPageLoadingShimmer extends StatelessWidget {
-  const SearchPageLoadingShimmer({Key? key}) : super(key: key);
+  const SearchPageLoadingShimmer({super.key});
 
   @override
   Widget build(BuildContext context) {

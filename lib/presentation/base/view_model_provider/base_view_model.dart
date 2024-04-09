@@ -26,7 +26,7 @@ abstract class BaseViewModel<SCREEN extends Screen,
   @protected
   onBind(SCREEN? screen) {}
 
-  BaseViewModel(SCREEN_STATE state) : super(state) {
+  BaseViewModel(super.state) {
     logD("onInit.");
     onInit();
   }

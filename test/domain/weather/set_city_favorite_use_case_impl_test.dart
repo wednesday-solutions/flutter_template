@@ -1,4 +1,4 @@
-import 'package:flutter_template/domain/entity/base/result/result.dart';
+import 'package:flutter_template/core/entity/result.dart';
 import 'package:flutter_template/domain/weather/set_city_favorite_use_case_impl.dart';
 import 'package:flutter_template/repository/weather/weather_repository.dart';
 import 'package:flutter_test/flutter_test.dart';

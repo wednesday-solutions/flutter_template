@@ -1,5 +1,5 @@
 import 'package:flutter_template/domain/base/exception/unknown_object_thrown_exception.dart';
-import 'package:flutter_template/domain/entity/base/result/result.dart';
+import 'package:flutter_template/core/entity/result.dart';
 import 'package:flutter_template/foundation/extensions/object_ext.dart';
 
 abstract class BaseAsyncUseCase<IN, OUT> {
@@ -9,7 +9,7 @@ abstract class BaseAsyncUseCase<IN, OUT> {
     logD("call: param = $param");
     try {
       final result = await callInternal(param);
-      return Result.success(result);
+      return Success(data: result);
     } catch (error) {
       final Exception exception;
 
@@ -18,7 +18,7 @@ abstract class BaseAsyncUseCase<IN, OUT> {
       } else {
         exception = UnknownObjectThrownException(object: error);
       }
-      return Result.error(exception);
+      return Error(exception: exception);
     }
   }
 }

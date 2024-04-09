@@ -1,0 +1,62 @@
+name: E2E
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  e2e:
+    name: E2E
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+          cache: true
+          cache-key: "flutterCacheV1-:os:-:channel:-:version:-:arch:-:hash:"
+          pub-cache-key: "flutterPubCacheV1-:os:-:channel:-:version:-:arch:-:hash:"
+
+      - name: Setup .env.qa
+        env:
+          ENV_FILE: ${{ secrets.ENV_QA }}
+        run: echo -n $ENV_FILE | base64 --decode > .env.qa
+
+      - name: Activate derry
+        run: dart pub global activate derry
+
+      - name: Get Dependencies
+        run: flutter pub get
+
+      - name: Run build_runner
+        run: derry build_runner
+
+      - name: Activate patrol
+        run: dart pub global activate patrol_cli
+
+      - name: Setup android
+        run: flutter build apk --config-only
+
+      - name: Generate Test apks
+        run: patrol build android --flavor=qa --dart-define=flavor=qa --verbose
+
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CLOUD_TEST_LAB_CREDS }}'
+
+      - name: 'Set up Cloud SDK'
+        uses: 'google-github-actions/setup-gcloud@v1'
+
+      - name: Firebase Test Lab
+        run: gcloud firebase test android run --type instrumentation --app ./build/app/outputs/apk/qa/debug/app-qa-debug.apk --test ./build/app/outputs/apk/androidTest/qa/debug/app-qa-debug-androidTest.apk --device model=panther,version=33 --environment-variables clearPackageData=true --use-orchestrator
+

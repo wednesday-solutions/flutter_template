@@ -8,13 +8,12 @@ import 'test_actions.dart';
 void main() {
   patrolTest(
     'user can search cities and add or remove them from favorites',
-    // ignore: deprecated_member_use
-    nativeAutomation: true,
     (patrol) async {
       await setupApp(patrol);
 
       await _navigateSearchForBengaluruAndMarkFavorite(patrol);
       await patrol.tap(find.byIcon(Icons.arrow_back));
+      await Future.delayed(const Duration(seconds: 1));
       expect(find.text("Bengaluru, IN"), findsOneWidget);
       await _navigateSearchForBengaluruAndMarkFavorite(
         patrol,
