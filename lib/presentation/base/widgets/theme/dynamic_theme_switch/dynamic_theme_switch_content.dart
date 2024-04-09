@@ -7,10 +7,10 @@ class DynamicThemeSwitchContent extends StatelessWidget {
   final void Function(bool) onIsDynamicToggled;
 
   const DynamicThemeSwitchContent({
-    Key? key,
+    super.key,
     required this.isDynamic,
     required this.onIsDynamicToggled,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

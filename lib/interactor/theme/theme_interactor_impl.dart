@@ -26,6 +26,7 @@ class ThemeInteractorImpl implements ThemeInteractor {
   @override
   ThemeMode getThemeMode() {
     final appThemeMode = getThemeModeUseCase(unit);
+
     return appThemeMode.when(
       success: (mode) => themeModeMapper.map(mode),
       error: (error) {

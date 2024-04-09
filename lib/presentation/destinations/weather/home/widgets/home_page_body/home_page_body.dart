@@ -5,8 +5,8 @@ import 'package:flutter_template/presentation/destinations/weather/home/widgets/
 
 class HomePageBody extends ConsumerWidget {
   const HomePageBody({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -5,9 +5,9 @@ class UIDayWeatherHeadingListItem extends StatelessWidget {
   final UIDayWeatherHeading heading;
 
   const UIDayWeatherHeadingListItem({
-    Key? key,
+    super.key,
     required this.heading,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -19,7 +19,7 @@ class UIList<INTENT extends BaseIntent> extends StatefulWidget {
   final SliverGridDelegate? gridDelegate;
 
   const UIList({
-    Key? key,
+    super.key,
     required this.renderers,
     required this.intentHandler,
     required this.items,
@@ -28,7 +28,7 @@ class UIList<INTENT extends BaseIntent> extends StatefulWidget {
     this.physics,
     this.numberOfColumns = 1,
     this.gridDelegate,
-  }) : super(key: key);
+  });
 
   @override
   State<UIList> createState() => _UIListState<INTENT>();

@@ -13,7 +13,7 @@ final searchViewModelProvider =
 abstract class SearchViewModel
     extends BaseViewModel<SearchScreen, SearchScreenState>
     implements IntentHandler<SearchScreenIntent> {
-  SearchViewModel(SearchScreenState state) : super(state);
+  SearchViewModel(super.state);
 
   String get searchTerm;
 }

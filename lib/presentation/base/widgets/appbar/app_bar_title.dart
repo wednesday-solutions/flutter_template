@@ -9,8 +9,8 @@ import 'package:flutter_template/presentation/entity/screen/screen_state.dart';
 class AppBarTitle<VIEW_MODEL extends BaseViewModel<Screen, SCREEN_STATE>,
     SCREEN_STATE extends ScreenState> extends ConsumerWidget {
   const AppBarTitle({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

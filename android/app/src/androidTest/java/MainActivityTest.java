@@ -1,6 +1,7 @@
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.example.flutter_template.MainActivity;
+import com.wednesday.flutter_template
+.MainActivity;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

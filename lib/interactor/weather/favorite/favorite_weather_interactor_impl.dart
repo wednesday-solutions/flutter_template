@@ -1,3 +1,4 @@
+import 'package:flutter_template/core/entity/result.dart';
 import 'package:flutter_template/domain/weather/fetch_favorite_cities_weather_use_case.dart';
 import 'package:flutter_template/domain/weather/get_favorite_cities_stream_use_case.dart';
 import 'package:flutter_template/domain/weather/get_favorite_cities_weather_stream_use_case.dart';
@@ -10,7 +11,6 @@ import 'package:flutter_template/interactor/weather/favorite/favorite_weather_in
 import 'package:flutter_template/interactor/weather/favorite/ui_weather_list_mapper.dart';
 import 'package:flutter_template/interactor/weather/search/ui_city_mapper.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
-import 'package:flutter_template/presentation/entity/base/ui_result.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 
 class FavoriteWeatherInteractorImpl extends BaseInteractor
@@ -35,9 +35,9 @@ class FavoriteWeatherInteractorImpl extends BaseInteractor
   });
 
   @override
-  Future<UIResult<void>> fetchFavouriteCitiesWeather() async {
+  Future<Result<void>> fetchFavouriteCitiesWeather() async {
     logD("fetchFavouriteCitiesWeather");
-    return mapResult(await fetchFavoriteCitiesWeatherUseCase(param: unit));
+    return await fetchFavoriteCitiesWeatherUseCase(param: unit);
   }
 
   @override
@@ -55,18 +55,18 @@ class FavoriteWeatherInteractorImpl extends BaseInteractor
   }
 
   @override
-  Future<UIResult<void>> removeCityFavorite(UICity uiCity) async {
+  Future<Result<void>> removeCityFavorite(UICity uiCity) async {
     logD("removeCityFavorite: uiCity = $uiCity");
-    return mapResult(await removeFavoriteCityUseCase(
+    return await removeFavoriteCityUseCase(
       param: uiCityMapper.mapCity(uiCity),
-    ));
+    );
   }
 
   @override
-  Future<UIResult<void>> setCityFavorite(UICity uiCity) async {
+  Future<Result<void>> setCityFavorite(UICity uiCity) async {
     logD("setCityFavorite: uiCity = $uiCity");
-    return mapResult(await setCityFavoriteUseCase(
+    return await setCityFavoriteUseCase(
       param: uiCityMapper.mapCity(uiCity),
-    ));
+    );
   }
 }

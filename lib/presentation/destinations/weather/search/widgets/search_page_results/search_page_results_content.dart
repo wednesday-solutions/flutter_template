@@ -17,14 +17,14 @@ class SearchPageResultsContent extends StatelessWidget {
   final String noResultsPlaceholder;
 
   const SearchPageResultsContent({
-    Key? key,
+    super.key,
     required this.showLoading,
     required this.searchList,
     required this.searchTerm,
     required this.intentHandlerCallback,
     required this.searchResultsPlaceholder,
     required this.noResultsPlaceholder,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
