@@ -48,6 +48,9 @@ jobs:
       - name: Run build_runner
         run: derry build_runner
 
+      - name: Bump Version
+        run: scripts/bump-build-number.sh
+
       - name: Decode Keystore
         id: decode_keystore
         uses: timheuer/base64-to-file@v1
