@@ -15,7 +15,7 @@ class ThemePicker extends ConsumerWidget {
     return ThemePickerContent(
       themeMode: themeState.themeMode,
       onThemeModeSelected: (ThemeMode mode) {
-        themeViewModel.onIntent(ThemeIntent.setThemeMode(mode));
+        themeViewModel.onIntent(SetThemeModeThemeIntent(mode: mode));
       },
     );
   }

@@ -20,7 +20,7 @@ class SearchPageBody extends HookConsumerWidget {
 
     textController.addListener(() {
       final viewModel = ref.read(searchViewModelProvider.notifier);
-      viewModel.onIntent(SearchScreenIntent.search(
+      viewModel.onIntent(SearchSearchScreenIntent(
         searchTerm: textController.text,
       ));
     });

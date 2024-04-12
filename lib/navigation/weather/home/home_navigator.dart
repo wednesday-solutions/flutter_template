@@ -1,3 +1,3 @@
-abstract class HomeNavigator {
+abstract interface class HomeNavigator {
   void toSearchScreen();
 }

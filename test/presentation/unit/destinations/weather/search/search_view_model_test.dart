@@ -105,7 +105,7 @@ void main() {
       emits(getInitialState().copyWith(showLoading: false)),
     ]);
 
-    viewModel.onIntent(SearchScreenIntent.search(searchTerm: searchTerm));
+    viewModel.onIntent(const SearchSearchScreenIntent(searchTerm: searchTerm));
   });
 
   test(
@@ -128,10 +128,10 @@ void main() {
       emits(getInitialState().copyWith(showLoading: false)),
     ]);
 
-    viewModel.onIntent(SearchScreenIntent.search(searchTerm: searchTerm1));
-    viewModel.onIntent(SearchScreenIntent.search(searchTerm: searchTerm2));
-    viewModel.onIntent(SearchScreenIntent.search(searchTerm: searchTerm3));
-    viewModel.onIntent(SearchScreenIntent.search(searchTerm: searchTerm4));
+    viewModel.onIntent(const SearchSearchScreenIntent(searchTerm: searchTerm1));
+    viewModel.onIntent(const SearchSearchScreenIntent(searchTerm: searchTerm2));
+    viewModel.onIntent(const SearchSearchScreenIntent(searchTerm: searchTerm3));
+    viewModel.onIntent(const SearchSearchScreenIntent(searchTerm: searchTerm4));
 
     // Then
     // Make sure no calls happen instantly
@@ -151,7 +151,7 @@ void main() {
     createViewModel();
 
     // When
-    viewModel.onIntent(SearchScreenIntent.back());
+    viewModel.onIntent(const BackSearchScreenIntent());
 
     // Then
     verify(() => searchNavigator.back()).called(1);
@@ -169,7 +169,7 @@ void main() {
     createViewModel();
 
     // When
-    viewModel.onIntent(SearchScreenIntent.toggleFavorite(city: city));
+    viewModel.onIntent(ToggleFavoriteSearchScreenIntent(city: city));
 
     // Then
     verify(() => favoriteWeatherInteractor.setCityFavorite(city)).called(1);
@@ -188,7 +188,7 @@ void main() {
     createViewModel();
 
     // When
-    viewModel.onIntent(SearchScreenIntent.toggleFavorite(city: city));
+    viewModel.onIntent(ToggleFavoriteSearchScreenIntent(city: city));
 
     // Then
     verify(() => favoriteWeatherInteractor.removeCityFavorite(city)).called(1);

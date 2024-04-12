@@ -9,7 +9,7 @@ import 'package:flutter_template/services/entity/open_weather/current_weather/re
 import 'package:flutter_template/services/entity/open_weather/geo_coding/remote/remote_location.dart';
 import 'package:flutter_template/services/weather/remote/weather_remote_service.dart';
 
-class FakeWeatherRemoteService extends WeatherRemoteService {
+class FakeWeatherRemoteService implements WeatherRemoteService {
   @override
   Future<RemoteCurrentWeather> currentWeather(
       {required String cityAndState}) async {

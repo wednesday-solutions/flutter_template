@@ -1,6 +1,6 @@
 import 'package:flutter_template/services/base/database/app_database.dart';
 
-abstract class WeatherLocalService {
+abstract interface class WeatherLocalService {
   Stream<List<LocalLocationData>> getFavoriteCitiesStream();
 
   Future<List<LocalLocationData>> getFavouriteCities();

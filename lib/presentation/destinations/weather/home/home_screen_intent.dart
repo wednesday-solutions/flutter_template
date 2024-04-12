@@ -1,9 +1,12 @@
 import 'package:flutter_template/presentation/entity/intent/intent.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'home_screen_intent.freezed.dart';
+sealed class HomeScreenIntent extends BaseIntent {
+  const HomeScreenIntent();
+}
 
-@freezed
-class HomeScreenIntent with _$HomeScreenIntent implements BaseIntent {
-  factory HomeScreenIntent.search() = _HomeScreenIntent_Search;
+class SearchHomeScreenIntent extends HomeScreenIntent {
+  const SearchHomeScreenIntent();
+
+  @override
+  List<Object?> get props => [];
 }

@@ -10,6 +10,6 @@ class {{name.pascalCase()}}PageBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final {{name.camelCase()}}ViewModel = ref.watch({{name.camelCase()}}ViewModelProvider.notifier);
 
-    return {{name.pascalCase()}}PageBodyContent();
+    return {{name.pascalCase()}}PageBodyContent(intentHandler: {{name.camelCase()}}ViewModel.onIntent);
   }
 }

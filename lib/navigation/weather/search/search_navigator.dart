@@ -1,3 +1,3 @@
-abstract class SearchNavigator {
+abstract interface class SearchNavigator {
   void back();
 }

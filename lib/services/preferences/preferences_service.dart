@@ -1,4 +1,4 @@
-abstract class PreferencesService {
+abstract interface class PreferencesService {
   bool containsKey(String key);
 
   Future setInt({required String key, required int value});

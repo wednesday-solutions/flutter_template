@@ -21,17 +21,15 @@ class ThemeViewModelImpl extends ThemeViewModel {
   }
 
   @override
-  void onIntent(ThemeIntent intent) {
-    intent.when(
-      setThemeMode: (mode) async {
-        await themeInteractor.setThemeMode(mode);
+  Future<void> onIntent(ThemeIntent intent) async {
+    switch (intent) {
+      case SetThemeModeThemeIntent():
+        await themeInteractor.setThemeMode(intent.mode);
         state = state.copyWith(themeMode: themeInteractor.getThemeMode());
-      },
-      setIsDynamic: (isDynamic) async {
-        await themeInteractor.setIsDynamicEnabled(isDynamic);
+      case SetIsDynamicThemeIntent():
+        await themeInteractor.setIsDynamicEnabled(intent.isDynamic);
         state =
             state.copyWith(isDynamic: themeInteractor.getIsDynamicEnabled());
-      },
-    );
+    }
   }
 }

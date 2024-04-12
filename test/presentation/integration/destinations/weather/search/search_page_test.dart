@@ -196,7 +196,7 @@ void main() {
 
     // Then
     verify(() => fakeSearchViewModel
-        .onIntent(SearchScreenIntent.search(searchTerm: "search"))).called(1);
+        .onIntent(const SearchSearchScreenIntent(searchTerm: "search"))).called(1);
   });
 
   testWidgets(
@@ -211,7 +211,7 @@ void main() {
     await tester.pump();
 
     // Then
-    verify(() => fakeSearchViewModel.onIntent(SearchScreenIntent.back()))
+    verify(() => fakeSearchViewModel.onIntent(const BackSearchScreenIntent()))
         .called(1);
   });
 
@@ -258,8 +258,8 @@ void main() {
 
     // Then
     verify(() => fakeSearchViewModel.onIntent(
-        SearchScreenIntent.toggleFavorite(city: uiCityList.first))).called(1);
+        ToggleFavoriteSearchScreenIntent(city: uiCityList.first))).called(1);
     verify(() => fakeSearchViewModel.onIntent(
-        SearchScreenIntent.toggleFavorite(city: uiCityList.last))).called(1);
+        ToggleFavoriteSearchScreenIntent(city: uiCityList.last))).called(1);
   });
 }
