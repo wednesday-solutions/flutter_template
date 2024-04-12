@@ -105,7 +105,7 @@ void main() {
       emits(getInitialState().copyWith(showLoading: false)),
     ]);
 
-    viewModel.onIntent(SearchSearchScreenIntent(searchTerm: searchTerm));
+    viewModel.onIntent(const SearchSearchScreenIntent(searchTerm: searchTerm));
   });
 
   test(
@@ -128,10 +128,10 @@ void main() {
       emits(getInitialState().copyWith(showLoading: false)),
     ]);
 
-    viewModel.onIntent(SearchSearchScreenIntent(searchTerm: searchTerm1));
-    viewModel.onIntent(SearchSearchScreenIntent(searchTerm: searchTerm2));
-    viewModel.onIntent(SearchSearchScreenIntent(searchTerm: searchTerm3));
-    viewModel.onIntent(SearchSearchScreenIntent(searchTerm: searchTerm4));
+    viewModel.onIntent(const SearchSearchScreenIntent(searchTerm: searchTerm1));
+    viewModel.onIntent(const SearchSearchScreenIntent(searchTerm: searchTerm2));
+    viewModel.onIntent(const SearchSearchScreenIntent(searchTerm: searchTerm3));
+    viewModel.onIntent(const SearchSearchScreenIntent(searchTerm: searchTerm4));
 
     // Then
     // Make sure no calls happen instantly

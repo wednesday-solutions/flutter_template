@@ -23,7 +23,7 @@ class SearchPage extends StatelessWidget {
       viewModelProvider: searchViewModelProvider,
       screen: searchScreen,
       onAppBarBackPressed: (viewModel) => viewModel.onIntent(
-        BackSearchScreenIntent(),
+        const BackSearchScreenIntent(),
       ),
       body: const SearchPageBody(),
       onEffect: _handleEffect,

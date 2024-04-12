@@ -7,7 +7,6 @@ import 'package:flutter_template/presentation/destinations/weather/search/search
 import 'package:flutter_template/presentation/destinations/weather/search/search_view_model.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/base/ui_toolbar.dart';
-import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 import 'package:flutter_template/presentation/intl/translations/translation_keys.dart';
 import 'package:rxdart/rxdart.dart';
 

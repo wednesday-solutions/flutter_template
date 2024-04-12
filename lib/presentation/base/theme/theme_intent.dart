@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/entity/intent/intent.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 
 sealed class ThemeIntent implements BaseIntent {
   const ThemeIntent();
