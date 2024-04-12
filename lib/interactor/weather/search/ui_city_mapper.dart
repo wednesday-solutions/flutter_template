@@ -3,7 +3,7 @@ import 'package:flutter_template/foundation/extensions/object_ext.dart';
 import 'package:flutter_template/foundation/mapper/mapper2.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 
-abstract class UICityMapper extends Mapper2<City, bool, UICity> {
+abstract class UICityMapper implements Mapper2<City, bool, UICity> {
   City mapCity(UICity from);
 
   UICity mapFavouriteCity(City from);

@@ -7,7 +7,7 @@ import 'package:flutter_template/services/base/database/app_database.dart';
 import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather.dart';
 import 'package:flutter_template/services/entity/open_weather/current_weather/remote/remote_current_weather_weather.dart';
 
-abstract class LocalWeatherMapper extends Mapper3<RemoteCurrentWeather, double,
+abstract interface class LocalWeatherMapper implements Mapper3<RemoteCurrentWeather, double,
     double, LocalCurrentWeatherCompanion> {}
 
 class LocalWeatherMapperImpl extends LocalWeatherMapper {

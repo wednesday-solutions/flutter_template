@@ -174,7 +174,7 @@ void main() {
     // Then
     verify(
       () => intentHandler.onIntent(
-        SearchScreenIntent.toggleFavorite(
+        ToggleFavoriteSearchScreenIntent(
           city: searchList.first,
         ),
       ),

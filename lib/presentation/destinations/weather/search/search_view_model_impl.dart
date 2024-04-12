@@ -59,21 +59,20 @@ class SearchViewModelImpl extends SearchViewModel {
       );
 
   @override
-  void onIntent(SearchScreenIntent intent) {
-    intent.when(
-      back: () => searchNavigator.back(),
-      search: (newSearchTerm) {
-        if (newSearchTerm != searchTerm) {
-          _searchTermSubject.add(newSearchTerm);
+  Future<void> onIntent(SearchScreenIntent intent) async {
+    switch (intent) {
+      case BackSearchScreenIntent():
+        searchNavigator.back();
+      case SearchSearchScreenIntent():
+        if (intent.searchTerm != searchTerm) {
+          _searchTermSubject.add(intent.searchTerm);
         }
-      },
-      toggleFavorite: (UICity city) async {
-        if (city.isFavourite) {
-          await favoriteWeatherInteractor.removeCityFavorite(city);
+      case ToggleFavoriteSearchScreenIntent():
+        if (intent.city.isFavourite) {
+          await favoriteWeatherInteractor.removeCityFavorite(intent.city);
         } else {
-          await favoriteWeatherInteractor.setCityFavorite(city);
+          await favoriteWeatherInteractor.setCityFavorite(intent.city);
         }
-      },
-    );
+    }
   }
 }

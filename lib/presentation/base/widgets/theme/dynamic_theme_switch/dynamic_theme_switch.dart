@@ -15,7 +15,7 @@ class DynamicThemeSwitch extends ConsumerWidget {
     return DynamicThemeSwitchContent(
       isDynamic: isDynamic,
       onIsDynamicToggled: (isDynamic) {
-        themeViewModel.onIntent(ThemeIntent.setIsDynamic(isDynamic));
+        themeViewModel.onIntent(SetIsDynamicThemeIntent(isDynamic: isDynamic));
       },
     );
   }

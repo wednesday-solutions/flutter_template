@@ -3,7 +3,7 @@ import 'package:flutter_template/domain/entity/base/datetime/date_time.dart';
 import 'package:flutter_template/domain/entity/base/datetime/time.dart';
 import 'package:flutter_template/foundation/global_type_alias.dart';
 
-abstract class DateRepository {
+abstract interface class DateRepository {
   DartDateTime nowDartDateTime();
 
   Date todayDate();

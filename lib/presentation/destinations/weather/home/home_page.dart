@@ -40,7 +40,7 @@ class HomePage extends ConsumerWidget {
         IconButton(
           onPressed: () {
             final viewModel = ref.watch(homeViewModelProvider.notifier);
-            viewModel.onIntent(HomeScreenIntent.search());
+            viewModel.onIntent(const SearchHomeScreenIntent());
           },
           icon: const Icon(Icons.search),
         ),

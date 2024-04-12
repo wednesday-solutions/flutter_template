@@ -1,1 +1,1 @@
-abstract class BaseIntent {}
+interface class BaseIntent {}
