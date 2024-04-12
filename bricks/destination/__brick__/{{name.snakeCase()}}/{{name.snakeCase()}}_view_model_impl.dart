@@ -29,6 +29,8 @@ class {{name.pascalCase()}}ViewModelImpl extends {{name.pascalCase()}}ViewModel 
 
   @override
   void onIntent({{name.pascalCase()}}ScreenIntent intent) {
+    switch (intent) {
 
+    }
   }
 }

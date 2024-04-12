@@ -1,3 +1,3 @@
-abstract class Screen {
+abstract interface class Screen {
   const Screen();
 }

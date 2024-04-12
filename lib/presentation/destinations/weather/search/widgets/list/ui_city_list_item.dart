@@ -29,7 +29,7 @@ class UICityListItem extends StatelessWidget {
               color: Theme.of(context).colorScheme.secondary,
             ),
             onPressed: () {
-              sink.add(SearchScreenIntent.toggleFavorite(city: city));
+              sink.add(ToggleFavoriteSearchScreenIntent(city: city));
             },
           ),
         ],

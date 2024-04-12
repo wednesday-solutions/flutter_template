@@ -5,7 +5,7 @@ import 'package:flutter_template/foundation/mapper/mapper.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_weather.dart';
 
-abstract class UIWeatherListMapper
+abstract interface class UIWeatherListMapper
     extends Mapper<List<Weather>, List<UIListItem>> {}
 
 class UIWeatherListMapperImpl extends UIWeatherListMapper {

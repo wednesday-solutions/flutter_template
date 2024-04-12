@@ -1,7 +1,7 @@
 import 'package:flutter_template/domain/entity/weather/city.dart';
 import 'package:flutter_template/domain/entity/weather/weather.dart';
 
-abstract class WeatherRepository {
+abstract interface class WeatherRepository {
   Future<List<City>> searchCities(String searchTerm);
 
   Stream<List<City>> getFavoriteCitiesStream();

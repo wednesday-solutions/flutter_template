@@ -1,4 +1,4 @@
-abstract class PreferencesRepository {
+abstract interface class PreferencesRepository {
   bool contains({required String key});
 
   int getInt({required String key, required int defaultValue});

@@ -11,7 +11,7 @@ import 'package:flutter_template/interactor/weather/search/search_city_interacto
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:rxdart/rxdart.dart';
 
-class SearchCityInteractorImpl extends SearchCityInteractor {
+class SearchCityInteractorImpl implements SearchCityInteractor {
   final SearchCitiesUseCase searchCitiesUseCase;
   final GetFavoriteCitiesStreamUseCase favoriteCitiesStreamUseCase;
   final CitySearchResultMapper citySearchResultMapper;

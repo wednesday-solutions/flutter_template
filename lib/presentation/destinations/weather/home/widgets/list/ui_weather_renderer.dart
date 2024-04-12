@@ -5,7 +5,8 @@ import 'package:flutter_template/presentation/destinations/weather/home/home_scr
 import 'package:flutter_template/presentation/destinations/weather/home/widgets/list/ui_weather_list_item.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_weather.dart';
 
-class UIWeatherRenderer extends ListItemRenderer<UIWeather, HomeScreenIntent> {
+class UIWeatherRenderer
+    implements ListItemRenderer<UIWeather, HomeScreenIntent> {
   const UIWeatherRenderer();
 
   @override
