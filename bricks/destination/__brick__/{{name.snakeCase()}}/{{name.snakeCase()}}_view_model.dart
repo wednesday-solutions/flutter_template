@@ -10,5 +10,5 @@ final {{name.camelCase()}}ViewModelProvider =
 
 abstract class {{name.pascalCase()}}ViewModel extends BaseViewModel<{{name.pascalCase()}}Screen, {{name.pascalCase()}}ScreenState>
     implements IntentHandler<{{name.pascalCase()}}ScreenIntent> {
-  {{name.pascalCase()}}ViewModel({{name.pascalCase()}}ScreenState state) : super(state);
+  {{name.pascalCase()}}ViewModel(super.state);
 }
