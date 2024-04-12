@@ -16,5 +16,3 @@ class SetIsDynamicThemeIntent extends ThemeIntent {
 
   const SetIsDynamicThemeIntent({required this.isDynamic});
 }
-
-

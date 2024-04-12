@@ -12,8 +12,7 @@ import 'package:flutter_template/interactor/weather/search/ui_city_mapper.dart';
 import 'package:flutter_template/presentation/entity/base/ui_list_item.dart';
 import 'package:flutter_template/presentation/entity/weather/ui_city.dart';
 
-class FavoriteWeatherInteractorImpl
-    implements FavoriteWeatherInteractor {
+class FavoriteWeatherInteractorImpl implements FavoriteWeatherInteractor {
   final FetchFavoriteCitiesWeatherUseCase fetchFavoriteCitiesWeatherUseCase;
   final GetFavoriteCitiesStreamUseCase getFavoriteCitiesStreamUseCase;
   final SetCityFavoriteUseCase setCityFavoriteUseCase;
